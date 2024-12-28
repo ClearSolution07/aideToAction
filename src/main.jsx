@@ -7,8 +7,9 @@ import App from "./App.jsx";
 // Define your theme configuration
 const config = {
   token: {
-    colorPrimary: "#facc15",
+    colorPrimary: "#FF5C5C",
     fontFamily: "Poppins",
+    borderRadius: "5px",
   },
 };
 
