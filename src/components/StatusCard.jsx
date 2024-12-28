@@ -1,13 +1,13 @@
-import { Card, Typography, Button } from "antd";
+import { Card, Typography } from "antd";
 
-const { Title, Text } = Typography;
+const { Title, Link } = Typography;
 
-const StatusCard = ({ name, count, text }) => {
+const StatusCard = ({ name, count, text, color, linkColor }) => {
   return (
-    <Card style={{width:"400px"}}>
-      <Title level={4}>{name}</Title>
-      <Text>{count}</Text>
-      <Button type="link">{text}</Button>
+    <Card style={{ borderRadius: "16px", backgroundColor: color, flex: 1 }}>
+      <Title level={3}>{name}</Title>
+      <Title>{count}</Title>
+      <Link style={{ color: linkColor, fontWeight: "1200" }}>{text}</Link>
     </Card>
   );
 };
