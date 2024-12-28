@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import {
   UserOutlined,
@@ -12,10 +12,38 @@ import { mainLogo } from "../utils/imageUtils";
 const { Sider } = Layout;
 
 const SideBar = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const handleCollapse = (collapsedState) => {
+    setCollapsed(collapsedState);
+  };
+
   return (
-    <Sider collapsible breakpoint="lg" width={260} theme="light">
-      <div className="logo" style={{ padding: 16, textAlign: "center" }}>
-        <img src={mainLogo} alt="Logo" style={{ maxHeight: 100 }} />
+    <Sider
+      collapsible
+      collapsed={collapsed}
+      onCollapse={handleCollapse}
+      breakpoint="lg"
+      width={400}
+      theme="light"
+    >
+      <div
+        className="logo"
+        style={{
+          padding: 16,
+          textAlign: "center",
+          transition: "all 0.3s ease",
+        }}
+      >
+        <img
+          src={mainLogo}
+          alt="Logo"
+          style={{
+            maxHeight: collapsed ? 50 : 100,
+            maxWidth: "100%",
+            transition: "all 0.3s ease",
+          }}
+        />
       </div>
       <Menu mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<UserOutlined />}>
