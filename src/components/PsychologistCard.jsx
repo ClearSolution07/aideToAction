@@ -38,7 +38,7 @@ const PsychologistCard = () => {
 
       <List
         itemLayout="horizontal"
-        dataSource={psychologists}
+        dataSource={[...psychologists, ...psychologists.splice(1)]}
         renderItem={(item) => (
           <List.Item
             style={{

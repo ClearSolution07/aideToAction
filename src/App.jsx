@@ -23,18 +23,12 @@ import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/dashboard",
     // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
     element: <Dashboard />,
-    children: [
-      {
-        path: "/",
-        element: <Dashboard />,
-      },
-    ],
   },
   {
-    path: "login",
+    path: "/",
     element: <LogIn />,
   },
   {

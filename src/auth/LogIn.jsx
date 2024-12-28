@@ -104,7 +104,9 @@ const LogIn = () => {
                             gap: "20px",
                         }}
                     >
-                        <button className="login-button">Sign in</button>
+                        <button className="login-button" onClick={() => {
+                            navigate('/dashboard')
+                        }}>Sign in</button>
                         <div className="loginOptions" onClick={() => {
                             navigate('/register')
                         }}>
