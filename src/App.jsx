@@ -5,10 +5,10 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-import Body from "./components/Body";
+
 import LogIn from "./auth/LogIn";
-import SignUp from "./auth/SignUp";
-import About from "./pages/home/MembershipForm";
+import Dashboard from "./pages/home/Dashboard";
+import MembershipForm from "./auth/MembershipForm";
 import Error from "./pages/Error";
 
 // const isAuthenticated = () => {
@@ -25,11 +25,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
-    element: <Body />,
+    element: <Dashboard />,
     children: [
       {
         path: "/",
-        element: <About />,
+        element: <Dashboard />,
       },
     ],
   },
@@ -38,8 +38,8 @@ const router = createBrowserRouter([
     element: <LogIn />,
   },
   {
-    path: "signup",
-    element: <SignUp />,
+    path: "register",
+    element: <MembershipForm />,
   },
   {
     path: "*",

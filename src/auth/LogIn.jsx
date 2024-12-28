@@ -119,40 +119,19 @@ const LogIn = () => {
                 }}
               >
                 <button className="login-button">Sign in</button>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "12px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <div
-                    style={{ borderTop: "1px solid #ddd", width: "4rem" }}
-                  ></div>
-                  <div style={{ color: "#ddd" }}>OR</div>
-                  <div
-                    style={{ borderTop: "1px solid #ddd", width: "4rem" }}
-                  ></div>
-                </div>
 
-                <button className="google-button">
-                  <img src={googleIcon} alt="google_icon" />
-                  Continue with Google
-                </button>
                 <div className="login-options">
                   <span href="#" className="login-link">
                     Didn't have an Account?{" "}
                     <Link
-                      to="/signup"
+                      to="/register"
                       style={{
-                        color: "#444",
+                        color: "blue",
                         cursor: "pointer",
                         textDecoration: "none",
                       }}
                     >
-                      Sign-up
+                      Register now
                     </Link>
                   </span>
                 </div>

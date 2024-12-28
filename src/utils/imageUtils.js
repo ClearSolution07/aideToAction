@@ -7,6 +7,8 @@ import signupImage from "../assets/signup.svg";
 import googleIcon from "../assets/icons8-google.svg";
 import rightImage from "../assets/rightYellow.png";
 import leftImage from "../assets/leftYellow.png";
+import mainLogo from "../assets/mainLogo.svg";
+import profilePhoto from "../assets/profilePhoto.svg";
 
 export const images = {
   bgImage,
@@ -18,6 +20,8 @@ export const images = {
   googleIcon,
   rightImage,
   leftImage,
+  mainLogo,
+  profilePhoto,
 };
 
 // Optional: Named exports for individual images
@@ -31,4 +35,6 @@ export {
   googleIcon,
   rightImage,
   leftImage,
+  mainLogo,
+  profilePhoto,
 };
