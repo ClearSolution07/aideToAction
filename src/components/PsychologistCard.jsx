@@ -1,10 +1,10 @@
-import React from "react";
-import { Card, List, Avatar, Typography } from "antd";
+import React, { useState } from "react";
+import { Card, List, Avatar, Typography, Button } from "antd";
 import { profilePhoto } from "../utils/imageUtils";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
 
 const { Title, Text, Link } = Typography;
 
-// Sample data for psychologists
 const psychologists = [
   {
     name: "Dr. Abcdef",
@@ -21,9 +21,25 @@ const psychologists = [
     qualification: "MBBS, GMC",
     profilePhoto: "https://via.placeholder.com/48",
   },
+  {
+    name: "Dr. Xyzabc",
+    qualification: "MBBS, GMC",
+    profilePhoto: "https://via.placeholder.com/48",
+  },
+  {
+    name: "Dr. Defghi",
+    qualification: "MBBS, GMC",
+    profilePhoto: "https://via.placeholder.com/48",
+  },
 ];
 
 const PsychologistCard = () => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleToggle = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <Card
       style={{
@@ -32,13 +48,16 @@ const PsychologistCard = () => {
         padding: 16,
       }}
     >
-      <Title level={4} style={{ textAlign: "center", marginBottom: 28 }}>
-        Psychologist Available
-      </Title>
+      {/* Fixed Title at the Top */}
+      <div style={{ textAlign: "center", marginBottom: 28 }}>
+        <Title level={4} style={{ margin: 0 }}>
+          Psychologist Available
+        </Title>
+      </div>
 
       <List
         itemLayout="horizontal"
-        dataSource={psychologists}
+        dataSource={psychologists.slice(0, expanded ? psychologists.length : 3)} // Show all or only 3 psychologists
         renderItem={(item) => (
           <List.Item
             style={{
@@ -63,23 +82,35 @@ const PsychologistCard = () => {
         )}
       />
 
-      <div
+      <hr
         style={{
-          textAlign: "center",
-          marginTop: 40,
+          border: "1px solid #f0f0f0",
+          margin: "16px 0",
         }}
-      >
-        <Link
-          href="#"
+      />
+
+      <div style={{ textAlign: "center", marginTop: 16 }}>
+        <Button
+          type="link"
+          onClick={handleToggle}
           style={{
             color: "red",
             fontWeight: 600,
             textDecoration: "none",
-            marignTop: "5px",
+            padding: 0,
           }}
         >
-          See More Psychologist
-        </Link>
+          {expanded ? (
+            <>
+              <UpOutlined /> &nbsp; See Less Psychologist
+            </>
+          ) : (
+            <>
+              <DownOutlined />
+              &nbsp; See More Psychologist
+            </>
+          )}
+        </Button>
       </div>
     </Card>
   );

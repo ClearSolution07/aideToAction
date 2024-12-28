@@ -29,11 +29,10 @@ const SideBar = () => {
       width={300}
       theme="light"
     >
-      {/* Logo and App Name */}
       <div
         className="logo"
         style={{
-          padding: 16,
+          padding: collapsed ? 26 : 7,
           textAlign: "center",
           transition: "all 0.3s ease",
         }}
@@ -42,20 +41,14 @@ const SideBar = () => {
           src={mainLogo}
           alt="Logo"
           style={{
-            maxHeight: collapsed ? 40 : 80, // Adjust size for collapsed state
+            maxHeight: collapsed ? 40 : 80,
             transition: "all 0.3s ease",
           }}
         />
-        {!collapsed && (
-          <Title level={5} style={{ margin: "8px 0", color: "#333" }}>
-            Saarthi
-          </Title>
-        )}
       </div>
 
       <Divider style={{ margin: "12px 0" }} />
 
-      {/* Main Menu Section */}
       <Menu
         mode="inline"
         defaultSelectedKeys={["1"]}
@@ -95,9 +88,8 @@ const SideBar = () => {
         </Menu.ItemGroup>
       </Menu>
 
-      <Divider style={{ margin: "12px 0" }} />
+      <Divider style={{ margin: "52px 0" }} />
 
-      {/* Other Section */}
       <Menu mode="inline" style={{ border: "none" }}>
         <Menu.ItemGroup
           title={
