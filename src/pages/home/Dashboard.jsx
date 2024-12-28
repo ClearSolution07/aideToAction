@@ -56,8 +56,10 @@ const Dashboard = () => {
                                 ))}
                             </Row>
                             <Row xs={24} sm={8} style={{
-                                maxHeight: 600,
+                                maxHeight: 560,
+                                minHeight: 560,
                                 overflowY: "scroll",
+                                borderRadius: 12
                             }}>
                                 <AnnouncementCard/>
                             </Row>
