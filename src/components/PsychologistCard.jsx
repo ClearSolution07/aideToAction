@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Card, List, Avatar, Typography, Button } from "antd";
+import React from "react";
+import { Card, List, Avatar, Typography } from "antd";
 import { profilePhoto } from "../utils/imageUtils";
-import { DownOutlined, UpOutlined } from "@ant-design/icons";
 
 const { Title, Text, Link } = Typography;
 
@@ -21,43 +20,26 @@ const psychologists = [
     qualification: "MBBS, GMC",
     profilePhoto: "https://via.placeholder.com/48",
   },
-  {
-    name: "Dr. Xyzabc",
-    qualification: "MBBS, GMC",
-    profilePhoto: "https://via.placeholder.com/48",
-  },
-  {
-    name: "Dr. Defghi",
-    qualification: "MBBS, GMC",
-    profilePhoto: "https://via.placeholder.com/48",
-  },
 ];
 
 const PsychologistCard = () => {
-  const [expanded, setExpanded] = useState(false);
-
-  const handleToggle = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <Card
       style={{
         borderRadius: 12,
         boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-        padding: 16,
+        minHeight: 560,
+        maxHeight: 560,
+        overflowY: "scroll",
+        position: "relative",
       }}
     >
-      {/* Fixed Title at the Top */}
-      <div style={{ textAlign: "center", marginBottom: 28 }}>
-        <Title level={4} style={{ margin: 0 }}>
-          Psychologist Available
-        </Title>
-      </div>
-
+      <Text style={{ fontSize: 24, fontWeight: 500, marginBottom: "10px" }}>
+        Psychologist Available
+      </Text>
       <List
         itemLayout="horizontal"
-        dataSource={psychologists.slice(0, expanded ? psychologists.length : 3)} // Show all or only 3 psychologists
+        dataSource={[...psychologists, ...psychologists, ...psychologists]}
         renderItem={(item) => (
           <List.Item
             style={{
@@ -65,6 +47,7 @@ const PsychologistCard = () => {
               marginBottom: 8,
               border: "1px solid #f0f0f0",
               padding: 8,
+              marginTop: 16,
             }}
           >
             <List.Item.Meta
@@ -82,36 +65,26 @@ const PsychologistCard = () => {
         )}
       />
 
-      <hr
-        style={{
-          border: "1px solid #f0f0f0",
-          margin: "16px 0",
-        }}
-      />
-
-      <div style={{ textAlign: "center", marginTop: 16 }}>
-        <Button
-          type="link"
-          onClick={handleToggle}
-          style={{
-            color: "red",
-            fontWeight: 600,
-            textDecoration: "none",
-            padding: 0,
-          }}
-        >
-          {expanded ? (
-            <>
-              <UpOutlined /> &nbsp; See Less Psychologist
-            </>
-          ) : (
-            <>
-              <DownOutlined />
-              &nbsp; See More Psychologist
-            </>
-          )}
-        </Button>
-      </div>
+      {/*<div*/}
+      {/*    style={{*/}
+      {/*        position: 'absolute',*/}
+      {/*        bottom: 16,*/}
+      {/*        padding: 16,*/}
+      {/*        background: 'white',*/}
+      {/*    }}*/}
+      {/*>*/}
+      {/*    <Link*/}
+      {/*        href="#"*/}
+      {/*        style={{*/}
+      {/*            color: "red",*/}
+      {/*            fontWeight: 600,*/}
+      {/*            textDecoration: "none",*/}
+      {/*            marignTop: "5px",*/}
+      {/*        }}*/}
+      {/*    >*/}
+      {/*        See More Psychologist*/}
+      {/*    </Link>*/}
+      {/*</div>*/}
     </Card>
   );
 };
