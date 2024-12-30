@@ -1,6 +1,8 @@
 import bgImage from "../assets/background.svg";
 import logoImage from "../assets/logoSarthi.svg";
-import loginImage from "../assets/loginImage.svg";
+import loginImage2 from "../assets/loginImage1.png";
+import loginImage1 from "../assets/loginImage.svg";
+import loginImage3 from "../assets/loginImage3.png";
 import leftYellow from "../assets/leftYellow.svg";
 import rightYellow from "../assets/rightYellow.svg";
 import signupImage from "../assets/signup.svg";
@@ -11,30 +13,34 @@ import mainLogo from "../assets/mainLogo.svg";
 import profilePhoto from "../assets/profilePhoto.svg";
 
 export const images = {
-  bgImage,
-  logoImage,
-  loginImage,
-  leftYellow,
-  rightYellow,
-  signupImage,
-  googleIcon,
-  rightImage,
-  leftImage,
-  mainLogo,
-  profilePhoto,
+    bgImage,
+    logoImage,
+    loginImage1,
+    loginImage2,
+    loginImage3,
+    leftYellow,
+    rightYellow,
+    signupImage,
+    googleIcon,
+    rightImage,
+    leftImage,
+    mainLogo,
+    profilePhoto,
 };
 
 // Optional: Named exports for individual images
 export {
-  bgImage,
-  logoImage,
-  loginImage,
-  leftYellow,
-  rightYellow,
-  signupImage,
-  googleIcon,
-  rightImage,
-  leftImage,
-  mainLogo,
-  profilePhoto,
+    bgImage,
+    logoImage,
+    loginImage1,
+    loginImage2,
+    loginImage3,
+    leftYellow,
+    rightYellow,
+    signupImage,
+    googleIcon,
+    rightImage,
+    leftImage,
+    mainLogo,
+    profilePhoto,
 };

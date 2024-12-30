@@ -2,11 +2,10 @@ import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {
-    loginImage,
+    loginImage1,
+    loginImage2,
+    loginImage3,
     logoImage,
-    rightYellow,
-    leftYellow,
-    googleIcon,
 } from "../utils/imageUtils";
 
 import "./login.css";
@@ -19,6 +18,7 @@ const LogIn = () => {
     const [is_mobile_width, set_is_mobile_width] = useState(false);
     const [password_val, set_password_val] = useState('');
     const [email_val, set_email_val] = useState('');
+    const [counter, set_counter] = useState(0);
 
 
     useEffect(() => {
@@ -38,14 +38,29 @@ const LogIn = () => {
         setShowPassword(!showPassword);
     };
 
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         set_counter((prev) => prev + 1)
+    //     }, 2000)
+    // }, [])
+    //
+    // const getImage = (counterIndex) => {
+    //     if (counterIndex % 3 === 0) {
+    //         return loginImage1;
+    //     }
+    //     if (counterIndex % 3 === 1) {
+    //         return loginImage2;
+    //     }
+    //     if (counterIndex % 3 === 2) {
+    //         return loginImage3;
+    //     }
+    // }
+
     return (
         <div className="login-container">
             {!is_mobile_width ? <div className="leftSection">
                 <div className="loginImage">
-                    <img src={loginImage} alt="loginImage"/>
-                </div>
-                <div className="leftCorner">
-                    <img src={leftYellow} alt="leftCorner"/>
+                    <img src={loginImage1} alt="loginImage"/>
                 </div>
             </div> : null}
             <div className={is_mobile_width ? "overallSection" : "rightSection"}>
@@ -81,7 +96,7 @@ const LogIn = () => {
                                 <span>Password</span>
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    placeholder="enter your password"
+                                    placeholder="Enter your password"
                                     className="login-input"
                                     value={password_val}
                                     onChange={(ev) => {
@@ -106,7 +121,8 @@ const LogIn = () => {
                     >
                         <button className="login-button" onClick={() => {
                             navigate('/dashboard')
-                        }}>Sign in</button>
+                        }}>Sign in
+                        </button>
                         <div className="loginOptions" onClick={() => {
                             navigate('/register')
                         }}>
@@ -127,16 +143,6 @@ const LogIn = () => {
                     </div>
                 </div>
             </div>
-
-            {
-                !is_mobile_width ? <div className="rightCorner">
-                    <img src={rightYellow} alt="rightCorner"/>
-                </div> : null
-            }
-
-            {!is_mobile_width ? <div className="leftCorner">
-                <img src={leftYellow} alt="leftCorner"/>
-            </div> : null}
         </div>
     );
 };
