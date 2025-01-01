@@ -1,109 +1,125 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap");
 
 .regContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 16px;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* For tablets */
 @media (max-width: 1024px) {
-  .regContainer {
-    width: 90%;
-  }
+    .regContainer {
+        width: 90%;
+    }
 }
 
 /* For mobile */
 @media (max-width: 768px) {
-  .regContainer {
-    width: 95%;
-  }
+    .regContainer {
+        width: 95%;
+    }
 }
 
 .membershipContainer {
-  width: 100%;
-  max-width: 1200px;
-  padding: 16px;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  margin-top: 32px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    margin-top: 32px;
+}
+
+/* For tablets */
+@media (max-width: 1024px) {
+    .membershipContainer {
+        width: 85%;
+        border: none;
+    }
+}
+
+/* For mobile */
+@media (max-width: 768px) {
+    .membershipContainer {
+        width: 85%;
+        border: none;
+    }
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
 }
 
 .form-label {
-  margin-bottom: 8px;
-  font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 .form-input {
-  width: 100%;
+    width: 100%;
 }
 
 .name-inputs {
-  display: flex;
-  gap: 16px;
+    display: flex;
+    gap: 16px;
 }
 
 .name-inputs .ant-form-item {
-  flex: 1;
+    flex: 1;
 }
 
 .custom-button {
-  background-color: #facc15;
-  width: 100% !important;
-  max-width: 500px;
-  padding: 24px;
-  font-size: clamp(16px, 4vw, 24px);
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+    background-color: #facc15;
+    width: 100% !important;
+    max-width: 500px;
+    padding: 24px;
+    font-size: clamp(16px, 4vw, 24px);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
-  background-color: #dba316 !important;
+    background-color: #dba316 !important;
 }
 
 .captcha-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 @media (min-width: 768px) {
-  .form-group {
-    flex-direction: row;
-    align-items: flex-start;
-  }
+    .form-group {
+        flex-direction: row;
+        align-items: flex-start;
+    }
 
-  .form-label {
-    width: 30%;
-    margin-right: 16px;
-    margin-bottom: 0;
-    padding-top: 5px;
-  }
+    .form-label {
+        width: 30%;
+        margin-right: 16px;
+        margin-bottom: 0;
+        padding-top: 5px;
+    }
 
-  .form-input {
-    width: 70%;
-  }
+    .form-input {
+        width: 70%;
+    }
 }
 
 @media (max-width: 767px) {
-  .name-inputs {
-    flex-direction: column;
-    gap: 8px;
-  }
+    .name-inputs {
+        flex-direction: column;
+        gap: 8px;
+    }
 
-  .captcha-container {
-    transform: scale(0.8);
-    transform-origin: center;
-  }
+    .captcha-container {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
 }
