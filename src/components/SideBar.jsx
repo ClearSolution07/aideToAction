@@ -97,7 +97,7 @@ const SideBar = ({visible, onClose, isMobileWidth, tabletVisible}) => {
                     src={mainLogo}
                     alt="Saarthi Logo"
                     style={{
-                        height: visible ? "40px" : "32px",
+                        height: visible ? "80px" : "32px",
                         transition: "all 0.3s ease",
                     }}
                 />

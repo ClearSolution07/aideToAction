@@ -1,0 +1,11 @@
+.cardContainer {
+    border-radius: 16px;
+    flex: 1;
+    max-height: 150px;
+    min-height: 150px;
+}
+
+.cardContainer:hover{
+    border: 1px solid #dadada;
+    transform: scale(1.02);
+}
