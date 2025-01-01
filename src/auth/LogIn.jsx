@@ -64,68 +64,69 @@ const LogIn = () => {
                 </div>
             </div> : null}
             <div className={is_mobile_width ? "overallSection" : "rightSection"}>
-                <div className="logoImage">
-                    <img src={logoImage} alt="logoSarthi"/>
-                </div>
-                <div className="formContainer">
-                    <div className="titleSection">
-                        <div className="loginTitle">Welcome</div>
-                        <span>Please login your account</span>
+                <div className={'rightSectionContainer'}>
+                    <div className="logoImage">
+                        <img src={logoImage} alt="logoSarthi"/>
                     </div>
-                    <div className="loginForm">
-                        <div className="inputContainer">
-                            <span>Email</span>
-                            <input
-                                type="email"
-                                placeholder="Enter your email Id"
-                                className="login-input"
-                                value={email_val}
-                                onChange={(ev) => {
-                                    set_email_val(ev.target.value)
+                    <div className="formContainer">
+                        <div className="titleSection">
+                            <div className="loginTitle">Welcome</div>
+                            <span>Please login your account</span>
+                        </div>
+                        <div className="loginForm">
+                            <div className="inputContainer">
+                                <span>Email</span>
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email Id"
+                                    className="login-input"
+                                    value={email_val}
+                                    onChange={(ev) => {
+                                        set_email_val(ev.target.value)
+                                    }}
+                                    autoFocus={true}
+                                />
+                            </div>
+                            <div
+                                style={{
+                                    marginTop: "28px",
+                                    marginBottom: "28px",
                                 }}
-                                autoFocus={true}
-                            />
+                            >
+                                <div className="inputContainer password">
+                                    <span>Password</span>
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Enter your password"
+                                        className="login-input"
+                                        value={password_val}
+                                        onChange={(ev) => {
+                                            set_password_val(ev?.target?.value);
+                                        }}
+                                    />
+                                    <span
+                                        className="eye-icon"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
+                                </span>
+                                </div>
+                            </div>
                         </div>
                         <div
                             style={{
-                                marginTop: "28px",
-                                marginBottom: "28px",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "20px",
                             }}
                         >
-                            <div className="inputContainer password">
-                                <span>Password</span>
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Enter your password"
-                                    className="login-input"
-                                    value={password_val}
-                                    onChange={(ev) => {
-                                        set_password_val(ev?.target?.value);
-                                    }}
-                                />
-                                <span
-                                    className="eye-icon"
-                                    onClick={togglePasswordVisibility}
-                                >
-                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "20px",
-                        }}
-                    >
-                        <button className="login-button" onClick={() => {
-                            navigate('/dashboard')
-                        }}>Sign in
-                        </button>
-                        <div className="loginOptions" onClick={() => {
-                            navigate('/register')
-                        }}>
+                            <button className="login-button" onClick={() => {
+                                navigate('/dashboard')
+                            }}>Sign in
+                            </button>
+                            <div className="loginOptions" onClick={() => {
+                                navigate('/register')
+                            }}>
                             <span href="#" className="login-link">
                                 Didn't have an Account? &nbsp;
                                 <Link
@@ -139,9 +140,11 @@ const LogIn = () => {
                                     Register now
                                 </Link>
                             </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );

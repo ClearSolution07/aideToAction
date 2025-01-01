@@ -5,6 +5,7 @@
     justify-content: space-between;
     height: 100vh;
     overflow: hidden;
+    background-color: #dfebe9;
 }
 
 
@@ -52,7 +53,49 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
+
+.rightSectionContainer {
+    border: 1px solid #dadada;
+    border-radius: 24px;
+    height: 80%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 9px 40px #dadada;
+    background-color: white;
+}
+
+@media only screen and (max-width: 1024px) {
+    .rightSectionContainer {
+        border: 1px solid #dadada;
+        border-radius: 16px;
+        height: 100%;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        background-color: white;
+        margin-top: 32px;
+    }
+
+    .login-container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100vh;
+        overflow: hidden;
+        background-color: white;
+    }
+
+}
+
 
 .overallSection {
     width: 100%;
@@ -100,7 +143,7 @@
 /* Form */
 .loginForm {
     text-align: left;
-    marginTop: 20px;
+    margin-top: 20px;
 }
 
 .login-form div {
@@ -127,8 +170,8 @@
     width: 100%;
     height: 3.5rem;
     padding: 12px;
-    background-color: #ffcc33;
-    color: #333;
+    background-color: #88c05d;
+    color: white;
     border: none;
     border-radius: 8px;
     font-size: 1em;
@@ -138,7 +181,7 @@
 }
 
 .login-button:hover {
-    background-color: #ffb300;
+    background-color: #5d9b48;
 }
 
 /* Alternate options */
