@@ -21,7 +21,7 @@ const Dashboard = () => {
       const width = window.innerWidth;
       setIsMobileWidth(width < 768);
       setIsTabletWidth(width >= 768 && width < 1024);
-      setSidebarVisible(width >= 768); // Show sidebar (collapsed on tablet, expanded on desktop)
+      setSidebarVisible(width >= 768);
     };
 
     window.addEventListener("resize", handleResize);
@@ -60,7 +60,8 @@ const Dashboard = () => {
           isMobileWidth={isMobileWidth}
         />
         <Content style={{ padding: "24px", backgroundColor: "#f5f5f5" }}>
-          <Row gutter={[24, 24]}>
+          <Row gutter={isMobileWidth ? [12, 12] : [24, 24]}>
+            {/* Main Content Area: Left section with status cards */}
             <Col xs={24} lg={16}>
               <Row gutter={[24, 24]}>
                 {dataStatus?.map((item, index) => (
@@ -71,10 +72,11 @@ const Dashboard = () => {
               </Row>
               <Row style={{ marginTop: 24 }}>
                 <Col span={24}>
-                  <AnnouncementCard isMobile={isMobileWidth}/>
+                  <AnnouncementCard visible={isMobileWidth} />
                 </Col>
               </Row>
             </Col>
+
             <Col xs={24} lg={8}>
               <Row gutter={[0, 24]}>
                 <Col span={24}>

@@ -26,6 +26,8 @@ const announcements = [
 
 const AnnouncementCard = ({isMobile}) => {
     const [selectedDate, setSelectedDate] = useState(null);
+const AnnouncementCard = ({visible}) => {
+  const [selectedDate, setSelectedDate] = useState(null);
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -57,7 +59,9 @@ const AnnouncementCard = ({isMobile}) => {
                     borderBottom: "1px solid #f0f0f0",
                 }}
             >
-                <Title level={3} style={{margin: 0}}>
+                <Title level={3} style={{margin: 0,
+            fontSize: "clamp(18px, 4vw, 24px)",
+          }}>
                     Announcement
                 </Title>
                 <DatePicker
@@ -68,7 +72,9 @@ const AnnouncementCard = ({isMobile}) => {
                     style={{
                         width: isMobile ? 100 : 200
                     }}
-                />
+                style={{
+            width: visible ? "40%" : "auto",
+          }}/>
             </div>
             <div
                 style={{
@@ -89,8 +95,15 @@ const AnnouncementCard = ({isMobile}) => {
                         }}
                     >
                         <div style={{display: "flex", flexDirection: "column"}}>
-                            <Text strong>{item.title}</Text>
-                            <Text type="secondary">{item.timestamp}</Text>
+                            <Text strongstyle={{
+                  fontSize: "clamp(12px, 2.5vw, 16px)",
+                  wordBreak: "break-word",
+                }}
+              >{item.title}</Text>
+                            <Text type="secondary"style={{
+                  fontSize: "clamp(10px, 2vw, 12px)",
+                }}
+              >{item.timestamp}</Text>
                         </div>
                     </div>
                 ))}
