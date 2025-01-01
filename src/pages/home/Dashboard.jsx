@@ -64,14 +64,14 @@ const Dashboard = () => {
             <Col xs={24} lg={16}>
               <Row gutter={[24, 24]}>
                 {dataStatus?.map((item, index) => (
-                  <Col xs={24} sm={8} key={index}>
+                  <Col xs={24} md={24} sm={24} lg={8} xl={8} key={index}>
                     <StatusCard {...item} />
                   </Col>
                 ))}
               </Row>
               <Row style={{ marginTop: 24 }}>
                 <Col span={24}>
-                  <AnnouncementCard />
+                  <AnnouncementCard isMobile={isMobileWidth}/>
                 </Col>
               </Row>
             </Col>

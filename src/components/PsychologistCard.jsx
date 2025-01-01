@@ -29,7 +29,7 @@ const PsychologistCard = () => {
         borderRadius: 12,
         boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
         width: "100%",
-        height: 560,
+        height: `calc(90vh - 290px)`,
       }}
       styles={{
         body: {
