@@ -13,13 +13,18 @@ const CommunityConnectCard = () => {
       }}
       bordered={false}
     >
-      <Text level={4} style={{ color: "#fff", marginBottom: "20px", fontSize: 24, fontWeight: 500 }}>
+      <Text
+        level={4}
+        style={{
+          color: "#fff",
+          marginBottom: "20px",
+          fontSize: 24,
+          fontWeight: 500,
+        }}
+      >
         Community Connect
       </Text>
-      <Title
-        level={5}
-        style={{ color: "#fff", fontWeight: 500 }}
-      >
+      <Title level={5} style={{ color: "#fff", fontWeight: 500 }}>
         Chat with Members and Psychologists
       </Title>
       <Text

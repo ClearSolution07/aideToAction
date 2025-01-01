@@ -1,126 +1,131 @@
 import React, { useState } from "react";
-import { Layout, Menu, Divider, Typography } from "antd";
+import { Layout, Menu, Button } from "antd";
 import {
-  UserOutlined,
+  AppstoreOutlined,
   TeamOutlined,
-  BellOutlined,
-  SettingOutlined,
-  MessageOutlined,
+  UserOutlined,
+  FolderOutlined,
   CustomerServiceOutlined,
+  SettingOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { mainLogo } from "../utils/imageUtils";
+import "./css/sidebar.css";
 
 const { Sider } = Layout;
-const { Title } = Typography;
 
-const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
+  const [selectedKey, setSelectedKey] = useState("1");
 
-  const handleCollapse = (collapsedState) => {
-    setCollapsed(collapsedState);
+  const handleMenuClick = ({ key }) => {
+    setSelectedKey(key);
   };
+
+  const menuItems = [
+    {
+      key: "main",
+      type: "group",
+      label: visible ? "MAIN MENU" : null,
+      children: [
+        {
+          key: "1",
+          icon: <AppstoreOutlined />,
+          label: "Dashboard",
+        },
+        {
+          key: "2",
+          icon: <TeamOutlined />,
+          label: "Members",
+        },
+        {
+          key: "3",
+          icon: <UserOutlined />,
+          label: "Psychologist",
+        },
+        {
+          key: "4",
+          icon: <FolderOutlined />,
+          label: "Resource Directory",
+        },
+      ],
+    },
+    {
+      key: "other",
+      type: "group",
+      label: visible ? "OTHER" : null,
+      children: [
+        {
+          key: "5",
+          icon: <CustomerServiceOutlined />,
+          label: "Support",
+        },
+        {
+          key: "6",
+          icon: <SettingOutlined />,
+          label: "Settings",
+        },
+      ],
+    },
+  ];
 
   return (
     <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={handleCollapse}
-      breakpoint="lg"
-      width={300}
-      theme="light"
+      width={240}
+      collapsed={tabletVisible || !visible}
+      collapsedWidth={isMobileWidth ? 0 : 80}
+      trigger={null}
+      style={{
+        backgroundColor: "#FAFAFA",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 1001,
+      }}
     >
       <div
-        className="logo"
         style={{
-          padding: collapsed ? 26 : 7,
+          padding: "16px",
           textAlign: "center",
           transition: "all 0.3s ease",
+          position: "relative",
         }}
       >
         <img
           src={mainLogo}
-          alt="Logo"
+          alt="Saarthi Logo"
           style={{
-            maxHeight: collapsed ? 40 : 80,
+            height: visible ? "40px" : "32px",
             transition: "all 0.3s ease",
           }}
         />
+        {isMobileWidth && visible && (
+          <Button
+            type="text"
+            icon={<CloseOutlined />}
+            onClick={onClose}
+            style={{
+              position: "absolute",
+              right: 16,
+              top: "50%",
+              transform: "translateY(-50%)",
+            }}
+          />
+        )}
       </div>
-
-      <Divider style={{ margin: "12px 0" }} />
 
       <Menu
         mode="inline"
-        defaultSelectedKeys={["1"]}
-        style={{ border: "none" }}
-      >
-        <Menu.ItemGroup
-          title={
-            !collapsed && (
-              <span
-                style={{
-                  fontSize: "12px",
-                  textTransform: "uppercase",
-                  color: "#999",
-                  fontWeight: 600,
-                }}
-              >
-                Main Menu
-              </span>
-            )
-          }
-        >
-          <Menu.Item key="1" icon={<UserOutlined style={{ fontSize: 16 }} />}>
-            Dashboard
-          </Menu.Item>
-          <Menu.Item key="2" icon={<TeamOutlined style={{ fontSize: 16 }} />}>
-            Members
-          </Menu.Item>
-          <Menu.Item
-            key="3"
-            icon={<MessageOutlined style={{ fontSize: 16 }} />}
-          >
-            Psychologist
-          </Menu.Item>
-          <Menu.Item key="4" icon={<BellOutlined style={{ fontSize: 16 }} />}>
-            Resource Directory
-          </Menu.Item>
-        </Menu.ItemGroup>
-      </Menu>
-
-      <Divider style={{ margin: "52px 0" }} />
-
-      <Menu mode="inline" style={{ border: "none" }}>
-        <Menu.ItemGroup
-          title={
-            !collapsed && (
-              <span
-                style={{
-                  fontSize: "12px",
-                  textTransform: "uppercase",
-                  color: "#999",
-                  fontWeight: 600,
-                }}
-              >
-                Other
-              </span>
-            )
-          }
-        >
-          <Menu.Item
-            key="5"
-            icon={<CustomerServiceOutlined style={{ fontSize: 16 }} />}
-          >
-            Support
-          </Menu.Item>
-          <Menu.Item
-            key="6"
-            icon={<SettingOutlined style={{ fontSize: 16 }} />}
-          >
-            Settings
-          </Menu.Item>
-        </Menu.ItemGroup>
-      </Menu>
+        selectedKeys={[selectedKey]}
+        onClick={handleMenuClick}
+        style={{
+          backgroundColor: "#FAFAFA",
+          border: "none",
+          padding: "8px",
+        }}
+        items={menuItems}
+      />
     </Sider>
   );
 };

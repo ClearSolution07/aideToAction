@@ -1,0 +1,19 @@
+.ant-layout-sider {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ant-menu-item {
+  border-radius: 6px;
+  margin: 4px 0 !important;
+}
+
+@media (max-width: 767px) {
+  .ant-layout-sider {
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+  }
+
+  .ant-layout-sider:not(.ant-layout-sider-collapsed) {
+    transform: translateX(0);
+  }
+}
