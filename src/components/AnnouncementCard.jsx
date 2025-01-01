@@ -24,7 +24,7 @@ const announcements = [
   { title: "Happy New Year Saarthi", timestamp: "Yesterday, 09:15 AM" },
 ];
 
-const AnnouncementCard = () => {
+const AnnouncementCard = ({visible}) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -57,7 +57,13 @@ const AnnouncementCard = () => {
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        <Title level={3} style={{ margin: 0 }}>
+        <Title
+          level={3}
+          style={{
+            margin: 0,
+            fontSize: "clamp(18px, 4vw, 24px)",
+          }}
+        >
           Announcement
         </Title>
         <DatePicker
@@ -65,6 +71,9 @@ const AnnouncementCard = () => {
           onChange={handleDateChange}
           format="ddd, DD MMM YYYY"
           placeholder="Select date"
+          style={{
+            width: visible ? "40%" : "auto",
+          }}
         />
       </div>
       <div
@@ -86,8 +95,23 @@ const AnnouncementCard = () => {
             }}
           >
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <Text strong>{item.title}</Text>
-              <Text type="secondary">{item.timestamp}</Text>
+              <Text
+                strong
+                style={{
+                  fontSize: "clamp(12px, 2.5vw, 16px)",
+                  wordBreak: "break-word",
+                }}
+              >
+                {item.title}
+              </Text>
+              <Text
+                type="secondary"
+                style={{
+                  fontSize: "clamp(10px, 2vw, 12px)",
+                }}
+              >
+                {item.timestamp}
+              </Text>
             </div>
           </div>
         ))}
