@@ -34,7 +34,7 @@ const menuItems = [
     },
 ];
 
-const HeaderComponent = ({onMenuClick, isMobileWidth}) => {
+const HeaderComponent = ({onMenuClick, isMobileWidth, headerText = ''}) => {
     return (
         <Header
             style={{
@@ -66,7 +66,7 @@ const HeaderComponent = ({onMenuClick, isMobileWidth}) => {
                 )}
                 {!isMobileWidth && <Title level={2} style={{
                     paddingLeft: 16
-                }}>Dashboard</Title>}
+                }}>{headerText || 'Dashboard'}</Title>}
             </div>
 
             <div
