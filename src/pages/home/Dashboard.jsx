@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Col } from "antd";
-import "./dashboard.css";
 import HeaderComponent from "../../components/HeaderComponent";
 import SideBar from "../../components/Sidebar";
 import StatusCard from "../../components/StatusCard";
@@ -34,6 +33,14 @@ const Dashboard = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
+  function checkMargin() {
+    if (isMobileWidth) return 0;
+    if (sidebarVisible && isTabletWidth) {
+      return 80;
+    }
+    return 240;
+  }
+
   return (
     <Layout>
       <SideBar
@@ -44,13 +51,7 @@ const Dashboard = () => {
       />
       <Layout
         style={{
-          marginLeft: isMobileWidth
-            ? 0
-            : sidebarVisible
-            ? isTabletWidth
-              ? 80
-              : 240
-            : 0,
+          marginLeft: checkMargin(),
           transition: "margin-left 0.3s ease",
           minHeight: "100vh",
         }}

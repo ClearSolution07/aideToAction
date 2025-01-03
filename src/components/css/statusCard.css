@@ -1,11 +1,27 @@
 .cardContainer {
-    border-radius: 16px;
-    flex: 1;
-    max-height: 150px;
-    min-height: 150px;
+  border-radius: 16px;
+  flex: 1;
+  max-height: 150px;
+  min-height: 150px;
 }
 
-.cardContainer:hover{
-    border: 1px solid #dadada;
-    transform: scale(1.02);
+.cardDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.firstText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.secondText {
+  font-size: 24px;
+}
+
+.cardContainer:hover {
+  border: 1px solid #dadada;
+  transform: scale(1.02);
 }
