@@ -3,7 +3,6 @@ import "./App.css";
 import {
     createBrowserRouter,
     RouterProvider,
-    Navigate,
 } from "react-router-dom";
 
 import LogIn from "./auth/LogIn";
@@ -26,29 +25,29 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
-        element: <Dashboard/>,
+        element: <Dashboard />,
     },
     {
         path: "/chat",
         // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
-        element: <ChatWindow/>,
+        element: <ChatWindow />,
     },
     {
         path: "/",
-        element: <LogIn/>,
+        element: <LogIn />,
     },
     {
         path: "register",
-        element: <MembershipForm/>,
+        element: <MembershipForm />,
     },
     {
         path: "*",
-        element: <Error/>,
+        element: <Error />,
     },
 ]);
 
 function App() {
-    return <RouterProvider router={router}/>;
+    return <RouterProvider router={router} />;
 }
 
 export default App;

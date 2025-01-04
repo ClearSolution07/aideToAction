@@ -1,8 +1,7 @@
-import React from "react";
-import {Card, Button, Typography, Row} from "antd";
-import {useNavigate} from "react-router-dom";
+import { Card, Button, Typography, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
-const {Title, Text} = Typography;
+const { Title, Text } = Typography;
 
 const CommunityConnectCard = () => {
     const navigate = useNavigate();
@@ -27,11 +26,15 @@ const CommunityConnectCard = () => {
             >
                 Community Connect
             </Text>
-            <Title level={5} style={{color: "#fff", fontWeight: 500}}>
+            <Title level={5} style={{ color: "#fff", fontWeight: 500 }}>
                 Chat with Members and Psychologists
             </Title>
             <Text
-                style={{color: "#d1d1e1", marginBottom: "40px", display: "block"}}
+                style={{
+                    color: "#d1d1e1",
+                    marginBottom: "40px",
+                    display: "block",
+                }}
             >
                 Kindly note that, chats will disappear every 3-days
             </Text>
@@ -42,7 +45,6 @@ const CommunityConnectCard = () => {
                         marginBottom: "16px",
                         display: "block",
                     }}
-
                 >
                     Click to Start interacting now
                 </Text>
@@ -53,7 +55,7 @@ const CommunityConnectCard = () => {
                     }}
                     size="large"
                     onClick={() => {
-                        navigate('/chat');
+                        navigate("/chat");
                     }}
                 >
                     Chat Now
