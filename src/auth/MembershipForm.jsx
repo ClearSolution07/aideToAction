@@ -7,10 +7,12 @@ import {
     Typography,
     Space,
     Divider,
+    message,
 } from "antd";
 import { InstagramOutlined, FacebookOutlined } from "@ant-design/icons";
 import { logoImage } from "../utils/imageUtils";
 import ReCAPTCHA from "react-google-recaptcha";
+import useAuth from "../hooks/useAuth";
 import "./membershipform.css";
 
 const { Title, Paragraph, Link } = Typography;
@@ -18,9 +20,16 @@ const { Option } = Select;
 
 const MembershipForm = () => {
     const [form] = Form.useForm();
+    const { handleSignUp, loading } = useAuth();
 
-    const onFinish = (values) => {
-        console.log("Form values:", values);
+    const onFinish = async (values) => {
+        try {
+            await handleSignUp(values);
+            message.success("Signup successful!");
+            form.resetFields();
+        } catch (err) {
+            message.error(err || "Signup failed. Please try again.");
+        }
     };
 
     const onCaptchaChange = (value) => {
@@ -566,6 +575,7 @@ const MembershipForm = () => {
                                 htmlType="submit"
                                 block
                                 className="custom-button"
+                                loading={loading}
                             >
                                 Submit
                             </Button>
