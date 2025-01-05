@@ -1,6 +1,5 @@
 import apiClient from "./apiClient";
 
-// Login function
 export const login = async (email, password) => {
     try {
         const response = await apiClient.post("/auth/login", {
@@ -15,10 +14,9 @@ export const login = async (email, password) => {
     }
 };
 
-// Sign-up function
 export const signUp = async (userData) => {
     try {
-        const response = await apiClient.post("/auth/register", userData);
+        const response = await apiClient.post("/auth/register_user", userData);
         return response.data;
     } catch (error) {
         throw new Error(
@@ -27,12 +25,10 @@ export const signUp = async (userData) => {
     }
 };
 
-// Logout function
 export const logout = async () => {
     try {
         const response = await apiClient.post("/auth/logout");
-        // Optionally, clear local storage or AsyncStorage
-        localStorage.removeItem("accessToken"); // Or AsyncStorage for React Native
+        localStorage.removeItem("accessToken");
         return response.data;
     } catch (error) {
         throw new Error(
