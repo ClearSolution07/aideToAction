@@ -34,10 +34,14 @@ const LogIn = () => {
 
     const handleSignIn = async () => {
         try {
-            await handleLogin(email, password);
-            navigate("/dashboard");
+            const response = await handleLogin(email, password);
+            if (response.statuscode === 200) {
+                navigate("/dashboard");
+            } else {
+                console.error("Error:", response.message);
+            }
         } catch (err) {
-            console.error(err.message);
+            console.error("Login failed:", err.message);
         }
     };
 

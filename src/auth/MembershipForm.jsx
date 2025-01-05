@@ -2,7 +2,7 @@ import {
     Form,
     Input,
     Select,
-    Checkbox,
+    Radio,
     Button,
     Typography,
     Space,
@@ -14,19 +14,27 @@ import { logoImage } from "../utils/imageUtils";
 import ReCAPTCHA from "react-google-recaptcha";
 import useAuth from "../hooks/useAuth";
 import "./membershipform.css";
+import { useNavigate } from "react-router-dom";
 
 const { Title, Paragraph, Link } = Typography;
 const { Option } = Select;
 
 const MembershipForm = () => {
+    const navigate = useNavigate();
     const [form] = Form.useForm();
     const { handleSignUp, loading } = useAuth();
 
     const onFinish = async (values) => {
         try {
-            await handleSignUp(values);
-            message.success("Signup successful!");
-            form.resetFields();
+            const response = await handleSignUp(values);
+
+            if (response.statuscode === 200) {
+                message.success("Signup successful!");
+                form.resetFields();
+                navigate("/");
+            } else {
+                message.error("Signup failed. Please try again.");
+            }
         } catch (err) {
             message.error(err || "Signup failed. Please try again.");
         }
@@ -234,7 +242,6 @@ const MembershipForm = () => {
                         https://www.linkedin.com/company/national-care-leavers-network/
                     </Paragraph>
                 </div>
-
                 <Form
                     form={form}
                     layout="vertical"
@@ -248,27 +255,15 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input name-inputs">
                             <Form.Item
-                                name="firstName"
+                                name="full_name"
                                 rules={[
                                     {
                                         required: true,
-                                        message:
-                                            "Please input your first name!",
+                                        message: "Please input your full name!",
                                     },
                                 ]}
                             >
-                                <Input placeholder="First Name" />
-                            </Form.Item>
-                            <Form.Item
-                                name="lastName"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Please input your last name!",
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Last Name" />
+                                <Input placeholder="Full Name" />
                             </Form.Item>
                         </div>
                     </div>
@@ -306,13 +301,22 @@ const MembershipForm = () => {
                                     },
                                 ]}
                             >
-                                <Checkbox.Group
+                                <Radio.Group
                                     options={gender}
                                     style={{
                                         display: "flex",
                                         flexDirection: "column",
                                     }}
-                                />
+                                >
+                                    {gender.map((genderOption) => (
+                                        <Radio
+                                            key={genderOption.value}
+                                            value={genderOption.value}
+                                        >
+                                            {genderOption.label}
+                                        </Radio>
+                                    ))}
+                                </Radio.Group>
                             </Form.Item>
                         </div>
                     </div>
@@ -323,7 +327,7 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="phoneNumber"
+                                name="phone_number"
                                 rules={[
                                     {
                                         required: true,
@@ -343,7 +347,7 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="email"
+                                name="email_address"
                                 rules={[
                                     {
                                         type: "email",
@@ -386,7 +390,7 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="cciName"
+                                name="cci_name"
                                 rules={[
                                     {
                                         required: true,
@@ -406,7 +410,7 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="yearLeftCCI"
+                                name="year_left_cci"
                                 rules={[
                                     {
                                         required: true,
@@ -431,11 +435,11 @@ const MembershipForm = () => {
                     <div className="form-group">
                         <label className="form-label">
                             Are you a member of state care leavers network?{" "}
-                            <br /> क्या आप राज्य केयर लीवस नेटवर्क सद ह?
+                            <br /> क्या आप राज्य केयर लीवस नेटवर्क सदस्य हैं?
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="stateCareLeavers"
+                                name="is_member_state_network"
                                 rules={[
                                     {
                                         required: true,
@@ -443,13 +447,22 @@ const MembershipForm = () => {
                                     },
                                 ]}
                             >
-                                <Checkbox.Group
+                                <Radio.Group
                                     options={member}
                                     style={{
                                         display: "flex",
                                         flexDirection: "column",
                                     }}
-                                />
+                                >
+                                    {member.map((memberOption) => (
+                                        <Radio
+                                            key={memberOption.value}
+                                            value={memberOption.value}
+                                        >
+                                            {memberOption.label}
+                                        </Radio>
+                                    ))}
+                                </Radio.Group>
                             </Form.Item>
                         </div>
                     </div>
@@ -461,7 +474,7 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="educationStatus"
+                                name="education_status"
                                 rules={[
                                     {
                                         required: true,
@@ -469,7 +482,7 @@ const MembershipForm = () => {
                                     },
                                 ]}
                             >
-                                <Checkbox.Group
+                                <Radio.Group
                                     options={educationOptions}
                                     style={{
                                         display: "flex",
@@ -486,7 +499,7 @@ const MembershipForm = () => {
                         </label>
                         <div className="form-input">
                             <Form.Item
-                                name="employmentStatus"
+                                name="employment_status"
                                 rules={[
                                     {
                                         required: true,
@@ -494,7 +507,7 @@ const MembershipForm = () => {
                                     },
                                 ]}
                             >
-                                <Checkbox.Group
+                                <Radio.Group
                                     options={employmentOptions}
                                     style={{
                                         display: "flex",
