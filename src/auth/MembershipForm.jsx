@@ -25,8 +25,43 @@ const MembershipForm = () => {
     const { handleSignUp, loading } = useAuth();
 
     const onFinish = async (values) => {
+        const mappedValues = {
+            full_name: values.full_name,
+            age: parseInt(values.age, 10),
+            gender:
+                values.gender === "Male (पुरुष)"
+                    ? "Male"
+                    : values.gender === "Female (महिला)"
+                    ? "Female"
+                    : values.gender,
+            phone_number: values.phone_number,
+            email_address: values.email_address,
+            state: values.state,
+            cci_name: values.cci_name,
+            year_left_cci: values.year_left_cci,
+            is_member_state_network:
+                values.is_member_state_network === "Yes (हां)"
+                    ? true
+                    : values.is_member_state_network === "No (नहीं)"
+                    ? false
+                    : values.is_member_state_network,
+            education_status:
+                values.education_status === "Undergraduate (स्नातक)"
+                    ? "Undergraduate"
+                    : values.education_status === "Postgraduate (स्नातकोत्तर)"
+                    ? "Postgraduate"
+                    : "Others",
+            employment_status:
+                values.employment_status === "Employed (नियोजित)"
+                    ? "Employed"
+                    : values.employment_status === "Unemployed (बेरोज़गार)"
+                    ? "Unemployed"
+                    : "Student",
+            strengths: values.strengths,
+        };
+
         try {
-            const response = await handleSignUp(values);
+            const response = await handleSignUp(mappedValues);
 
             if (response.statuscode === 200) {
                 message.success("Signup successful!");
