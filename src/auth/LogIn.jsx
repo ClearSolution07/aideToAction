@@ -1,36 +1,30 @@
-import React, {useEffect, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
-import {
-    loginImage1,
-    loginImage2,
-    loginImage3,
-    logoImage,
-} from "../utils/imageUtils";
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { loginImage1, logoImage } from "../utils/imageUtils";
 
 import "./login.css";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const LogIn = () => {
     const navigate = useNavigate();
-
+    const { loading, error, handleLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
-    const [is_mobile_width, set_is_mobile_width] = useState(false);
-    const [password_val, set_password_val] = useState('');
-    const [email_val, set_email_val] = useState('');
-    const [counter, set_counter] = useState(0);
-
+    const [isMobileWidth, setIsMobileWidth] = useState(false);
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [])
+    }, []);
 
     useEffect(() => {
         const width = document.body.clientWidth;
         if (width < 1024) {
-            set_is_mobile_width(true);
+            setIsMobileWidth(true);
         } else {
-            set_is_mobile_width(false);
+            setIsMobileWidth(false);
         }
     }, []);
 
@@ -38,35 +32,28 @@ const LogIn = () => {
         setShowPassword(!showPassword);
     };
 
-    // useEffect(() => {
-    //     setInterval(() => {
-    //         set_counter((prev) => prev + 1)
-    //     }, 2000)
-    // }, [])
-    //
-    // const getImage = (counterIndex) => {
-    //     if (counterIndex % 3 === 0) {
-    //         return loginImage1;
-    //     }
-    //     if (counterIndex % 3 === 1) {
-    //         return loginImage2;
-    //     }
-    //     if (counterIndex % 3 === 2) {
-    //         return loginImage3;
-    //     }
-    // }
+    const handleSignIn = async () => {
+        try {
+            await handleLogin(email, password);
+            navigate("/dashboard");
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
 
     return (
         <div className="login-container">
-            {!is_mobile_width ? <div className="leftSection">
-                <div className="loginImage">
-                    <img src={loginImage1} alt="loginImage"/>
+            {!isMobileWidth ? (
+                <div className="leftSection">
+                    <div className="loginImage">
+                        <img src={loginImage1} alt="loginImage" />
+                    </div>
                 </div>
-            </div> : null}
-            <div className={is_mobile_width ? "overallSection" : "rightSection"}>
-                <div className={'rightSectionContainer'}>
+            ) : null}
+            <div className={isMobileWidth ? "overallSection" : "rightSection"}>
+                <div className={"rightSectionContainer"}>
                     <div className="logoImage">
-                        <img src={logoImage} alt="logoSarthi"/>
+                        <img src={logoImage} alt="logoSarthi" />
                     </div>
                     <div className="formContainer">
                         <div className="titleSection">
@@ -80,9 +67,9 @@ const LogIn = () => {
                                     type="email"
                                     placeholder="Enter your email Id"
                                     className="login-input"
-                                    value={email_val}
+                                    value={email}
                                     onChange={(ev) => {
-                                        set_email_val(ev.target.value)
+                                        setEmail(ev.target.value);
                                     }}
                                     autoFocus={true}
                                 />
@@ -96,23 +83,32 @@ const LogIn = () => {
                                 <div className="inputContainer password">
                                     <span>Password</span>
                                     <input
-                                        type={showPassword ? "text" : "password"}
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
                                         placeholder="Enter your password"
                                         className="login-input"
-                                        value={password_val}
+                                        value={password}
                                         onChange={(ev) => {
-                                            set_password_val(ev?.target?.value);
+                                            setPassword(ev?.target?.value);
                                         }}
                                     />
                                     <span
                                         className="eye-icon"
                                         onClick={togglePasswordVisibility}
                                     >
-                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
-                                </span>
+                                        <FontAwesomeIcon
+                                            icon={
+                                                showPassword
+                                                    ? faEyeSlash
+                                                    : faEye
+                                            }
+                                        />
+                                    </span>
                                 </div>
                             </div>
                         </div>
+                        {error && <div className="error-message">{error}</div>}
                         <div
                             style={{
                                 display: "flex",
@@ -120,31 +116,34 @@ const LogIn = () => {
                                 gap: "20px",
                             }}
                         >
-                            <button className="login-button" onClick={() => {
-                                navigate('/dashboard')
-                            }}>Sign in
+                            <button
+                                className="login-button"
+                                onClick={handleSignIn}
+                                disabled={loading}
+                            >
+                                {loading ? "Signing in..." : "Sign in"}
                             </button>
-                            <div className="loginOptions" onClick={() => {
-                                navigate('/register')
-                            }}>
-                            <span href="#" className="login-link">
-                                Didn't have an Account? &nbsp;
-                                <Link
-                                    to="/register"
-                                    style={{
-                                        color: "blue",
-                                        cursor: "pointer",
-                                        textDecoration: "none",
-                                    }}
-                                >
-                                    Register now
-                                </Link>
-                            </span>
+                            <div
+                                className="loginOptions"
+                                onClick={() => navigate("/register")}
+                            >
+                                <span className="login-link">
+                                    Don't have an account? &nbsp;
+                                    <Link
+                                        to="/register"
+                                        style={{
+                                            color: "blue",
+                                            cursor: "pointer",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        Register now
+                                    </Link>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

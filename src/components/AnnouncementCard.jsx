@@ -1,30 +1,36 @@
-import React, {useState} from "react";
-import {Card, Typography, DatePicker} from "antd";
+import { useState } from "react";
+import { Card, Typography, DatePicker } from "antd";
 
-const {Title, Text} = Typography;
+const { Title, Text } = Typography;
 
 const announcements = [
-    {title: "Outing schedule for every department", timestamp: "5 minutes ago"},
-    {title: "Meeting HR Department", timestamp: "Yesterday, 12:30 PM"},
+    {
+        title: "Outing schedule for every department",
+        timestamp: "5 minutes ago",
+    },
+    { title: "Meeting HR Department", timestamp: "Yesterday, 12:30 PM" },
     {
         title: "IT Department need two more talents for UX/UI Designer position",
         timestamp: "Yesterday, 09:15 AM",
     },
-    {title: "Saarthi is good", timestamp: "5 minutes ago"},
-    {title: "Hello saarthi", timestamp: "Yesterday, 12:30 PM"},
-    {title: "Happy New Year Saarthi", timestamp: "Yesterday, 09:15 AM"},
-    {title: "Outing schedule for every department", timestamp: "5 minutes ago"},
-    {title: "Meeting HR Department", timestamp: "Yesterday, 12:30 PM"},
+    { title: "Saarthi is good", timestamp: "5 minutes ago" },
+    { title: "Hello saarthi", timestamp: "Yesterday, 12:30 PM" },
+    { title: "Happy New Year Saarthi", timestamp: "Yesterday, 09:15 AM" },
+    {
+        title: "Outing schedule for every department",
+        timestamp: "5 minutes ago",
+    },
+    { title: "Meeting HR Department", timestamp: "Yesterday, 12:30 PM" },
     {
         title: "IT Department need two more talents for UX/UI Designer position",
         timestamp: "Yesterday, 09:15 AM",
     },
-    {title: "Saarthi is good", timestamp: "5 minutes ago"},
-    {title: "Hello saarthi", timestamp: "Yesterday, 12:30 PM"},
-    {title: "Happy New Year Saarthi", timestamp: "Yesterday, 09:15 AM"},
+    { title: "Saarthi is good", timestamp: "5 minutes ago" },
+    { title: "Hello saarthi", timestamp: "Yesterday, 12:30 PM" },
+    { title: "Happy New Year Saarthi", timestamp: "Yesterday, 09:15 AM" },
 ];
 
-const AnnouncementCard = ({visible}) => {
+const AnnouncementCard = ({ visible }) => {
     const [selectedDate, setSelectedDate] = useState(null);
 
     const handleDateChange = (date) => {
@@ -57,10 +63,13 @@ const AnnouncementCard = ({visible}) => {
                     borderBottom: "1px solid #f0f0f0",
                 }}
             >
-                <Title level={3} style={{
-                    margin: 0,
-                    fontSize: "clamp(18px, 4vw, 24px)",
-                }}>
+                <Title
+                    level={3}
+                    style={{
+                        margin: 0,
+                        fontSize: "clamp(18px, 4vw, 24px)",
+                    }}
+                >
                     Announcement
                 </Title>
                 <DatePicker
@@ -70,7 +79,8 @@ const AnnouncementCard = ({visible}) => {
                     placeholder="Select date"
                     style={{
                         width: visible ? "40%" : "auto",
-                    }}/>
+                    }}
+                />
             </div>
             <div
                 style={{
@@ -90,16 +100,25 @@ const AnnouncementCard = ({visible}) => {
                             backgroundColor: "#FAFAFA",
                         }}
                     >
-                        <div style={{display: "flex", flexDirection: "column"}}>
-                            <Text strongstyle={{
-                                fontSize: "clamp(12px, 2.5vw, 16px)",
-                                wordBreak: "break-word",
-                            }}
-                            >{item.title}</Text>
-                            <Text type="secondary" style={{
-                                fontSize: "clamp(10px, 2vw, 12px)",
-                            }}
-                            >{item.timestamp}</Text>
+                        <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                        >
+                            <Text
+                                strongstyle={{
+                                    fontSize: "clamp(12px, 2.5vw, 16px)",
+                                    wordBreak: "break-word",
+                                }}
+                            >
+                                {item.title}
+                            </Text>
+                            <Text
+                                type="secondary"
+                                style={{
+                                    fontSize: "clamp(10px, 2vw, 12px)",
+                                }}
+                            >
+                                {item.timestamp}
+                            </Text>
                         </div>
                     </div>
                 ))}

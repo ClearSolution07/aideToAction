@@ -1,18 +1,41 @@
-import React, {useState} from 'react';
-import {Mic, Search, Send} from 'lucide-react';
-import './chat.css';
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Search } from "lucide-react";
+import { addMessage, setActiveChat } from "../../redux/slices/chatSlice";
+import "./chat.css";
 import SideBar from "../../components/SideBar";
 import Layout from "antd/es/layout/layout";
 import HeaderComponent from "../../components/HeaderComponent";
-
-const {Content} = Layout;
-
+import profile from "../../assets/profile.jpg";
+import send from "../../assets/Vector.png";
+const { Content } = Layout;
 
 const ChatWindow = () => {
+    const dispatch = useDispatch();
+    const messages = useSelector((state) => state.chat.messages);
+    const activeChat = useSelector((state) => state.chat.activeChat);
     const [sidebarVisible, setSidebarVisible] = useState(false);
+    const [newMessage, setNewMessage] = useState("");
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
+    };
+
+    const sendMessage = () => {
+        if (newMessage.trim()) {
+            dispatch(
+                addMessage({
+                    text: newMessage,
+                    sender: "You",
+                    timestamp: new Date().toLocaleTimeString(),
+                })
+            );
+            setNewMessage("");
+        }
+    };
+
+    const selectChat = (chatName) => {
+        dispatch(setActiveChat(chatName));
     };
 
     return (
@@ -33,78 +56,141 @@ const ChatWindow = () => {
                 <HeaderComponent
                     onMenuClick={toggleSidebar}
                     isMobileWidth={true}
-                    headerText={'Chat Window'}
+                    headerText={"Chat Window"}
                 />
                 <Content>
-                    <div className="chat-container">
-                        {/* Left Sidebar */}
-                        <div className="sidebar">
-                            <div className="search-container">
-                                <div className="search-wrapper">
-                                    <Search className="search-icon"/>
-                                    <input type="text" placeholder="Pesquisar chat" className="search-input"/>
-                                </div>
-                            </div>
-
-                            <div className="chat-list">
-                                {[...Array(8)].map((_, i) => (
-                                    <div key={i} className="chat-list-item">
-                                        <div className="avatar"/>
-                                        <div className="chat-info">
-                                            <div className="chat-name">Suporte ADMIN</div>
-                                            <div className="chat-preview">Pesquisar chat</div>
-                                        </div>
-                                        {i === 1 && <div className="unread-badge">1</div>}
-                                    </div>
-                                ))}
+                    <div className="main-container">
+                        <div className="user-info-container">
+                            <img
+                                src={profile}
+                                alt="User"
+                                className="user-image"
+                            />
+                            <div className="user-details-container">
+                                <div className="user-name">user name</div>
+                                <div className="user-des">user description</div>
                             </div>
                         </div>
-
-                        {/* Main Chat Area */}
-                        <div className="main-chat">
-                            <div className="chat-header">
-                                <div className="header-user-info">
-                                    <div className="avatar"/>
-                                    <div className="user-details">
-                                        <div className="user-name">Suporte ADMIN</div>
-                                        <div className="user-status">ONLINE</div>
+                        <div className="chat-container">
+                            {/* Left Sidebar */}
+                            <div className="sidebar">
+                                <div className="sidebar-header">Message</div>
+                                <div className="search-container">
+                                    <div className="search-wrapper">
+                                        <Search className="search-icon" />
+                                        <input
+                                            type="text"
+                                            placeholder="Search"
+                                            className="search-input"
+                                        />
                                     </div>
                                 </div>
-                                <img
-                                    src="/api/placeholder/32/32"
-                                    alt="User"
-                                    className="header-avatar"
-                                />
+
+                                <div className="chat-list">
+                                    {["Suporte ADMIN", "Chat 1", "Chat 2"].map(
+                                        (chat, i) => (
+                                            <div
+                                                key={i}
+                                                className={`chat-list-item ${
+                                                    activeChat === chat
+                                                        ? "active"
+                                                        : ""
+                                                }`}
+                                                onClick={() => selectChat(chat)}
+                                            >
+                                                <div className="avatar" />
+                                                <div className="chat-info">
+                                                    <div className="chat-name">
+                                                        {chat}
+                                                    </div>
+                                                    <div className="chat-preview">
+                                                        Pesquisar chat
+                                                    </div>
+                                                </div>
+                                                {i === 1 && (
+                                                    <div className="unread-badge">
+                                                        1
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )
+                                    )}
+                                </div>
                             </div>
 
-                            <div className="messages-container">
-                                {/* Received Message */}
-                                <div className="message received">
-                                    <div className="avatar small"/>
-                                    <div className="message-content">
-                                        <p>Lorem ipsum has been the industry's standard dummy text ever since the
-                                            1500s.</p>
-                                        <span className="timestamp">9:00 PM</span>
+                            {/* Main Chat Area */}
+                            <div className="main-chat">
+                                <div className="chat-header">
+                                    <div className="header-user-info">
+                                        <div className="avatar" />
+                                        <div className="user-details">
+                                            <div className="user-name">
+                                                {activeChat || "Select a Chat"}
+                                            </div>
+                                            <div className="user-status">
+                                                ONLINE
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                {/* Sent Message */}
-                                <div className="message sent">
-                                    <div className="message-content">
-                                        <p>Lorem ipsum has been the industry's standard dummy text ever since the
-                                            1500s.</p>
-                                        <span className="timestamp">9:00 PM</span>
+                                <div className="messages-container">
+                                    <div className="messages-area">
+                                        {messages.map((msg, index) => (
+                                            <div
+                                                key={index}
+                                                className={`message ${
+                                                    msg.sender === "You"
+                                                        ? "sent"
+                                                        : "received"
+                                                }`}
+                                            >
+                                                <div
+                                                    className={`avatar ${
+                                                        msg.sender === "You"
+                                                            ? ""
+                                                            : "small"
+                                                    }`}
+                                                />
+                                                <div className="message-content">
+                                                    <p>{msg.text}</p>
+                                                    <span className="timestamp">
+                                                        {msg.timestamp}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                    <div className="avatar small"/>
                                 </div>
-                            </div>
 
-                            <div className="input-container">
-                                <div className="input-wrapper">
-                                    <input type="text" placeholder="Digite a mensagem" className="message-input"/>
-                                    <div className="input-actions">
-                                        <Mic className="mic-icon"/>
-                                        <Send className="send-icon"/>
+                                <div className="input-box">
+                                    <div className="input-container">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="text"
+                                                value={newMessage}
+                                                onChange={(e) =>
+                                                    setNewMessage(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                placeholder="Type a message"
+                                                className="message-input"
+                                            />
+                                        </div>
+                                        <div
+                                            className="input-actions"
+                                            onClick={sendMessage}
+                                        >
+                                            <div className="sent-text">
+                                                Send
+                                            </div>
+                                            <img
+                                                src={send}
+                                                alt="Send"
+                                                className="send-icon"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
