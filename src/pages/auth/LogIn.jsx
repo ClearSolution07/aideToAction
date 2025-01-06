@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { loginImage1, logoImage } from "../utils/imageUtils";
+import { loginImage1, logoImage } from "../../utils/imageUtils";
 
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const LogIn = () => {
     const navigate = useNavigate();

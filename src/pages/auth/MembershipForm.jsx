@@ -10,9 +10,9 @@ import {
     message,
 } from "antd";
 import { InstagramOutlined, FacebookOutlined } from "@ant-design/icons";
-import { logoImage } from "../utils/imageUtils";
+import { logoImage } from "../../utils/imageUtils";
 import ReCAPTCHA from "react-google-recaptcha";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import "./membershipform.css";
 import { useNavigate } from "react-router-dom";
 

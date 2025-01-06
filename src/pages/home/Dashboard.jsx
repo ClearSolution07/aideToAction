@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Layout, Row, Col } from "antd";
 import HeaderComponent from "../../components/HeaderComponent";
-import SideBar from "../../components/Sidebar";
+import SideBar from "../../components/SideBar";
 import StatusCard from "../../components/StatusCard";
 import { dataStatus } from "../../utils/dataStatus";
 import PsychologistCard from "../../components/PsychologistCard";

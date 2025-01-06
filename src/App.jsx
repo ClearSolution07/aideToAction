@@ -5,9 +5,9 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import LogIn from "./auth/LogIn";
+import LogIn from "./pages/auth/LogIn";
 import Dashboard from "./pages/home/Dashboard";
-import MembershipForm from "./auth/MembershipForm";
+import MembershipForm from "./pages/auth/MembershipForm";
 import Error from "./pages/Error";
 import ChatWindow from "./pages/chat/chat";
 

@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Search } from "lucide-react";
 import { addMessage, setActiveChat } from "../../redux/slices/chatSlice";
+import io from "socket.io-client";
 import "./chat.css";
 import SideBar from "../../components/SideBar";
 import Layout from "antd/es/layout/layout";
 import HeaderComponent from "../../components/HeaderComponent";
 import profile from "../../assets/profile.jpg";
 import send from "../../assets/Vector.png";
+
 const { Content } = Layout;
+
+// Connect to the server
+const socket = io("http://localhost:4060");
 
 const ChatWindow = () => {
     const dispatch = useDispatch();
@@ -17,19 +22,35 @@ const ChatWindow = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
 
+    useEffect(() => {
+        // Listen for incoming chat messages
+        socket.on("chat_message", (message) => {
+            dispatch(addMessage(message));
+        });
+
+        // Cleanup the listener on component unmount
+        return () => {
+            socket.off("chat_message");
+        };
+    }, [dispatch]);
+
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
     const sendMessage = () => {
         if (newMessage.trim()) {
-            dispatch(
-                addMessage({
-                    text: newMessage,
-                    sender: "You",
-                    timestamp: new Date().toLocaleTimeString(),
-                })
-            );
+            const message = {
+                text: newMessage,
+                sender: "me",
+                timestamp: new Date().toLocaleTimeString(),
+            };
+
+            // Emit the message to the server
+            socket.emit("chat_message", message);
+
+            // Dispatch to update local state
+            dispatch(addMessage(message));
             setNewMessage("");
         }
     };
@@ -72,7 +93,6 @@ const ChatWindow = () => {
                             </div>
                         </div>
                         <div className="chat-container">
-                            {/* Left Sidebar */}
                             <div className="sidebar">
                                 <div className="sidebar-header">Message</div>
                                 <div className="search-container">
@@ -87,7 +107,7 @@ const ChatWindow = () => {
                                 </div>
 
                                 <div className="chat-list">
-                                    {["Suporte ADMIN", "Chat 1", "Chat 2"].map(
+                                    {["Support ADMIN", "Chat 1", "Chat 2"].map(
                                         (chat, i) => (
                                             <div
                                                 key={i}
@@ -104,7 +124,7 @@ const ChatWindow = () => {
                                                         {chat}
                                                     </div>
                                                     <div className="chat-preview">
-                                                        Pesquisar chat
+                                                        Search chat
                                                     </div>
                                                 </div>
                                                 {i === 1 && (
@@ -118,7 +138,6 @@ const ChatWindow = () => {
                                 </div>
                             </div>
 
-                            {/* Main Chat Area */}
                             <div className="main-chat">
                                 <div className="chat-header">
                                     <div className="header-user-info">
