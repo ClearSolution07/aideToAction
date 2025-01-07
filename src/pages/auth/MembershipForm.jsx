@@ -40,7 +40,7 @@ const MembershipForm = () => {
             cci_name: values.cci_name,
             year_left_cci: values.year_left_cci,
             is_member_state_network:
-                values.is_member_state_network === "Yes (हां)"
+                values.is_member_state_network === "Yes (हाँ)"
                     ? true
                     : values.is_member_state_network === "No (नहीं)"
                     ? false
