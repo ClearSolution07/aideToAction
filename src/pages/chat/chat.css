@@ -132,7 +132,6 @@
     flex-shrink: 0;
 }
 
-
 .avatar.small {
     width: 32px;
     height: 32px;
@@ -186,6 +185,14 @@
     height: 98px;
     border: 1px solid #e9eaf0;
     margin-bottom: 16px;
+}
+
+.chat-list-item.online .chat-preview {
+    color: green;
+}
+
+.chat-list-item.offline .chat-preview {
+    color: gray;
 }
 
 .header-user-info {
@@ -253,7 +260,7 @@
     align-self: flex-start;
     padding: 10px 15px;
     max-width: 400px;
-	margin-left: 8px;
+    margin-left: 8px;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: pre-wrap;

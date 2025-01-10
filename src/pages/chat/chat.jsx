@@ -32,6 +32,8 @@ const ChatWindow = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
     const [userList, setUserList] = useState([]);
+    const [userStatus, setUserStatus] = useState({});
+    const [searchInput, setSearchInput] = useState("");
     const [senderId, setSenderId] = useState(null);
     const [receiverId, setReceiverId] = useState(null);
     const [receiverName, setReceiverName] = useState("");
@@ -76,6 +78,26 @@ const ChatWindow = () => {
         };
         fetchUsers();
     }, []);
+
+    // Fetch user list and online/offline status updates
+    useEffect(() => {
+        // Listen for user status updates from the server
+        socket.on("user_status", (data) => {
+            setUserStatus((prevStatus) => ({
+                ...prevStatus,
+                [data.user_id]: data.status, // Update status (online/offline)
+            }));
+        });
+
+        return () => {
+            socket.off("user_status"); // Clean up event listener on component unmount
+        };
+    }, []);
+
+    // Filtered user list based on search input
+    const filteredUsers = userList.filter((user) =>
+        user.full_name.toLowerCase().includes(searchInput.toLowerCase())
+    );
 
     //comparing the ids to set the receivd message in the store
     useEffect(() => {
@@ -189,7 +211,9 @@ const ChatWindow = () => {
                                 <div className="user-name">
                                     {userName || "User Name"}
                                 </div>
-                                <div className="user-des">User Description</div>
+                                <div className="user-des">
+                                    Web Designer & Best-Selling Instructor
+                                </div>
                             </div>
                         </div>
                         <div className="chat-container">
@@ -202,18 +226,23 @@ const ChatWindow = () => {
                                             type="text"
                                             placeholder="Search"
                                             className="search-input"
+                                            value={searchInput}
+                                            onChange={(e) =>
+                                                setSearchInput(e.target.value)
+                                            }
                                         />
                                     </div>
                                 </div>
 
                                 <div className="chat-list">
-                                    {userList.map((user) => (
+                                    {filteredUsers.map((user) => (
                                         <div
                                             key={user.user_id}
                                             className={`chat-list-item ${
-                                                receiverId === user.user_id
-                                                    ? "selected-user"
-                                                    : ""
+                                                userStatus[user.user_id] ===
+                                                "online"
+                                                    ? "online"
+                                                    : "offline"
                                             }`}
                                             onClick={() => selectChat(user)}
                                             style={{
@@ -229,7 +258,11 @@ const ChatWindow = () => {
                                                     {user.full_name}
                                                 </div>
                                                 <div className="chat-preview">
-                                                    Start chatting
+                                                    {userStatus[
+                                                        user.user_id
+                                                    ] === "online"
+                                                        ? "Active Now"
+                                                        : "Offline"}
                                                 </div>
                                             </div>
                                         </div>
@@ -247,7 +280,10 @@ const ChatWindow = () => {
                                                     "Select a Chat"}
                                             </div>
                                             <div className="user-status">
-                                                ONLINE
+                                                {userStatus[receiverId] ===
+                                                "online"
+                                                    ? "Active Now"
+                                                    : "Offline"}
                                             </div>
                                         </div>
                                     </div>
