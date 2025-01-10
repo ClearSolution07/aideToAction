@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
-import { setActiveChat } from "../../redux/slices/chatSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+    setActiveChat,
+    setMessages,
+    addMessage,
+} from "../../redux/slices/chatSlice";
+
 import io from "socket.io-client";
 import "./chat.css";
 import SideBar from "../../components/SideBar";
@@ -19,17 +24,11 @@ const socket = io("http://localhost:4060/", {
 });
 
 const ChatWindow = () => {
+    const messagesFromRedux = useSelector((state) => state.chat.messages || []);
     const dispatch = useDispatch();
     const { getUserDetail, getAllUser } = useUser();
-    const {
-        messages = [],
-        fetchChatHistory,
-        sendMessage,
-        loading,
-        error,
-    } = useChat();
+    const { fetchChatHistory, sendMessage, loading, error } = useChat();
 
-    const activeChat = useSelector((state) => state.chat.activeChat);
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
     const [userList, setUserList] = useState([]);
@@ -37,8 +36,8 @@ const ChatWindow = () => {
     const [receiverId, setReceiverId] = useState(null);
     const [receiverName, setReceiverName] = useState("");
     const [userName, setUserName] = useState("");
-    const [receivedMessages, setReceivedMessages] = useState([]);
 
+    //fetching the current user details
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
@@ -50,15 +49,9 @@ const ChatWindow = () => {
                     setSenderId(userId);
 
                     if (socket.connected) {
-                        console.log(
-                            "Socket connected! Emitting user_connected."
-                        );
                         socket.emit("user_connected", { user_id: userId });
                     } else {
                         socket.on("connect", () => {
-                            console.log(
-                                "Socket connected after delay! Emitting user_connected."
-                            );
                             socket.emit("user_connected", { user_id: userId });
                         });
                     }
@@ -71,6 +64,7 @@ const ChatWindow = () => {
         fetchUserDetails();
     }, []);
 
+    //fetching the list of users
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -80,85 +74,88 @@ const ChatWindow = () => {
                 console.error("Error fetching user list:", error.message);
             }
         };
-
         fetchUsers();
     }, []);
 
+    //comparing the ids to set the receivd message in the store
     useEffect(() => {
-        // Listen for incoming messages
         socket.on("chat_message", (message) => {
-            console.log("New message received:", message);
-            setReceivedMessages((prevMessages) => [...prevMessages, message]);
-            sendMessage(message);
+            if (message.sender_id === receiverId) {
+                dispatch(addMessage(message));
+            }
         });
 
         return () => {
-            socket.off("connect");
             socket.off("chat_message");
         };
-    }, []);
-
-    useEffect(() => {
-        if (messages.data && messages.data.length > 0) {
-            setReceivedMessages(messages.data);
-        }
-    }, [messages.data]);
+    }, [receiverId, dispatch]);
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
+    //sending the new message to db, store and socket
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (newMessage.trim() && senderId && receiverId) {
             const messageObj = {
                 sender_id: senderId,
                 receiver_id: receiverId,
-                message: newMessage,
+                content: newMessage,
+                message_id: (messagesFromRedux.data?.length || 0) + 1,
                 timestamp: new Date().toISOString(),
             };
 
             try {
-                const newMessageId = receivedMessages.length + 1;
-
-                await sendMessage(messageObj);
-                socket.emit("chat_message", {
+                await sendMessage({
                     sender_id: senderId,
                     receiver_id: receiverId,
-                    content: newMessage,
-                    message_id: newMessageId,
+                    message: newMessage,
                     timestamp: new Date().toISOString(),
                 });
-                setReceivedMessages((prevMessages) => [
-                    ...prevMessages,
-                    {
-                        sender_id: senderId,
-                        receiver_id: receiverId,
-                        content: newMessage,
-                        message_id: newMessageId,
-                        timestamp: new Date().toISOString(),
-                    },
-                ]);
+                dispatch(addMessage(messageObj)); // Update Redux
+                socket.emit("chat_message", messageObj); // Send via socket
                 setNewMessage("");
             } catch (error) {
                 console.error("Error sending message:", error);
             }
-            setNewMessage("");
         }
     };
 
+    //selecting the user from user list
     const selectChat = async (user) => {
         setReceiverId(user.user_id);
         setReceiverName(user.full_name);
         dispatch(setActiveChat(user.full_name));
 
         if (senderId && user.user_id) {
-            await fetchChatHistory({
-                sender_id: senderId,
-                receiver_id: user.user_id,
-            });
+            try {
+                const updatedMessage = await fetchChatHistory({
+                    sender_id: senderId,
+                    receiver_id: user.user_id,
+                });
+
+                if (updatedMessage && updatedMessage.data) {
+                    console.log("Fetched Chat History:", updatedMessage.data);
+                    dispatch(setMessages(updatedMessage.data)); // Update Redux store with chat history
+                } else {
+                    console.log("No chat history available.");
+                    dispatch(setMessages([])); // Clear Redux store
+                }
+            } catch (error) {
+                console.error("Error fetching chat history:", error.message);
+            }
         }
     };
+
+    // Hook for auto-scroll
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [selectChat]);
 
     return (
         <Layout>
@@ -214,11 +211,17 @@ const ChatWindow = () => {
                                         <div
                                             key={user.user_id}
                                             className={`chat-list-item ${
-                                                activeChat === user.full_name
-                                                    ? "active"
+                                                receiverId === user.user_id
+                                                    ? "selected-user"
                                                     : ""
                                             }`}
                                             onClick={() => selectChat(user)}
+                                            style={{
+                                                backgroundColor:
+                                                    receiverId === user.user_id
+                                                        ? "#FFDDD1"
+                                                        : "transparent",
+                                            }}
                                         >
                                             <div className="avatar" />
                                             <div className="chat-info">
@@ -240,7 +243,8 @@ const ChatWindow = () => {
                                         <div className="avatar" />
                                         <div className="user-details">
                                             <div className="user-name">
-                                                {activeChat || "Select a Chat"}
+                                                {receiverName ||
+                                                    "Select a Chat"}
                                             </div>
                                             <div className="user-status">
                                                 ONLINE
@@ -248,7 +252,6 @@ const ChatWindow = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="messages-container">
                                     {loading ? (
                                         <p>Loading messages...</p>
@@ -256,16 +259,16 @@ const ChatWindow = () => {
                                         <p>Error: {error}</p>
                                     ) : (
                                         <div className="messages-area">
-                                            {Array.isArray(receivedMessages) &&
-                                            receivedMessages.length > 0 ? (
-                                                receivedMessages
+                                            {Array.isArray(messagesFromRedux) &&
+                                            messagesFromRedux.length > 0 ? (
+                                                [...messagesFromRedux]
                                                     .sort(
                                                         (a, b) =>
                                                             new Date(
-                                                                b.timestamp
+                                                                a.timestamp
                                                             ) -
                                                             new Date(
-                                                                a.timestamp
+                                                                b.timestamp
                                                             )
                                                     )
                                                     .map((msg) => (
@@ -300,15 +303,28 @@ const ChatWindow = () => {
                                                                     )}
                                                                 </span>
                                                             </div>
+                                                            {/* Dummy element for scrolling */}
+                                                            <div
+                                                                ref={
+                                                                    messagesEndRef
+                                                                }
+                                                            ></div>
                                                         </div>
                                                     ))
                                             ) : (
-                                                <p>No messages to display</p>
+                                                <div className="no-messages">
+                                                    <p className="no-messages-title">
+                                                        No messages yet
+                                                    </p>
+                                                    <p className="no-messages-subtitle">
+                                                        Start a conversation!
+                                                    </p>
+                                                </div>
                                             )}
                                         </div>
                                     )}
                                 </div>
-
+                                ;
                                 <div className="input-box">
                                     <div className="input-container">
                                         <div className="input-wrapper">
@@ -320,6 +336,11 @@ const ChatWindow = () => {
                                                         e.target.value
                                                     )
                                                 }
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        handleSendMessage(e);
+                                                    }
+                                                }}
                                                 placeholder="Type a message"
                                                 className="message-input"
                                             />

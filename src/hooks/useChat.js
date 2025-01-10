@@ -11,11 +11,14 @@ const useChat = () => {
     // Fetch chat history for the selected user
     const fetchChatHistory = async (chatData) => {
         setError(null);
+        setLoading(true);
         try {
             const chatHistory = await getChat(chatData);
-            setMessages(chatHistory);
+            setMessages(chatHistory.data);
+            return chatHistory;
         } catch (err) {
             setError(err.message);
+            return null;
         } finally {
             setLoading(false);
         }
