@@ -10,6 +10,7 @@ import Dashboard from "./pages/home/Dashboard";
 import MembershipForm from "./pages/auth/MembershipForm";
 import Error from "./pages/Error";
 import ChatWindow from "./pages/chat/chat";
+import Members from "./pages/members/Members";
 
 // Function to check authentication status
 const isAuthenticated = () => {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Dashboard />} />,
     },
     {
+        path: "/member",
+        // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
+        element: <Members />,
+    },
+    {
         path: "/chat",
         element: <ProtectedRoute element={<ChatWindow />} />,
     },
@@ -49,7 +55,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

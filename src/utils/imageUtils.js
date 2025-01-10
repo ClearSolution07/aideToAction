@@ -11,6 +11,7 @@ import rightImage from "../assets/rightYellow.png";
 import leftImage from "../assets/leftYellow.png";
 import mainLogo from "../assets/mainLogo.svg";
 import profilePhoto from "../assets/profilePhoto.svg";
+import memberProfile from "../assets/memberProfile.svg"
 
 export const images = {
     bgImage,
@@ -26,6 +27,7 @@ export const images = {
     leftImage,
     mainLogo,
     profilePhoto,
+    memberProfile
 };
 
 // Optional: Named exports for individual images
@@ -43,4 +45,5 @@ export {
     leftImage,
     mainLogo,
     profilePhoto,
+    memberProfile
 };
