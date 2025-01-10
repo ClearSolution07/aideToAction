@@ -11,7 +11,7 @@ const useAuth = () => {
         setError(null);
         try {
             const data = await login(email, password);
-            await AsyncStorage.setItem("accessToken", data.token);
+            await AsyncStorage.setItem("authToken", data.token);
             setLoading(false);
             return data;
         } catch (err) {
@@ -40,7 +40,7 @@ const useAuth = () => {
         setError(null);
         try {
             await logout();
-            await AsyncStorage.removeItem("accessToken");
+            await AsyncStorage.removeItem("authToken");
             setLoading(false);
         } catch (err) {
             setError(err.message);

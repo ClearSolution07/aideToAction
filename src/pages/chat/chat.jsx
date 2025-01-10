@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
-import { addMessage, setActiveChat } from "../../redux/slices/chatSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+    setActiveChat,
+    setMessages,
+    addMessage,
+} from "../../redux/slices/chatSlice";
+
 import io from "socket.io-client";
 import "./chat.css";
 import SideBar from "../../components/SideBar";
@@ -9,55 +14,148 @@ import Layout from "antd/es/layout/layout";
 import HeaderComponent from "../../components/HeaderComponent";
 import profile from "../../assets/profile.jpg";
 import send from "../../assets/Vector.png";
+import useUser from "../../hooks/useUser";
+import useChat from "../../hooks/useChat";
 
 const { Content } = Layout;
 
-// Connect to the server
-const socket = io("http://localhost:4060");
+const socket = io("http://localhost:4060/", {
+    transports: ["websocket"],
+});
 
 const ChatWindow = () => {
+    const messagesFromRedux = useSelector((state) => state.chat.messages || []);
     const dispatch = useDispatch();
-    const messages = useSelector((state) => state.chat.messages);
-    const activeChat = useSelector((state) => state.chat.activeChat);
+    const { getUserDetail, getAllUser } = useUser();
+    const { fetchChatHistory, sendMessage, loading, error } = useChat();
+
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
+    const [userList, setUserList] = useState([]);
+    const [senderId, setSenderId] = useState(null);
+    const [receiverId, setReceiverId] = useState(null);
+    const [receiverName, setReceiverName] = useState("");
+    const [userName, setUserName] = useState("");
 
+    //fetching the current user details
     useEffect(() => {
-        // Listen for incoming chat messages
+        const fetchUserDetails = async () => {
+            try {
+                const response = await getUserDetail();
+                console.log("res", response.data[0].user_id);
+                setUserName(response.data[0].full_name);
+                if (response) {
+                    const userId = response.data[0].user_id;
+                    setSenderId(userId);
+
+                    if (socket.connected) {
+                        socket.emit("user_connected", { user_id: userId });
+                    } else {
+                        socket.on("connect", () => {
+                            socket.emit("user_connected", { user_id: userId });
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching user details:", error.message);
+            }
+        };
+
+        fetchUserDetails();
+    }, []);
+
+    //fetching the list of users
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await getAllUser();
+                setUserList(response.data);
+            } catch (error) {
+                console.error("Error fetching user list:", error.message);
+            }
+        };
+        fetchUsers();
+    }, []);
+
+    //comparing the ids to set the receivd message in the store
+    useEffect(() => {
         socket.on("chat_message", (message) => {
-            dispatch(addMessage(message));
+            if (message.sender_id === receiverId) {
+                dispatch(addMessage(message));
+            }
         });
 
-        // Cleanup the listener on component unmount
         return () => {
             socket.off("chat_message");
         };
-    }, [dispatch]);
+    }, [receiverId, dispatch]);
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
-    const sendMessage = () => {
-        if (newMessage.trim()) {
-            const message = {
-                text: newMessage,
-                sender: "me",
-                timestamp: new Date().toLocaleTimeString(),
+    //sending the new message to db, store and socket
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+        if (newMessage.trim() && senderId && receiverId) {
+            const messageObj = {
+                sender_id: senderId,
+                receiver_id: receiverId,
+                content: newMessage,
+                message_id: (messagesFromRedux.data?.length || 0) + 1,
+                timestamp: new Date().toISOString(),
             };
 
-            // Emit the message to the server
-            socket.emit("chat_message", message);
-
-            // Dispatch to update local state
-            dispatch(addMessage(message));
-            setNewMessage("");
+            try {
+                await sendMessage({
+                    sender_id: senderId,
+                    receiver_id: receiverId,
+                    message: newMessage,
+                    timestamp: new Date().toISOString(),
+                });
+                dispatch(addMessage(messageObj)); // Update Redux
+                socket.emit("chat_message", messageObj); // Send via socket
+                setNewMessage("");
+            } catch (error) {
+                console.error("Error sending message:", error);
+            }
         }
     };
 
-    const selectChat = (chatName) => {
-        dispatch(setActiveChat(chatName));
+    //selecting the user from user list
+    const selectChat = async (user) => {
+        setReceiverId(user.user_id);
+        setReceiverName(user.full_name);
+        dispatch(setActiveChat(user.full_name));
+
+        if (senderId && user.user_id) {
+            try {
+                const updatedMessage = await fetchChatHistory({
+                    sender_id: senderId,
+                    receiver_id: user.user_id,
+                });
+
+                if (updatedMessage && updatedMessage.data) {
+                    console.log("Fetched Chat History:", updatedMessage.data);
+                    dispatch(setMessages(updatedMessage.data)); // Update Redux store with chat history
+                } else {
+                    console.log("No chat history available.");
+                    dispatch(setMessages([])); // Clear Redux store
+                }
+            } catch (error) {
+                console.error("Error fetching chat history:", error.message);
+            }
+        }
     };
+
+    // Hook for auto-scroll
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [selectChat]);
 
     return (
         <Layout>
@@ -88,8 +186,10 @@ const ChatWindow = () => {
                                 className="user-image"
                             />
                             <div className="user-details-container">
-                                <div className="user-name">user name</div>
-                                <div className="user-des">user description</div>
+                                <div className="user-name">
+                                    {userName || "User Name"}
+                                </div>
+                                <div className="user-des">User Description</div>
                             </div>
                         </div>
                         <div className="chat-container">
@@ -107,34 +207,33 @@ const ChatWindow = () => {
                                 </div>
 
                                 <div className="chat-list">
-                                    {["Support ADMIN", "Chat 1", "Chat 2"].map(
-                                        (chat, i) => (
-                                            <div
-                                                key={i}
-                                                className={`chat-list-item ${
-                                                    activeChat === chat
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={() => selectChat(chat)}
-                                            >
-                                                <div className="avatar" />
-                                                <div className="chat-info">
-                                                    <div className="chat-name">
-                                                        {chat}
-                                                    </div>
-                                                    <div className="chat-preview">
-                                                        Search chat
-                                                    </div>
+                                    {userList.map((user) => (
+                                        <div
+                                            key={user.user_id}
+                                            className={`chat-list-item ${
+                                                receiverId === user.user_id
+                                                    ? "selected-user"
+                                                    : ""
+                                            }`}
+                                            onClick={() => selectChat(user)}
+                                            style={{
+                                                backgroundColor:
+                                                    receiverId === user.user_id
+                                                        ? "#FFDDD1"
+                                                        : "transparent",
+                                            }}
+                                        >
+                                            <div className="avatar" />
+                                            <div className="chat-info">
+                                                <div className="chat-name">
+                                                    {user.full_name}
                                                 </div>
-                                                {i === 1 && (
-                                                    <div className="unread-badge">
-                                                        1
-                                                    </div>
-                                                )}
+                                                <div className="chat-preview">
+                                                    Start chatting
+                                                </div>
                                             </div>
-                                        )
-                                    )}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
@@ -144,7 +243,8 @@ const ChatWindow = () => {
                                         <div className="avatar" />
                                         <div className="user-details">
                                             <div className="user-name">
-                                                {activeChat || "Select a Chat"}
+                                                {receiverName ||
+                                                    "Select a Chat"}
                                             </div>
                                             <div className="user-status">
                                                 ONLINE
@@ -152,36 +252,79 @@ const ChatWindow = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="messages-container">
-                                    <div className="messages-area">
-                                        {messages.map((msg, index) => (
-                                            <div
-                                                key={index}
-                                                className={`message ${
-                                                    msg.sender === "You"
-                                                        ? "sent"
-                                                        : "received"
-                                                }`}
-                                            >
-                                                <div
-                                                    className={`avatar ${
-                                                        msg.sender === "You"
-                                                            ? ""
-                                                            : "small"
-                                                    }`}
-                                                />
-                                                <div className="message-content">
-                                                    <p>{msg.text}</p>
-                                                    <span className="timestamp">
-                                                        {msg.timestamp}
-                                                    </span>
+                                    {loading ? (
+                                        <p>Loading messages...</p>
+                                    ) : error ? (
+                                        <p>Error: {error}</p>
+                                    ) : (
+                                        <div className="messages-area">
+                                            {Array.isArray(messagesFromRedux) &&
+                                            messagesFromRedux.length > 0 ? (
+                                                [...messagesFromRedux]
+                                                    .sort(
+                                                        (a, b) =>
+                                                            new Date(
+                                                                a.timestamp
+                                                            ) -
+                                                            new Date(
+                                                                b.timestamp
+                                                            )
+                                                    )
+                                                    .map((msg) => (
+                                                        <div
+                                                            key={msg.message_id}
+                                                            className={`message ${
+                                                                msg.sender_id ===
+                                                                senderId
+                                                                    ? "sent"
+                                                                    : "received"
+                                                            }`}
+                                                        >
+                                                            {msg.sender_id !==
+                                                                senderId && (
+                                                                <div className="avatar small" />
+                                                            )}
+                                                            <div className="message-content">
+                                                                <p>
+                                                                    {
+                                                                        msg.content
+                                                                    }
+                                                                </p>
+                                                                <span className="timestamp">
+                                                                    {new Date(
+                                                                        msg.timestamp
+                                                                    ).toLocaleTimeString(
+                                                                        [],
+                                                                        {
+                                                                            hour: "2-digit",
+                                                                            minute: "2-digit",
+                                                                        }
+                                                                    )}
+                                                                </span>
+                                                            </div>
+                                                            {/* Dummy element for scrolling */}
+                                                            <div
+                                                                ref={
+                                                                    messagesEndRef
+                                                                }
+                                                            ></div>
+                                                        </div>
+                                                    ))
+                                            ) : (
+                                                <div className="no-messages">
+                                                    <p className="no-messages-title">
+                                                        No messages yet
+                                                    </p>
+                                                    <p className="no-messages-subtitle">
+                                                        Start a conversation!
+                                                    </p>
                                                 </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
-
+                                ;
                                 <div className="input-box">
                                     <div className="input-container">
                                         <div className="input-wrapper">
@@ -193,13 +336,18 @@ const ChatWindow = () => {
                                                         e.target.value
                                                     )
                                                 }
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        handleSendMessage(e);
+                                                    }
+                                                }}
                                                 placeholder="Type a message"
                                                 className="message-input"
                                             />
                                         </div>
                                         <div
                                             className="input-actions"
-                                            onClick={sendMessage}
+                                            onClick={handleSendMessage}
                                         >
                                             <div className="sent-text">
                                                 Send
