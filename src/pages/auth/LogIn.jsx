@@ -36,6 +36,7 @@ const LogIn = () => {
         try {
             const response = await handleLogin(email, password);
             if (response.statuscode === 200) {
+                localStorage.setItem("authToken", response.data);
                 navigate("/dashboard");
             } else {
                 console.error("Error:", response.message);

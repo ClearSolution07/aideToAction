@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Search } from "lucide-react";
-import { addMessage, setActiveChat } from "../../redux/slices/chatSlice";
+import { setActiveChat } from "../../redux/slices/chatSlice";
 import io from "socket.io-client";
 import "./chat.css";
 import SideBar from "../../components/SideBar";
@@ -9,54 +9,155 @@ import Layout from "antd/es/layout/layout";
 import HeaderComponent from "../../components/HeaderComponent";
 import profile from "../../assets/profile.jpg";
 import send from "../../assets/Vector.png";
+import useUser from "../../hooks/useUser";
+import useChat from "../../hooks/useChat";
 
 const { Content } = Layout;
 
-// Connect to the server
-const socket = io("http://localhost:4060");
+const socket = io("http://localhost:4060/", {
+    transports: ["websocket"],
+});
 
 const ChatWindow = () => {
     const dispatch = useDispatch();
-    const messages = useSelector((state) => state.chat.messages);
+    const { getUserDetail, getAllUser } = useUser();
+    const {
+        messages = [],
+        fetchChatHistory,
+        sendMessage,
+        loading,
+        error,
+    } = useChat();
+
     const activeChat = useSelector((state) => state.chat.activeChat);
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
+    const [userList, setUserList] = useState([]);
+    const [senderId, setSenderId] = useState(null);
+    const [receiverId, setReceiverId] = useState(null);
+    const [receiverName, setReceiverName] = useState("");
+    const [userName, setUserName] = useState("");
+    const [receivedMessages, setReceivedMessages] = useState([]);
 
     useEffect(() => {
-        // Listen for incoming chat messages
+        const fetchUserDetails = async () => {
+            try {
+                const response = await getUserDetail();
+                console.log("res", response.data[0].user_id);
+                setUserName(response.data[0].full_name);
+                if (response) {
+                    const userId = response.data[0].user_id;
+                    setSenderId(userId);
+
+                    if (socket.connected) {
+                        console.log(
+                            "Socket connected! Emitting user_connected."
+                        );
+                        socket.emit("user_connected", { user_id: userId });
+                    } else {
+                        socket.on("connect", () => {
+                            console.log(
+                                "Socket connected after delay! Emitting user_connected."
+                            );
+                            socket.emit("user_connected", { user_id: userId });
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching user details:", error.message);
+            }
+        };
+
+        fetchUserDetails();
+    }, []);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await getAllUser();
+                setUserList(response.data);
+            } catch (error) {
+                console.error("Error fetching user list:", error.message);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    useEffect(() => {
+        // Listen for incoming messages
         socket.on("chat_message", (message) => {
-            dispatch(addMessage(message));
+            console.log("New message received:", message);
+            setReceivedMessages((prevMessages) => [...prevMessages, message]);
+            sendMessage(message);
         });
 
-        // Cleanup the listener on component unmount
         return () => {
+            socket.off("connect");
             socket.off("chat_message");
         };
-    }, [dispatch]);
+    }, []);
+
+    useEffect(() => {
+        if (messages.data && messages.data.length > 0) {
+            setReceivedMessages(messages.data);
+        }
+    }, [messages.data]);
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
-    const sendMessage = () => {
-        if (newMessage.trim()) {
-            const message = {
-                text: newMessage,
-                sender: "me",
-                timestamp: new Date().toLocaleTimeString(),
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+        if (newMessage.trim() && senderId && receiverId) {
+            const messageObj = {
+                sender_id: senderId,
+                receiver_id: receiverId,
+                message: newMessage,
+                timestamp: new Date().toISOString(),
             };
 
-            // Emit the message to the server
-            socket.emit("chat_message", message);
+            try {
+                const newMessageId = receivedMessages.length + 1;
 
-            // Dispatch to update local state
-            dispatch(addMessage(message));
+                await sendMessage(messageObj);
+                socket.emit("chat_message", {
+                    sender_id: senderId,
+                    receiver_id: receiverId,
+                    content: newMessage,
+                    message_id: newMessageId,
+                    timestamp: new Date().toISOString(),
+                });
+                setReceivedMessages((prevMessages) => [
+                    ...prevMessages,
+                    {
+                        sender_id: senderId,
+                        receiver_id: receiverId,
+                        content: newMessage,
+                        message_id: newMessageId,
+                        timestamp: new Date().toISOString(),
+                    },
+                ]);
+                setNewMessage("");
+            } catch (error) {
+                console.error("Error sending message:", error);
+            }
             setNewMessage("");
         }
     };
 
-    const selectChat = (chatName) => {
-        dispatch(setActiveChat(chatName));
+    const selectChat = async (user) => {
+        setReceiverId(user.user_id);
+        setReceiverName(user.full_name);
+        dispatch(setActiveChat(user.full_name));
+
+        if (senderId && user.user_id) {
+            await fetchChatHistory({
+                sender_id: senderId,
+                receiver_id: user.user_id,
+            });
+        }
     };
 
     return (
@@ -88,8 +189,10 @@ const ChatWindow = () => {
                                 className="user-image"
                             />
                             <div className="user-details-container">
-                                <div className="user-name">user name</div>
-                                <div className="user-des">user description</div>
+                                <div className="user-name">
+                                    {userName || "User Name"}
+                                </div>
+                                <div className="user-des">User Description</div>
                             </div>
                         </div>
                         <div className="chat-container">
@@ -107,34 +210,27 @@ const ChatWindow = () => {
                                 </div>
 
                                 <div className="chat-list">
-                                    {["Support ADMIN", "Chat 1", "Chat 2"].map(
-                                        (chat, i) => (
-                                            <div
-                                                key={i}
-                                                className={`chat-list-item ${
-                                                    activeChat === chat
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={() => selectChat(chat)}
-                                            >
-                                                <div className="avatar" />
-                                                <div className="chat-info">
-                                                    <div className="chat-name">
-                                                        {chat}
-                                                    </div>
-                                                    <div className="chat-preview">
-                                                        Search chat
-                                                    </div>
+                                    {userList.map((user) => (
+                                        <div
+                                            key={user.user_id}
+                                            className={`chat-list-item ${
+                                                activeChat === user.full_name
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            onClick={() => selectChat(user)}
+                                        >
+                                            <div className="avatar" />
+                                            <div className="chat-info">
+                                                <div className="chat-name">
+                                                    {user.full_name}
                                                 </div>
-                                                {i === 1 && (
-                                                    <div className="unread-badge">
-                                                        1
-                                                    </div>
-                                                )}
+                                                <div className="chat-preview">
+                                                    Start chatting
+                                                </div>
                                             </div>
-                                        )
-                                    )}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
@@ -154,32 +250,63 @@ const ChatWindow = () => {
                                 </div>
 
                                 <div className="messages-container">
-                                    <div className="messages-area">
-                                        {messages.map((msg, index) => (
-                                            <div
-                                                key={index}
-                                                className={`message ${
-                                                    msg.sender === "You"
-                                                        ? "sent"
-                                                        : "received"
-                                                }`}
-                                            >
-                                                <div
-                                                    className={`avatar ${
-                                                        msg.sender === "You"
-                                                            ? ""
-                                                            : "small"
-                                                    }`}
-                                                />
-                                                <div className="message-content">
-                                                    <p>{msg.text}</p>
-                                                    <span className="timestamp">
-                                                        {msg.timestamp}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    {loading ? (
+                                        <p>Loading messages...</p>
+                                    ) : error ? (
+                                        <p>Error: {error}</p>
+                                    ) : (
+                                        <div className="messages-area">
+                                            {Array.isArray(receivedMessages) &&
+                                            receivedMessages.length > 0 ? (
+                                                receivedMessages
+                                                    .sort(
+                                                        (a, b) =>
+                                                            new Date(
+                                                                b.timestamp
+                                                            ) -
+                                                            new Date(
+                                                                a.timestamp
+                                                            )
+                                                    )
+                                                    .map((msg) => (
+                                                        <div
+                                                            key={msg.message_id}
+                                                            className={`message ${
+                                                                msg.sender_id ===
+                                                                senderId
+                                                                    ? "sent"
+                                                                    : "received"
+                                                            }`}
+                                                        >
+                                                            {msg.sender_id !==
+                                                                senderId && (
+                                                                <div className="avatar small" />
+                                                            )}
+                                                            <div className="message-content">
+                                                                <p>
+                                                                    {
+                                                                        msg.content
+                                                                    }
+                                                                </p>
+                                                                <span className="timestamp">
+                                                                    {new Date(
+                                                                        msg.timestamp
+                                                                    ).toLocaleTimeString(
+                                                                        [],
+                                                                        {
+                                                                            hour: "2-digit",
+                                                                            minute: "2-digit",
+                                                                        }
+                                                                    )}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                            ) : (
+                                                <p>No messages to display</p>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="input-box">
@@ -199,7 +326,7 @@ const ChatWindow = () => {
                                         </div>
                                         <div
                                             className="input-actions"
-                                            onClick={sendMessage}
+                                            onClick={handleSendMessage}
                                         >
                                             <div className="sent-text">
                                                 Send

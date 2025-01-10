@@ -1,8 +1,8 @@
 import "./App.css";
-
 import {
     createBrowserRouter,
     RouterProvider,
+    Navigate,
 } from "react-router-dom";
 
 import LogIn from "./pages/auth/LogIn";
@@ -11,33 +11,35 @@ import MembershipForm from "./pages/auth/MembershipForm";
 import Error from "./pages/Error";
 import ChatWindow from "./pages/chat/chat";
 
-// const isAuthenticated = () => {
-//   // Placeholder function to check authentication.
-//   // Replace this with your actual authentication logic.
-//   return !!localStorage.getItem("authToken");
-// };
+// Function to check authentication status
+const isAuthenticated = () => {
+    const token = localStorage.getItem("authToken");
+	console.log("the token", token);
+    return !!token;
+};
 
-// const ProtectedRoute = ({ element }) => {
-//   return isAuthenticated() ? element : <Navigate to="/login" />;
-// };
 
+// Protected Route Component
+const ProtectedRoute = ({ element }) => {
+    return isAuthenticated() ? element : <Navigate to="/" />;
+};
+
+// Define Routes
 const router = createBrowserRouter([
     {
         path: "/dashboard",
-        // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
-        element: <Dashboard />,
+        element: <ProtectedRoute element={<Dashboard />} />,
     },
     {
         path: "/chat",
-        // element: isAuthenticated() ? <Body /> : <Navigate to="/login" />,/
-        element: <ChatWindow />,
+        element: <ProtectedRoute element={<ChatWindow />} />,
     },
     {
         path: "/",
         element: <LogIn />,
     },
     {
-        path: "register",
+        path: "/register",
         element: <MembershipForm />,
     },
     {
