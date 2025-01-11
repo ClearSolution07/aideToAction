@@ -25,7 +25,10 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
       navigate("/dashboard");
     }
     if (key === "2") {
-      navigate("/member");
+      navigate("/saarthi/member");
+    }
+    if (key === "3") {
+      navigate("/saarthi/psychologist");
     }
   };
 
