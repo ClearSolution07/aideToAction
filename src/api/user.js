@@ -21,3 +21,25 @@ export const getAllUsers = async () => {
         );
     }
 };
+
+export const getAllMembers = async () => {
+    try {
+        const response = await apiClient.post("users/get_all_members");
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
+
+export const getAllPsychologists = async () => {
+    try {
+        const response = await apiClient.post("users/get_all_psychologists");
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
