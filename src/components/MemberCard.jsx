@@ -35,8 +35,11 @@ const  MemberCard = ({
                     </div>
                     <div className="students">
                         <span className="student-count">
-                            {rated_students.toLocaleString()}
+                            {rated_students
+                                ? rated_students.toLocaleString()
+                                : "10"}
                         </span>
+
                         <span className="student-label">Students</span>
                     </div>
                 </div>

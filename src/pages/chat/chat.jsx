@@ -19,7 +19,7 @@ import useChat from "../../hooks/useChat";
 
 const { Content } = Layout;
 
-const socket = io("http://localhost:4060/", {
+const socket = io("https://unicefprojectbackend.onrender.com/", {
     transports: ["websocket"],
 });
 
@@ -46,7 +46,6 @@ const ChatWindow = () => {
         const fetchUserDetails = async () => {
             try {
                 const response = await getUserDetail();
-                console.log("res", response.data[0].user_id);
                 setUserName(response.data[0].full_name);
                 if (response) {
                     const userId = response.data[0].user_id;
@@ -170,14 +169,12 @@ const ChatWindow = () => {
 
     useEffect(() => {
         if (member) {
-            console.log("Chatting with", member);
             setReceiverId(member.user_id);
             setReceiverName(member.full_name);
 
             const fetchChatHistoryData = async () => {
                 const senderId = localStorage.getItem("userId");
 
-                console.log("sender_id from localStorage:", senderId);
                 if (!senderId) {
                     console.error("Session over, login again");
                     return;
@@ -288,17 +285,36 @@ const ChatWindow = () => {
                                                         : "transparent",
                                             }}
                                         >
-                                            <div className="avatar" />
+                                            <div className="avatar">
+                                                <div
+                                                    className={`status-indicator ${
+                                                        userStatus[
+                                                            user.user_id
+                                                        ] === "online"
+                                                            ? "online"
+                                                            : "offline"
+                                                    }`}
+                                                ></div>
+                                            </div>
                                             <div className="chat-info">
                                                 <div className="chat-name">
-                                                    {user.full_name}
+                                                    {user.full_name}{" "}
+                                                    <div>
+                                                        {new Date(
+                                                            user.timestamp
+                                                        ).toLocaleTimeString(
+                                                            [],
+                                                            {
+                                                                hour: "2-digit",
+                                                                minute: "2-digit",
+                                                                hour12: true,
+                                                            }
+                                                        )}
+                                                    </div>
                                                 </div>
+
                                                 <div className="chat-preview">
-                                                    {userStatus[
-                                                        user.user_id
-                                                    ] === "online"
-                                                        ? "Active Now"
-                                                        : "Offline"}
+                                                    {user.content}
                                                 </div>
                                             </div>
                                         </div>

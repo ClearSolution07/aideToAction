@@ -2,7 +2,7 @@ import apiClient from "./apiClient";
 
 export const getUserDetails = async () => {
     try {
-        const response = await apiClient.post("auth/get_current_user");
+        const response = await apiClient.post("users/get_current_user");
         return response.data;
     } catch (error) {
         throw new Error(
@@ -13,7 +13,7 @@ export const getUserDetails = async () => {
 
 export const getAllUsers = async () => {
     try {
-        const response = await apiClient.post("auth/get_all_users");
+        const response = await apiClient.post("users/get_all_users");
         return response.data;
     } catch (error) {
         throw new Error(
