@@ -41,6 +41,27 @@ const ChatWindow = () => {
 
     const location = useLocation();
     const member = location.state?.member || location.state?.psychologist;
+
+    const getRelativeTime = (timestamp) => {
+        const time = new Date(timestamp);
+        const now = new Date();
+        const diffInMs = now - time;
+        const diffInSeconds = Math.floor(diffInMs / 1000);
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        const diffInHours = Math.floor(diffInMinutes / 60);
+        const diffInDays = Math.floor(diffInHours / 24);
+
+        if (diffInSeconds < 60) return `${diffInSeconds} sec`;
+        if (diffInMinutes < 60) return `${diffInMinutes} min`;
+        if (diffInHours < 24) return `${diffInHours} hr`;
+        if (diffInDays === 1) return "yesterday";
+        return time.toLocaleDateString([], {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+        });
+    };
+
     //fetching the current user details
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -297,18 +318,13 @@ const ChatWindow = () => {
                                                 ></div>
                                             </div>
                                             <div className="chat-info">
-                                                <div className="chat-name">
-                                                    {user.full_name}{" "}
-                                                    <div>
-                                                        {new Date(
+                                                <div className="chat-name-container">
+                                                    <div className="chat-name">
+                                                        {user.full_name}{" "}
+                                                    </div>
+                                                    <div className="chat-time">
+                                                        {getRelativeTime(
                                                             user.timestamp
-                                                        ).toLocaleTimeString(
-                                                            [],
-                                                            {
-                                                                hour: "2-digit",
-                                                                minute: "2-digit",
-                                                                hour12: true,
-                                                            }
                                                         )}
                                                     </div>
                                                 </div>
