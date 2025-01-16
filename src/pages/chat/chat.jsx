@@ -37,7 +37,10 @@ const ChatWindow = () => {
     const [senderId, setSenderId] = useState(null);
     const [receiverId, setReceiverId] = useState(null);
     const [receiverName, setReceiverName] = useState("");
-    const [userName, setUserName] = useState("");
+    const [currentUserName, setCurrentUserName] = useState("");
+    const [currentUserProfileImage, setCurrentUserProfileImage] = useState("");
+    const [unseenMessages, setUnseenMessages] = useState({});
+    const [latestMessages, setLatestMessages] = useState({});
 
     const location = useLocation();
     const member = location.state?.member || location.state?.psychologist;
@@ -62,12 +65,40 @@ const ChatWindow = () => {
         });
     };
 
+	const ChatWindowformatTimestamp = (timestamp) => {
+        const messageDate = new Date(timestamp);
+        const today = new Date();
+
+        const isToday =
+            today.getDate() === messageDate.getDate() &&
+            today.getMonth() === messageDate.getMonth() &&
+            today.getFullYear() === messageDate.getFullYear();
+
+        const isYesterday =
+            today.getDate() - messageDate.getDate() === 1 &&
+            today.getMonth() === messageDate.getMonth() &&
+            today.getFullYear() === messageDate.getFullYear();
+
+        if (isToday) {
+            return messageDate.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+        } else if (isYesterday) {
+            return "Yesterday";
+        } else {
+            return messageDate.toLocaleDateString();
+        }
+    };
+
+
     //fetching the current user details
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
                 const response = await getUserDetail();
-                setUserName(response.data[0].full_name);
+                setCurrentUserName(response.data[0].full_name);
+                setCurrentUserProfileImage(response.data[0].user_picture);
                 if (response) {
                     const userId = response.data[0].user_id;
                     setSenderId(userId);
@@ -101,18 +132,16 @@ const ChatWindow = () => {
         fetchUsers();
     }, []);
 
-    // Fetch user list and online/offline status updates
     useEffect(() => {
-        // Listen for user status updates from the server
         socket.on("user_status", (data) => {
             setUserStatus((prevStatus) => ({
                 ...prevStatus,
-                [data.user_id]: data.status, // Update status (online/offline)
+                [data.user_id]: data.status,
             }));
         });
 
         return () => {
-            socket.off("user_status"); // Clean up event listener on component unmount
+            socket.off("user_status");
         };
     }, []);
 
@@ -124,9 +153,20 @@ const ChatWindow = () => {
     //comparing the ids to set the receivd message in the store
     useEffect(() => {
         socket.on("chat_message", (message) => {
-            if (message.sender_id === receiverId) {
+            if (message.sender_id !== receiverId) {
+                // Increment unseen count for the sender
+                setUnseenMessages((prev) => ({
+                    ...prev,
+                    [message.sender_id]: (prev[message.sender_id] || 0) + 1,
+                }));
+            } else {
                 dispatch(addMessage(message));
             }
+
+            setLatestMessages((prev) => ({
+                ...prev,
+                [message.sender_id]: message.content,
+            }));
         });
 
         return () => {
@@ -134,7 +174,6 @@ const ChatWindow = () => {
         };
     }, [receiverId, dispatch]);
 
-    //sending the new message to db, store and socket
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (newMessage.trim() && senderId && receiverId) {
@@ -146,6 +185,15 @@ const ChatWindow = () => {
                 timestamp: new Date().toISOString(),
             };
 
+            setLatestMessages((prev) => ({
+                ...prev,
+                [receiverId]: newMessage,
+            }));
+
+            setUnseenMessages((prev) => ({
+                ...prev,
+                [receiverId]: 0,
+            }));
             try {
                 await sendMessage({
                     sender_id: senderId,
@@ -153,8 +201,8 @@ const ChatWindow = () => {
                     message: newMessage,
                     timestamp: new Date().toISOString(),
                 });
-                dispatch(addMessage(messageObj)); // Update Redux
-                socket.emit("chat_message", messageObj); // Send via socket
+                dispatch(addMessage(messageObj));
+                socket.emit("chat_message", messageObj);
                 setNewMessage("");
             } catch (error) {
                 console.error("Error sending message:", error);
@@ -168,6 +216,16 @@ const ChatWindow = () => {
         setReceiverName(user.full_name);
         dispatch(setActiveChat(user.full_name));
 
+        setUnseenMessages((prev) => ({
+            ...prev,
+            [user.user_id]: 0,
+        }));
+
+        setLatestMessages((prev) => ({
+            ...prev,
+            [user.user_id]: null,
+        }));
+
         if (senderId && user.user_id) {
             try {
                 const updatedMessage = await fetchChatHistory({
@@ -177,10 +235,10 @@ const ChatWindow = () => {
 
                 if (updatedMessage && updatedMessage.data) {
                     console.log("Fetched Chat History:", updatedMessage.data);
-                    dispatch(setMessages(updatedMessage.data)); // Update Redux store with chat history
+                    dispatch(setMessages(updatedMessage.data));
                 } else {
                     console.log("No chat history available.");
-                    dispatch(setMessages([])); // Clear Redux store
+                    dispatch(setMessages([]));
                 }
             } catch (error) {
                 console.error("Error fetching chat history:", error.message);
@@ -257,13 +315,13 @@ const ChatWindow = () => {
                     <div className="main-container">
                         <div className="user-info-container">
                             <img
-                                src={profile}
+                                src={currentUserProfileImage || profile}
                                 alt="User"
                                 className="user-image"
                             />
                             <div className="user-details-container">
                                 <div className="user-name">
-                                    {userName || "User Name"}
+                                    {currentUserName || "User Name"}
                                 </div>
                                 <div className="user-des">
                                     Web Designer & Best-Selling Instructor
@@ -307,6 +365,11 @@ const ChatWindow = () => {
                                             }}
                                         >
                                             <div className="avatar">
+                                                <img
+                                                    src={user.user_picture}
+                                                    alt={user.full_name}
+                                                    className="user-picture"
+                                                />
                                                 <div
                                                     className={`status-indicator ${
                                                         userStatus[
@@ -320,7 +383,7 @@ const ChatWindow = () => {
                                             <div className="chat-info">
                                                 <div className="chat-name-container">
                                                     <div className="chat-name">
-                                                        {user.full_name}{" "}
+                                                        {user.full_name}
                                                     </div>
                                                     <div className="chat-time">
                                                         {getRelativeTime(
@@ -328,9 +391,21 @@ const ChatWindow = () => {
                                                         )}
                                                     </div>
                                                 </div>
-
                                                 <div className="chat-preview">
-                                                    {user.content}
+                                                    {latestMessages[
+                                                        user.user_id
+                                                    ] || user.content}
+                                                    {unseenMessages[
+                                                        user.user_id
+                                                    ] > 0 && (
+                                                        <span className="unseen-count">
+                                                            {
+                                                                unseenMessages[
+                                                                    user.user_id
+                                                                ]
+                                                            }
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +416,21 @@ const ChatWindow = () => {
                             <div className="main-chat">
                                 <div className="chat-header">
                                     <div className="header-user-info">
-                                        <div className="avatar" />
+                                        <div className="avatar">
+                                            {receiverId && (
+                                                <img
+                                                    src={
+                                                        filteredUsers.find(
+                                                            (user) =>
+                                                                user.user_id ===
+                                                                receiverId
+                                                        )?.user_picture
+                                                    }
+                                                    alt={receiverName || "User"}
+                                                    className="user-picture"
+                                                />
+                                            )}
+                                        </div>
                                         <div className="user-details">
                                             <div className="user-name">
                                                 {receiverName ||
@@ -351,7 +440,7 @@ const ChatWindow = () => {
                                                 {userStatus[receiverId] ===
                                                 "online"
                                                     ? "Active Now"
-                                                    : "Offline"}
+                                                    : ""}
                                             </div>
                                         </div>
                                     </div>
@@ -375,46 +464,61 @@ const ChatWindow = () => {
                                                                 b.timestamp
                                                             )
                                                     )
-                                                    .map((msg) => (
-                                                        <div
-                                                            key={msg.message_id}
-                                                            className={`message ${
-                                                                msg.sender_id ===
-                                                                senderId
-                                                                    ? "sent"
-                                                                    : "received"
-                                                            }`}
-                                                        >
-                                                            {msg.sender_id !==
-                                                                senderId && (
-                                                                <div className="avatar small" />
-                                                            )}
-                                                            <div className="message-content">
-                                                                <p>
-                                                                    {
-                                                                        msg.content
-                                                                    }
-                                                                </p>
-                                                                <span className="timestamp">
-                                                                    {new Date(
-                                                                        msg.timestamp
-                                                                    ).toLocaleTimeString(
-                                                                        [],
-                                                                        {
-                                                                            hour: "2-digit",
-                                                                            minute: "2-digit",
-                                                                        }
-                                                                    )}
-                                                                </span>
-                                                            </div>
-                                                            {/* Dummy element for scrolling */}
+                                                    .map((msg) => {
+                                                        const messageUser =
+                                                            filteredUsers.find(
+                                                                (user) =>
+                                                                    user.user_id ===
+                                                                    msg.sender_id
+                                                            );
+                                                        return (
                                                             <div
-                                                                ref={
-                                                                    messagesEndRef
+                                                                key={
+                                                                    msg.message_id
                                                                 }
-                                                            ></div>
-                                                        </div>
-                                                    ))
+                                                                className={`message ${
+                                                                    msg.sender_id ===
+                                                                    senderId
+                                                                        ? "sent"
+                                                                        : "received"
+                                                                }`}
+                                                            >
+                                                                {msg.sender_id !==
+                                                                    senderId &&
+                                                                    messageUser && (
+                                                                        <div className="avatar small">
+                                                                            <img
+                                                                                src={
+                                                                                    messageUser.user_picture
+                                                                                }
+                                                                                alt={
+                                                                                    messageUser.full_name
+                                                                                }
+                                                                                className="user-picture-inside-chat"
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                <div className="message-content">
+                                                                    <p>
+                                                                        {
+                                                                            msg.content
+                                                                        }
+                                                                    </p>
+                                                                    <span className="timestamp">
+                                                                        {ChatWindowformatTimestamp(
+                                                                            msg.timestamp
+                                                                        )}
+                                                                    </span>
+                                                                </div>
+                                                                {/* Dummy element for scrolling */}
+                                                                <div
+                                                                    ref={
+                                                                        messagesEndRef
+                                                                    }
+                                                                ></div>
+                                                            </div>
+                                                        );
+                                                    })
                                             ) : (
                                                 <div className="no-messages">
                                                     <p className="no-messages-title">
