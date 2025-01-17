@@ -6,4 +6,4 @@ export {
   getAllPsychologists,
 } from "./user";
 export { saveChat, getChat } from "./chat";
-export { getNumberOfUser } from "./desktop";
+export { getNumberOfUser, getDashboardContent } from "./desktop";
