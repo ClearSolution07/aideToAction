@@ -1,58 +1,64 @@
 import React, { useState } from "react";
-import { Form, Input, Select, Upload, Button, Checkbox, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-
+import {
+  Form,
+  Input,
+  Select,
+  Button,
+  Checkbox,
+  message,
+  InputNumber,
+  Spin,
+} from "antd";
+import useAdmin from "../../hooks/useAdmin"; // Assuming you have a custom hook for admin operations
 const { Option } = Select;
 
 function AddMember() {
   const [form] = Form.useForm();
-  const [imageUrl, setImageUrl] = useState(null);
+  const { addMember, loading, error } = useAdmin(); // Assuming saveMember is in useAdmin
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    // Here you would typically send the data to your backend
-    message.success("Member added successfully!");
-    form.resetFields();
-    setImageUrl(null);
+  // Handle form submission
+  const onFinish = async (values) => {
+    setIsSubmitting(true); // Set submitting state to true
+    try {
+      const response = await addMember({
+        full_name: values.fullName,
+        age: values.age,
+        gender: values.gender,
+        phone_number: values.phoneNumber,
+        email_address: values.emailAddress,
+        password: values.password,
+        is_admin: values.isAdmin,
+      });
+
+      // Check if the response is successful
+      if (response && response.statuscode === 200) {
+        message.success("Member added successfully!");
+        form.resetFields();
+      } else {
+        // Show error if response has an error message
+        message.error(
+          response.message || "Failed to add member. Please try again."
+        );
+      }
+    } catch (err) {
+      // Handle generic error (network issues or other failures)
+      console.error(err);
+      message.error("Failed to add member. Please try again.");
+    } finally {
+      setIsSubmitting(false); // Reset submitting state
+    }
   };
 
+  // Handle failed form submission
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const beforeUpload = (file) => {
-    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    if (!isJpgOrPng) {
-      message.error("You can only upload JPG/PNG file!");
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error("Image must smaller than 2MB!");
-    }
-    return isJpgOrPng && isLt2M;
-  };
-
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setImageUrl(url);
-      });
-    }
-  };
-
-  const getBase64 = (img, callback) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => callback(reader.result));
-    reader.readAsDataURL(img);
-  };
-
   return (
-    <div style={{ margin: "0 auto" }}>
+    <div style={{ margin: "0 auto", maxWidth: "600px" }}>
       <h2 style={{ marginBottom: "24px" }}>Add New Member</h2>
+
       <Form
         form={form}
         name="add_member"
@@ -60,109 +66,100 @@ function AddMember() {
         onFinishFailed={onFinishFailed}
         layout="vertical"
       >
+        {/* Full Name */}
         <Form.Item
           name="fullName"
           label="Full Name"
           rules={[{ required: true, message: "Please input the full name!" }]}
         >
-          <Input />
+          <Input placeholder="Enter full name" />
         </Form.Item>
 
+        {/* Age */}
         <Form.Item
-          name="role"
-          label="Role"
-          rules={[{ required: true, message: "Please select the role!" }]}
+          name="age"
+          label="Age"
+          rules={[{ required: true, message: "Please input the age!" }]}
         >
-          <Select placeholder="Select a role" style={{ width: "100%" }}>
-            <Option value="member">Member</Option>
-            <Option value="admin">Admin</Option>
-            <Option value="manager">Manager</Option>
-          </Select>
+          <InputNumber
+            style={{ width: "100%" }}
+            min={1}
+            max={100}
+            placeholder="Enter age"
+          />
         </Form.Item>
 
-        {/* Gender Field */}
+        {/* Gender */}
         <Form.Item
           name="gender"
           label="Gender"
-          rules={[{ required: true, message: "Please select your gender!" }]}
+          rules={[{ required: true, message: "Please select gender!" }]}
         >
-          <Select placeholder="Select gender" style={{ width: "100%" }}>
+          <Select placeholder="Select gender">
             <Option value="male">Male</Option>
             <Option value="female">Female</Option>
             <Option value="other">Other</Option>
           </Select>
         </Form.Item>
 
-        {/* Phone Number Field */}
+        {/* Phone Number */}
         <Form.Item
           name="phoneNumber"
           label="Phone Number"
           rules={[
-            { required: true, message: "Please input your phone number!" },
+            { required: true, message: "Please input the phone number!" },
             {
               pattern: /^[0-9]{10}$/,
-              message: "Please enter a valid phone number (10 digits).",
+              message: "Phone number must be 10 digits!",
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Enter phone number" />
         </Form.Item>
 
-        {/* Profile Image Field */}
+        {/* Email Address */}
         <Form.Item
-          name="image"
-          label="Profile Image"
-          valuePropName="fileList"
-          getValueFromEvent={(e) => {
-            if (Array.isArray(e)) {
-              return e;
-            }
-            return e && e.fileList;
-          }}
-        >
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            className="avatar-uploader"
-            showUploadList={false}
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
-          >
-            {imageUrl ? (
-              <img
-                src={imageUrl || "/placeholder.svg"}
-                alt="avatar"
-                style={{ width: "100%" }}
-              />
-            ) : (
-              <div>
-                <UploadOutlined />
-                <div style={{ marginTop: 8 }}>Upload</div>
-              </div>
-            )}
-          </Upload>
-        </Form.Item>
-
-        {/* Member Checkbox */}
-        <Form.Item
-          name="isMember"
-          valuePropName="checked"
+          name="emailAddress"
+          label="Email Address"
           rules={[
-            {
-              required: true,
-              message: "Please confirm that you are a Member!",
-            },
+            { required: true, message: "Please input the email address!" },
+            { type: "email", message: "Please enter a valid email address!" },
           ]}
         >
-          <Checkbox>I am a Member</Checkbox>
+          <Input placeholder="Enter email address" />
         </Form.Item>
 
+        {/* Password */}
+        <Form.Item
+          name="password"
+          label="Password"
+          rules={[
+            { required: true, message: "Please input the password!" },
+            {
+              min: 6,
+              message: "Password must be at least 6 characters long!",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input.Password placeholder="Enter password" />
+        </Form.Item>
+
+        {/* Is Admin */}
+        <Form.Item name="isAdmin" valuePropName="checked">
+          <Checkbox>Is Admin</Checkbox>
+        </Form.Item>
+
+        {/* Submit Button */}
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Save
+          <Button type="primary" htmlType="submit" disabled={isSubmitting}>
+            {isSubmitting ? <Spin /> : "Save Member"}
           </Button>
         </Form.Item>
       </Form>
+
+      {/* Display error message if there's any */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }

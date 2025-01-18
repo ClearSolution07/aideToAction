@@ -1,58 +1,51 @@
 import React, { useState } from "react";
-import { Form, Input, Select, Upload, Button, Checkbox, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-
-const { Option } = Select;
+import { Form, Input, Button, message, Spin } from "antd";
+import useAdmin from "../../hooks/useAdmin";
 
 function AddPsychologist() {
   const [form] = Form.useForm();
-  const [imageUrl, setImageUrl] = useState(null);
+  const { addPsychologist, loading, error } = useAdmin();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    // Here you would typically send the data to your backend
-    message.success("Psychologist added successfully!");
-    form.resetFields();
-    setImageUrl(null);
+  // Handle form submission
+  const onFinish = async (values) => {
+    setIsSubmitting(true); // Set submitting state to true
+    try {
+      const response = await addPsychologist({
+        full_name: values.fullName,
+        phone_number: values.phoneNumber,
+        email_address: values.emailAddress,
+        password: values.password,
+      });
+
+      // Check if the response indicates success (e.g., status code 200)
+      if (response && response.statuscode === 200) {
+        message.success("Psychologist added successfully!");
+        form.resetFields();
+      } else {
+        // If the API returned an error message (e.g., 401 or other errors)
+        message.error(
+          response.message || "Failed to add psychologist. Please try again."
+        );
+      }
+    } catch (err) {
+      // Handle error if the request fails (e.g., network issue, etc.)
+      console.error(err); // Log the error for debugging purposes
+      message.error("Failed to add psychologist. Please try again.");
+    } finally {
+      setIsSubmitting(false); // Reset submitting state
+    }
   };
 
+  // Handle failed submission
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const beforeUpload = (file) => {
-    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    if (!isJpgOrPng) {
-      message.error("You can only upload JPG/PNG file!");
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error("Image must smaller than 2MB!");
-    }
-    return isJpgOrPng && isLt2M;
-  };
-
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setImageUrl(url);
-      });
-    }
-  };
-
-  const getBase64 = (img, callback) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => callback(reader.result));
-    reader.readAsDataURL(img);
-  };
-
   return (
-    <div style={{ margin: "0 auto" }}>
+    <div style={{ margin: "0 auto", maxWidth: "600px" }}>
       <h2 style={{ marginBottom: "24px" }}>Add New Psychologist</h2>
+
       <Form
         form={form}
         name="add_psychologist"
@@ -60,79 +53,68 @@ function AddPsychologist() {
         onFinishFailed={onFinishFailed}
         layout="vertical"
       >
+        {/* Full Name */}
         <Form.Item
           name="fullName"
           label="Full Name"
           rules={[{ required: true, message: "Please input the full name!" }]}
         >
-          <Input />
+          <Input placeholder="Enter full name" />
         </Form.Item>
 
+        {/* Phone Number */}
         <Form.Item
-          name="role"
-          label="Role"
-          rules={[{ required: true, message: "Please select the role!" }]}
-        >
-          <Select placeholder="Select a role" style={{ width: "100%" }}>
-            <Option value="clinical">Clinical Psychologist</Option>
-            <Option value="mbbs">MBBS</Option>
-          </Select>
-        </Form.Item>
-
-        <Form.Item
-          name="image"
-          label="Profile Image"
-          valuePropName="fileList"
-          getValueFromEvent={(e) => {
-            if (Array.isArray(e)) {
-              return e;
-            }
-            return e && e.fileList;
-          }}
-        >
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            className="avatar-uploader"
-            showUploadList={false}
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
-          >
-            {imageUrl ? (
-              <img
-                src={imageUrl || "/placeholder.svg"}
-                alt="avatar"
-                style={{ width: "100%" }}
-              />
-            ) : (
-              <div>
-                <UploadOutlined />
-                <div style={{ marginTop: 8 }}>Upload</div>
-              </div>
-            )}
-          </Upload>
-        </Form.Item>
-
-        {/* Psychologist Checkbox */}
-        <Form.Item
-          name="isPsychologist"
-          valuePropName="checked"
+          name="phoneNumber"
+          label="Phone Number"
           rules={[
+            { required: true, message: "Please input the phone number!" },
             {
-              required: true,
-              message: "Please confirm that you are a Psychologist!",
+              pattern: /^[0-9]{10}$/,
+              message: "Phone number must be 10 digits!",
             },
           ]}
         >
-          <Checkbox>I am a Psychologist</Checkbox>
+          <Input placeholder="Enter phone number" />
         </Form.Item>
 
+        {/* Email Address */}
+        <Form.Item
+          name="emailAddress"
+          label="Email Address"
+          rules={[
+            { required: true, message: "Please input the email address!" },
+            { type: "email", message: "Please enter a valid email address!" },
+          ]}
+        >
+          <Input placeholder="Enter email address" />
+        </Form.Item>
+
+        {/* Password */}
+        <Form.Item
+          name="password"
+          label="Password"
+          rules={[
+            { required: true, message: "Please input the password!" },
+            {
+              min: 6,
+              message: "Password must be at least 6 characters long!",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input.Password placeholder="Enter password" />
+        </Form.Item>
+
+        {/* Submit Button */}
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Save
+          <Button type="primary" htmlType="submit" disabled={isSubmitting}>
+            {isSubmitting ? <Spin /> : "Save Psychologist"}
           </Button>
         </Form.Item>
       </Form>
+
+      {/* Error message display */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }
