@@ -1,0 +1,50 @@
+/* Custom styles for segmented control */
+.custom-segmented .ant-segmented-item-selected {
+  color: #ff5c5c !important;
+}
+
+.custom-segmented .ant-segmented-thumb {
+  background-color: #fff2f0 !important;
+}
+
+.custom-segmented .ant-segmented-item {
+  text-align: center;
+}
+
+.custom-segmented .ant-segmented-item span {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .custom-segmented .ant-segmented-item {
+    font-size: 12px;
+    flex: 1 0 50%;
+  }
+
+  .custom-segmented .ant-segmented-item span {
+    white-space: normal;
+  }
+}
+
+/* Custom padding and layout for segment items */
+.segment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px;
+}
+
+.segment-item-mobile {
+  padding: 8px;
+}
+
+.segment-item span {
+  text-align: center;
+}
+
+/* Optional: add a global background color for the content area */
+.content-area {
+  padding: 24px;
+  background-color: #f5f5f5;
+}

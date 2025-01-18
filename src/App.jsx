@@ -14,6 +14,7 @@ import ChatWindow from "./pages/chat/chat";
 import Members from "./pages/members/Members";
 import Psychologists from "./pages/psychologists/Psychologists";
 import Layout from "./pages/layout/LayoutPage";
+import Admin from "./pages/Admin/Admin";
 
 // Function to check authentication status
 const isAuthenticated = () => {
@@ -35,6 +36,11 @@ const ProtectedLayout = () => (
 );
 
 const router = createBrowserRouter([
+  // TODO::Protected Routes (ADMIN)
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
   // Protected Routes (Dashboard)
   {
     path: "/dashboard",

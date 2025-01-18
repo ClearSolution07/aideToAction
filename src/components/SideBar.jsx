@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout, Menu, Button } from "antd";
 import {
   AppstoreOutlined,
   TeamOutlined,
   UserOutlined,
   FolderOutlined,
-  CustomerServiceOutlined,
   SettingOutlined,
   CloseOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
 import { mainLogo } from "../utils/imageUtils";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +19,19 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
   const [selectedKey, setSelectedKey] = useState("1");
   const navigate = useNavigate();
 
+  // Load the saved selected key from localStorage (if available)
+  useEffect(() => {
+    const savedKey = localStorage.getItem("selectedMenuKey");
+    if (savedKey) {
+      setSelectedKey(savedKey);
+    }
+  }, []);
+
+  // Handle menu click, update state, and save selected key in localStorage
   const handleMenuClick = ({ key }) => {
     setSelectedKey(key);
+    localStorage.setItem("selectedMenuKey", key); // Save the selected key to localStorage
+
     if (key === "1") {
       navigate("/dashboard");
     }
@@ -29,6 +40,9 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
     }
     if (key === "3") {
       navigate("/saarthi/psychologist");
+    }
+    if (key === "5") {
+      navigate("/admin");
     }
   };
 
@@ -67,8 +81,8 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
       children: [
         {
           key: "5",
-          icon: <CustomerServiceOutlined />,
-          label: "Support",
+          icon: <UserAddOutlined />,
+          label: "Admin",
         },
         {
           key: "6",
