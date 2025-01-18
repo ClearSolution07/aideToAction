@@ -268,7 +268,6 @@
     color: gray;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 200px;
     overflow: hidden;
 }
 
@@ -276,7 +275,6 @@
     color: gray;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 200px;
     overflow: hidden;
 }
 

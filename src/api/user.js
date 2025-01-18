@@ -1,5 +1,19 @@
 import apiClient from "./apiClient";
 
+export const updateUserData = async (userData) => {
+    try {
+        const response = await apiClient.post(
+            "users/get_current_user",
+            userData
+        );
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
+
 export const getUserDetails = async () => {
     try {
         const response = await apiClient.post("users/get_current_user");

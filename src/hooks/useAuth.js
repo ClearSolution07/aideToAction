@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login, signUp, logout } from "../api";
+import { login, signUp, logout, updatePassword } from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const useAuth = () => {
@@ -49,12 +49,28 @@ const useAuth = () => {
         }
     };
 
+    const handleUpdatePassword = async (password) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await updatePassword(password);
+            await AsyncStorage.setItem("authToken", data.token);
+            setLoading(false);
+            return data;
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+            throw err;
+        }
+    };
+
     return {
         loading,
         error,
         handleLogin,
         handleSignUp,
         handleLogout,
+        handleUpdatePassword,
     };
 };
 

@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { getUserDetails, getAllUsers, getAllMembers, getAllPsychologists } from "../api";
+import {
+    getUserDetails,
+    getAllUsers,
+    getAllMembers,
+    getAllPsychologists,
+    updateUserData,
+} from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const useUser = () => {
@@ -43,7 +49,7 @@ const useUser = () => {
         }
     };
 
-	const getMembers = async () => {
+    const getMembers = async () => {
         setLoading(true);
         setError(null);
         try {
@@ -60,7 +66,7 @@ const useUser = () => {
         }
     };
 
-	const getPsychologists = async () => {
+    const getPsychologists = async () => {
         setLoading(true);
         setError(null);
         try {
@@ -68,6 +74,20 @@ const useUser = () => {
             if (!token) throw new Error("No auth token found");
 
             const data = await getAllPsychologists();
+            setLoading(false);
+            return data;
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+            throw err;
+        }
+    };
+
+    const handleUserDataSubmit = async (userData) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await updateUserData(userData);
             setLoading(false);
             return data;
         } catch (err) {
@@ -85,6 +105,7 @@ const useUser = () => {
         getAllUser,
         getMembers,
         getPsychologists,
+        handleUserDataSubmit,
     };
 };
 
