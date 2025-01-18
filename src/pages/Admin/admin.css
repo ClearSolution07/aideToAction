@@ -46,5 +46,5 @@
 /* Optional: add a global background color for the content area */
 .content-area {
   padding: 24px;
-  background-color: #f5f5f5;
+  background-color: #fff; 
 }
