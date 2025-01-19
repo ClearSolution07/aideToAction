@@ -26,7 +26,7 @@ const Home = () => {
                 </button>
             </div>
             <Modal
-                title="Log In"
+                title=""
                 open={isModalOpen}
                 onCancel={handleCancel}
                 footer={null}
