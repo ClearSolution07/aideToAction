@@ -4,6 +4,8 @@ export {
     getAllUsers,
     getAllMembers,
     getAllPsychologists,
+    updateUserData,
+    updatePassword,
 } from "./user";
 export { saveChat, getChat } from "./chat";
 export { getNumberOfUser, getDashboardContent } from "./desktop";

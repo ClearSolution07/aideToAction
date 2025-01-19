@@ -65,7 +65,7 @@ const ChatWindow = () => {
         });
     };
 
-	const ChatWindowformatTimestamp = (timestamp) => {
+    const ChatWindowformatTimestamp = (timestamp) => {
         const messageDate = new Date(timestamp);
         const today = new Date();
 
@@ -90,7 +90,6 @@ const ChatWindow = () => {
             return messageDate.toLocaleDateString();
         }
     };
-
 
     //fetching the current user details
     useEffect(() => {
@@ -146,8 +145,10 @@ const ChatWindow = () => {
     }, []);
 
     // Filtered user list based on search input
-    const filteredUsers = userList.filter((user) =>
-        user.full_name.toLowerCase().includes(searchInput.toLowerCase())
+    const filteredUsers = userList.filter(
+        (user) =>
+            user.full_name &&
+            user.full_name.toLowerCase().includes(searchInput.toLowerCase())
     );
 
     //comparing the ids to set the receivd message in the store
