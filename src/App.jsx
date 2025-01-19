@@ -54,8 +54,8 @@ const router = createBrowserRouter([
         ],
     },
     // Unprotected Routes
-    { path: "/", element: <LogIn /> },
-    { path: "/home", element: <Home /> },
+    // { path: "/", element: <LogIn /> },
+    { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
     { path: "*", element: <Error /> },
 ]);
