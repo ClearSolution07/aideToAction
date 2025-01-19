@@ -14,6 +14,7 @@ import Error from "./pages/Error";
 import ChatWindow from "./pages/chat/chat";
 import Members from "./pages/members/Members";
 import Psychologists from "./pages/psychologists/Psychologists";
+import Profile from "./pages/profile/Profile";
 import Layout from "./pages/layout/LayoutPage";
 
 // Function to check authentication status
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
         children: [
             { path: "member", element: <Members /> },
             { path: "psychologist", element: <Psychologists /> },
+            { path: "profile", element: <Profile /> },
             { path: "chat", element: <ChatWindow /> },
         ],
     },

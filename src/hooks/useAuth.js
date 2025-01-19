@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login, signUp, logout } from "../api";
+import { login, signUp, logout} from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const useAuth = () => {

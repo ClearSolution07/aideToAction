@@ -1,0 +1,158 @@
+.members-container {
+    min-height: 100vh;
+    background-color: white;
+}
+
+.members-content {
+    max-width: 80rem;
+    margin: 5rem auto auto auto;
+    padding: 2rem 1rem;
+}
+
+.members-header {
+    margin-bottom: 2rem;
+}
+
+.members-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    max-width: 28rem;
+}
+
+.search-icon {
+    color: #9ca3af;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 300px;
+    width: 100%;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.left-container {
+	margin-bottom: 48px
+}
+
+/* Ant Design overrides */
+.ant-pagination-item-active {
+    background-color: #f8f8f8 !important;
+    border-color: transparent !important;
+}
+
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+    border-color: #d9d9d9 !important;
+    box-shadow: none !important;
+}
+
+.ant-rate-star {
+    margin-inline-end: 4px !important;
+}
+
+.profile-container {
+    padding: 24px;
+    background: white;
+}
+
+.profile-edit-container {
+    display: flex;
+    margin-top: 140px;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: #ffeee8;
+    color: #fd4518;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 1.5rem;
+}
+
+.button:hover {
+    background-color: #f3d7cd;
+    color: #ff69b4;
+    border: none;
+}
+.section-container {
+    display: flex;
+    gap: 24px;
+    min-width: 800px;
+}
+
+.profile-edit-left {
+    flex: 1;
+}
+
+.image-data-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-data-container {
+    width: 68%;
+}
+
+.profile-edit-right {
+    flex: 1;
+    text-align: center;
+}
+
+.customSizedUpload .ant-upload {
+    width: 160px !important;
+    height: 160px !important;
+}
+
+.ant-upload-list-item-container {
+    width: 160px !important;
+    height: 160px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .left-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .image-data-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    .section-container {
+        min-width: 400px;
+    }
+    .right-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 40px;
+    }
+    .user-data-container {
+        width: 72%;
+    }
+    .password {
+        width: 72%;
+    }
+}
