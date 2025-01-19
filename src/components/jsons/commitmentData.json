@@ -1,0 +1,32 @@
+[
+  {
+    "image": "../../src/assets/course.png",
+    "title": "Commitment 1",
+    "description": "Description for commitment 1."
+  },
+  {
+    "image": "../../src/assets/course.png",
+    "title": "Commitment 2",
+    "description": "Description for commitment 2."
+  },
+  {
+	"image": "../../src/assets/course.png",
+    "title": "Commitment 3",
+    "description": "Description for commitment 3."
+  },
+  {
+    "image": "../../src/assets/course.png",
+    "title": "Commitment 4",
+    "description": "Description for commitment 4."
+  },
+  {
+    "image": "../../src/assets/course.png",
+    "title": "Commitment 5",
+    "description": "Description for commitment 5."
+  },
+  {
+    "image": "../../src/assets/course.png",
+    "title": "Commitment 6",
+    "description": "Description for commitment 6."
+  }
+]
