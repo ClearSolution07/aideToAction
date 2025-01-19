@@ -36,16 +36,3 @@ export const logout = async () => {
         );
     }
 };
-
-export const updatePassword = async (password) => {
-    try {
-        const response = await apiClient.post("/auth/pass", {
-            password,
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error(
-            error.response ? error.response.data.message : error.message
-        );
-    }
-};

@@ -5,6 +5,7 @@ import {
     getAllMembers,
     getAllPsychologists,
     updateUserData,
+    updatePassword,
 } from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -97,6 +98,20 @@ const useUser = () => {
         }
     };
 
+    const handleUpdatePassword = async (userData) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await updatePassword(userData);
+            await AsyncStorage.setItem("authToken", data.token);
+            setLoading(false);
+            return data;
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+            throw err;
+        }
+    };
     return {
         user,
         loading,
@@ -106,6 +121,7 @@ const useUser = () => {
         getMembers,
         getPsychologists,
         handleUserDataSubmit,
+        handleUpdatePassword,
     };
 };
 

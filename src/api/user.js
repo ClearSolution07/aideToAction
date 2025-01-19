@@ -2,10 +2,7 @@ import apiClient from "./apiClient";
 
 export const updateUserData = async (userData) => {
     try {
-        const response = await apiClient.post(
-            "users/get_current_user",
-            userData
-        );
+        const response = await apiClient.post("users/update_user", userData);
         return response.data;
     } catch (error) {
         throw new Error(
@@ -50,6 +47,21 @@ export const getAllMembers = async () => {
 export const getAllPsychologists = async () => {
     try {
         const response = await apiClient.post("users/get_all_psychologists");
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
+
+
+export const updatePassword = async (userData) => {
+    try {
+        const response = await apiClient.post(
+            "/users/update_password",
+            userData
+        );
         return response.data;
     } catch (error) {
         throw new Error(

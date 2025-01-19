@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    min-height: 300px; /* Adjust based on your layout */
+    min-height: 300px;
     width: 100%;
 }
 
@@ -40,6 +40,10 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+}
+
+.left-container {
+	margin-bottom: 48px
 }
 
 /* Ant Design overrides */
