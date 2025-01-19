@@ -19,13 +19,12 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
     const [selectedKey, setSelectedKey] = useState("1");
     const navigate = useNavigate();
 
-  // Load the saved selected key from localStorage (if available)
-  useEffect(() => {
-    const savedKey = localStorage.getItem("selectedMenuKey");
-    if (savedKey) {
-      setSelectedKey(savedKey);
-    }
-  }, []);
+    useEffect(() => {
+        const savedKey = localStorage.getItem("selectedMenuKey");
+        if (savedKey) {
+            setSelectedKey(savedKey);
+        }
+    }, []);
 
     const handleMenuClick = ({ key }) => {
         setSelectedKey(key);
@@ -87,7 +86,7 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
                 {
                     key: "5",
                     icon: <CustomerServiceOutlined />,
-                    label: "Support",
+                    label: "Admin",
                 },
                 {
                     key: "6",
@@ -96,36 +95,7 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
                 },
             ],
         },
-        {
-          key: "3",
-          icon: <UserOutlined />,
-          label: "Psychologist",
-        },
-        {
-          key: "4",
-          icon: <FolderOutlined />,
-          label: "Resource Directory",
-        },
-      ],
-    },
-    {
-      key: "other",
-      type: "group",
-      label: visible ? "OTHER" : null,
-      children: [
-        {
-          key: "5",
-          icon: <UserAddOutlined />,
-          label: "Admin",
-        },
-        {
-          key: "6",
-          icon: <SettingOutlined />,
-          label: "Settings",
-        },
-      ],
-    },
-  ];
+    ];
 
     return (
         <Sider
