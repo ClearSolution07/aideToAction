@@ -24,7 +24,6 @@ const Profile = () => {
         const fetchProfile = async () => {
             try {
                 const response = await getUserDetail();
-                console.log(response.data[0]);
                 setProfileData({
                     fullName: response.data[0].full_name || "",
                     phoneNumber: response.data[0].phone_number || "",
@@ -32,10 +31,10 @@ const Profile = () => {
                 });
                 setFileList([
                     {
-                        uid: response.data[0].user_id,
+                        uid: response.data[0].user_id.toString(),
                         name: "profile-image.png",
                         status: "done",
-                        url: response.data[0].profile_image || "",
+                        url: response.data[0].user_picture || "",
                     },
                 ]);
             } catch (err) {
@@ -45,6 +44,8 @@ const Profile = () => {
 
         fetchProfile();
     }, []);
+
+    console.log("File List:", fileList);
 
     const handleProfileChange = (field) => (e) => {
         setProfileData({ ...profileData, [field]: e.target.value });
