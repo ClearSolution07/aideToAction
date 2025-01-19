@@ -55,7 +55,6 @@ export const getAllPsychologists = async () => {
     }
 };
 
-
 export const updatePassword = async (userData) => {
     try {
         const response = await apiClient.post(

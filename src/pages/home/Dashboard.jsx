@@ -34,8 +34,6 @@ const Dashboard = () => {
     const fetchUserCount = async () => {
       try {
         const response = await getUserCount();
-        console.log("User Count", response.data);
-
         totalMember = parseInt(response?.data?.members);
         totalPsychologist = parseInt(response?.data?.psychologists);
         dataStatus[0].count = totalMember;
@@ -60,7 +58,6 @@ const Dashboard = () => {
     }
     return 240;
   }
-  console.log("this is my dataStatus", dataStatus);
 
   return (
     <Layout>

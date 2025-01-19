@@ -16,6 +16,7 @@ import Members from "./pages/members/Members";
 import Psychologists from "./pages/psychologists/Psychologists";
 import Profile from "./pages/profile/Profile";
 import Layout from "./pages/layout/LayoutPage";
+import Admin from "./pages/Admin/Admin";
 
 // Function to check authentication status
 const isAuthenticated = () => {
@@ -37,7 +38,12 @@ const ProtectedLayout = () => (
 );
 
 const router = createBrowserRouter([
+
     // Protected Routes (Dashboard)
+   {
+        path: "/admin",
+        element: <Admin />,
+    },
     {
         path: "/dashboard",
         element: <ProtectedRoute element={<Dashboard />} />,
@@ -58,6 +64,7 @@ const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
     { path: "*", element: <Error /> },
+
 ]);
 
 function App() {

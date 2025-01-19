@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout, Menu, Button } from "antd";
 import {
     AppstoreOutlined,
@@ -19,8 +19,18 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
     const [selectedKey, setSelectedKey] = useState("1");
     const navigate = useNavigate();
 
+  // Load the saved selected key from localStorage (if available)
+  useEffect(() => {
+    const savedKey = localStorage.getItem("selectedMenuKey");
+    if (savedKey) {
+      setSelectedKey(savedKey);
+    }
+  }, []);
+
     const handleMenuClick = ({ key }) => {
         setSelectedKey(key);
+        localStorage.setItem("selectedMenuKey", key);
+
         if (key === "1") {
             navigate("/dashboard");
         }
@@ -34,7 +44,7 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
             navigate("/saarthi/resource-directory");
         }
         if (key === "5") {
-            navigate("/saarthi/support");
+            navigate("/admin");
         }
         if (key === "6") {
             navigate("/saarthi/profile");
@@ -86,7 +96,36 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
                 },
             ],
         },
-    ];
+        {
+          key: "3",
+          icon: <UserOutlined />,
+          label: "Psychologist",
+        },
+        {
+          key: "4",
+          icon: <FolderOutlined />,
+          label: "Resource Directory",
+        },
+      ],
+    },
+    {
+      key: "other",
+      type: "group",
+      label: visible ? "OTHER" : null,
+      children: [
+        {
+          key: "5",
+          icon: <UserAddOutlined />,
+          label: "Admin",
+        },
+        {
+          key: "6",
+          icon: <SettingOutlined />,
+          label: "Settings",
+        },
+      ],
+    },
+  ];
 
     return (
         <Sider
