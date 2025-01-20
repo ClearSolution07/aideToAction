@@ -32,12 +32,8 @@ const Psychologists = () => {
 
     const filteredMembers = PsychologistsData.filter((psychologist) => {
         const query = searchQuery.toLowerCase();
-        return (
-            psychologist.full_name.toLowerCase().includes(query) ||
-            psychologist.user_role.toLowerCase().includes(query) ||
-            psychologist.user_rating.toString().includes(query) ||
-            psychologist.rated_students.toString().includes(query)
-        );
+        const fullName = psychologist.full_name || "";
+        return fullName.toLowerCase().includes(query);
     });
 
     const paginatedMembers = filteredMembers.slice(

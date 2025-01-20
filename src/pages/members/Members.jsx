@@ -32,12 +32,8 @@ const Members = () => {
 
     const filteredMembers = membersData.filter((member) => {
         const query = searchQuery.toLowerCase();
-        return (
-            member.full_name.toLowerCase().includes(query) ||
-            member.user_role.toLowerCase().includes(query) ||
-            member.user_rating.toString().includes(query) ||
-            member.rated_students.toString().includes(query)
-        );
+        const fullName = member.full_name || "";
+        return fullName.toLowerCase().includes(query);
     });
 
     const paginatedMembers = filteredMembers.slice(
