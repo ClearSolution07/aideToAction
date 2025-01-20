@@ -321,7 +321,7 @@
     border: 1px solid #e9eaf0;
     background-color: #ffffff;
     margin-bottom: 80px;
-	margin-top: 24px;
+    margin-top: 24px;
 }
 
 .heading {
@@ -379,6 +379,12 @@
         margin: 16px;
     }
 
+    .heading {
+        text-align: center;
+    }
+    .description {
+        text-align: justify;
+    }
     .right-side {
         display: none;
     }
@@ -387,5 +393,48 @@
         margin: 0;
         margin-left: 16px;
         margin-right: 16px;
+    }
+    .about-description {
+        text-align: justify;
+    }
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .commitment-card {
+        display: flex;
+        flex-direction: column;
+    }
+    .left-cards,
+    .right-cards {
+        width: 100%;
+    }
+    .commitment-background-container {
+        height: auto;
+        padding-bottom: 24px;
+    }
+    .commitment-container {
+        margin-top: 100px;
+        padding-right: 8px;
+        width: 100%;
+        padding-left: 8px;
+    }
+    .purpose-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+    .left-card {
+        width: 80%;
+        height: 200px;
+    }
+    .right-card {
+        width: 80%;
+    }
+    .circle {
+        width: 88px;
+        height: 40px;
     }
 }

@@ -6,9 +6,11 @@ import rightImage from "../../assets/homeRightImage.png";
 import commitmentData from "../../components/jsons/commitmentData.json";
 import psychologists from "../../components/jsons/psychologists.json";
 import LogIn from "./LogIn";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -18,6 +20,9 @@ const Home = () => {
         setIsModalOpen(false);
     };
 
+    const redirectToregister = async () => {
+        navigate("/register");
+    };
     return (
         <div className="home-container">
             <div className="signin-container">
@@ -49,7 +54,12 @@ const Home = () => {
                         years (or less depending on their personal
                         circumstances) in any Child Care Institution.
                     </p>
-                    <button className="register-button">Register</button>
+                    <button
+                        onClick={redirectToregister}
+                        className="register-button"
+                    >
+                        Register
+                    </button>
                 </div>
 
                 {/* Right Side */}
