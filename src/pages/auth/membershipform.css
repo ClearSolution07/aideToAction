@@ -74,7 +74,7 @@
 }
 
 .custom-button {
-    background-color: #facc15;
+    background-color: #ff5c5c;
     width: 100% !important;
     max-width: 500px;
     padding: 24px;
@@ -84,7 +84,7 @@
 }
 
 .custom-button:hover {
-    background-color: #dba316 !important;
+    background-color: #da5c5c !important;
 }
 
 .captcha-container {
