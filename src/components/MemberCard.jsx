@@ -26,23 +26,6 @@ const  MemberCard = ({
                     <h3 className="member-name">{full_name}</h3>
                     <p className="member-user_role">{user_role?user_role:"no role"}</p>
                 </div>
-                <div className="member-stats">
-                    <div className="rating">
-                        <StarFilled className="star-icon" />
-                        <span className="rating-value">
-                            {Number(user_rating).toFixed(1)}
-                        </span>
-                    </div>
-                    <div className="students">
-                        <span className="student-count">
-                            {rated_students
-                                ? rated_students.toLocaleString()
-                                : "10"}
-                        </span>
-
-                        <span className="student-label">Students</span>
-                    </div>
-                </div>
                 <Button
                     type="text"
                     icon={<SendOutlined />}

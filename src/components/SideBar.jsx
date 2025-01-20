@@ -86,7 +86,7 @@ const SideBar = ({ visible, onClose, isMobileWidth, tabletVisible }) => {
                 {
                     key: "5",
                     icon: <CustomerServiceOutlined />,
-                    label: "Admin",
+                    label: "Admin Panel",
                 },
                 {
                     key: "6",
