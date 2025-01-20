@@ -15,7 +15,7 @@ export const dataStatus = [
   },
   {
     name: "Announcements",
-    count: "46",
+    count: "",
     text: "know More",
     color: "#FDEBF9",
     linkColor: "#EE61CF",
