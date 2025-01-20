@@ -101,15 +101,17 @@ const AnnouncementCard = ({ visible }) => {
           overflowY: "auto",
           flexGrow: 1,
           padding: "16px",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <Collapse
-          bordered={false}
-          expandIconPosition="end"
-          className="ant-collapse-ghost"
-        >
-          {filteredAnnouncements.length > 0 ? (
-            filteredAnnouncements.map((item, index) => (
+        {filteredAnnouncements.length > 0 ? (
+          <Collapse
+            bordered={false}
+            expandIconPosition="end"
+            className="ant-collapse-ghost"
+          >
+            {filteredAnnouncements.map((item, index) => (
               <Panel
                 key={index}
                 header={
@@ -175,11 +177,20 @@ const AnnouncementCard = ({ visible }) => {
                   />
                 )}
               </Panel>
-            ))
-          ) : (
-            <Text>No announcements found for the selected date.</Text>
-          )}
-        </Collapse>
+            ))}
+          </Collapse>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexGrow: 1,
+            }}
+          >
+            <Text>No announcements found for the selected date...!!</Text>
+          </div>
+        )}
       </div>
     </Card>
   );
