@@ -24,8 +24,8 @@ const AnnouncementCard = ({ visible }) => {
     }
 
     const formattedSelectedDate = selectedDate.format("DD-MM-YYYY");
-    const backendDate = moment(itemDate, "DD-MM-YYYY").format("DD-MM-YYYY");
-
+    const backendDate = moment(itemDate).format("DD-MM-YYYY");
+   
     return backendDate === formattedSelectedDate;
   };
 
@@ -136,7 +136,7 @@ const AnnouncementCard = ({ visible }) => {
                         type="secondary"
                         style={{ fontSize: "12px", color: "#FF5C5C" }}
                       >
-                        {item.date}
+                        {moment(item.date).format("DD-MM-YYYY")}
                       </Text>
                     </div>
                     <Text strong>{item.header}</Text>
