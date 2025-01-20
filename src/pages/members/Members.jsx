@@ -58,7 +58,7 @@ const Members = () => {
                         Members ({membersData.length})
                     </h1>
                     <Input
-                        placeholder="Search in your teachers..."
+                        placeholder="Search Members..."
                         prefix={<SearchOutlined className="search-icon" />}
                         onChange={(e) => {
                             setSearchQuery(e.target.value);

@@ -38,6 +38,7 @@ const ChatWindow = () => {
     const [receiverId, setReceiverId] = useState(null);
     const [receiverName, setReceiverName] = useState("");
     const [currentUserName, setCurrentUserName] = useState("");
+    const [currentUserDes, setCurrentUserDes] = useState("");
     const [currentUserProfileImage, setCurrentUserProfileImage] = useState("");
     const [unseenMessages, setUnseenMessages] = useState({});
     const [latestMessages, setLatestMessages] = useState({});
@@ -97,6 +98,7 @@ const ChatWindow = () => {
             try {
                 const response = await getUserDetail();
                 setCurrentUserName(response.data[0].full_name);
+                setCurrentUserDes(response.data[0].description);
                 setCurrentUserProfileImage(response.data[0].user_picture);
                 if (response) {
                     const userId = response.data[0].user_id;
@@ -325,7 +327,7 @@ const ChatWindow = () => {
                                     {currentUserName || "User Name"}
                                 </div>
                                 <div className="user-des">
-                                    Web Designer & Best-Selling Instructor
+                                    {currentUserDes || "Description"}
                                 </div>
                             </div>
                         </div>
@@ -366,11 +368,13 @@ const ChatWindow = () => {
                                             }}
                                         >
                                             <div className="avatar">
-                                                <img
-                                                    src={user.user_picture}
-                                                    alt={user.full_name}
-                                                    className="user-picture"
-                                                />
+                                                {user.user_picture ? (
+                                                    <img
+                                                        src={user.user_picture}
+                                                        alt="User"
+                                                    />
+                                                ) : null}
+
                                                 <div
                                                     className={`status-indicator ${
                                                         userStatus[
@@ -418,20 +422,26 @@ const ChatWindow = () => {
                                 <div className="chat-header">
                                     <div className="header-user-info">
                                         <div className="avatar">
-                                            {receiverId && (
-                                                <img
-                                                    src={
+                                            {receiverId &&
+                                                (() => {
+                                                    const user =
                                                         filteredUsers.find(
                                                             (user) =>
                                                                 user.user_id ===
                                                                 receiverId
-                                                        )?.user_picture
-                                                    }
-                                                    alt={receiverName || "User"}
-                                                    className="user-picture"
-                                                />
-                                            )}
+                                                        );
+                                                    return user?.user_picture ? (
+                                                        <img
+                                                            src={
+                                                                user.user_picture
+                                                            }
+                                                            className="user-picture"
+                                                            alt="User"
+                                                        />
+                                                    ) : null;
+                                                })()}
                                         </div>
+
                                         <div className="user-details">
                                             <div className="user-name">
                                                 {receiverName ||

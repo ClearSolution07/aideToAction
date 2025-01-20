@@ -1,57 +1,71 @@
 .cardContainer {
-  border-radius: 16px;
-  flex: 1;
-  max-height: 150px;
-  min-height: 150px;
+    border-radius: 16px;
+    flex: 1;
+    max-height: 150px;
+    min-height: 150px;
 }
 
 .cardDiv {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: bold;
 }
 
 .firstText {
-  font-size: 20px; /* Default for desktop */
-  font-weight: bold;
+    font-size: 20px; /* Default for desktop */
+    font-weight: bold;
 }
 
 .secondText {
-  font-size: 24px; /* Default for desktop */
+    font-size: 24px; /* Default for desktop */
 }
 
 .cardContainer:hover {
-  border: 1px solid #dadada;
-  transform: scale(1.02);
+    border: 1px solid #dadada;
+    transform: scale(1.02);
+}
+
+.send-message-button {
+    background-color: #ffeee8;
+    color: #fd4518;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 1.5rem;
+}
+
+.member-card-content{
+	display: flex;
+	flex-direction: column;
 }
 
 /* Mobile styles: <768px */
 @media (max-width: 767px) {
-  .firstText {
-    font-size: 16px;
-  }
-  .secondText {
-    font-size: 18px;
-  }
+    .firstText {
+        font-size: 16px;
+    }
+    .secondText {
+        font-size: 18px;
+    }
 }
 
 /* Tablet styles: 768px - 1024px */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .firstText {
-    font-size: 18px;
-  }
-  .secondText {
-    font-size: 20px;
-  }
+    .firstText {
+        font-size: 18px;
+    }
+    .secondText {
+        font-size: 20px;
+    }
 }
 
 /* Desktop styles: >1024px */
 @media (min-width: 1024px) {
-  .firstText {
-    font-size: 18px;
-  }
-  .secondText {
-    font-size: 24px;
-  }
+    .firstText {
+        font-size: 18px;
+    }
+    .secondText {
+        font-size: 24px;
+    }
 }

@@ -59,7 +59,7 @@ const Psychologists = () => {
                         Psychologists ({PsychologistsData.length})
                     </h1>
                     <Input
-                        placeholder="Search in your teachers..."
+                        placeholder="Search Psychologists..."
                         prefix={<SearchOutlined className="search-icon" />}
                         onChange={(e) => {
                             setSearchQuery(e.target.value);
