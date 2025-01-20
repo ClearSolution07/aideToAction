@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [isMobileWidth, setIsMobileWidth] = useState(false);
   const [isTabletWidth, setIsTabletWidth] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(true);
-  const { getUserCount } = useDesktop();
+  const { getUserCount, getContent } = useDesktop();
 
   let totalMember = 0;
   let totalPsychologist = 0;
@@ -42,6 +42,17 @@ const Dashboard = () => {
         console.error("Error fetching members:", err.message);
       }
     };
+
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await getContent();
+        dataStatus[2].count = response.data.length;
+      } catch (err) {
+        console.error("Error fetching announcement:", err.message);
+      }
+    };
+
+    fetchAnnouncements();
     fetchUserCount();
 
     return () => window.removeEventListener("resize", handleResize);
