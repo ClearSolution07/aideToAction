@@ -75,7 +75,7 @@ const PsychologistCard = () => {
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    src={item.user_picture}
+                    src={item.user_picture || profilePhoto}
                     size={48}
                     style={{ border: "1px solid #f0f0f0" }}
                   />

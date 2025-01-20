@@ -111,6 +111,7 @@ function AddAnnouncement() {
             style={{ width: "100%" }}
             format="DD-MM-YYYY"
             placeholder="Select Date"
+
           />
         </Form.Item>
 
