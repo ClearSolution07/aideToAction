@@ -496,19 +496,19 @@ const ChatWindow = () => {
                                                             >
                                                                 {msg.sender_id !==
                                                                     senderId &&
-                                                                    messageUser && (
-                                                                        <div className="avatar small">
-                                                                            <img
-                                                                                src={
-                                                                                    messageUser.user_picture
-                                                                                }
-                                                                                alt={
-                                                                                    messageUser.full_name
-                                                                                }
-                                                                                className="user-picture-inside-chat"
-                                                                            />
-                                                                        </div>
-                                                                    )}
+                                                                messageUser &&
+                                                                messageUser.user_picture ? (
+                                                                    <div className="avatar small">
+                                                                        <img
+                                                                            src={
+                                                                                messageUser.user_picture
+                                                                            }
+                                                                            className="user-picture-inside-chat"
+                                                                            alt="User Avatar"
+                                                                        />
+                                                                    </div>
+                                                                ) : null}
+
                                                                 <div className="message-content">
                                                                     <p>
                                                                         {

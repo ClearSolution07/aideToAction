@@ -110,7 +110,8 @@ function AddAnnouncement() {
             onChange={handleDateChange}
             style={{ width: "100%" }}
             format="DD-MM-YYYY"
-            placeholder="Select date"
+            placeholder="Select Date"
+
           />
         </Form.Item>
 
