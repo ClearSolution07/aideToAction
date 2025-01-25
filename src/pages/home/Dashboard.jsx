@@ -91,7 +91,6 @@ const Dashboard = () => {
         />
         <Content style={{ padding: "24px", backgroundColor: "#f5f5f5" }}>
           <Row gutter={isMobileWidth ? [12, 12] : [24, 24]}>
-            {/* Main Content Area: Left section with status cards */}
             <Col xs={24} lg={16}>
               <Row gutter={[24, 24]}>
                 {dataStatus?.map((item, index) => (
