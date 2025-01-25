@@ -6,7 +6,8 @@ import {
     setMessages,
     addMessage,
 } from "../../redux/slices/chatSlice";
-
+import { Button } from "antd";
+import { ArrowRightOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import "./chat.css";
@@ -14,8 +15,11 @@ import SideBar from "../../components/SideBar";
 import Layout from "antd/es/layout/layout";
 import profile from "../../assets/profile.jpg";
 import send from "../../assets/Vector.png";
+import chat from "../../assets/chatImage.png";
+import PencilLine from "../../assets/PencilLine.png";
 import useUser from "../../hooks/useUser";
 import useChat from "../../hooks/useChat";
+import { useNavigate } from "react-router-dom";
 
 const { Content } = Layout;
 
@@ -24,6 +28,7 @@ const socket = io("https://unicefprojectbackend.onrender.com/", {
 });
 
 const ChatWindow = () => {
+    const navigate = useNavigate();
     const messagesFromRedux = useSelector((state) => state.chat.messages || []);
     const dispatch = useDispatch();
     const { getUserDetail, getAllUser } = useUser();
@@ -42,6 +47,7 @@ const ChatWindow = () => {
     const [currentUserProfileImage, setCurrentUserProfileImage] = useState("");
     const [unseenMessages, setUnseenMessages] = useState({});
     const [latestMessages, setLatestMessages] = useState({});
+    const [chatOpened, setChatOpened] = useState(false);
 
     const location = useLocation();
     const member = location.state?.member || location.state?.psychologist;
@@ -237,10 +243,9 @@ const ChatWindow = () => {
                 });
 
                 if (updatedMessage && updatedMessage.data) {
-                    console.log("Fetched Chat History:", updatedMessage.data);
+                    setChatOpened(true);
                     dispatch(setMessages(updatedMessage.data));
                 } else {
-                    console.log("No chat history available.");
                     dispatch(setMessages([]));
                 }
             } catch (error) {
@@ -269,13 +274,8 @@ const ChatWindow = () => {
                     });
 
                     if (updatedMessage?.data) {
-                        console.log(
-                            "Fetched Chat History:",
-                            updatedMessage.data
-                        );
                         dispatch(setMessages(updatedMessage.data));
                     } else {
-                        console.log("No chat history available.");
                         dispatch(setMessages([]));
                     }
                 } catch (error) {
@@ -290,14 +290,53 @@ const ChatWindow = () => {
         }
     }, [member]);
 
-    // Hook for auto-scroll
     const messagesEndRef = useRef(null);
+    const messagesContainerRef = useRef(null);
+    const [showScrollToBottom, setShowScrollToBottom] = useState(false);
+    const [isUserScrolling, setIsUserScrolling] = useState(false);
 
-    useEffect(() => {
+    const scrollToBottom = () => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-    }, [selectChat]);
+    };
+
+    const handleScroll = (e) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.target;
+        const threshold = 20;
+        const isAtBottom = scrollHeight - scrollTop - clientHeight <= threshold;
+
+        if (isAtBottom) {
+            setShowScrollToBottom(false);
+        } else {
+            setShowScrollToBottom(true);
+        }
+        setIsUserScrolling(scrollTop < scrollHeight - clientHeight - threshold);
+    };
+
+    useEffect(() => {
+        if (!isUserScrolling && showScrollToBottom) {
+            scrollToBottom();
+        }
+    }, [showScrollToBottom, isUserScrolling]);
+
+    useEffect(() => {
+        const container = messagesContainerRef.current;
+        if (!container) return;
+
+        const onScroll = (e) => handleScroll(e);
+        container.addEventListener("scroll", onScroll);
+
+        return () => {
+            container.removeEventListener("scroll", onScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (chatOpened) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [chatOpened]);
 
     return (
         <Layout>
@@ -316,20 +355,32 @@ const ChatWindow = () => {
             >
                 <Content>
                     <div className="main-container">
-                        <div className="user-info-container">
-                            <img
-                                src={currentUserProfileImage || profile}
-                                alt="User"
-                                className="user-image"
-                            />
-                            <div className="user-details-container">
-                                <div className="user-name">
-                                    {currentUserName || "User Name"}
-                                </div>
-                                <div className="user-des">
-                                    {currentUserDes || "Description"}
+                        <div className="user-info-button-container">
+                            <div className="user-info-container">
+                                <img
+                                    src={currentUserProfileImage || profile}
+                                    alt="User"
+                                    className="user-image"
+                                />
+                                <div className="user-details-container">
+                                    <div className="user-name">
+                                        {currentUserName || "User Name"}
+                                    </div>
+                                    <div className="user-des">
+                                        {currentUserDes || "Description"}
+                                    </div>
                                 </div>
                             </div>
+                            <Button
+                                type="text"
+                                className="member-button"
+                                onClick={() => {
+                                    navigate("/saarthi/profile");
+                                }}
+                            >
+                                Go to Profile{" "}
+                                <ArrowRightOutlined className="arrow-icon" />
+                            </Button>
                         </div>
                         <div className="chat-container">
                             <div className="sidebar">
@@ -372,6 +423,7 @@ const ChatWindow = () => {
                                                     <img
                                                         src={user.user_picture}
                                                         alt="User"
+                                                        className="avatar"
                                                     />
                                                 ) : null}
 
@@ -419,11 +471,12 @@ const ChatWindow = () => {
                             </div>
 
                             <div className="main-chat">
-                                <div className="chat-header">
-                                    <div className="header-user-info">
-                                        <div className="avatar">
-                                            {receiverId &&
-                                                (() => {
+                                {/* Display the chat header only if a user is selected */}
+                                {receiverId && (
+                                    <div className="chat-header">
+                                        <div className="header-user-info">
+                                            <div className="avatar">
+                                                {(() => {
                                                     const user =
                                                         filteredUsers.find(
                                                             (user) =>
@@ -440,145 +493,199 @@ const ChatWindow = () => {
                                                         />
                                                     ) : null;
                                                 })()}
-                                        </div>
-
-                                        <div className="user-details">
-                                            <div className="user-name">
-                                                {receiverName ||
-                                                    "Select a Chat"}
                                             </div>
-                                            <div className="user-status">
-                                                {userStatus[receiverId] ===
-                                                "online"
-                                                    ? "Active Now"
-                                                    : ""}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="messages-container">
-                                    {loading ? (
-                                        <p>Loading messages...</p>
-                                    ) : error ? (
-                                        <p>Error: {error}</p>
-                                    ) : (
-                                        <div className="messages-area">
-                                            {Array.isArray(messagesFromRedux) &&
-                                            messagesFromRedux.length > 0 ? (
-                                                [...messagesFromRedux]
-                                                    .sort(
-                                                        (a, b) =>
-                                                            new Date(
-                                                                a.timestamp
-                                                            ) -
-                                                            new Date(
-                                                                b.timestamp
-                                                            )
-                                                    )
-                                                    .map((msg) => {
-                                                        const messageUser =
-                                                            filteredUsers.find(
-                                                                (user) =>
-                                                                    user.user_id ===
-                                                                    msg.sender_id
-                                                            );
-                                                        return (
-                                                            <div
-                                                                key={
-                                                                    msg.message_id
-                                                                }
-                                                                className={`message ${
-                                                                    msg.sender_id ===
-                                                                    senderId
-                                                                        ? "sent"
-                                                                        : "received"
-                                                                }`}
-                                                            >
-                                                                {msg.sender_id !==
-                                                                    senderId &&
-                                                                messageUser &&
-                                                                messageUser.user_picture ? (
-                                                                    <div className="avatar small">
-                                                                        <img
-                                                                            src={
-                                                                                messageUser.user_picture
-                                                                            }
-                                                                            className="user-picture-inside-chat"
-                                                                            alt="User Avatar"
-                                                                        />
-                                                                    </div>
-                                                                ) : null}
 
-                                                                <div className="message-content">
-                                                                    <p>
-                                                                        {
-                                                                            msg.content
-                                                                        }
-                                                                    </p>
-                                                                    <span className="timestamp">
-                                                                        {ChatWindowformatTimestamp(
-                                                                            msg.timestamp
-                                                                        )}
-                                                                    </span>
-                                                                </div>
-                                                                {/* Dummy element for scrolling */}
-                                                                <div
-                                                                    ref={
-                                                                        messagesEndRef
-                                                                    }
-                                                                ></div>
-                                                            </div>
-                                                        );
-                                                    })
-                                            ) : (
-                                                <div className="no-messages">
-                                                    <p className="no-messages-title">
-                                                        No messages yet
-                                                    </p>
-                                                    <p className="no-messages-subtitle">
-                                                        Start a conversation!
-                                                    </p>
+                                            <div className="user-details">
+                                                <div className="user-name">
+                                                    {receiverName ||
+                                                        "Select a Chat"}
                                                 </div>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                                ;
-                                <div className="input-box">
-                                    <div className="input-container">
-                                        <div className="input-wrapper">
-                                            <input
-                                                type="text"
-                                                value={newMessage}
-                                                onChange={(e) =>
-                                                    setNewMessage(
-                                                        e.target.value
-                                                    )
-                                                }
-                                                onKeyDown={(e) => {
-                                                    if (e.key === "Enter") {
-                                                        handleSendMessage(e);
-                                                    }
-                                                }}
-                                                placeholder="Type a message"
-                                                className="message-input"
-                                            />
-                                        </div>
-                                        <div
-                                            className="input-actions"
-                                            onClick={handleSendMessage}
-                                        >
-                                            <div className="sent-text">
-                                                Send
+                                                <div className="user-status">
+                                                    {userStatus[receiverId] ===
+                                                    "online"
+                                                        ? "Active Now"
+                                                        : ""}
+                                                </div>
                                             </div>
-                                            <img
-                                                src={send}
-                                                alt="Send"
-                                                className="send-icon"
-                                            />
                                         </div>
                                     </div>
+                                )}
+                                <div
+                                    className="messages-container"
+                                    ref={messagesContainerRef}
+                                >
+                                    <div className="mess">
+                                        {loading ? (
+                                            <p className="loading-messages">
+                                                <span className="message-text">
+                                                    Loading messages
+                                                </span>
+                                                <span className="dots">
+                                                    ...
+                                                </span>
+                                            </p>
+                                        ) : error ? (
+                                            <p>Error: {error}</p>
+                                        ) : (
+                                            <div
+                                                className={`messages-area ${
+                                                    chatOpened
+                                                        ? "white-bg"
+                                                        : "black-bg"
+                                                }`}
+                                            >
+                                                {Array.isArray(
+                                                    messagesFromRedux
+                                                ) &&
+                                                chatOpened &&
+                                                messagesFromRedux.length > 0 ? (
+                                                    [...messagesFromRedux]
+                                                        .sort(
+                                                            (a, b) =>
+                                                                new Date(
+                                                                    a.timestamp
+                                                                ) -
+                                                                new Date(
+                                                                    b.timestamp
+                                                                )
+                                                        )
+                                                        .map((msg) => {
+                                                            const messageUser =
+                                                                filteredUsers.find(
+                                                                    (user) =>
+                                                                        user.user_id ===
+                                                                        msg.sender_id
+                                                                );
+                                                            return (
+                                                                <div
+                                                                    key={
+                                                                        msg.message_id
+                                                                    }
+                                                                    className={`message ${
+                                                                        msg.sender_id ===
+                                                                        senderId
+                                                                            ? "sent"
+                                                                            : "received"
+                                                                    }`}
+                                                                >
+                                                                    {msg.sender_id !==
+                                                                        senderId &&
+                                                                    messageUser &&
+                                                                    messageUser.user_picture ? (
+                                                                        <div className="avatar small">
+                                                                            <img
+                                                                                src={
+                                                                                    messageUser.user_picture
+                                                                                }
+                                                                                className="user-picture-inside-chat"
+                                                                                alt="User Avatar"
+                                                                            />
+                                                                        </div>
+                                                                    ) : null}
+
+                                                                    <div className="message-content">
+                                                                        <p>
+                                                                            {
+                                                                                msg.content
+                                                                            }
+                                                                        </p>
+                                                                        <span className="timestamp">
+                                                                            {ChatWindowformatTimestamp(
+                                                                                msg.timestamp
+                                                                            )}
+                                                                        </span>
+                                                                    </div>
+                                                                    {/* Dummy element for scrolling */}
+                                                                    <div
+                                                                        ref={
+                                                                            messagesEndRef
+                                                                        }
+                                                                    ></div>
+                                                                </div>
+                                                            );
+                                                        })
+                                                ) : (
+                                                    <div className="no-messages">
+                                                        <img
+                                                            src={chat}
+                                                            alt="User"
+                                                            className="chat-image"
+                                                        />
+                                                        <p className="no-messages-title">
+                                                            No messages yet
+                                                        </p>
+                                                        <p className="no-messages-subtitle">
+                                                            Start a
+                                                            conversation!
+                                                        </p>
+                                                        <p className="no-messages-encrypted">
+                                                            Your personal
+                                                            messages are
+                                                            end-to-end encrypted
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
+
+                                {showScrollToBottom && (
+                                    <div className="scroll-to-bottom-container">
+                                        <button
+                                            className="scroll-to-bottom"
+                                            onClick={scrollToBottom}
+                                        >
+                                            ⬇
+                                        </button>
+                                    </div>
+                                )}
+
+                                {/* Display the input box only if a user is selected */}
+                                {receiverId && (
+                                    <div className="input-box">
+                                        <div className="input-container">
+                                            <div className="input-wrapper">
+                                                <img
+                                                    src={PencilLine}
+                                                    alt=""
+                                                    className="pencilLine-image"
+                                                />
+                                                <input
+                                                    type="text"
+                                                    value={newMessage}
+                                                    onChange={(e) =>
+                                                        setNewMessage(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === "Enter") {
+                                                            handleSendMessage(
+                                                                e
+                                                            );
+                                                        }
+                                                    }}
+                                                    placeholder="Type a message"
+                                                    className="message-input"
+                                                />
+                                            </div>
+                                            <div
+                                                className="input-actions"
+                                                onClick={handleSendMessage}
+                                            >
+                                                <div className="sent-text">
+                                                    Send
+                                                </div>
+                                                <img
+                                                    src={send}
+                                                    alt="Send"
+                                                    className="send-icon"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
