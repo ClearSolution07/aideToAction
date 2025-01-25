@@ -4,7 +4,8 @@ import { Modal } from "antd";
 import logo from "../../assets/mainLogo.svg";
 import rightImage from "../../assets/homeRightImage.png";
 import commitmentData from "../../components/jsons/commitmentData.json";
-import psychologists from "../../components/jsons/psychologists.json";
+import acchievementData from "../../components/jsons/commitmentData.json";
+
 import LogIn from "./LogIn";
 import { useNavigate } from "react-router-dom";
 
@@ -26,8 +27,11 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="signin-container">
-                <button className="signin-button" onClick={showModal}>
+                <button className="buttons" onClick={showModal}>
                     LogIn
+                </button>
+                <button onClick={redirectToregister} className="buttons">
+                    SignUp
                 </button>
             </div>
             <Modal
@@ -54,12 +58,6 @@ const Home = () => {
                         years (or less depending on their personal
                         circumstances) in any Child Care Institution.
                     </p>
-                    <button
-                        onClick={redirectToregister}
-                        className="register-button"
-                    >
-                        Register
-                    </button>
                 </div>
 
                 {/* Right Side */}
@@ -86,139 +84,29 @@ const Home = () => {
                     co-ordination, knowledge sharing and field level support.
                 </p>
             </div>
-            <div className="commitment-background-container">
-                <div className="commitment-container">
-                    <h1 className="commitment-heading">Our Commitments</h1>
-                    <div className="cards-container">
-                        <div className="left-cards">
-                            {commitmentData
-                                .slice(0, 3)
-                                .map((commitment, index) => (
-                                    <div
-                                        key={index}
-                                        className="commitment-card"
-                                    >
-                                        <img
-                                            src={commitment.image}
-                                            alt={commitment.title}
-                                            className="card-image"
-                                        />
-                                        <div className="card-content">
-                                            <h3 className="card-title">
-                                                {commitment.title}
-                                            </h3>
-                                            <p className="card-description">
-                                                {commitment.description}
-                                            </p>
-                                            <button className="know-more">
-                                                Know More
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
+            <div className="commitments-container">
+                <h1 className="about-heading">Our Commitments</h1>
+                <div className="commitments-content">
+                    {commitmentData?.map((i, index) => (
+                        <div key={index} className="commitment-item">
+                            <img src={i.image} alt={i.title} />
+                            <div>{i.title}</div>
+                            <div>{i.description}</div>
                         </div>
-                        <div className="right-cards">
-                            {commitmentData
-                                .slice(3)
-                                .map((commitment, index) => (
-                                    <div
-                                        key={index}
-                                        className="commitment-card"
-                                    >
-                                        <img
-                                            src={commitment.image}
-                                            alt={commitment.title}
-                                            className="card-image"
-                                        />
-                                        <div className="card-content">
-                                            <h3 className="card-title">
-                                                {commitment.title}
-                                            </h3>
-                                            <p className="card-description">
-                                                {commitment.description}
-                                            </p>
-                                            <button className="know-more">
-                                                Know More
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
 
-            <div className="purpose-container">
-                {/* Left Card */}
-                <div className="left-card">
-                    <div className="left-card-content">
-                        <h2 className="left-card-heading">Our Purpose</h2>
-                        <p className="left-card-description">
-                            We are dedicated to providing quality services to
-                            improve the user experience and create impactful
-                            outcomes.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Right Card */}
-                <div className="right-card">
-                    <h2 className="right-card-heading">How Do We Serve?</h2>
-                    <div className="points-container">
-                        <div className="left-points">
-                            <div className="point">
-                                <div className="circle">1</div>
-                                <p className="point-description">
-                                    Description of the first point.
-                                </p>
-                            </div>
-                            <div className="point">
-                                <div className="circle">2</div>
-                                <p className="point-description">
-                                    Description of the second point.
-                                </p>
-                            </div>
+            <div className="achievements-container">
+                <h1 className="about-heading">Our Achievements</h1>
+                <div className="achievements-content">
+                    {acchievementData?.map((i, index) => (
+                        <div key={index} className="achievement-item">
+                            <img src={i.image} alt={i.title} />
+                            <div>{i.title}</div>
+                            <div>{i.description}</div>
                         </div>
-                        <div className="right-points">
-                            <div className="point">
-                                <div className="circle">3</div>
-                                <p className="point-description">
-                                    Description of the third point.
-                                </p>
-                            </div>
-                            <div className="point">
-                                <div className="circle">4</div>
-                                <p className="point-description">
-                                    Description of the fourth point.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="psychologist-background-container">
-                <div className="psychologist-container">
-                    <h2 className="heading">Our Featured Psychologist</h2>
-                    <div className="card-row">
-                        {psychologists.map((psychologist) => (
-                            <div className="card" key={psychologist.id}>
-                                <img
-                                    src={psychologist.image}
-                                    alt={psychologist.name}
-                                    className="psycho-card-image"
-                                />
-                                <h3 className="card-name">
-                                    {psychologist.name}
-                                </h3>
-                                <p className="card-occupation">
-                                    {psychologist.occupation}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                    <p className="ending-text">
-                        Start the wonderful journey now!
-                    </p>
+                    ))}
                 </div>
             </div>
         </div>
