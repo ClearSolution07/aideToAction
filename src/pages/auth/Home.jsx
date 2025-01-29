@@ -8,6 +8,7 @@ import psychologists from "../../components/jsons/psychologists.json";
 import LogIn from "./LogIn";
 import { useNavigate } from "react-router-dom";
 import SupportersCarousel from "../../components/SupportersCarousel";
+import VisionMission from "../../components/VisionMission";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +25,7 @@ const Home = () => {
     const redirectToregister = async () => {
         navigate("/register");
     };
+
     return (
         <div className="home-container">
             <div className="signin-container">
@@ -47,7 +49,11 @@ const Home = () => {
                 {/* Left Side */}
                 <div className="left-side">
                     <div className="logo-container">
-                        <img src={logo} alt="Logo" className="logo" />
+                        <img
+                            src={logo || "/placeholder.svg"}
+                            alt="Logo"
+                            className="logo"
+                        />
                     </div>
                     <h1 className="heading">
                         Learn with expert anytime anywhere
@@ -63,7 +69,7 @@ const Home = () => {
                 {/* Right Side */}
                 <div className="right-side">
                     <img
-                        src={rightImage}
+                        src={rightImage || "/placeholder.svg"}
                         alt="Right Side Graphic"
                         className="right-image"
                     />
@@ -97,7 +103,10 @@ const Home = () => {
                                         className="commitment-card"
                                     >
                                         <img
-                                            src={commitment.image}
+                                            src={
+                                                commitment.image ||
+                                                "/placeholder.svg"
+                                            }
                                             alt={commitment.title}
                                             className="card-image"
                                         />
@@ -124,7 +133,10 @@ const Home = () => {
                                         className="commitment-card"
                                     >
                                         <img
-                                            src={commitment.image}
+                                            src={
+                                                commitment.image ||
+                                                "/placeholder.svg"
+                                            }
                                             alt={commitment.title}
                                             className="card-image"
                                         />
@@ -147,52 +159,7 @@ const Home = () => {
             </div>
 
             <div className="purpose-container">
-                {/* Left Card */}
-                <div className="left-card">
-                    <div className="left-card-content">
-                        <h2 className="left-card-heading">Our Purpose</h2>
-                        <p className="left-card-description">
-                            We are dedicated to providing quality services to
-                            improve the user experience and create impactful
-                            outcomes.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Right Card */}
-                <div className="right-card">
-                    <h2 className="right-card-heading">How Do We Serve?</h2>
-                    <div className="points-container">
-                        <div className="left-points">
-                            <div className="point">
-                                <div className="circle">1</div>
-                                <p className="point-description">
-                                    Description of the first point.
-                                </p>
-                            </div>
-                            <div className="point">
-                                <div className="circle">2</div>
-                                <p className="point-description">
-                                    Description of the second point.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="right-points">
-                            <div className="point">
-                                <div className="circle">3</div>
-                                <p className="point-description">
-                                    Description of the third point.
-                                </p>
-                            </div>
-                            <div className="point">
-                                <div className="circle">4</div>
-                                <p className="point-description">
-                                    Description of the fourth point.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <VisionMission />
             </div>
             <SupportersCarousel psychologists={psychologists} />
         </div>
