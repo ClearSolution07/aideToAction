@@ -220,7 +220,7 @@
 
 .psychologist-background-container {
     background-color: white;
-    margin-top: 400px;
+    margin-top: 200px;
     height: 500px;
     display: flex;
     align-items: self-end;
@@ -245,11 +245,10 @@
     background: #fff;
     border-radius: 8px;
     height: 400px;
-    width: 60%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 8%;
+    margin-right: 8%;
     margin-bottom: 30px;
     transition: transform 0.3s;
 }
@@ -357,6 +356,9 @@
         margin-top: 50px;
         align-items: center;
     }
+	.signin-container{
+		justify-content: center;
+	}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -392,5 +394,8 @@
 @media (max-width: 768px) {
     .react-multi-carousel-track {
         padding: 0 20px;
+    }
+    .psychologist-background-container {
+        margin-top: 340px;
     }
 }
