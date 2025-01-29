@@ -12,7 +12,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-	
 }
 
 .signin-container {
@@ -71,8 +70,8 @@
     font-size: 72px;
     line-height: 32px;
     color: #1d2026;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 80px;
+    margin-top: 80px;
 }
 
 .description {
@@ -83,26 +82,6 @@
     color: #4e5566;
     margin-bottom: 20px;
     max-width: 700px;
-}
-
-.register-button {
-    background-color: #ff6636;
-    color: white;
-    border: none;
-    padding: 0 32px;
-    height: 56px;
-    width: 136px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.register-button:hover {
-    background-color: #cc5230;
 }
 
 .right-side {
@@ -339,9 +318,21 @@
 .card {
     background: #fff;
     border-radius: 8px;
+    /* width: 300px; */
+    height: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
     transition: transform 0.3s;
+}
+
+.psycho-card-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 200px;
 }
 
 .card:hover {
@@ -357,6 +348,7 @@
 
 .card-occupation {
     font-size: 14px;
+    margin-bottom: 100px;
     color: #666;
 }
 
@@ -369,6 +361,13 @@
     margin-top: 40px;
     text-align: center;
     color: #6e7485;
+}
+
+.react-multi-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
 }
 
 @media (max-width: 768px) {
@@ -434,5 +433,11 @@
     .circle {
         width: 88px;
         height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .react-multi-carousel-track {
+        padding: 0 20px;
     }
 }
