@@ -48,94 +48,94 @@ const LogIn = () => {
     };
 
     return (
-            <div className={"rightSectionContainer"}>
-                <div className="logoImage">
-                    <img src={logoImage} alt="logoSarthi" />
+        <div className={"rightSectionContainer"}>
+            <div className="logoImage">
+                <img src={logoImage} alt="logoSarthi" />
+            </div>
+            <div className="formContainer">
+                <div className="titleSection">
+                    <div className="loginTitle">Welcome</div>
+                    <span>Please login your account</span>
                 </div>
-                <div className="formContainer">
-                    <div className="titleSection">
-                        <div className="loginTitle">Welcome</div>
-                        <span>Please login your account</span>
-                    </div>
-                    <div className="loginForm">
-                        <div className="inputContainer">
-                            <span>Email</span>
-                            <input
-                                type="email"
-                                placeholder="Enter your email Id"
-                                className="login-input"
-                                autoComplete="email"
-                                value={email}
-                                onChange={(ev) => {
-                                    setEmail(ev.target.value);
-                                }}
-                                autoFocus={true}
-                            />
-                        </div>
-                        <div
-                            style={{
-                                marginTop: "28px",
-                                marginBottom: "28px",
+                <div className="loginForm">
+                    <div className="inputContainer">
+                        <span>Email</span>
+                        <input
+                            type="email"
+                            placeholder="Enter your email Id"
+                            className="login-input"
+                            autoComplete="email"
+                            value={email}
+                            onChange={(ev) => {
+                                setEmail(ev.target.value);
                             }}
-                        >
-                            <div className="inputContainer password">
-                                <span>Password</span>
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Enter your password"
-                                    className="login-input"
-                                    value={password}
-                                    onChange={(ev) => {
-                                        setPassword(ev?.target?.value);
-                                    }}
-                                />
-                                <span
-                                    className="eye-icon"
-                                    onClick={togglePasswordVisibility}
-                                >
-                                    <FontAwesomeIcon
-                                        icon={showPassword ? faEyeSlash : faEye}
-                                    />
-                                </span>
-                            </div>
-                        </div>
+                            autoFocus={true}
+                        />
                     </div>
-                    {error && <div className="error-message">{error}</div>}
                     <div
                         style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "20px",
+                            marginTop: "28px",
+                            marginBottom: "28px",
                         }}
                     >
-                        <button
-                            className="login-button"
-                            onClick={handleSignIn}
-                            disabled={loading}
-                        >
-                            {loading ? "Signing in..." : "Sign in"}
-                        </button>
-                        <div
-                            className="loginOptions"
-                            onClick={() => navigate("/register")}
-                        >
-                            <span className="login-link">
-                                Don't have an account? &nbsp;
-                                <Link
-                                    to="/register"
-                                    style={{
-                                        color: "blue",
-                                        cursor: "pointer",
-                                        textDecoration: "none",
-                                    }}
-                                >
-                                    Register now
-                                </Link>
+                        <div className="inputContainer password">
+                            <span>Password</span>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Enter your password"
+                                className="login-input"
+                                value={password}
+                                onChange={(ev) => {
+                                    setPassword(ev?.target?.value);
+                                }}
+                            />
+                            <span
+                                className="eye-icon"
+                                onClick={togglePasswordVisibility}
+                            >
+                                <FontAwesomeIcon
+                                    icon={showPassword ? faEyeSlash : faEye}
+                                />
                             </span>
                         </div>
                     </div>
                 </div>
+                {error && <div className="error-message">{error}</div>}
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "20px",
+                    }}
+                >
+                    <button
+                        className="login-button"
+                        onClick={handleSignIn}
+                        disabled={loading}
+                    >
+                        {loading ? "Signing in..." : "Sign in"}
+                    </button>
+                    <div
+                        className="loginOptions"
+                        onClick={() => navigate("/register")}
+                    >
+                        <span className="login-link">
+                            Don't have an account? &nbsp;
+                            <Link
+                                to="/register"
+                                style={{
+                                    color: "blue",
+                                    cursor: "pointer",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                SignUp
+                            </Link>
+                        </span>
+                    </div>
+                </div>
             </div>
+        </div>
     );
 };
 

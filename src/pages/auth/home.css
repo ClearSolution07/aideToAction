@@ -23,7 +23,7 @@
     background-color: #ffffff;
 }
 
-.signin-button {
+.buttons {
     background-color: #ff6636;
     color: white;
     border: none;
@@ -40,7 +40,7 @@
     margin: 16px;
 }
 
-.signin-button:hover {
+.buttons:hover {
     background-color: #cc5230;
 }
 
