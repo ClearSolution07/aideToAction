@@ -58,7 +58,7 @@ const Home = () => {
                     <h1 className="heading">
                         Learn with expert anytime anywhere
                     </h1>
-                    <p className="description">
+                    <p className="intro-description">
                         The term Care Leavers/care experienced youth is being
                         used for those people who are have lived atleast three
                         years (or less depending on their personal

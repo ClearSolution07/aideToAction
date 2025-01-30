@@ -1,9 +1,9 @@
 .vision-mission-container {
     text-align: center;
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
-	gap: 2rem;
+    gap: 2rem;
 }
 
 .title {
@@ -11,11 +11,17 @@
     margin-bottom: 0.5rem;
 }
 
+.intro-description {
+    color: #666;
+    max-width: 600px;
+    margin: 0 0 2rem;
+}
+
 .description {
     color: #666;
     max-width: 600px;
     margin: 0 0 2rem;
-	align-self: center;
+    align-self: center;
 }
 
 .cards-container {
@@ -32,9 +38,9 @@
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .cardV:hover {
@@ -46,16 +52,12 @@
     margin-bottom: 2rem;
 }
 
-
-
-
-
 @media (max-width: 900px) {
     .cards-container {
         flex-direction: column;
         align-items: center;
     }
-	.cardV {
+    .cardV {
         width: fit-content;
     }
 }
@@ -66,6 +68,9 @@
     }
 
     .description {
+        font-size: 0.9rem;
+    }
+    .intro-description {
         font-size: 0.9rem;
     }
 
