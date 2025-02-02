@@ -5,21 +5,21 @@ const visionMissionData = [
     {
         icon: "👁️",
         title: "Vision",
-        bgColor: "#f1d296",
+        bgColor: "#E8f5E9",
         description:
-            " Elements in the subjects that have some purpose & goals for the business company",
+            "To empower care leavers with the tools and support they need to thrive in society and reach their full potential.",
     },
     {
         icon: "🎯",
         title: "Mission",
-        bgColor: "#ff6636",
+        bgColor: "#FFF3E0",
         description:
-            " Elements in the subjects that have some purpose & goals for the business company",
+            "To create a robust network of support, resources, and opportunities for care leavers, fostering their personal and professional growth.",
     },
     {
         icon: "🌴",
         title: "Values",
-        bgColor: "#700067",
+        bgColor: "#E8EAF6",
         description:
             " Elements in the subjects that have some purpose & goals for the business company",
     },

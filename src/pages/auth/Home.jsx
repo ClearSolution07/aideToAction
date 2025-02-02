@@ -28,6 +28,7 @@ const Home = () => {
 
     return (
         <div className="home-container">
+            {/* Sign-In Buttons */}
             <div className="signin-container">
                 <button onClick={redirectToregister} className="buttons">
                     SignUp
@@ -36,15 +37,8 @@ const Home = () => {
                     LogIn
                 </button>
             </div>
-            <Modal
-                title=""
-                open={isModalOpen}
-                onCancel={handleCancel}
-                footer={null}
-                centered
-            >
-                <LogIn />
-            </Modal>
+
+            {/* Sign-Up Container */}
             <div className="signUp-container">
                 {/* Left Side */}
                 <div className="left-side">
@@ -58,9 +52,9 @@ const Home = () => {
                     <h1 className="heading">
                         Learn with expert anytime anywhere
                     </h1>
-                    <p className="intro-description">
+                    <p className="description">
                         The term Care Leavers/care experienced youth is being
-                        used for those people who are have lived atleast three
+                        used for those people who have lived at least three
                         years (or less depending on their personal
                         circumstances) in any Child Care Institution.
                     </p>
@@ -75,6 +69,8 @@ const Home = () => {
                     />
                 </div>
             </div>
+
+            {/* About Section */}
             <div className="about-container">
                 <h1 className="about-heading">About Us</h1>
                 <p className="about-description">
@@ -90,6 +86,8 @@ const Home = () => {
                     co-ordination, knowledge sharing and field level support.
                 </p>
             </div>
+
+            {/* Commitment Section */}
             <div className="commitment-background-container">
                 <div className="commitment-container">
                     <h1 className="commitment-heading">Our Commitments</h1>
@@ -158,9 +156,12 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* Purpose Section */}
             <div className="purpose-container">
                 <VisionMission />
             </div>
+
+            {/* Psychologists Section */}
             <SupportersCarousel psychologists={psychologists} />
         </div>
     );
