@@ -45,7 +45,28 @@ const SupportersCarousel = ({ psychologists }) => {
                 <div className="carousel-wrapper">
                     {psychologists && psychologists.length > 0 ? (
                         <Carousel
-                            responsive={responsive}
+                            responsive={{
+                                superLarge: {
+                                    // Large screens: Display 4 cards
+                                    breakpoint: { max: 4000, min: 1024 },
+                                    items: 4,
+                                },
+                                large: {
+                                    // Medium screens: Display 3 cards
+                                    breakpoint: { max: 1024, min: 768 },
+                                    items: 3,
+                                },
+                                medium: {
+                                    // Small screens: Display 2 cards
+                                    breakpoint: { max: 768, min: 480 },
+                                    items: 2,
+                                },
+                                small: {
+                                    // Very small screens: Display 1 card
+                                    breakpoint: { max: 480, min: 0 },
+                                    items: 1,
+                                },
+                            }}
                             infinite={true}
                             autoPlay={false}
                             keyBoardControl={true}
@@ -72,8 +93,6 @@ const SupportersCarousel = ({ psychologists }) => {
                         <p className="no-data">No supporters available</p>
                     )}
                 </div>
-
-                <p className="ending-text">Start the wonderful journey now!</p>
             </div>
         </div>
     );
