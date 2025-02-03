@@ -334,6 +334,10 @@ const ChatWindow = () => {
         }
     }, [member]);
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [handleSendMessage]);
+
     return (
         <Layout>
             <SideBar
