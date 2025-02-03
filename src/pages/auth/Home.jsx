@@ -9,6 +9,7 @@ import LogIn from "./LogIn";
 import { useNavigate } from "react-router-dom";
 import SupportersCarousel from "../../components/SupportersCarousel";
 import VisionMission from "../../components/VisionMission";
+import Footer from "../../components/FooterComponent";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -110,6 +111,7 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="right-side">
+                    
                     <img
                         src={rightImage || "/placeholder.svg"}
                         alt="Right Side Graphic"
@@ -208,6 +210,7 @@ const Home = () => {
             </div>
 
             <SupportersCarousel psychologists={psychologists} />
+            <Footer />
         </div>
     );
 };

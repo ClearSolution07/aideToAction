@@ -34,7 +34,6 @@
     font-size: 16px;
     transition: background-color 0.3s;
     margin: 16px;
-    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
 }
 
 .buttons:hover {
@@ -61,8 +60,6 @@
 .logo {
     width: 240px;
     height: 240px;
-    
-   
 }
 
 .hidden {
@@ -75,15 +72,12 @@
     color: #1d2026;
     margin-bottom: 80px;
     margin-top: 80px;
-
 }
 
 .show {
     opacity: 1;
     transform: translateX(0);
 }
-
-
 
 .description {
     font-weight: 400;
@@ -123,7 +117,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 24px;    
+    gap: 24px;
     margin-left: 240px;
     margin-right: 240px;
     margin-bottom: 100px;
@@ -228,7 +222,6 @@
     transform: scale(1.1); /* Slight zoom effect */
 }
 
-
 .card-image {
     width: 30%;
     max-width: 150px;
@@ -242,8 +235,6 @@
     text-align: left;
     cursor: default;
 }
-
-
 
 .card-title {
     margin-top: 0;
@@ -323,7 +314,6 @@
 .card:hover .psycho-card-image {
     transform: scale(1.2); /* Slight zoom-in effect */
 }
-
 
 .card:hover {
     transform: translateY(-5px);
