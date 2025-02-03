@@ -1,5 +1,4 @@
 .home-container {
-    font-family: "Inter", sans-serif;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -7,7 +6,6 @@
 }
 
 .signUp-container {
-    font-family: "Inter", sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,6 +22,7 @@
 
 .buttons {
     background-color: #ff6636;
+    border-radius: 4px;
     color: white;
     border: none;
     padding: 0 32px;
@@ -32,7 +31,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
@@ -44,7 +42,7 @@
 }
 
 .left-side {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,7 +63,10 @@
     height: 240px;
 }
 
-.heading {
+.hidden {
+    opacity: 0;
+    transform: translateX(-50px); /* Start position */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     font-weight: 600;
     font-size: 36px;
     line-height: 32px;
@@ -74,8 +75,12 @@
     margin-top: 80px;
 }
 
+.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 .description {
-    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
@@ -84,7 +89,6 @@
     max-width: 700px;
 }
 .intro-description {
-    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
@@ -101,11 +105,14 @@
 }
 
 .right-image {
-    max-width: 90%;
+    max-width: 80%;
     height: auto;
 }
 
 .about-container {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,6 +122,11 @@
     margin-left: 240px;
     margin-right: 240px;
     margin-bottom: 100px;
+}
+
+.about-container.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .about-heading {
@@ -148,6 +160,14 @@
     width: 90%;
     max-width: 1200px;
     padding: 20px;
+    opacity: 0;
+    transform: translateX(100px); /* Start off-screen from the right */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.commitment-container.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .commitment-heading {
@@ -183,6 +203,24 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Hover Effect on Card */
+.commitment-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image inside Commitment Card */
+.commitment-card img {
+    transition: transform 0.3s ease;
+}
+
+/* Image Hover Effect */
+.commitment-card:hover img {
+    transform: scale(1.1); /* Slight zoom effect */
 }
 
 .card-image {
@@ -196,6 +234,7 @@
 .card-content {
     flex: 1;
     text-align: left;
+    cursor: default;
 }
 
 .card-title {
@@ -239,7 +278,7 @@
 .psychologist-container {
     width: 90%;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
     margin-top: 24px;
 }
 
@@ -253,13 +292,52 @@
 .card {
     background: #fff;
     border-radius: 8px;
-    height: 400px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-left: 8%;
     margin-right: 8%;
-    margin-bottom: 30px;
-    transition: transform 0.3s;
+    height: 240px;
+    margin-bottom: 48px;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+    padding: 10px;
+}
+.carousel-wrapper {
+    margin-top: 140px;
+}
+
+.psycho-card-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-occupation {
+    font-size: 13px;
+    color: gray;
+    margin-top: 5px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 1024px) {
+    .card {
+        margin: 0 5px;
+    }
+}
+@media (max-width: 768px) {
+    .card {
+        margin: 0 5px; /* Adjusted for small screen size */
+    }
 }
 
 .psycho-card-image {
@@ -267,6 +345,12 @@
     margin-top: 10%;
     margin-bottom: 10%;
     max-height: 200px;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
+}
+
+/* Image Hover Effect */
+.card:hover .psycho-card-image {
+    transform: scale(1.2); /* Slight zoom-in effect */
 }
 
 .card:hover {
@@ -287,7 +371,6 @@
 }
 
 .ending-text {
-    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
@@ -312,7 +395,7 @@
 
     .heading {
         text-align: center;
-        font-size: 48px;
+        font-size: 32px;
         line-height: 1.2;
     }
     .description {
@@ -369,9 +452,9 @@
         margin-top: 50px;
         align-items: center;
     }
-	.signin-container{
-		justify-content: center;
-	}
+    .signin-container {
+        justify-content: center;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -412,6 +495,6 @@
         padding: 0 20px;
     }
     .psychologist-background-container {
-        margin-top: 340px;
+        margin-top: 100px;
     }
 }

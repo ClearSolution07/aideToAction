@@ -1,32 +1,38 @@
 [
-  {
-    "id": 1,
-    "image": "../../src/assets/psycho1.png",
-    "name": "Dr. Jane Doe",
-    "occupation": "Clinical Psychologist"
-  },
-  {
-    "id": 2,
-    "image": "../../src/assets/psycho2.png",
-    "name": "Dr. John Smith",
-    "occupation": "Child Psychologist"
-  },
-  {
-    "id": 3,
-    "image": "../../src/assets/psycho3.png",
-    "name": "Dr. Alice Brown",
-    "occupation": "Therapist"
-  },
-  {
-    "id": 4,
-    "image": "../../src/assets/psycho4.png",
-    "name": "Dr. Robert White",
-    "occupation": "Cognitive Psychologist"
-  },
-  {
-    "id": 5,
-    "image": "../../src/assets/psycho5.png",
-    "name": "Dr. Emily Green",
-    "occupation": "Counseling Psychologist"
-  }
+    {
+        "id": 1,
+        "image": "../../src/assets/brandLogo/brand1.jpg"
+    },
+    {
+        "id": 2,
+        "image": "../../src/assets/brandLogo/brand4.jpg"
+    },
+    {
+        "id": 3,
+        "image": "../../src/assets/brandLogo/brand11.jpg"
+    },
+    {
+        "id": 4,
+        "image": "../../src/assets/brandLogo/brand12.jpg"
+    },
+    {
+        "id": 5,
+        "image": "../../src/assets/brandLogo/brand13.jpg"
+    },
+    {
+        "id": 6,
+        "image": "../../src/assets/brandLogo/brand14.jpg"
+    },
+    {
+        "id": 7,
+        "image": "../../src/assets/brandLogo/brand15.jpg"
+    },
+    {
+        "id": 8,
+        "image": "../../src/assets/brandLogo/brand16.jpg"
+    },
+    {
+        "id": 9,
+        "image": "../../src/assets/brandLogo/brand17.jpg"
+    }
 ]
