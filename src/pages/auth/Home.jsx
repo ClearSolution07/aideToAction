@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./home.css";
 import { Modal } from "antd";
 import logo from "../../assets/mainLogo.svg";
@@ -14,6 +14,50 @@ const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const aboutSection = document.querySelector(".about-container");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        if (aboutSection) observer.observe(aboutSection);
+
+        return () => {
+            if (aboutSection) observer.unobserve(aboutSection);
+        };
+    }, []);
+
+    useEffect(() => {
+        const aboutSection = document.querySelector(".about-container");
+        const commitmentSection = document.querySelector(
+            ".commitment-container"
+        );
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        if (aboutSection) observer.observe(aboutSection);
+        if (commitmentSection) observer.observe(commitmentSection);
+    }, []);
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -28,7 +72,6 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            {/* Sign-In Buttons */}
             <div className="signin-container">
                 <button onClick={redirectToregister} className="buttons">
                     SignUp
@@ -37,10 +80,17 @@ const Home = () => {
                     LogIn
                 </button>
             </div>
+            <Modal
+                title=""
+                open={isModalOpen}
+                onCancel={handleCancel}
+                footer={null}
+                centered
+            >
+                <LogIn />
+            </Modal>
 
-            {/* Sign-Up Container */}
             <div className="signUp-container">
-                {/* Left Side */}
                 <div className="left-side">
                     <div className="logo-container">
                         <img
@@ -52,15 +102,13 @@ const Home = () => {
                     <h1 className="heading">
                         Learn with expert anytime anywhere
                     </h1>
-                    <p className="description">
+                    <p className="intro-description">
                         The term Care Leavers/care experienced youth is being
                         used for those people who have lived at least three
                         years (or less depending on their personal
                         circumstances) in any Child Care Institution.
                     </p>
                 </div>
-
-                {/* Right Side */}
                 <div className="right-side">
                     <img
                         src={rightImage || "/placeholder.svg"}
@@ -70,7 +118,7 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* About Section */}
+            {/* About Us Section with Animation */}
             <div className="about-container">
                 <h1 className="about-heading">About Us</h1>
                 <p className="about-description">
@@ -87,7 +135,6 @@ const Home = () => {
                 </p>
             </div>
 
-            {/* Commitment Section */}
             <div className="commitment-background-container">
                 <div className="commitment-container">
                     <h1 className="commitment-heading">Our Commitments</h1>
@@ -156,12 +203,10 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Purpose Section */}
             <div className="purpose-container">
                 <VisionMission />
             </div>
 
-            {/* Psychologists Section */}
             <SupportersCarousel psychologists={psychologists} />
         </div>
     );

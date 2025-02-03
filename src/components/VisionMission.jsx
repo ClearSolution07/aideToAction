@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./css/visionMission.css";
 
 const visionMissionData = [
@@ -21,34 +21,57 @@ const visionMissionData = [
         title: "Values",
         bgColor: "#E8EAF6",
         description:
-            " Elements in the subjects that have some purpose & goals for the business company",
+            "Elements in the subjects that have some purpose & goals for the business company",
     },
 ];
 
 const VisionMission = () => {
+    useEffect(() => {
+        const sections = document.querySelectorAll(".title,.description");
+
+        const observer = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+
+        return () => {
+            sections.forEach((section) => observer.unobserve(section));
+        };
+    }, []);
+
     return (
         <section className="vision-mission-container">
             <h2 className="title">Vision and Mission</h2>
             <p className="description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
 
             <div className="cards-container">
-                {visionMissionData.map((index) => {
-                    return (
-                        <div
-                            className="cardV "
-                            style={{ backgroundColor: `${index.bgColor}` }}
-                        >
-                            <div className="icon">{index.icon}</div>
-                            <div className="titleDes">
-                                <h3>{index.title}</h3>
-                                <p>{index.description}</p>
-                            </div>
+                {visionMissionData.map((item, index) => (
+                    <div
+                        key={index}
+                        className="cardV"
+                        style={{ backgroundColor: item.bgColor }}
+                    >
+                        <div className="icon">{item.icon}</div>
+                        <div className="titleDes">
+                            <h3>{item.title}</h3>
+                            <p>{item.description}</p>
                         </div>
-                    );
-                })}
+                    </div>
+                ))}
             </div>
         </section>
     );

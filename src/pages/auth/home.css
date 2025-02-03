@@ -65,14 +65,25 @@
    
 }
 
-.heading {
+.hidden {
+    opacity: 0;
+    transform: translateX(-50px); /* Start position */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     font-weight: 600;
     font-size: 36px;
     line-height: 32px;
     color: #1d2026;
     margin-bottom: 80px;
     margin-top: 80px;
+
 }
+
+.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
 
 .description {
     font-weight: 400;
@@ -104,6 +115,9 @@
 }
 
 .about-container {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,6 +127,11 @@
     margin-left: 240px;
     margin-right: 240px;
     margin-bottom: 100px;
+}
+
+.about-container.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .about-heading {
@@ -146,6 +165,14 @@
     width: 90%;
     max-width: 1200px;
     padding: 20px;
+    opacity: 0;
+    transform: translateX(100px); /* Start off-screen from the right */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.commitment-container.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .commitment-heading {
@@ -181,7 +208,26 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
+
+/* Hover Effect on Card */
+.commitment-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image inside Commitment Card */
+.commitment-card img {
+    transition: transform 0.3s ease;
+}
+
+/* Image Hover Effect */
+.commitment-card:hover img {
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
 
 .card-image {
     width: 30%;
@@ -194,7 +240,10 @@
 .card-content {
     flex: 1;
     text-align: left;
+    cursor: default;
 }
+
+
 
 .card-title {
     margin-top: 0;
@@ -251,13 +300,15 @@
 .card {
     background: #fff;
     border-radius: 8px;
-    height: 400px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-left: 8%;
     margin-right: 8%;
+    margin-top: 30px;
+    height: 350px;
     margin-bottom: 30px;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden; /* Ensures image doesn't overflow */
 }
 
 .psycho-card-image {
@@ -265,7 +316,14 @@
     margin-top: 10%;
     margin-bottom: 10%;
     max-height: 200px;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
 }
+
+/* Image Hover Effect */
+.card:hover .psycho-card-image {
+    transform: scale(1.2); /* Slight zoom-in effect */
+}
+
 
 .card:hover {
     transform: translateY(-5px);
