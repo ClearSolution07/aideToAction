@@ -126,7 +126,6 @@ const ChatWindow = () => {
         fetchUserDetails();
     }, []);
 
-    //fetching the list of users
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -152,18 +151,15 @@ const ChatWindow = () => {
         };
     }, []);
 
-    // Filtered user list based on search input
     const filteredUsers = userList.filter(
         (user) =>
             user.full_name &&
             user.full_name.toLowerCase().includes(searchInput.toLowerCase())
     );
 
-    //comparing the ids to set the receivd message in the store
     useEffect(() => {
         socket.on("chat_message", (message) => {
             if (message.sender_id !== receiverId) {
-                // Increment unseen count for the sender
                 setUnseenMessages((prev) => ({
                     ...prev,
                     [message.sender_id]: (prev[message.sender_id] || 0) + 1,
@@ -224,6 +220,7 @@ const ChatWindow = () => {
         setReceiverId(user.user_id);
         setReceiverName(user.full_name);
         dispatch(setActiveChat(user.full_name));
+        setChatOpened(true);
 
         setUnseenMessages((prev) => ({
             ...prev,
@@ -242,8 +239,7 @@ const ChatWindow = () => {
                     receiver_id: user.user_id,
                 });
 
-                if (updatedMessage && updatedMessage.data) {
-                    setChatOpened(true);
+                if (updatedMessage) {
                     dispatch(setMessages(updatedMessage.data));
                 } else {
                     dispatch(setMessages([]));
@@ -333,10 +329,10 @@ const ChatWindow = () => {
     }, []);
 
     useEffect(() => {
-        if (chatOpened) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        if (member) {
+            selectChat(member);
         }
-    }, [chatOpened]);
+    }, [member]);
 
     return (
         <Layout>
