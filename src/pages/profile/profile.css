@@ -43,7 +43,7 @@
 }
 
 .left-container {
-	margin-bottom: 48px
+    margin-bottom: 48px;
 }
 
 /* Ant Design overrides */
@@ -152,7 +152,7 @@
     .user-data-container {
         width: 72%;
     }
-    .password {
+    .profile-password {
         width: 72%;
     }
 }

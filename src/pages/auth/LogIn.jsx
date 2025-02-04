@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { loginImage1, logoImage } from "../../utils/imageUtils";
-
+import { message } from "antd";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -41,9 +41,11 @@ const LogIn = () => {
                 navigate("/dashboard");
             } else {
                 console.error("Error:", response.message);
+                message.error(`Error : ${response.message}`);
             }
         } catch (err) {
             console.error("Login failed:", err.message);
+            message.error(`Login Failed : ${response.message}`);
         }
     };
 

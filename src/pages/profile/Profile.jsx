@@ -250,7 +250,7 @@ const Profile = () => {
                         <Form layout="vertical" className="right-container">
                             <Form.Item
                                 label="Change Password"
-                                className="password"
+                                className="profile-password"
                             >
                                 <Input.Password
                                     value={passwords.newPassword}
@@ -262,7 +262,7 @@ const Profile = () => {
                             </Form.Item>
                             <Form.Item
                                 label="Confirm Password"
-                                className="password"
+                                className="profile-password"
                             >
                                 <Input.Password
                                     value={passwords.confirmPassword}
