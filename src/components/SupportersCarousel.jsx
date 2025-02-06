@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import "../pages/auth/home.css";
 
 const SupportersCarousel = ({ psychologists }) => {
-    const headingRef = useRef(null); 
+    const headingRef = useRef(null);
 
     const responsive = {
         superLargeDesktop: { breakpoint: { max: 6000, min: 3000 }, items: 4 },
@@ -15,7 +15,7 @@ const SupportersCarousel = ({ psychologists }) => {
     };
 
     useEffect(() => {
-        const heading = headingRef.current; 
+        const heading = headingRef.current;
 
         if (!heading) return;
 
@@ -23,8 +23,8 @@ const SupportersCarousel = ({ psychologists }) => {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add("show"); 
-                        observer.unobserve(entry.target); 
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
                     }
                 });
             },
@@ -32,7 +32,7 @@ const SupportersCarousel = ({ psychologists }) => {
         );
 
         observer.observe(heading);
-        return () => observer.disconnect(); 
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -68,10 +68,10 @@ const SupportersCarousel = ({ psychologists }) => {
                                 },
                             }}
                             infinite={true}
-                            autoPlay={false}
+                            autoPlay={true}
                             keyBoardControl={true}
                             showDots={true}
-                            arrows={true}
+                            arrows={false}
                         >
                             {psychologists.map((psychologist) => (
                                 <div className="card" key={psychologist.id}>
