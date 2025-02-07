@@ -74,18 +74,13 @@ const SupportersCarousel = ({ psychologists }) => {
                             arrows={false}
                         >
                             {psychologists.map((psychologist) => (
-                                <div className="card" key={psychologist.id}>
+                                <div className="carousel-card" key={psychologist.id}>
                                     <img
                                         src={psychologist.image}
                                         alt={psychologist.name}
                                         className="psycho-card-image"
                                     />
-                                    <h3 className="card-name">
-                                        {psychologist.name}
-                                    </h3>
-                                    <p className="card-occupation">
-                                        {psychologist.occupation}
-                                    </p>
+                                   
                                 </div>
                             ))}
                         </Carousel>

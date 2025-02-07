@@ -47,7 +47,6 @@
   padding: 2px;
   background-color: white;
   transition: transform 0.3s ease-in-out;
-  
 }
 
 .brand-logo:hover {
@@ -60,17 +59,12 @@
   color: white;
 }
 
-.brand-description {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
 /* Social icons */
 .social-icons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-top: 10px;
 }
 
 .social-icon {
@@ -82,12 +76,13 @@
   border-radius: 50%;
   color: #cbd5e1;
   transition: all 0.3s ease;
+  font-size: 30px;
 }
 
 .social-icon:hover {
   background-color: #ff5733;
   color: white;
-  transform: scale(1.1);
+  transform: scale(1.6);
 }
 
 /* Footer sections */
@@ -147,34 +142,15 @@
   width: 100%;
 }
 
-/* Instructor link */
-.instructor-link {
-  display: flex;
-  align-items: center;
-}
-
-.arrow-icon {
-  margin-left: 0.5rem;
-  transition: transform 0.3s ease;
-}
-
-.instructor-link:hover .arrow-icon {
-  transform: translateX(0.5rem);
-}
-
 /* Footer bottom */
 .footer-bottom {
   padding-top: 2rem;
   border-top: 1px solid #374151;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  text-align: center;
 }
 
 .copyright {
   font-size: 0.875rem;
-  text-align: center;
 }
 
 .copyright-link {
@@ -187,28 +163,6 @@
   color: #ff5733;
 }
 
-/* Language selector */
-.language-select {
-  appearance: none;
-  background-color: transparent;
-  border: 1px solid #4b5563;
-  border-radius: 0.5rem;
-  padding: 0.5rem 2.5rem 0.5rem 1rem;
-  color: #cbd5e1;
-  font-size: 0.875rem;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center;
-  background-size: 1.5em 1.5em;
-  transition: border-color 0.3s ease;
-}
-
-.language-select:focus {
-  outline: none;
-  border-color: #ff5733;
-}
-
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -218,7 +172,7 @@
 /* Media queries */
 @media (min-width: 640px) {
   .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   
   .footer-section {
@@ -228,15 +182,6 @@
 
 @media (min-width: 1024px) {
   .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .footer-bottom {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .copyright {
-    text-align: left;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
