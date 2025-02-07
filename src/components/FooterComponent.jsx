@@ -6,10 +6,24 @@ import {
     LinkedinFilled,
     TwitterSquareFilled,
 } from "@ant-design/icons";
-
 import "./css/footer.css";
 
 const Footer = () => {
+    // Function to scroll to a particular section
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            // Using scrollIntoView for smooth scrolling
+            const offsetPosition = element.offsetTop - 120;
+
+            // Smooth scroll to the adjusted position
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth", // Smooth scroll behavior
+            });
+        }
+    };
+
     return (
         <footer className="footer">
             <div className="container">
@@ -61,18 +75,51 @@ const Footer = () => {
                         <h3 className="footer-heading">QUICK LINKS</h3>
                         <ul className="footer-links">
                             <li>
-                                <a href="#" className="footer-link">
-                                    About
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("aboutSection");
+                                    }}
+                                >
+                                    About Us
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="footer-link">
-                                    Contact
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("commitmentSection");
+                                    }}
+                                >
+                                    Commitments
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="footer-link">
-                                    Career
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("vissionSection");
+                                    }}
+                                >
+                                    Vision and Mission
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("supportersSection");
+                                    }}
+                                >
+                                    Our Supporters
                                 </a>
                             </li>
                         </ul>

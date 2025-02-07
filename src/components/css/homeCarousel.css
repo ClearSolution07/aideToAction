@@ -1,156 +1,114 @@
-
 .carousel-root {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    padding: 20px 0;
-  }
-  
-  .carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-  }
-  
-  .carousel-slide {
-    min-width: 100%;
-    padding: 0 20px;
-  }
-  
-  .carousel-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .carousel-text {
-    flex: 1;
-    max-width: 50%;
-  }
-  
-  .carousel-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 12px;
-  }
-  
-  .carousel-subtitle {
-    font-size: 18px;
-    color: #666;
-  }
-  
-  .carousel-image-container {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    width:70%;
-  }
-  
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  padding: 0 20px;
+}
+
+.carousel-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.carousel-image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.carousel-image {
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.carousel-image:hover {
+  transform: scale(1.05);
+}
+
+.carousel-dots-overlay {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(19, 17, 17, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background-color: #ff6636;
+}
+
+.carousel-empty {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #525050;
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 1024px) {
   .carousel-image {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+      max-width: 900px;
   }
-  
-  .carousel-image:hover {
-    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .carousel-slide {
+      padding: 0 90px;
   }
-  
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
+
+  .carousel-image {
+      max-width: 400px;
   }
-  
+
+  .carousel-dots-overlay {
+      bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carousel-image {
+      max-width: 300px;
+  }
+
   .carousel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #ddd;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    padding: 0;
+      width: 10px;
+      height: 10px;
   }
-  
-  .carousel-dot.active {
-    background-color: #ff6636;
-  }
-  
-  .carousel-empty {
-    text-align: center;
-    padding: 40px;
-    font-size: 18px;
-    color: #666;
-  }
-  
-  /* Media Queries for Responsiveness */
-  @media screen and (max-width: 1024px) {
-    .carousel-content {
-      max-width: 800px;
-      padding: 0 20px;
-    }
-  
-    .carousel-title {
-      font-size: 28px;
-    }
-  
-    .carousel-image {
-      width: 250px;
-      height: 250px;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .carousel-content {
-      flex-direction: column;
-      text-align: center;
-      gap: 24px;
-    }
-  
-    .carousel-text, .carousel-image-container {
-      max-width: 100%;
-    }
-  
-    .carousel-image-container {
-      justify-content: center;
-    }
-  
-    .carousel-title {
-      font-size: 24px;
-    }
-  
-    .carousel-subtitle {
-      font-size: 16px;
-    }
-  
-    .carousel-image {
-      width: 220px;
-      height: 220px;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .carousel-content {
-      padding: 0 10px;
-    }
-  
-    .carousel-title {
-      font-size: 20px;
-    }
-  
-    .carousel-image {
-      width: 180px;
-      height: 180px;
-    }
-  }
+}

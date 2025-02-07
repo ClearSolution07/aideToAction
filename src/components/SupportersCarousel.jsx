@@ -36,7 +36,10 @@ const SupportersCarousel = ({ psychologists }) => {
     }, []);
 
     return (
-        <div className="psychologist-background-container">
+        <div
+            className="psychologist-background-container"
+           
+        >
             <div className="psychologist-container">
                 <h2 className="heading hidden" ref={headingRef}>
                     Our Supporters and Donors
@@ -74,13 +77,15 @@ const SupportersCarousel = ({ psychologists }) => {
                             arrows={false}
                         >
                             {psychologists.map((psychologist) => (
-                                <div className="carousel-card" key={psychologist.id}>
+                                <div
+                                    className="carousel-card"
+                                    key={psychologist.id}
+                                >
                                     <img
                                         src={psychologist.image}
                                         alt={psychologist.name}
                                         className="psycho-card-image"
                                     />
-                                   
                                 </div>
                             ))}
                         </Carousel>

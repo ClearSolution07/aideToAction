@@ -117,9 +117,9 @@ const Home = () => {
             </div>
 
             {/* About Us Section with Animation */}
-            <div className="about-container">
+            <div className="about-container" id="aboutSection">
                 <h1 className="about-heading">About Us</h1>
-                <p className="about-description">
+                <div className="about-description">
                     Saarthi is an association of Indian careleavers which brings
                     together all the careleavers that is those young adults who
                     have lived and grown-up in ChildCare Institutions. This
@@ -129,25 +129,39 @@ const Home = () => {
                     civil society organisations across the country. The core
                     group of association comprises of representatives from
                     various state level networks which are a formal or informal
-                    group of care leavers&#39; at  State/District level
+                    group of care leavers&#39; at State/District level
                     irrespective of their religion/class/gender/sexual
-                    orientation/physical ability/type of their institution. You
+                    orientation/physical ability/type of their institution. You
                     do not have to be a member of any state or district network
                     to join Saarthi or sign-up here, but you must be a
                     careleaver. With an outreach to more than 4000 careleavers
                     across India, we welcome you with open arms and hearts to
                     join us and be a part of this wonderful family. Please sign-
-                    up to become a member else log-in. **Disclaimer** Please
-                    note, the  Saarthi -AICL   has no financial, legal or
-                    statutory obligation on either Aide et Action or UNICEF and
-                    vice versa. Aide et Action and UNICEF are and will not be
-                    accountable for any financial, legal, or statutory
-                    repercussions arising out of any activity or statement done
-                    or undertaken by members at their individual level.
-                </p>
+                    up to become a member else log-in.{" "}
+                </div>
+
+                <div className="">
+                    <div className="disclaimer-container">
+                        <div className="disclaimer-icon"></div>
+                        <div className="disclaimer-icon-bottom"></div>
+                        <h2 className="disclaimer-title">Disclaimer</h2>
+                        <p className="disclaimer-text">
+                            Please note, the Saarthi -AICL has no financial,
+                            legal or statutory obligation on either Aide et
+                            Action or UNICEF and vice versa. Aide et Action and
+                            UNICEF are and will not be accountable for any
+                            financial, legal, or statutory repercussions arising
+                            out of any activity or statement done or undertaken
+                            by members at their individual level.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div className="commitment-background-container">
+            <div
+                className="commitment-background-container"
+                id="commitmentSection"
+            >
                 <div className="commitment-container">
                     <h1 className="commitment-heading">Our Commitments</h1>
                     <div className="cards-container">
@@ -215,11 +229,12 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="purpose-container">
+            <div className="purpose-container" id="vissionSection">
                 <VisionMission />
             </div>
-
-            <SupportersCarousel psychologists={psychologists} />
+            <div id="supportersSection">
+                <SupportersCarousel psychologists={psychologists} />
+            </div>
             <Footer />
         </div>
     );

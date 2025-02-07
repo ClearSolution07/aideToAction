@@ -27,14 +27,6 @@ const HomeCarousel = ({ psychologists }) => {
                 {psychologists.map((psychologist, index) => (
                     <div key={psychologist.id} className="carousel-slide">
                         <div className="carousel-content">
-                            <div className="carousel-text">
-                                <h3 className="carousel-title">
-                                    {psychologist.name}
-                                </h3>
-                                <p className="carousel-subtitle">
-                                    {psychologist.occupation}
-                                </p>
-                            </div>
                             <div className="carousel-image-container">
                                 <img
                                     src={
@@ -43,21 +35,24 @@ const HomeCarousel = ({ psychologists }) => {
                                     alt={psychologist.name}
                                     className="carousel-image"
                                 />
+                                <div className="carousel-dots-overlay">
+                                    {psychologists.map((_, dotIndex) => (
+                                        <button
+                                            key={dotIndex}
+                                            className={`carousel-dot ${
+                                                dotIndex === currentSlide
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            onClick={() =>
+                                                setCurrentSlide(dotIndex)
+                                            }
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
-                ))}
-            </div>
-
-            <div className="carousel-dots">
-                {psychologists.map((_, index) => (
-                    <button
-                        key={index}
-                        className={`carousel-dot ${
-                            index === currentSlide ? "active" : ""
-                        }`}
-                        onClick={() => setCurrentSlide(index)}
-                    />
                 ))}
             </div>
         </div>
