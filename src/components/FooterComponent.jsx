@@ -6,14 +6,24 @@ import {
     LinkedinFilled,
     TwitterSquareFilled,
 } from "@ant-design/icons";
-
 import "./css/footer.css";
 
-// Contact us:
-// aiclsaarthi@gmail.com
-
-
 const Footer = () => {
+    // Function to scroll to a particular section
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            // Using scrollIntoView for smooth scrolling
+            const offsetPosition = element.offsetTop - 120;
+
+            // Smooth scroll to the adjusted position
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth", // Smooth scroll behavior
+            });
+        }
+    };
+
     return (
         <footer className="footer">
             <div className="container">
@@ -24,64 +34,40 @@ const Footer = () => {
                             <img src={logo} alt="Logo" className="brand-logo" />
                             <h2 className="brand-name">Saarthi</h2>
                         </div>
-                        <p className="brand-description">
-                            Aliquam moncus ligula est, non pulvinar elit
-                            convallis nec. Donec mattis odio at sollicitudin
-                            finibus.
-                        </p>
                         <div className="social-icons">
                             <a
                                 href="https://www.facebook.com/profile.php?id=61562857873961"
                                 className="social-icon"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                <FacebookFilled size={20} />
+                                <FacebookFilled />
                             </a>
                             <a
                                 href="https://www.instagram.com/saarthi_aicl"
                                 className="social-icon"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                <InstagramFilled size={20} />
+                                <InstagramFilled />
                             </a>
                             <a
                                 href="https://www.linkedin.com/company/saarthi-aicl"
                                 className="social-icon"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                <LinkedinFilled size={20} />
+                                <LinkedinFilled />
                             </a>
                             <a
                                 href="https://x.com/CareleaversIND"
                                 className="social-icon"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                <TwitterSquareFilled size={20} />
+                                <TwitterSquareFilled />
                             </a>
                         </div>
-                    </div>
-
-                    {/* Top 4 Category */}
-                    <div className="footer-section">
-                        <h3 className="footer-heading">TOP 4 CATEGORY</h3>
-                        <ul className="footer-links">
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Development
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Finance & Accounting
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Design
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Business
-                                </a>
-                            </li>
-                        </ul>
                     </div>
 
                     {/* Quick Links */}
@@ -89,19 +75,51 @@ const Footer = () => {
                         <h3 className="footer-heading">QUICK LINKS</h3>
                         <ul className="footer-links">
                             <li>
-                                <a href="#" className="footer-link">
-                                    About
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("aboutSection");
+                                    }}
+                                >
+                                    About Us
                                 </a>
                             </li>
-
                             <li>
-                                <a href="#" className="footer-link">
-                                    Contact
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("commitmentSection");
+                                    }}
+                                >
+                                    Commitments
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="footer-link">
-                                    Career
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("vissionSection");
+                                    }}
+                                >
+                                    Vision and Mission
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    className="footer-link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection("supportersSection");
+                                    }}
+                                >
+                                    Our Supporters
                                 </a>
                             </li>
                         </ul>
@@ -138,11 +156,7 @@ const Footer = () => {
                 {/* Footer Bottom */}
                 <div className="footer-bottom">
                     <p className="copyright">
-                        © 2025 - Saarthi. Designed by{" "}
-                        <a href="#" className="copyright-link">
-                            Templatecookie
-                        </a>
-                        . All rights reserved
+                        © 2025 - Saarthi. All rights reserved
                     </p>
                 </div>
             </div>

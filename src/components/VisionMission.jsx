@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./css/visionMission.css";
 
 const visionMissionData = [
@@ -26,34 +26,43 @@ const visionMissionData = [
 ];
 
 const VisionMission = () => {
-    useEffect(() => {
-        const sections = document.querySelectorAll(".title,.description");
+    const titleRef = useRef(null);
+    const descriptionRef = useRef(null);
+    const cardRefs = useRef([]);
 
+    useEffect(() => {
         const observer = new IntersectionObserver(
-            (entries, observer) => {
+            (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("show");
-                        observer.unobserve(entry.target); // Stop observing after animation
+                        observer.unobserve(entry.target);
                     }
                 });
             },
-            { threshold: 0.3 }
+            { threshold: 0.1 }
         );
 
-        sections.forEach((section) => {
-            observer.observe(section);
-        });
+        const refsToObserve = [
+            titleRef.current,
+            descriptionRef.current,
+            ...cardRefs.current,
+        ].filter(Boolean);
+
+        refsToObserve.forEach((ref) => observer.observe(ref));
 
         return () => {
-            sections.forEach((section) => observer.unobserve(section));
+            refsToObserve.forEach((ref) => observer.unobserve(ref));
         };
     }, []);
 
     return (
         <section className="vision-mission-container">
-            <h2 className="title">Vision and Mission</h2>
-            <p className="description">
+            <h2 ref={titleRef} className="title">
+                Vision and Mission
+            </h2>
+
+            <p ref={descriptionRef} className="description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
@@ -61,6 +70,7 @@ const VisionMission = () => {
             <div className="cards-container">
                 {visionMissionData.map((item, index) => (
                     <div
+                        ref={(el) => (cardRefs.current[index] = el)}
                         key={index}
                         className="cardV"
                         style={{ backgroundColor: item.bgColor }}

@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import "../pages/auth/home.css";
 
 const SupportersCarousel = ({ psychologists }) => {
-    const headingRef = useRef(null); 
+    const headingRef = useRef(null);
 
     const responsive = {
         superLargeDesktop: { breakpoint: { max: 6000, min: 3000 }, items: 4 },
@@ -15,7 +15,7 @@ const SupportersCarousel = ({ psychologists }) => {
     };
 
     useEffect(() => {
-        const heading = headingRef.current; 
+        const heading = headingRef.current;
 
         if (!heading) return;
 
@@ -23,8 +23,8 @@ const SupportersCarousel = ({ psychologists }) => {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add("show"); 
-                        observer.unobserve(entry.target); 
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
                     }
                 });
             },
@@ -32,11 +32,14 @@ const SupportersCarousel = ({ psychologists }) => {
         );
 
         observer.observe(heading);
-        return () => observer.disconnect(); 
+        return () => observer.disconnect();
     }, []);
 
     return (
-        <div className="psychologist-background-container">
+        <div
+            className="psychologist-background-container"
+           
+        >
             <div className="psychologist-container">
                 <h2 className="heading hidden" ref={headingRef}>
                     Our Supporters and Donors
@@ -68,24 +71,21 @@ const SupportersCarousel = ({ psychologists }) => {
                                 },
                             }}
                             infinite={true}
-                            autoPlay={false}
+                            autoPlay={true}
                             keyBoardControl={true}
                             showDots={true}
-                            arrows={true}
+                            arrows={false}
                         >
                             {psychologists.map((psychologist) => (
-                                <div className="card" key={psychologist.id}>
+                                <div
+                                    className="carousel-card"
+                                    key={psychologist.id}
+                                >
                                     <img
                                         src={psychologist.image}
                                         alt={psychologist.name}
                                         className="psycho-card-image"
                                     />
-                                    <h3 className="card-name">
-                                        {psychologist.name}
-                                    </h3>
-                                    <p className="card-occupation">
-                                        {psychologist.occupation}
-                                    </p>
                                 </div>
                             ))}
                         </Carousel>

@@ -3,35 +3,32 @@
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .title {
     font-size: 36px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(50%);
     transition: transform 1s ease-out, opacity 1s ease-out;
 }
+
 .title.show {
     opacity: 1;
     transform: translateX(0);
 }
 
-.intro-description {
-    color: #666;
-    max-width: 600px;
-}
-
 .description {
     color: #666;
     max-width: 600px;
-    margin: 0 0 2rem;
     align-self: center;
+    margin: 0 auto 1.5rem;
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(50%);
     transition: transform 1s ease-out, opacity 1s ease-out;
 }
+
 .description.show {
     opacity: 1;
     transform: translateX(0);
@@ -42,21 +39,23 @@
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .cardV {
     background: white;
     border-radius: 10px;
     padding: 1.5rem;
-    width: 300px;
+    width: 400px;
+    height: 400px;
+    cursor: default;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     display: flex;
-    cursor: default;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 1rem;
 }
-
 .cardV:hover {
     transform: translateY(-5px);
 }
@@ -66,23 +65,38 @@
     margin-bottom: 2rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+
     .cards-container {
         flex-direction: column;
         align-items: center;
     }
+
     .cardV {
         width: fit-content;
+        margin: 0.5rem;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+    .vision-mission-container {
+        padding: 1rem;
+    }
+
     .title {
         font-size: 2rem;
     }
 
     .description {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     .intro-description {
         font-size: 0.9rem;

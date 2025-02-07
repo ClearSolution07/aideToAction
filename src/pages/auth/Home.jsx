@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import SupportersCarousel from "../../components/SupportersCarousel";
 import VisionMission from "../../components/VisionMission";
 import Footer from "../../components/FooterComponent";
+import HomeCarousel from "../../components/HomeCarousel";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -104,40 +105,63 @@ const Home = () => {
                         Learn with expert anytime anywhere
                     </h1>
                     <p className="intro-description">
-                        The term Care Leavers/care experienced youth is being
-                        used for those people who have lived at least three
-                        years (or less depending on their personal
-                        circumstances) in any Child Care Institution.
+                        The vision of Saarthi which is an association of Indian
+                        Careleavers is to advocate for and to empower care
+                        leaving youth transitioning out of child care
+                        institutions (CCI) and other forms of alternative care.
                     </p>
                 </div>
                 <div className="right-side">
-                    
-                    <img
-                        src={rightImage || "/placeholder.svg"}
-                        alt="Right Side Graphic"
-                        className="right-image"
-                    />
+                    <HomeCarousel psychologists={psychologists} />
                 </div>
             </div>
 
             {/* About Us Section with Animation */}
-            <div className="about-container">
+            <div className="about-container" id="aboutSection">
                 <h1 className="about-heading">About Us</h1>
-                <p className="about-description">
-                    Saarthi-Association of Indian Careleavers, is a national
-                    association of careleavers for careleavers and by
-                    careleavers. Its aim is to create a common platform for care
-                    leavers to connect, utilize opportunities of growth, gain
-                    referrals for various platforms of support, and bring forth
-                    your issues at pan India level. Aide et Action in
-                    partnership with UNICEF-India has been its hosting agency
-                    while various civil society agencies and State level Women
-                    and Child Development Departments have supported it through
-                    co-ordination, knowledge sharing and field level support.
-                </p>
+                <div className="about-description">
+                    Saarthi is an association of Indian careleavers which brings
+                    together all the careleavers that is those young adults who
+                    have lived and grown-up in ChildCare Institutions. This
+                    association is for careleavers and by careleavers. The
+                    association in its initial phase has been hosted by Aide et
+                    Action in partnership with UNICEF and supported by many
+                    civil society organisations across the country. The core
+                    group of association comprises of representatives from
+                    various state level networks which are a formal or informal
+                    group of care leavers&#39; at State/District level
+                    irrespective of their religion/class/gender/sexual
+                    orientation/physical ability/type of their institution. You
+                    do not have to be a member of any state or district network
+                    to join Saarthi or sign-up here, but you must be a
+                    careleaver. With an outreach to more than 4000 careleavers
+                    across India, we welcome you with open arms and hearts to
+                    join us and be a part of this wonderful family. Please sign-
+                    up to become a member else log-in.{" "}
+                </div>
+
+                <div className="">
+                    <div className="disclaimer-container">
+                        <div className="disclaimer-icon"></div>
+                        <div className="disclaimer-icon-bottom"></div>
+                        <h2 className="disclaimer-title">Disclaimer</h2>
+                        <p className="disclaimer-text">
+                            Please note, the Saarthi -AICL has no financial,
+                            legal or statutory obligation on either Aide et
+                            Action or UNICEF and vice versa. Aide et Action and
+                            UNICEF are and will not be accountable for any
+                            financial, legal, or statutory repercussions arising
+                            out of any activity or statement done or undertaken
+                            by members at their individual level.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div className="commitment-background-container">
+            <div
+                className="commitment-background-container"
+                id="commitmentSection"
+            >
                 <div className="commitment-container">
                     <h1 className="commitment-heading">Our Commitments</h1>
                     <div className="cards-container">
@@ -205,11 +229,12 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="purpose-container">
+            <div className="purpose-container" id="vissionSection">
                 <VisionMission />
             </div>
-
-            <SupportersCarousel psychologists={psychologists} />
+            <div id="supportersSection">
+                <SupportersCarousel psychologists={psychologists} />
+            </div>
             <Footer />
         </div>
     );
