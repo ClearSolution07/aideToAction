@@ -23,7 +23,7 @@ h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: left;
   transition: box-shadow 0.3s ease;
-      height: fit-content;
+  height: fit-content;
 }
 
 .card:hover {
@@ -72,4 +72,24 @@ h1 {
 
 .button-icon {
   font-size: 1.2rem;
+}
+
+.back-button {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  background-color: transparent;
+  border: none;
+  color: #ff8971;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+}
+
+.chat-window-container {
+  position: relative;
+  padding: 2rem;
 }
