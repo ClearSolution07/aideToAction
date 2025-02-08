@@ -31,40 +31,39 @@ const ProtectedRoute = ({ element }) => {
 };
 
 // Layout with Protected Content
-const ProtectedLayout = () => (
-    <Layout>
-        <Outlet />
-    </Layout>
-);
+// const ProtectedLayout = () => (
+//     <Layout>
+//         <Outlet />
+//     </Layout>
+// );
 
 const router = createBrowserRouter([
-
     // Protected Routes (Dashboard)
-   {
-        path: "/admin",
-        element: <Admin />,
-    },
-    {
-        path: "/dashboard",
-        element: <ProtectedRoute element={<Dashboard />} />,
-    },
+    //    {
+    //         path: "/admin",
+    //         element: <Admin />,
+    //     },
+    // {
+    //     path: "/dashboard",
+    //     element: <ProtectedRoute element={<Dashboard />} />,
+    // },
     // Protected Routes (Others)
-    {
-        path: "/saarthi",
-        element: <ProtectedRoute element={<ProtectedLayout />} />,
-        children: [
-            { path: "member", element: <Members /> },
-            { path: "psychologist", element: <Psychologists /> },
-            { path: "profile", element: <Profile /> },
-            { path: "chat", element: <ChatWindow /> },
-        ],
-    },
+    // {
+    //     path: "/dashboard",
+    //     element: <ProtectedRoute element={<ProtectedLayout />} />,
+    //     children: [
+    //         { path: "member", element: <Members /> },
+    //         { path: "psychologist", element: <Psychologists /> },
+    //         { path: "profile", element: <Profile /> },
+    //         { path: "chat", element: <ChatWindow /> },
+    //     ],
+    // },
     // Unprotected Routes
     // { path: "/", element: <LogIn /> },
     { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
+    { path: "/dashboard", element: <ProtectedRoute element={<Layout />} /> },
     { path: "*", element: <Error /> },
-
 ]);
 
 function App() {
