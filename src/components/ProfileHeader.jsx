@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
+import {
+    ArrowRightOutlined,
+    MessageOutlined,
+    HeartOutlined,
+    ToolOutlined,
+    BookOutlined,
+    NotificationOutlined,
+} from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
 import "./css/ProfileHeader.css";
 import useUser from "../hooks/useUser";
@@ -15,6 +22,7 @@ const ProfileHeader = () => {
         image: "",
         description: "",
     });
+
     useEffect(() => {
         const fetchProfile = async () => {
             try {
@@ -40,7 +48,7 @@ const ProfileHeader = () => {
                         <div className="profile-image-container">
                             <img
                                 src={profileData.image || profilePhoto}
-                                alt="Kevin Gilbert"
+                                alt={profileData.fullName}
                                 className="profile-image"
                             />
                         </div>
@@ -53,6 +61,7 @@ const ProfileHeader = () => {
                             </p>
                         </div>
                     </div>
+
                     <Button
                         type="text"
                         className="member-button"
@@ -61,6 +70,25 @@ const ProfileHeader = () => {
                         }}
                     >
                         Chat Now <ArrowRightOutlined className="arrow-icon" />
+                    </Button>
+                </div>
+
+                {/* Navigation Section */}
+                <div className="navigation-section">
+                    <Button type="text" className="nav-link">
+                        <MessageOutlined /> Let's Connect!
+                    </Button>
+                    <Button type="text" className="nav-link">
+                        <HeartOutlined /> Wellbeing Matters!
+                    </Button>
+                    <Button type="text" className="nav-link">
+                        <ToolOutlined /> Utility Corner
+                    </Button>
+                    <Button type="text" className="nav-link">
+                        <BookOutlined /> Study, Learn and Earn!
+                    </Button>
+                    <Button type="text" className="nav-link">
+                        <NotificationOutlined /> Announcements!
                     </Button>
                 </div>
             </div>
