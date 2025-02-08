@@ -47,12 +47,11 @@ const Psychologists = () => {
 
     return (
         <div className="members-container">
-            <ProfileHeader />
 
             <div className="members-content">
                 <div className="members-header">
                     <h1 className="members-title">
-                        Psychologists ({PsychologistsData.length})
+                        Available Psychologists ({PsychologistsData.length})
                     </h1>
                     <Input
                         placeholder="Search Psychologists..."

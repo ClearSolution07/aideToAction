@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import { StarFilled, SendOutlined } from "@ant-design/icons";
+import { SendOutlined } from "@ant-design/icons";
 import { memberProfile } from "../utils/imageUtils";
 import "./css/memberCard.css";
 
@@ -7,9 +7,7 @@ const  MemberCard = ({
     user_id,
     full_name,
     user_role,
-    user_rating,
-    rated_students,
-    imageUrl,
+  
     navigateToChat,
 }) => {
     return (
