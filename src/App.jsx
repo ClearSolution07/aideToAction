@@ -63,6 +63,8 @@ const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
     { path: "/dashboard", element: <ProtectedRoute element={<Layout />} /> },
+    { path: "/profile", element: <ProtectedRoute element={<Profile />} /> },
+
     { path: "*", element: <Error /> },
 ]);
 

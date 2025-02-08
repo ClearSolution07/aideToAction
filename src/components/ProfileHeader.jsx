@@ -117,10 +117,11 @@ const ProfileHeader = ({ onNavChange }) => {
                         type="text"
                         className="member-button"
                         onClick={() => {
-                            navigate("/saarthi/chat");
+                            navigate("/profile");
                         }}
                     >
-                        Chat Now <ArrowRightOutlined className="arrow-icon" />
+                        View Profile{" "}
+                        <ArrowRightOutlined className="arrow-icon" />
                     </Button>
                 </div>
 

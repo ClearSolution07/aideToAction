@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout, Typography, Avatar, Dropdown, Button, message } from "antd";
-import { DownOutlined, MenuOutlined } from "@ant-design/icons";
+import { DownOutlined, HomeOutlined } from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
+import logo from "../assets/mainLogo.svg";
 import useUser from "../hooks/useUser";
 
 const { Title } = Typography;
 const { Header } = Layout;
 
-const HeaderComponent = ({ onMenuClick, isMobileWidth, headerText }) => {
+const HeaderComponent = ({ headerText }) => {
     const navigate = useNavigate();
     const { getUserDetail } = useUser();
     const [profileData, setProfileData] = useState({
@@ -79,27 +80,18 @@ const HeaderComponent = ({ onMenuClick, isMobileWidth, headerText }) => {
                     flex: 1,
                 }}
             >
-                {isMobileWidth && (
-                    <Button
-                        type="text"
-                        icon={<MenuOutlined />}
-                        onClick={onMenuClick}
-                        style={{
-                            fontSize: "18px",
-                            padding: 0,
-                        }}
-                    />
-                )}
-                {!isMobileWidth && (
-                    <Title
-                        level={2}
-                        style={{
-                            paddingLeft: 16,
-                        }}
-                    >
-                        {headerText || "Dashboard"}
-                    </Title>
-                )}
+                {/* Fixed Icon Placement */}
+                <img src={logo } style={{height:"60px"}}/>
+
+                <Title
+                    level={2}
+                    style={{
+                        paddingLeft: 16,
+                        margin: 0,
+                    }}
+                >
+                    {headerText || "Dashboard"}
+                </Title>
             </div>
 
             <div
@@ -126,7 +118,7 @@ const HeaderComponent = ({ onMenuClick, isMobileWidth, headerText }) => {
                             src={profileData.userPicture || profilePhoto}
                             alt="User Avatar"
                         />
-                        {!isMobileWidth && profileData.fullName && (
+                        {profileData.fullName && (
                             <>
                                 <span style={{ color: "#333" }}>
                                     {profileData.fullName}

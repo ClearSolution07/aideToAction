@@ -43,7 +43,7 @@ const LayoutPage = () => {
             <HeaderComponent
                 onMenuClick={() => {}}
                 isMobileWidth={true}
-                headerText={"Chat Window"}
+                headerText={"Saarthi"}
             />
             <ProfileHeader onNavChange={setContent} />
             <Content>
