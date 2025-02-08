@@ -1,0 +1,34 @@
+.announces-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #ffffff;
+}
+
+.announces-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.announces-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 2rem;
+    max-width: 80%;
+}
+
+/* Down Arrow Styling */
+.down-arrow {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.down-arrow:hover svg {
+  transform: translateY(4px);
+  transition: transform 0.3s;
+}

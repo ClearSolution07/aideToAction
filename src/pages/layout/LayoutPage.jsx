@@ -8,7 +8,7 @@ import Connect from "./Connect";
 import WellBeing from "./WellBeing";
 import UtilityCorner from "./UtilityCorner";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
-import AnnouncementCard from "../../components/AnnouncementCard";
+import Announce from "./Announce";
 
 const { Content } = Layout;
 
@@ -26,7 +26,7 @@ const LayoutPage = () => {
             case "3":
                 return <StudyLearnAndEarn />;
             case "4":
-                return <AnnouncementCard />;
+                return <Announce />;
             default:
                 return <p>Invalid content selected.</p>;
         }
