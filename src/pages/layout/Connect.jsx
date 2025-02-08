@@ -1,0 +1,45 @@
+import React from "react";
+import logo from "../../img/icon.svg";
+import "./Connect.css";
+import { MessageOutlined, ArrowRightOutlined } from "@ant-design/icons";
+
+const Connect = () => {
+    return (
+        <div className="connect-container">
+            <h1>
+                A safe and supportive space for you to connect, share, and grow!
+            </h1>
+            <p className="subheading">
+                Engage in meaningful conversations, exchange ideas, and explore
+                diverse cultures. This is your community—a place to find
+                support, build friendships, and uplift each other.
+            </p>
+            <div className="card">
+                <img src={logo} alt="icon" className="card-icon" />
+                <div className="card-content">
+                    <p>
+                        <ArrowRightOutlined className="arrow-icon" /> Be
+                        respectful
+                    </p>
+                    <p>
+                        <ArrowRightOutlined className="arrow-icon" /> Forward
+                        only educational, development, or job-related forwards
+                    </p>
+                    <p>
+                        <ArrowRightOutlined className="arrow-icon" /> This space
+                        will be as useful as you make it
+                    </p>
+                    <p>
+                        <ArrowRightOutlined className="arrow-icon" /> Your chats
+                        here are fully protected
+                    </p>
+                </div>
+            </div>
+            <button className="chat-button">
+                <MessageOutlined className="button-icon" /> Chat Now
+            </button>
+        </div>
+    );
+};
+
+export default Connect;
