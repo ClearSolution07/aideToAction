@@ -178,7 +178,7 @@ const MembershipForm = () => {
 
     return (
         <div>
-            <HeaderComponent />
+            <HeaderComponent headerText={"Membership Form" } />
 
             <div className="regContainer">
                 <div className="membershipContainer">
