@@ -21,13 +21,13 @@
     margin-bottom: 2rem;
 }
 .state-filter {
-  text-align: center;
+  text-align: end;
   margin-bottom: 1.5rem;
 }
 
 .state-select {
   width: 100%;
-  max-width: 300px;
+  max-width: 130px;
 }
 
 .ant-select-selector {

@@ -74,20 +74,20 @@ h1 {
   font-size: 1.2rem;
 }
 
+
 .back-button {
-  position: absolute;
-  top: 0.5rem;
-  left: 1rem;
-  background-color: transparent;
-  border: none;
-  color: #ff8971;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  
+    background: none;
+    border: none;
+    color: #ff8971;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+
+
 
 .chat-window-container {
   position: relative;

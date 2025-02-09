@@ -6,14 +6,10 @@ import {
     setMessages,
     addMessage,
 } from "../../redux/slices/chatSlice";
-import { Button } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import "./chat.css";
-import SideBar from "../../components/SideBar";
 import Layout from "antd/es/layout/layout";
-import profile from "../../assets/profile.jpg";
 import send from "../../assets/Vector.png";
 import chat from "../../assets/chatImage.png";
 import PencilLine from "../../assets/PencilLine.png";

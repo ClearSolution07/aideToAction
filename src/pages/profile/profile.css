@@ -7,7 +7,7 @@
 
 .profile-edit-container {
     display: flex;
-    margin-top: 140px;
+    /* margin-top: 140px; */
     justify-content: center;
     align-items: center;
 }

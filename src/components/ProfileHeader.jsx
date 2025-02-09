@@ -117,7 +117,7 @@ const ProfileHeader = ({ onNavChange }) => {
                         type="text"
                         className="member-button"
                         onClick={() => {
-                            navigate("/profile");
+                            navigate("profile");
                         }}
                     >
                         View Profile{" "}

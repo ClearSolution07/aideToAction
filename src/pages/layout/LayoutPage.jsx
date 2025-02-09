@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Layout from "antd/es/layout/layout";
 import HeaderComponent from "../../components/HeaderComponent";
 import Footer from "../../components/FooterComponent";
@@ -9,12 +10,11 @@ import WellBeing from "./WellBeing";
 import UtilityCorner from "./UtilityCorner";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
 import Announce from "./Announce";
+import Profile from "../profile/Profile";
 
 const { Content } = Layout;
 
-const LayoutPage = () => {
-    const [content, setContent] = useState("0");
-
+const DashboardContent = ({ content, setContent }) => {
     const renderContent = () => {
         switch (content) {
             case "0":
@@ -33,6 +33,28 @@ const LayoutPage = () => {
     };
 
     return (
+        <>
+            <ProfileHeader onNavChange={setContent} />
+            <Content>
+                <div className="dynamic-content-card">{renderContent()}</div>
+            </Content>
+        </>
+    );
+};
+
+const ProfileContent = () => (
+    <Content>
+        <Profile />
+    </Content>
+);
+
+const LayoutPage = () => {
+    const [content, setContent] = useState("0");
+    const location = useLocation();
+
+    const isDashboardPage = location.pathname === "/dashboard";
+
+    return (
         <Layout
             style={{
                 marginLeft: 0,
@@ -45,10 +67,11 @@ const LayoutPage = () => {
                 isMobileWidth={true}
                 headerText={"Saarthi"}
             />
-            <ProfileHeader onNavChange={setContent} />
-            <Content>
-                <div className="dynamic-content-card">{renderContent()}</div>
-            </Content>
+            {isDashboardPage ? (
+                <DashboardContent content={content} setContent={setContent} />
+            ) : (
+                <ProfileContent />
+            )}
             <Footer isAuthenticated={true} />
         </Layout>
     );
