@@ -17,14 +17,11 @@ const HeaderComponent = ({ headerText }) => {
     const [profileData, setProfileData] = useState({
         fullName: null,
         userPicture: null,
+        isAdmin: false,
     });
 
-    const isLoggedIn = !!(
-        localStorage.getItem("authToken") || sessionStorage.getItem("authToken")
-    );
-
     useEffect(() => {
-        if (isLoggedIn) {
+        if (location.pathname !== "/register") {
             const fetchProfile = async () => {
                 try {
                     const response = await getUserDetail();
@@ -32,6 +29,7 @@ const HeaderComponent = ({ headerText }) => {
                         setProfileData({
                             fullName: response.data[0].full_name || null,
                             userPicture: response.data[0].user_picture || null,
+                            isAdmin: response.data[0].is_admin || false,
                         });
                     }
                 } catch (err) {
@@ -40,11 +38,14 @@ const HeaderComponent = ({ headerText }) => {
             };
             fetchProfile();
         }
-    }, [isLoggedIn]);
+    }, [location.pathname]);
 
     const handleMenuClick = ({ key }) => {
         if (key === "profile") {
             navigate("/dashboard/profile");
+        }
+        if (key === "admin") {
+            navigate("/dashboard/admin");
         } else if (key === "logout") {
             localStorage.removeItem("authToken");
             sessionStorage.removeItem("authToken");
@@ -58,13 +59,14 @@ const HeaderComponent = ({ headerText }) => {
             key: "profile",
             label: "Profile",
         },
+        ...(profileData.isAdmin ? [{ key: "admin", label: "Admin" }] : []),
         {
             key: "logout",
             label: "Logout",
         },
     ];
 
-    const hideProfileIcon = location.pathname === "/register" || !isLoggedIn;
+    const hideProfileIcon = location.pathname === "/register";
 
     return (
         <Header

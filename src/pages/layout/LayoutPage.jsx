@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Layout from "antd/es/layout/layout";
 import HeaderComponent from "../../components/HeaderComponent";
 import Footer from "../../components/FooterComponent";
@@ -10,7 +10,6 @@ import WellBeing from "./WellBeing";
 import UtilityCorner from "./UtilityCorner";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
 import Announce from "./Announce";
-import Profile from "../profile/Profile";
 
 const { Content } = Layout;
 
@@ -44,7 +43,7 @@ const DashboardContent = ({ content, setContent }) => {
 
 const ProfileContent = () => (
     <Content>
-        <Profile />
+        <Outlet />
     </Content>
 );
 
