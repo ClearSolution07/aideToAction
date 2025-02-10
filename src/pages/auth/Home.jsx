@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./home.css";
 import { Modal } from "antd";
 import logo from "../../assets/mainLogo.svg";
-import rightImage from "../../assets/homeRightImage.png";
 import commitmentData from "../../components/jsons/commitmentData.json";
-import psychologists from "../../components/jsons/psychologists.json";
+import homeCarouselData from "../../components/jsons/homeCarouselData.json";
+import supporters from "../../components/jsons/supporters.json";
 import LogIn from "./LogIn";
 import { useNavigate } from "react-router-dom";
 import SupportersCarousel from "../../components/SupportersCarousel";
@@ -112,7 +112,7 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="right-side">
-                    <HomeCarousel psychologists={psychologists} />
+                    <HomeCarousel homeCarouselData={homeCarouselData} />
                 </div>
             </div>
 
@@ -233,7 +233,7 @@ const Home = () => {
                 <VisionMission />
             </div>
             <div id="supportersSection">
-                <SupportersCarousel psychologists={psychologists} />
+                <SupportersCarousel supporters={supporters} />
             </div>
             <Footer />
         </div>

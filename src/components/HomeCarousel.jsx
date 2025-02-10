@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./css/homeCarousel.css";
 
-const HomeCarousel = ({ psychologists }) => {
+const HomeCarousel = ({ homeCarouselData }) => {
+    const psychologists = homeCarouselData;
     const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const HomeCarousel = ({ psychologists }) => {
                                     alt={psychologist.name}
                                     className="carousel-image"
                                 />
-                                <div className="carousel-dots-overlay">
+                                {/* <div className="carousel-dots-overlay">
                                     {psychologists.map((_, dotIndex) => (
                                         <button
                                             key={dotIndex}
@@ -49,7 +50,7 @@ const HomeCarousel = ({ psychologists }) => {
                                             }
                                         />
                                     ))}
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

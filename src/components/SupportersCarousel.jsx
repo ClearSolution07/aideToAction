@@ -3,7 +3,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../pages/auth/home.css";
 
-const SupportersCarousel = ({ psychologists }) => {
+const SupportersCarousel = ({ supporters }) => {
+    const psychologists = supporters;
     const headingRef = useRef(null);
 
     const responsive = {
@@ -36,10 +37,7 @@ const SupportersCarousel = ({ psychologists }) => {
     }, []);
 
     return (
-        <div
-            className="psychologist-background-container"
-           
-        >
+        <div className="psychologist-background-container">
             <div className="psychologist-container">
                 <h2 className="heading hidden" ref={headingRef}>
                     Our Supporters and Donors
