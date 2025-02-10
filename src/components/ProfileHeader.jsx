@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "antd";
 import {
     ArrowRightOutlined,
-    MessageOutlined,
     HeartOutlined,
     ToolOutlined,
     BookOutlined,
@@ -12,6 +11,11 @@ import { profilePhoto } from "../utils/imageUtils";
 import "./css/ProfileHeader.css";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import announcementLogo from "../img/l2.png";
+import connectLogo from "../img/l3.jpeg";
+import learnLogo from "../img/l5.png";
+import utilityLogo from "../img/l8.png";
+import wellBeingLogo from "../img/l9.png";
 
 const ProfileHeader = ({ onNavChange }) => {
     const navigate = useNavigate();
@@ -29,27 +33,52 @@ const ProfileHeader = ({ onNavChange }) => {
 
     const navItems = [
         {
-            icon: <MessageOutlined />,
+            icon: (
+                <img
+                    src={connectLogo}
+                    style={{ height: "30px", borderRadius: "50%" }}
+                />
+            ),
             label: "Let's Connect!",
             content: "0",
         },
         {
-            icon: <HeartOutlined />,
+            icon: (
+                <img
+                    src={wellBeingLogo}
+                    style={{ height: "30px", borderRadius: "50%" }}
+                />
+            ),
             label: "Wellbeing Matters!",
             content: "1",
         },
         {
-            icon: <ToolOutlined />,
+            icon: (
+                <img
+                    src={utilityLogo}
+                    style={{ height: "30px", borderRadius: "50%" }}
+                />
+            ),
             label: "Utility Corner",
             content: "2",
         },
         {
-            icon: <BookOutlined />,
+            icon: (
+                <img
+                    src={learnLogo}
+                    style={{ height: "30px", borderRadius: "50%" }}
+                />
+            ),
             label: "Study, Learn and Earn!",
             content: "3",
         },
         {
-            icon: <NotificationOutlined />,
+            icon: (
+                <img
+                    src={announcementLogo}
+                    style={{ height: "30px", borderRadius: "50%" }}
+                />
+            ),
             label: "Announcements!",
             content: "4",
         },

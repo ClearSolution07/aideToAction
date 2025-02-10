@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../img/icon.svg";
+import logo from "../../img/l3.jpeg";
 import "./Connect.css";
 import {
     MessageOutlined,
@@ -29,6 +29,7 @@ const Connect = () => {
                         other.
                     </p>
                     <div className="card">
+                       
                         <img src={logo} alt="icon" className="card-icon" />
                         <div className="card-content">
                             <p>

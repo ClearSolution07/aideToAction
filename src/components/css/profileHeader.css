@@ -1,3 +1,4 @@
+/* Profile Header Section */
 .profile-header {
     background-color: #ffeee8;
     padding-top: 4rem;
@@ -16,6 +17,7 @@
     flex-direction: column;
 }
 
+/* Profile Card Section */
 .profile-card {
     background-color: white;
     border-top-right-radius: 0.75rem;
@@ -59,24 +61,34 @@
     margin: 0;
 }
 
+/* Member Button Styling */
 .member-button {
     background-color: #ffeee8;
     color: #fd4518;
     height: 40px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid #fd4518; /* Added border for better visibility */
     padding: 0 1.5rem;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
 }
 
 .member-button:hover {
     background-color: #f3d7cd;
     color: #ff69b4;
-    border: none;
+    border-color: #ff69b4;
 }
 
 .arrow-icon {
     margin-left: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.member-button:hover .arrow-icon {
+    color: #ff69b4;
 }
 
 /* Navigation Section */
@@ -129,6 +141,7 @@
     width: 0;
 }
 
+/* Responsive Adjustments */
 @media (min-width: 768px) {
     .profile-card {
         padding: 3rem;
