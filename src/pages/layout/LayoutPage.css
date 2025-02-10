@@ -1,13 +1,17 @@
 .dynamic-content-card {
-  background-color: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 90rem;
-  width: 100%;
-  border: 1px solid #f7dad3;
-  margin: 14rem auto;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 90rem;
+    width: 100%;
+    border: 1px solid #f7dad3;
+    margin: 12rem auto;
+}
+.ant-layout-content,
+.css-dev-only-do-not-override-h4oblz {
+    background-color: white !important;
 }

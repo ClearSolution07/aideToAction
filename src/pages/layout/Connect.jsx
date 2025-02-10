@@ -53,6 +53,17 @@ const Connect = () => {
                     <button className="chat-button" onClick={handleChatClick}>
                         <MessageOutlined className="button-icon" /> Chat Now
                     </button>
+
+                    <p className="disclaimer">
+                        <strong>*Disclaimer*</strong> Saarthi - AICL is not
+                        responsible for your decision to share personal or any
+                        other information on this platform. You may or may not
+                        choose to share personal details or phone numbers or
+                        connect with any other user on any external
+                        app/platform/in-person. Saarthi is not responsible or
+                        accountable for whom you choose to meet or share details
+                        or your mutual interactions with other users.
+                    </p>
                 </>
             ) : (
                 <div className="chat-window-container">

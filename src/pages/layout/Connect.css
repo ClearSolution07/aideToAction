@@ -87,6 +87,16 @@ h1 {
 }
 
 
+.disclaimer {
+    margin-top: 2rem;
+    background-color: #fff4e5;
+    padding: 12px;
+    border: 1px solid #ffa940;
+    border-radius: 8px;
+    color: #ad4e00;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
 
 
 .chat-window-container {
