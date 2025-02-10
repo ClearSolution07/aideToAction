@@ -1,0 +1,108 @@
+/* Container Styling */
+.utility-corner-content {
+    padding: 2rem;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+/* Title and Subtitle */
+.utility-corner-content .utility-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.utility-corner-content .utility-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+.state-filter {
+  text-align: end;
+  margin-bottom: 1.5rem;
+}
+
+.state-select {
+  width: 100%;
+  max-width: 130px;
+}
+
+.ant-select-selector {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px !important;
+  padding: 0.4rem 1rem !important;
+}
+
+.ant-select-arrow {
+  right: 12px;
+}
+/* Ant Design Collapse Styling */
+.utility-corner-content .ant-collapse {
+    background: white;
+    border: none;
+}
+
+.utility-corner-content .ant-collapse-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    width: 100%;
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.utility-corner-content .ant-collapse-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #FFEFE7; /* Custom hover background color */
+}
+
+.utility-corner-content .ant-collapse-header {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #333;
+}
+
+.utility-corner-content .ant-collapse-header:hover {
+    background-color: #fdf2e9;
+}
+
+.utility-corner-content .ant-collapse-header .ant-collapse-arrow {
+    right: 16px !important;
+}
+
+.utility-corner-content .ant-collapse-content {
+    background: #f9f9f9;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.utility-corner-content .ant-collapse-content ul {
+    padding-left: 1.2rem;
+    list-style: disc;
+}
+
+.utility-corner-content .ant-collapse-content li {
+    padding: 0.5rem 0;
+    color: #555;
+}
+
+.utility-corner-content :where(.ant-collapse) .ant-collapse-item:last-child {
+    border-bottom: 1px solid #ddd !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 600px) {
+    .utility-corner-content .utility-title {
+        font-size: 1.6rem;
+    }
+
+    .utility-corner-content .ant-select-selector {
+        padding: 0.3rem 0.8rem !important;
+    }
+}

@@ -6,35 +6,25 @@ import {
     setMessages,
     addMessage,
 } from "../../redux/slices/chatSlice";
-import { Button } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import "./chat.css";
-import SideBar from "../../components/SideBar";
-import Layout from "antd/es/layout/layout";
-import profile from "../../assets/profile.jpg";
 import send from "../../assets/Vector.png";
 import chat from "../../assets/chatImage.png";
 import PencilLine from "../../assets/PencilLine.png";
 import useUser from "../../hooks/useUser";
 import useChat from "../../hooks/useChat";
-import { useNavigate } from "react-router-dom";
-
-const { Content } = Layout;
 
 const socket = io("https://unicefprojectbackend.onrender.com/", {
     transports: ["websocket"],
 });
 
-const ChatWindow = () => {
-    const navigate = useNavigate();
+const ChatWindow = ({ member: memberProp }) => {
     const messagesFromRedux = useSelector((state) => state.chat.messages || []);
     const dispatch = useDispatch();
     const { getUserDetail, getAllUser } = useUser();
     const { fetchChatHistory, sendMessage, loading, error } = useChat();
 
-    const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
     const [userList, setUserList] = useState([]);
     const [userStatus, setUserStatus] = useState({});
@@ -50,7 +40,8 @@ const ChatWindow = () => {
     const [chatOpened, setChatOpened] = useState(false);
 
     const location = useLocation();
-    const member = location.state?.member || location.state?.psychologist;
+    const member =
+        memberProp || location.state?.member || location.state?.psychologist;
 
     const getRelativeTime = (timestamp) => {
         const time = new Date(timestamp);
@@ -286,14 +277,15 @@ const ChatWindow = () => {
         }
     }, [member]);
 
-    const messagesEndRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [showScrollToBottom, setShowScrollToBottom] = useState(false);
-    const [isUserScrolling, setIsUserScrolling] = useState(false);
 
     const scrollToBottom = () => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        if (messagesContainerRef.current) {
+            messagesContainerRef.current.scrollTo({
+                top: messagesContainerRef.current.scrollHeight,
+                behavior: "smooth",
+            });
         }
     };
 
@@ -307,14 +299,7 @@ const ChatWindow = () => {
         } else {
             setShowScrollToBottom(true);
         }
-        setIsUserScrolling(scrollTop < scrollHeight - clientHeight - threshold);
     };
-
-    useEffect(() => {
-        if (!isUserScrolling && showScrollToBottom) {
-            scrollToBottom();
-        }
-    }, [showScrollToBottom, isUserScrolling]);
 
     useEffect(() => {
         const container = messagesContainerRef.current;
@@ -336,362 +321,260 @@ const ChatWindow = () => {
 
     useEffect(() => {
         scrollToBottom();
-    }, [handleSendMessage]);
+    }, [messagesFromRedux]);
 
     return (
-        <Layout>
-            <SideBar
-                visible={sidebarVisible}
-                tabletVisible={false}
-                onClose={() => setSidebarVisible(false)}
-                isMobileWidth={true}
-            />
-            <Layout
-                style={{
-                    marginLeft: 0,
-                    transition: "margin-left 0.3s ease",
-                    minHeight: "100vh",
-                }}
-            >
-                <Content>
-                    <div className="main-container">
-                        <div className="user-info-button-container">
-                            <div className="user-info-container">
-                                <img
-                                    src={currentUserProfileImage || profile}
-                                    alt="User"
-                                    className="user-image"
-                                />
-                                <div className="user-details-container">
-                                    <div className="user-name">
-                                        {currentUserName || "User Name"}
-                                    </div>
-                                    <div className="user-des">
-                                        {currentUserDes || "Description"}
-                                    </div>
-                                </div>
-                            </div>
-                            <Button
-                                type="text"
-                                className="member-button"
-                                onClick={() => {
-                                    navigate("/saarthi/profile");
-                                }}
-                            >
-                                Go to Profile{" "}
-                                <ArrowRightOutlined className="arrow-icon" />
-                            </Button>
-                        </div>
-                        <div className="chat-container">
-                            <div className="sidebar">
-                                <div className="sidebar-header">Message</div>
-                                <div className="search-container">
-                                    <div className="search-wrapper">
-                                        <Search className="search-icon" />
-                                        <input
-                                            type="text"
-                                            placeholder="Search"
-                                            className="search-input"
-                                            value={searchInput}
-                                            onChange={(e) =>
-                                                setSearchInput(e.target.value)
-                                            }
-                                        />
-                                    </div>
-                                </div>
+        <div className="chat-container">
+            <div className="sidebar">
+                <div className="sidebar-header">Message</div>
+                <div className="search-container">
+                    <div className="search-wrapper">
+                        <Search className="search-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            className="search-input"
+                            value={searchInput}
+                            onChange={(e) => setSearchInput(e.target.value)}
+                        />
+                    </div>
+                </div>
 
-                                <div className="chat-list">
-                                    {filteredUsers.map((user) => (
-                                        <div
-                                            key={user.user_id}
-                                            className={`chat-list-item ${
-                                                userStatus[user.user_id] ===
-                                                "online"
-                                                    ? "online"
-                                                    : "offline"
-                                            }`}
-                                            onClick={() => selectChat(user)}
-                                            style={{
-                                                backgroundColor:
-                                                    receiverId === user.user_id
-                                                        ? "#FFDDD1"
-                                                        : "transparent",
-                                            }}
-                                        >
-                                            <div className="avatar">
-                                                {user.user_picture ? (
-                                                    <img
-                                                        src={user.user_picture}
-                                                        alt="User"
-                                                        className="avatar"
-                                                    />
-                                                ) : null}
+                <div className="chat-list">
+                    {filteredUsers.map((user) => (
+                        <div
+                            key={user.user_id}
+                            className={`chat-list-item ${
+                                userStatus[user.user_id] === "online"
+                                    ? "online"
+                                    : "offline"
+                            }`}
+                            onClick={() => selectChat(user)}
+                            style={{
+                                backgroundColor:
+                                    receiverId === user.user_id
+                                        ? "#FFDDD1"
+                                        : "transparent",
+                            }}
+                        >
+                            <div className="avatar">
+                                {user.user_picture ? (
+                                    <img
+                                        src={user.user_picture}
+                                        alt="User"
+                                        className="avatar"
+                                    />
+                                ) : null}
 
-                                                <div
-                                                    className={`status-indicator ${
-                                                        userStatus[
-                                                            user.user_id
-                                                        ] === "online"
-                                                            ? "online"
-                                                            : "offline"
-                                                    }`}
-                                                ></div>
-                                            </div>
-                                            <div className="chat-info">
-                                                <div className="chat-name-container">
-                                                    <div className="chat-name">
-                                                        {user.full_name}
-                                                    </div>
-                                                    <div className="chat-time">
-                                                        {getRelativeTime(
-                                                            user.timestamp
-                                                        )}
-                                                    </div>
-                                                </div>
-                                                <div className="chat-preview">
-                                                    {latestMessages[
-                                                        user.user_id
-                                                    ] || user.content}
-                                                    {unseenMessages[
-                                                        user.user_id
-                                                    ] > 0 && (
-                                                        <span className="unseen-count">
-                                                            {
-                                                                unseenMessages[
-                                                                    user.user_id
-                                                                ]
-                                                            }
-                                                        </span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="main-chat">
-                                {/* Display the chat header only if a user is selected */}
-                                {receiverId && (
-                                    <div className="chat-header">
-                                        <div className="header-user-info">
-                                            <div className="avatar">
-                                                {(() => {
-                                                    const user =
-                                                        filteredUsers.find(
-                                                            (user) =>
-                                                                user.user_id ===
-                                                                receiverId
-                                                        );
-                                                    return user?.user_picture ? (
-                                                        <img
-                                                            src={
-                                                                user.user_picture
-                                                            }
-                                                            className="user-picture"
-                                                            alt="User"
-                                                        />
-                                                    ) : null;
-                                                })()}
-                                            </div>
-
-                                            <div className="user-details">
-                                                <div className="user-name">
-                                                    {receiverName ||
-                                                        "Select a Chat"}
-                                                </div>
-                                                <div className="user-status">
-                                                    {userStatus[receiverId] ===
-                                                    "online"
-                                                        ? "Active Now"
-                                                        : ""}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
                                 <div
-                                    className="messages-container"
-                                    ref={messagesContainerRef}
-                                >
-                                    <div className="mess">
-                                        {loading ? (
-                                            <p className="loading-messages">
-                                                <span className="message-text">
-                                                    Loading messages
-                                                </span>
-                                                <span className="dots">
-                                                    ...
-                                                </span>
-                                            </p>
-                                        ) : error ? (
-                                            <p>Error: {error}</p>
-                                        ) : (
-                                            <div
-                                                className={`messages-area ${
-                                                    chatOpened
-                                                        ? "white-bg"
-                                                        : "black-bg"
-                                                }`}
-                                            >
-                                                {Array.isArray(
-                                                    messagesFromRedux
-                                                ) &&
-                                                chatOpened &&
-                                                messagesFromRedux.length > 0 ? (
-                                                    [...messagesFromRedux]
-                                                        .sort(
-                                                            (a, b) =>
-                                                                new Date(
-                                                                    a.timestamp
-                                                                ) -
-                                                                new Date(
-                                                                    b.timestamp
-                                                                )
-                                                        )
-                                                        .map((msg) => {
-                                                            const messageUser =
-                                                                filteredUsers.find(
-                                                                    (user) =>
-                                                                        user.user_id ===
-                                                                        msg.sender_id
-                                                                );
-                                                            return (
-                                                                <div
-                                                                    key={
-                                                                        msg.message_id
-                                                                    }
-                                                                    className={`message ${
-                                                                        msg.sender_id ===
-                                                                        senderId
-                                                                            ? "sent"
-                                                                            : "received"
-                                                                    }`}
-                                                                >
-                                                                    {msg.sender_id !==
-                                                                        senderId &&
-                                                                    messageUser &&
-                                                                    messageUser.user_picture ? (
-                                                                        <div className="avatar small">
-                                                                            <img
-                                                                                src={
-                                                                                    messageUser.user_picture
-                                                                                }
-                                                                                className="user-picture-inside-chat"
-                                                                                alt="User Avatar"
-                                                                            />
-                                                                        </div>
-                                                                    ) : null}
-
-                                                                    <div className="message-content">
-                                                                        <p>
-                                                                            {
-                                                                                msg.content
-                                                                            }
-                                                                        </p>
-                                                                        <span className="timestamp">
-                                                                            {ChatWindowformatTimestamp(
-                                                                                msg.timestamp
-                                                                            )}
-                                                                        </span>
-                                                                    </div>
-                                                                    {/* Dummy element for scrolling */}
-                                                                    <div
-                                                                        ref={
-                                                                            messagesEndRef
-                                                                        }
-                                                                    ></div>
-                                                                </div>
-                                                            );
-                                                        })
-                                                ) : (
-                                                    <div className="no-messages">
-                                                        <img
-                                                            src={chat}
-                                                            alt="User"
-                                                            className="chat-image"
-                                                        />
-                                                        <p className="no-messages-title">
-                                                            No messages yet
-                                                        </p>
-                                                        <p className="no-messages-subtitle">
-                                                            Start a
-                                                            conversation!
-                                                        </p>
-                                                        <p className="no-messages-encrypted">
-                                                            Your personal
-                                                            messages are
-                                                            end-to-end encrypted
-                                                        </p>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
+                                    className={`status-indicator ${
+                                        userStatus[user.user_id] === "online"
+                                            ? "online"
+                                            : "offline"
+                                    }`}
+                                ></div>
+                            </div>
+                            <div className="chat-info">
+                                <div className="chat-name-container">
+                                    <div className="chat-name">
+                                        {user.full_name}
+                                    </div>
+                                    <div className="chat-time">
+                                        {getRelativeTime(user.timestamp)}
                                     </div>
                                 </div>
+                                <div className="chat-preview">
+                                    {latestMessages[user.user_id] ||
+                                        user.content}
+                                    {unseenMessages[user.user_id] > 0 && (
+                                        <span className="unseen-count">
+                                            {unseenMessages[user.user_id]}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-                                {showScrollToBottom && (
-                                    <div className="scroll-to-bottom-container">
-                                        <button
-                                            className="scroll-to-bottom"
-                                            onClick={scrollToBottom}
-                                        >
-                                            ⬇
-                                        </button>
-                                    </div>
-                                )}
+            <div className="main-chat">
+                {/* Display the chat header only if a user is selected */}
+                {receiverId && (
+                    <div className="chat-header">
+                        <div className="header-user-info">
+                            <div className="avatar">
+                                {(() => {
+                                    const user = filteredUsers.find(
+                                        (user) => user.user_id === receiverId
+                                    );
+                                    return user?.user_picture ? (
+                                        <img
+                                            src={user.user_picture}
+                                            className="user-picture"
+                                            alt="User"
+                                        />
+                                    ) : null;
+                                })()}
+                            </div>
 
-                                {/* Display the input box only if a user is selected */}
-                                {receiverId && (
-                                    <div className="input-box">
-                                        <div className="input-container">
-                                            <div className="input-wrapper">
-                                                <img
-                                                    src={PencilLine}
-                                                    alt=""
-                                                    className="pencilLine-image"
-                                                />
-                                                <input
-                                                    type="text"
-                                                    value={newMessage}
-                                                    onChange={(e) =>
-                                                        setNewMessage(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === "Enter") {
-                                                            handleSendMessage(
-                                                                e
-                                                            );
-                                                        }
-                                                    }}
-                                                    placeholder="Type a message"
-                                                    className="message-input"
-                                                />
-                                            </div>
-                                            <div
-                                                className="input-actions"
-                                                onClick={handleSendMessage}
-                                            >
-                                                <div className="sent-text">
-                                                    Send
-                                                </div>
-                                                <img
-                                                    src={send}
-                                                    alt="Send"
-                                                    className="send-icon"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
+                            <div className="user-details">
+                                <div className="user-name">
+                                    {receiverName || "Select a Chat"}
+                                </div>
+                                <div className="user-status">
+                                    {userStatus[receiverId] === "online"
+                                        ? "Active Now"
+                                        : ""}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </Content>
-            </Layout>
-        </Layout>
+                )}
+                <div className="messages-container" ref={messagesContainerRef}>
+                    <div className="mess">
+                        {loading ? (
+                            <p className="loading-messages">
+                                <span className="message-text">
+                                    Loading messages
+                                </span>
+                                <span className="dots">...</span>
+                            </p>
+                        ) : error ? (
+                            <p>Error: {error}</p>
+                        ) : (
+                            <div
+                                className={`messages-area ${
+                                    chatOpened ? "white-bg" : "black-bg"
+                                }`}
+                            >
+                                {Array.isArray(messagesFromRedux) &&
+                                chatOpened &&
+                                messagesFromRedux.length > 0 ? (
+                                    [...messagesFromRedux]
+                                        .sort(
+                                            (a, b) =>
+                                                new Date(a.timestamp) -
+                                                new Date(b.timestamp)
+                                        )
+                                        .map((msg) => {
+                                            const messageUser =
+                                                filteredUsers.find(
+                                                    (user) =>
+                                                        user.user_id ===
+                                                        msg.sender_id
+                                                );
+                                            return (
+                                                <div
+                                                    key={msg.message_id}
+                                                    className={`message ${
+                                                        msg.sender_id ===
+                                                        senderId
+                                                            ? "sent"
+                                                            : "received"
+                                                    }`}
+                                                >
+                                                    {msg.sender_id !==
+                                                        senderId &&
+                                                    messageUser &&
+                                                    messageUser.user_picture ? (
+                                                        <div className="avatar small">
+                                                            <img
+                                                                src={
+                                                                    messageUser.user_picture
+                                                                }
+                                                                className="user-picture-inside-chat"
+                                                                alt="User Avatar"
+                                                            />
+                                                        </div>
+                                                    ) : null}
+                                                    <div className="message-content">
+                                                        <p>{msg.content}</p>
+                                                        <span className="timestamp">
+                                                            {ChatWindowformatTimestamp(
+                                                                msg.timestamp
+                                                            )}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })
+                                ) : (
+                                    <div className="no-messages">
+                                        <img
+                                            src={chat}
+                                            alt="User"
+                                            className="chat-image"
+                                        />
+                                        <p className="no-messages-title">
+                                            No messages yet
+                                        </p>
+                                        <p className="no-messages-subtitle">
+                                            Start a conversation!
+                                        </p>
+                                        <p className="no-messages-encrypted">
+                                            Your personal messages are
+                                            end-to-end encrypted
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {showScrollToBottom && messagesFromRedux.length > 0 && (
+                    <div className="scroll-to-bottom-container">
+                        <button
+                            className="scroll-to-bottom"
+                            onClick={scrollToBottom}
+                        >
+                            ⬇
+                        </button>
+                    </div>
+                )}
+
+                {/* Display the input box only if a user is selected */}
+                {receiverId && (
+                    <div className="input-box">
+                        <div className="input-container">
+                            <div className="input-wrapper">
+                                <img
+                                    src={PencilLine}
+                                    alt=""
+                                    className="pencilLine-image"
+                                />
+                                <input
+                                    type="text"
+                                    value={newMessage}
+                                    onChange={(e) =>
+                                        setNewMessage(e.target.value)
+                                    }
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            handleSendMessage(e);
+                                        }
+                                    }}
+                                    placeholder="Type a message"
+                                    className="message-input"
+                                />
+                            </div>
+                            <div
+                                className="input-actions"
+                                onClick={handleSendMessage}
+                            >
+                                <div className="sent-text">Send</div>
+                                <img
+                                    src={send}
+                                    alt="Send"
+                                    className="send-icon"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
 

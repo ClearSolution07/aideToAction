@@ -21,7 +21,6 @@ import Admin from "./pages/Admin/Admin";
 // Function to check authentication status
 const isAuthenticated = () => {
     const token = localStorage.getItem("authToken");
-    console.log("the token", token);
     return !!token;
 };
 
@@ -30,41 +29,19 @@ const ProtectedRoute = ({ element }) => {
     return isAuthenticated() ? element : <Navigate to="/" />;
 };
 
-// Layout with Protected Content
-const ProtectedLayout = () => (
-    <Layout>
-        <Outlet />
-    </Layout>
-);
-
 const router = createBrowserRouter([
-
-    // Protected Routes (Dashboard)
-   {
-        path: "/admin",
-        element: <Admin />,
-    },
-    {
-        path: "/dashboard",
-        element: <ProtectedRoute element={<Dashboard />} />,
-    },
-    // Protected Routes (Others)
-    {
-        path: "/saarthi",
-        element: <ProtectedRoute element={<ProtectedLayout />} />,
-        children: [
-            { path: "member", element: <Members /> },
-            { path: "psychologist", element: <Psychologists /> },
-            { path: "profile", element: <Profile /> },
-            { path: "chat", element: <ChatWindow /> },
-        ],
-    },
-    // Unprotected Routes
-    // { path: "/", element: <LogIn /> },
     { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
+    { path: "/admin", element: <Admin /> },
+    {
+        path: "/dashboard",
+        element: <ProtectedRoute element={<Layout />} />,
+        children: [
+            { path: "", element: <Dashboard /> },
+            { path: "profile", element: <Profile /> },
+        ],
+    },
     { path: "*", element: <Error /> },
-
 ]);
 
 function App() {

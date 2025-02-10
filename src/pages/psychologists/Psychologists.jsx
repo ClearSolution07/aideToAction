@@ -2,25 +2,23 @@ import { useState, useEffect } from "react";
 import { Input, Row, Col, Pagination, Spin, Alert } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import MemberCard from "../../components/MemberCard";
-import ProfileHeader from "../../components/ProfileHeader";
-import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import "./psychologists.css";
+import ChatWindow from "../chat/chat";
 
 const Psychologists = () => {
-    const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 20;
 
     const { getPsychologists, loading, error } = useUser();
-    const [PsychologistsData, setPsychologistsData] = useState([]);
+    const [psychologistsData, setPsychologistsData] = useState([]);
+    const [selectedPsychologist, setSelectedPsychologist] = useState(null);
 
     useEffect(() => {
         const fetchPsychologists = async () => {
             try {
                 const response = await getPsychologists();
-                console.log("psychologist data", response);
                 setPsychologistsData(response.data || []);
             } catch (err) {
                 console.error("Error fetching members:", err.message);
@@ -30,7 +28,7 @@ const Psychologists = () => {
         fetchPsychologists();
     }, []);
 
-    const filteredMembers = PsychologistsData.filter((psychologist) => {
+    const filteredMembers = psychologistsData.filter((psychologist) => {
         const query = searchQuery.toLowerCase();
         const fullName = psychologist.full_name || "";
         return fullName.toLowerCase().includes(query);
@@ -41,18 +39,26 @@ const Psychologists = () => {
         currentPage * pageSize
     );
 
-    const navigateToChat = (psychologist) => {
-        navigate("/saarthi/chat", { state: { psychologist } });
+    const handleChatNavigation = (psychologist) => {
+        setSelectedPsychologist(psychologist);
     };
 
-    return (
+    return selectedPsychologist ? (
+        <div className="chat-view">
+            <ChatWindow member={selectedPsychologist} />
+            <button
+                onClick={() => setSelectedPsychologist(null)}
+                className="back-button"
+            >
+                Back to Psychologists
+            </button>
+        </div>
+    ) : (
         <div className="members-container">
-            <ProfileHeader />
-
             <div className="members-content">
                 <div className="members-header">
                     <h1 className="members-title">
-                        Psychologists ({PsychologistsData.length})
+                        Available Psychologists ({psychologistsData.length})
                     </h1>
                     <Input
                         placeholder="Search Psychologists..."
@@ -89,7 +95,7 @@ const Psychologists = () => {
                                 >
                                     <MemberCard
                                         {...psychologist}
-                                        navigateToChat={navigateToChat}
+                                        navigateToChat={handleChatNavigation}
                                     />
                                 </Col>
                             ))}

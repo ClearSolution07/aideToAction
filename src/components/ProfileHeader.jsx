@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
+import {
+    ArrowRightOutlined,
+    MessageOutlined,
+    HeartOutlined,
+    ToolOutlined,
+    BookOutlined,
+    NotificationOutlined,
+} from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
 import "./css/ProfileHeader.css";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ onNavChange }) => {
     const navigate = useNavigate();
     const { getUserDetail } = useUser();
 
@@ -15,6 +22,39 @@ const ProfileHeader = () => {
         image: "",
         description: "",
     });
+
+    const [activeNav, setActiveNav] = useState(0);
+    const navRefs = useRef([]);
+    const sliderRef = useRef(null);
+
+    const navItems = [
+        {
+            icon: <MessageOutlined />,
+            label: "Let's Connect!",
+            content: "0",
+        },
+        {
+            icon: <HeartOutlined />,
+            label: "Wellbeing Matters!",
+            content: "1",
+        },
+        {
+            icon: <ToolOutlined />,
+            label: "Utility Corner",
+            content: "2",
+        },
+        {
+            icon: <BookOutlined />,
+            label: "Study, Learn and Earn!",
+            content: "3",
+        },
+        {
+            icon: <NotificationOutlined />,
+            label: "Announcements!",
+            content: "4",
+        },
+    ];
+
     useEffect(() => {
         const fetchProfile = async () => {
             try {
@@ -25,12 +65,31 @@ const ProfileHeader = () => {
                     description: response.data[0].description || "",
                 });
             } catch (err) {
-                message.error("Failed to fetch profile data.", err);
+                console.error("Failed to fetch profile data.", err);
             }
         };
 
         fetchProfile();
     }, []);
+
+    useEffect(() => {
+        if (navRefs.current[activeNav]) {
+            const initialNavItem = navRefs.current[activeNav];
+            sliderRef.current.style.width = `${initialNavItem.offsetWidth}px`;
+            sliderRef.current.style.left = `${initialNavItem.offsetLeft}px`;
+        }
+    }, [activeNav]);
+
+    const handleNavClick = (index) => {
+        setActiveNav(index);
+        onNavChange(navItems[index].content);
+
+        if (navRefs.current[index]) {
+            const navItem = navRefs.current[index];
+            sliderRef.current.style.width = `${navItem.offsetWidth}px`;
+            sliderRef.current.style.left = `${navItem.offsetLeft}px`;
+        }
+    };
 
     return (
         <div className="profile-header">
@@ -40,7 +99,7 @@ const ProfileHeader = () => {
                         <div className="profile-image-container">
                             <img
                                 src={profileData.image || profilePhoto}
-                                alt="Kevin Gilbert"
+                                alt={profileData.fullName}
                                 className="profile-image"
                             />
                         </div>
@@ -53,15 +112,35 @@ const ProfileHeader = () => {
                             </p>
                         </div>
                     </div>
+
                     <Button
                         type="text"
                         className="member-button"
                         onClick={() => {
-                            navigate("/saarthi/chat");
+                            navigate("profile");
                         }}
                     >
-                        Chat Now <ArrowRightOutlined className="arrow-icon" />
+                        View Profile{" "}
+                        <ArrowRightOutlined className="arrow-icon" />
                     </Button>
+                </div>
+
+                {/* Navigation Section */}
+                <div className="navigation-section">
+                    {navItems.map((item, index) => (
+                        <Button
+                            key={index}
+                            type="text"
+                            ref={(el) => (navRefs.current[index] = el)}
+                            className={`nav-link ${
+                                activeNav === index ? "active" : ""
+                            }`}
+                            onClick={() => handleNavClick(index)}
+                        >
+                            {item.icon} {item.label}
+                        </Button>
+                    ))}
+                    <div className="slider" ref={sliderRef} />
                 </div>
             </div>
         </div>

@@ -1,0 +1,95 @@
+.connect-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.subheading {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 1rem 0 2rem 0;
+}
+
+.card {
+  border: 1px solid #f7dad3;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  max-width: 50rem;
+  margin: 2rem auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: box-shadow 0.3s ease;
+  height: fit-content;
+}
+
+.card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  display: block;
+  margin: 0 auto 1.5rem;
+  width: 3rem;
+  height: 3rem;
+}
+
+.card-content p {
+  font-size: 1rem;
+  margin: 1rem 0;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arrow-icon {
+  color: #ff6f5c;
+  font-size: 1rem;
+}
+
+.chat-button {
+  background-color: #ff6f5c;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.chat-button:hover {
+  background-color: #ff8971;
+}
+
+.button-icon {
+  font-size: 1.2rem;
+}
+
+
+.back-button {
+    background: none;
+    border: none;
+    color: #ff8971;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+
+.chat-window-container {
+  position: relative;
+  padding: 2rem;
+}

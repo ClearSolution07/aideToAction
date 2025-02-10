@@ -8,32 +8,94 @@ import {
 } from "@ant-design/icons";
 import "./css/footer.css";
 
-const Footer = () => {
-    // Function to scroll to a particular section
+const Footer = ({ isAuthenticated }) => {
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
-            // Using scrollIntoView for smooth scrolling
             const offsetPosition = element.offsetTop - 120;
-
-            // Smooth scroll to the adjusted position
             window.scrollTo({
                 top: offsetPosition,
-                behavior: "smooth", // Smooth scroll behavior
+                behavior: "smooth",
             });
         }
     };
 
     return (
-        <footer className="footer">
+        <footer className={`footer ${isAuthenticated ? "center-layout" : ""}`}>
             <div className="container">
                 <div className="footer-grid">
-                    {/* Brand Section */}
-                    <div className="brand-section">
+                    <div
+                        className={`brand-section ${
+                            isAuthenticated ? "center-content" : ""
+                        }`}
+                    >
                         <div className="brand-header">
                             <img src={logo} alt="Logo" className="brand-logo" />
                             <h2 className="brand-name">Saarthi</h2>
                         </div>
+                    </div>
+
+                    {!isAuthenticated && (
+                        <div className="footer-section">
+                            <h3 className="footer-heading">QUICK LINKS</h3>
+                            <ul className="footer-links">
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="footer-link"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection("aboutSection");
+                                        }}
+                                    >
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="footer-link"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection(
+                                                "commitmentSection"
+                                            );
+                                        }}
+                                    >
+                                        Commitments
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="footer-link"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection("vissionSection");
+                                        }}
+                                    >
+                                        Vision and Mission
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="footer-link"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection(
+                                                "supportersSection"
+                                            );
+                                        }}
+                                    >
+                                        Our Supporters
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
+
+                    <div>
                         <div className="social-icons">
                             <a
                                 href="https://www.facebook.com/profile.php?id=61562857873961"
@@ -69,94 +131,22 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-
-                    {/* Quick Links */}
-                    <div className="footer-section">
-                        <h3 className="footer-heading">QUICK LINKS</h3>
-                        <ul className="footer-links">
-                            <li>
-                                <a
-                                    href="#"
-                                    className="footer-link"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        scrollToSection("aboutSection");
-                                    }}
-                                >
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="footer-link"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        scrollToSection("commitmentSection");
-                                    }}
-                                >
-                                    Commitments
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="footer-link"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        scrollToSection("vissionSection");
-                                    }}
-                                >
-                                    Vision and Mission
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="footer-link"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        scrollToSection("supportersSection");
-                                    }}
-                                >
-                                    Our Supporters
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Support */}
-                    <div className="footer-section">
-                        <h3 className="footer-heading">SUPPORT</h3>
-                        <ul className="footer-links">
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Help Center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    FAQs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Terms & Condition
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
 
-                {/* Footer Bottom */}
                 <div className="footer-bottom">
                     <p className="copyright">
-                        © 2025 - Saarthi. All rights reserved
+                        © 2025 - Saarthi. Designed by{" "}
+                        <strong>
+                            <a
+                                href="https://clearsolutionss.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="designer-link"
+                            >
+                                Clear Solutions
+                            </a>
+                        </strong>
+                        . All rights reserved.
                     </p>
                 </div>
             </div>

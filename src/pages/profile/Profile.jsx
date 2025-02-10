@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Input, Button, Form, Upload, message } from "antd";
 import ImgCrop from "antd-img-crop";
+import { useNavigate } from "react-router-dom";
+import { LeftOutlined } from "@ant-design/icons";
 import useUser from "../../hooks/useUser";
-import ProfileHeader from "../../components/ProfileHeader";
 import "./profile.css";
 
 const Profile = () => {
+    const navigate = useNavigate();
     const { getUserDetail, handleUserDataSubmit, handleUpdatePassword } =
         useUser();
     const [fileList, setFileList] = useState([]);
@@ -38,14 +40,12 @@ const Profile = () => {
                     },
                 ]);
             } catch (err) {
-                message.error("Failed to fetch profile data.", err);
+                message.error(`Failed to fetch profile data: ${err.message}`);
             }
         };
 
         fetchProfile();
     }, []);
-
-    console.log("File List:", fileList);
 
     const handleProfileChange = (field) => (e) => {
         setProfileData({ ...profileData, [field]: e.target.value });
@@ -86,17 +86,14 @@ const Profile = () => {
             };
 
             const data = await handleUserDataSubmit(payload);
-
             message.success("Profile updated successfully!");
-
             setProfileData({
                 fullName: data.full_name,
                 phoneNumber: data.phone_number,
                 description: data.description,
             });
         } catch (err) {
-            console.error("Error updating profile:", err);
-            message.error("Failed to update profile. Please try again.");
+            message.error(`Error updating profile: ${err.message}`);
         } finally {
             setLoading(false);
         }
@@ -114,16 +111,19 @@ const Profile = () => {
             message.error("Passwords do not match.");
             return;
         }
+
         const payload = {
             user_id: userId,
             password: passwords.newPassword,
         };
+
         setLoading(true);
+
         try {
             await handleUpdatePassword(payload);
             message.success("Password updated successfully!");
         } catch (err) {
-            message.error("Failed to update password.", err);
+            message.error(`Failed to update password: ${err.message}`);
         } finally {
             setLoading(false);
         }
@@ -150,23 +150,27 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            <ProfileHeader />
+            <Button
+                type="default"
+                onClick={() => navigate("/dashboard")}
+                style={{
+                    marginBottom: "16px",
+                    background: "#f0f2f5",
+                    border: "none",
+                    fontWeight: "bold",
+                }}
+                icon={<LeftOutlined />}
+            >
+                Back
+            </Button>
+
             <div className="profile-edit-container">
                 <div className="section-container">
                     <div className="profile-edit-left">
                         <Form layout="vertical" className="left-container">
                             <div className="image-data-container">
                                 <div className="user-data-container">
-                                    <Form.Item
-                                        label="Full Name"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    "Full Name is required.",
-                                            },
-                                        ]}
-                                    >
+                                    <Form.Item label="Full Name">
                                         <Input
                                             value={profileData.fullName}
                                             onChange={handleProfileChange(
@@ -175,21 +179,7 @@ const Profile = () => {
                                             placeholder="Enter your full name"
                                         />
                                     </Form.Item>
-                                    <Form.Item
-                                        label="Phone Number"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    "Phone Number is required.",
-                                            },
-                                            {
-                                                pattern: /^\d{10}$/,
-                                                message:
-                                                    "Phone Number must be 10 digits.",
-                                            },
-                                        ]}
-                                    >
+                                    <Form.Item label="Phone Number">
                                         <Input
                                             value={profileData.phoneNumber}
                                             onChange={handleProfileChange(
@@ -198,16 +188,7 @@ const Profile = () => {
                                             placeholder="Enter your phone number"
                                         />
                                     </Form.Item>
-                                    <Form.Item
-                                        label="Profile Description"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    "Profile Description is required.",
-                                            },
-                                        ]}
-                                    >
+                                    <Form.Item label="Profile Description">
                                         <Input.TextArea
                                             value={profileData.description}
                                             onChange={handleProfileChange(

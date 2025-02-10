@@ -9,31 +9,9 @@
     background: linear-gradient(to bottom, #ffeee8 24%, white 20%);
     flex-direction: column;
 }
-.user-info-container {
-    display: flex;
-    width: 72%;
-    background: white;
-    align-items: center;
-}
-.user-info-button-container {
-    margin-top: 100px;
-    display: flex;
-    width: 72%;
-    height: 200px;
-    background: white;
-    padding: 24px;
-    align-items: center;
-    justify-content: space-between;
-}
-.user-image {
-    width: 100px;
-    margin-right: 16px;
-    border-radius: 50%;
-}
-.user-details-container {
-    display: flex;
-    flex-direction: column;
-}
+
+
+
 .messages-content {
     height: 100%;
 }
@@ -59,9 +37,10 @@
 
 .chat-container {
     display: flex;
-    width: 72%;
+    width: 100%;
     height: 100%;
     background-color: white;
+    margin-top: 3rem;
 }
 
 /* Sidebar Styles */
@@ -290,7 +269,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 240px;
 }
 
 .header-user-info {
