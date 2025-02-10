@@ -33,7 +33,6 @@ const AnnouncementCard = ({ visible }) => {
         const fetchAnnouncements = async () => {
             try {
                 const response = await getContent();
-                console.log("Announcement data:", response);
                 setAnnouncementData(response.data || []);
             } catch (err) {
                 console.error("Error fetching announcements:", err.message);

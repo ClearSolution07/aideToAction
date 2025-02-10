@@ -9,28 +9,22 @@ import {
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import "./chat.css";
-import Layout from "antd/es/layout/layout";
 import send from "../../assets/Vector.png";
 import chat from "../../assets/chatImage.png";
 import PencilLine from "../../assets/PencilLine.png";
 import useUser from "../../hooks/useUser";
 import useChat from "../../hooks/useChat";
-import { useNavigate } from "react-router-dom";
-
-const { Content } = Layout;
 
 const socket = io("https://unicefprojectbackend.onrender.com/", {
     transports: ["websocket"],
 });
 
-const ChatWindow = () => {
-    const navigate = useNavigate();
+const ChatWindow = ({ member: memberProp }) => {
     const messagesFromRedux = useSelector((state) => state.chat.messages || []);
     const dispatch = useDispatch();
     const { getUserDetail, getAllUser } = useUser();
     const { fetchChatHistory, sendMessage, loading, error } = useChat();
 
-    const [sidebarVisible, setSidebarVisible] = useState(false);
     const [newMessage, setNewMessage] = useState("");
     const [userList, setUserList] = useState([]);
     const [userStatus, setUserStatus] = useState({});
@@ -46,7 +40,8 @@ const ChatWindow = () => {
     const [chatOpened, setChatOpened] = useState(false);
 
     const location = useLocation();
-    const member = location.state?.member || location.state?.psychologist;
+    const member =
+        memberProp || location.state?.member || location.state?.psychologist;
 
     const getRelativeTime = (timestamp) => {
         const time = new Date(timestamp);
@@ -282,14 +277,15 @@ const ChatWindow = () => {
         }
     }, [member]);
 
-    const messagesEndRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [showScrollToBottom, setShowScrollToBottom] = useState(false);
-    const [isUserScrolling, setIsUserScrolling] = useState(false);
 
     const scrollToBottom = () => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        if (messagesContainerRef.current) {
+            messagesContainerRef.current.scrollTo({
+                top: messagesContainerRef.current.scrollHeight,
+                behavior: "smooth",
+            });
         }
     };
 
@@ -303,14 +299,7 @@ const ChatWindow = () => {
         } else {
             setShowScrollToBottom(true);
         }
-        setIsUserScrolling(scrollTop < scrollHeight - clientHeight - threshold);
     };
-
-    useEffect(() => {
-        if (!isUserScrolling && showScrollToBottom) {
-            scrollToBottom();
-        }
-    }, [showScrollToBottom, isUserScrolling]);
 
     useEffect(() => {
         const container = messagesContainerRef.current;
@@ -332,7 +321,7 @@ const ChatWindow = () => {
 
     useEffect(() => {
         scrollToBottom();
-    }, [handleSendMessage]);
+    }, [messagesFromRedux]);
 
     return (
         <div className="chat-container">
@@ -499,7 +488,6 @@ const ChatWindow = () => {
                                                             />
                                                         </div>
                                                     ) : null}
-
                                                     <div className="message-content">
                                                         <p>{msg.content}</p>
                                                         <span className="timestamp">
@@ -508,10 +496,6 @@ const ChatWindow = () => {
                                                             )}
                                                         </span>
                                                     </div>
-                                                    {/* Dummy element for scrolling */}
-                                                    <div
-                                                        ref={messagesEndRef}
-                                                    ></div>
                                                 </div>
                                             );
                                         })
@@ -539,7 +523,7 @@ const ChatWindow = () => {
                     </div>
                 </div>
 
-                {showScrollToBottom && (
+                {showScrollToBottom && messagesFromRedux.length > 0 && (
                     <div className="scroll-to-bottom-container">
                         <button
                             className="scroll-to-bottom"

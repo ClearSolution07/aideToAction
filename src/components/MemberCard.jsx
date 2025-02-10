@@ -3,11 +3,11 @@ import { SendOutlined } from "@ant-design/icons";
 import { memberProfile } from "../utils/imageUtils";
 import "./css/memberCard.css";
 
-const  MemberCard = ({
+const MemberCard = ({
     user_id,
     full_name,
     user_role,
-  
+
     navigateToChat,
 }) => {
     return (
@@ -22,7 +22,9 @@ const  MemberCard = ({
                 </div>
                 <div className="member-info">
                     <h3 className="member-name">{full_name}</h3>
-                    <p className="member-user_role">{user_role?user_role:"no role"}</p>
+                    <p className="member-user_role">
+                        {user_role ? user_role : "no role"}
+                    </p>
                 </div>
                 <Button
                     type="text"

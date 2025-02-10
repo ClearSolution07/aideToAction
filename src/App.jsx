@@ -21,7 +21,6 @@ import Admin from "./pages/Admin/Admin";
 // Function to check authentication status
 const isAuthenticated = () => {
     const token = localStorage.getItem("authToken");
-    console.log("the token", token);
     return !!token;
 };
 
@@ -33,6 +32,7 @@ const ProtectedRoute = ({ element }) => {
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
+    { path: "/admin", element: <Admin /> },
     {
         path: "/dashboard",
         element: <ProtectedRoute element={<Layout />} />,

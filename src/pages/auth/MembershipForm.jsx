@@ -146,10 +146,6 @@ const MembershipForm = () => {
         }
     };
 
-    const onCaptchaChange = (value) => {
-        console.log("Captcha value:", value);
-    };
-
     const educationOptions = [
         "Primary School (प्राथमिक विद्यालय)",
         "Secondary School (माध्यमिक विद्यालय)",

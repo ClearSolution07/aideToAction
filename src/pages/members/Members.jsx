@@ -45,6 +45,7 @@ const Members = () => {
 
     return selectedMember ? (
         <div className="chat-view">
+            {/* Logs the prop */}
             <ChatWindow member={selectedMember} />
             <button
                 onClick={() => setSelectedMember(null)}
