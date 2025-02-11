@@ -1,62 +1,57 @@
-import React, { useState } from "react";
-import { Collapse, Select } from "antd";
+import { useState, useEffect } from "react";
+import { Collapse, Select, Table } from "antd";
 import "./UtilityCorner.css";
+import useDesktop from "../../hooks/useDesktop";
 
 const { Panel } = Collapse;
-
 const { Option } = Select;
-
-const stateList = [
-    "Assam",
-    "Arunachal Pradesh",
-    "Manipur",
-    "Nagaland",
-    "Sikkim",
-    "West Bengal",
-    "Bihar",
-    "Mizoram",
-    "Tripura",
-    "Meghalaya",
-    "Uttar Pradesh",
-];
-
-const stateResources = {
-    Assam: ["Organization A", "Institute B", "Agency C"],
-    "Arunachal Pradesh": ["Support Agency X", "Learning Center Y"],
-    Manipur: ["Employment Group Z"],
-    Nagaland: ["Job Training Hub 1"],
-    Sikkim: ["Educational Aid 3", "Career Coach"],
-    "West Bengal": ["Vocational Center"],
-    Bihar: ["Resource Center B"],
-    Mizoram: ["Housing Help"],
-    Tripura: ["Development Aid"],
-    Meghalaya: ["Training Group"],
-    "Uttar Pradesh": ["Skill Development Agency"],
-};
 
 const StudyLearnAndEarn = () => {
     const [selectedState, setSelectedState] = useState("All");
+    const [stateData, setStateData] = useState({});
+    const { getStateWiseContent } = useDesktop();
 
     const handleStateChange = (value) => {
         setSelectedState(value);
     };
 
+    useEffect(() => {
+        const fetchStateWiseContent = async () => {
+            try {
+                const response = await getStateWiseContent();
+                setStateData(response.data || {}); // Store API response
+            } catch (error) {
+                console.error("Error fetching state-wise content:", error);
+            }
+        };
+
+        fetchStateWiseContent();
+    }, []);
+
     const renderPanels = () => {
+        const states = Object.keys(stateData);
+
         const filteredStates =
             selectedState === "All"
-                ? stateList
-                : stateList.filter((state) => state === selectedState);
+                ? states
+                : states.filter((state) => state === selectedState);
 
-        return filteredStates.map((state) => (
-            <Panel header={state} key={state}>
-                <ul>
-                    {stateResources[state]?.map((resource, index) => (
-                        <li key={index}>{resource}</li>
-                    )) || <li>No resources available.</li>}
-                </ul>
-            </Panel>
-        ));
+        return filteredStates.map((state) => {
+            const { columns, dataSource } = stateData[state];
+
+            return (
+                <Panel header={state} key={state}>
+                    <Table
+                        columns={columns}
+                        dataSource={dataSource}
+                        pagination={{ pageSize: 5 }}
+                        scroll={{ x: "max-content" }}
+                    />
+                </Panel>
+            );
+        });
     };
+
     return (
         <div className="utility-corner-content">
             <h2 className="utility-title">State-wise Resources</h2>
@@ -73,7 +68,7 @@ const StudyLearnAndEarn = () => {
                     className="state-select"
                 >
                     <Option value="All">All States</Option>
-                    {stateList.map((state) => (
+                    {Object.keys(stateData).map((state) => (
                         <Option key={state} value={state}>
                             {state}
                         </Option>

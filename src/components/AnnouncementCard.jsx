@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Card, Typography, DatePicker, Collapse } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import useDesktop from "../hooks/useDesktop";
 import moment from "moment";
 
@@ -11,7 +10,7 @@ const AnnouncementCard = ({ visible }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [announcementData, setAnnouncementData] = useState([]);
 
-    const { getContent, loading, error } = useDesktop();
+    const { getContent } = useDesktop();
 
     const handleDateChange = (date, dateString) => {
         setSelectedDate(date);
@@ -19,7 +18,6 @@ const AnnouncementCard = ({ visible }) => {
 
     const filterByDate = (itemDate) => {
         if (!selectedDate || !selectedDate.isValid()) {
-            // If no valid date is selected, return all (no filtering)
             return true;
         }
 
@@ -47,7 +45,7 @@ const AnnouncementCard = ({ visible }) => {
         .sort(
             (a, b) =>
                 moment(b.date, "DD-MM-YYYY") - moment(a.date, "DD-MM-YYYY")
-        ); // Sort by date descending
+        );
 
     const isPDF = (url) => url.endsWith(".pdf");
 

@@ -23,3 +23,16 @@ export const getDashboardContent = async () => {
         );
     }
 };
+
+export const getStateWiseResource = async () => {
+    try {
+        const response = await apiClient.post(
+            "dashboard/get_statewise_resources"
+        );
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
