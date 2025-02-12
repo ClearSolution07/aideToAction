@@ -19,7 +19,7 @@ const StudyLearnAndEarn = () => {
         const fetchStateWiseContent = async () => {
             try {
                 const response = await getStateWiseContent();
-                setStateData(response.data || {}); // Store API response
+                setStateData(response.data || {});
             } catch (error) {
                 console.error("Error fetching state-wise content:", error);
             }
@@ -37,15 +37,23 @@ const StudyLearnAndEarn = () => {
                 : states.filter((state) => state === selectedState);
 
         return filteredStates.map((state) => {
-            const { columns, dataSource } = stateData[state];
+            let { columns, dataSource } = stateData[state];
+
+            if (columns.length > 0) {
+                columns[0] = { ...columns[0], fixed: "left" };
+            }
 
             return (
                 <Panel header={state} key={state}>
                     <Table
                         columns={columns}
                         dataSource={dataSource}
-                        pagination={{ pageSize: 5 }}
+                        pagination={{
+                            pageSize: 10,
+                            // position: ["bottomCenter"],
+                        }}
                         scroll={{ x: "max-content" }}
+                        style={{ background: "transparent" }}
                     />
                 </Panel>
             );

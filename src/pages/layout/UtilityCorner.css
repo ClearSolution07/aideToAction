@@ -79,7 +79,6 @@
 }
 
 .utility-corner-content .ant-collapse-content {
-    background: #f9f9f9;
     padding: 1rem 1.5rem;
     border-top: 1px solid #ddd;
 }
@@ -90,13 +89,13 @@
 }
 
 .utility-corner-content .ant-collapse-content li {
-    padding: 0.5rem 0;
     color: #555;
 }
 
 .utility-corner-content :where(.ant-collapse) .ant-collapse-item:last-child {
     border-bottom: 1px solid #ddd !important;
 }
+
 
 /* Responsive improvements */
 @media (max-width: 600px) {
