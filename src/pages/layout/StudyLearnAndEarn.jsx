@@ -43,14 +43,36 @@ const StudyLearnAndEarn = () => {
                 columns[0] = { ...columns[0], fixed: "left" };
             }
 
+            const updatedDataSource = dataSource.map((dataItem) => {
+                const updatedItem = { ...dataItem };
+                columns.forEach((col) => {
+                    if (
+                        col.dataIndex &&
+                        updatedItem[col.dataIndex] &&
+                        isLink(updatedItem[col.dataIndex])
+                    ) {
+                        const link = formatLink(updatedItem[col.dataIndex]);
+                        updatedItem[col.dataIndex] = (
+                            <a
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {updatedItem[col.dataIndex]}
+                            </a>
+                        );
+                    }
+                });
+                return updatedItem;
+            });
+
             return (
                 <Panel header={state} key={state}>
                     <Table
                         columns={columns}
-                        dataSource={dataSource}
+                        dataSource={updatedDataSource}
                         pagination={{
                             pageSize: 10,
-                            // position: ["bottomCenter"],
                         }}
                         scroll={{ x: "max-content" }}
                         style={{ background: "transparent" }}
@@ -58,6 +80,36 @@ const StudyLearnAndEarn = () => {
                 </Panel>
             );
         });
+    };
+
+    const isLink = (str) => {
+        const domainExtensions = [
+            ".com",
+            ".in",
+            ".org",
+            ".net",
+            ".gov",
+            ".edu",
+        ];
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return (
+            str.startsWith("https://") ||
+            str.startsWith("http://") ||
+            domainExtensions.some((ext) => str.endsWith(ext)) ||
+            emailRegex.test(str)
+        );
+    };
+
+    const formatLink = (str) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (emailRegex.test(str)) {
+            return `mailto:${str}`;
+        }
+        if (!str.startsWith("http://") && !str.startsWith("https://")) {
+            return `https://${str}`;
+        }
+
+        return str;
     };
 
     return (
