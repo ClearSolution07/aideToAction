@@ -63,8 +63,13 @@ const VisionMission = () => {
             </h2>
 
             <p ref={descriptionRef} className="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Our vision is to create an inclusive and empowering community
+                for careleavers across India, ensuring their holistic
+                development and independence. Our mission is to unite
+                careleavers, advocate for their rights, and provide access to
+                opportunities through collaboration and support networks.
+                Together, we strive to build a future where every careleaver can
+                thrive with dignity and confidence.
             </p>
 
             <div className="cards-container">

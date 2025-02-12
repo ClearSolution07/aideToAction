@@ -84,7 +84,7 @@ const PsychologistCard = () => {
                                     <Text type="secondary">
                                         {item.user_role
                                             ? item.user_role
-                                            : "no role"}
+                                            : ""}
                                     </Text>
                                 }
                             />

@@ -63,27 +63,28 @@ const MembershipForm = () => {
                     ? false
                     : values.is_member_state_network,
             education_status:
-                values.education_status === "Primary School (प्राथमिक विद्यालय)"
+                values.education_status === "Primary School (प्राथमिक स्कूल)"
                     ? "Primary School"
                     : values.education_status ===
                       "Secondary School (माध्यमिक विद्यालय)"
                     ? "Seconday School"
                     : values.education_status === "High School (हाई स्कूल)"
                     ? "High School"
-                    : values.education_status === "Undergraduate (स्नातक)"
+                    : values.education_status === "Undergraduate (अंडरग्रेजुएट)"
                     ? "Undergraduate"
+                    : values.education_status === "Graduate (ग्रेजुएट)"
+                    ? "Graduate"
                     : values.education_status === "Postgraduate (स्नातकोत्तर)"
                     ? "Postgraduate"
-                    : values.education_status ===
-                      "Professional Course (पेशेवर पाठ्यक्रम)"
-                    ? "Professional Course"
                     : "Others",
             employment_status:
-                values.employment_status === "Employed (नियोजित)"
+                values.employment_status === "Employed (कार्यरत)"
                     ? "Employed"
                     : values.employment_status === "Unemployed (बेरोज़गार)"
                     ? "Unemployed"
-                    : values.employment_status === "Self Employed (स्व-नियोजित)"
+                    : values.employment_status === "Self Employed (स्वनियोजित)"
+                    ? "Self Employed"
+                    : values.employment_status === "Student (छात्र)"
                     ? "Self Employed"
                     : "Student",
             strengths: values.strengths,
@@ -147,19 +148,19 @@ const MembershipForm = () => {
     };
 
     const educationOptions = [
-        "Primary School (प्राथमिक विद्यालय)",
+        "Primary School (प्राथमिक स्कूल)",
         "Secondary School (माध्यमिक विद्यालय)",
         "High School (हाई स्कूल)",
-        "Undergraduate (स्नातक)",
+        "Undergraduate (अंडरग्रेजुएट)",
+        "Graduate (रेजुएट)",
         "Postgraduate (स्नातकोत्तर)",
-        "Professional Course (पेशेवर पाठ्यक्रम)",
         "Others (अन्य)",
     ];
 
     const employmentOptions = [
-        "Employed (नियोजित)",
+        "Employed (कार्यरत)",
         "Unemployed (बेरोजगार)",
-        "Self Employed (स्व-नियोजित)",
+        "Self Employed (स्वनियोजित)",
         "Student (छात्र)",
     ];
 
@@ -184,10 +185,8 @@ const MembershipForm = () => {
                             alt="Saarthi Logo"
                             style={{ margin: "0 auto", marginBottom: "16px" }}
                         />
-                        <Title level={2}>
-                            Saarthi : Care Leavers Network: Membership Form
-                        </Title>
-                        <Paragraph>
+                        <Title level={2}>Sign-Up!</Title>
+                        <Paragraph style={{ fontWeight: 700 }}>
                             Welcome to the Saarthi-Association of Indian
                             Careleavers (AICL)!
                         </Paragraph>
@@ -202,43 +201,22 @@ const MembershipForm = () => {
                             youths/care leavers.
                         </Paragraph>
                         <Paragraph>
-                            Please fill out this online form and join us as a
-                            member. If you prefer not to disclose any
-                            information, you may skip the question or even the
-                            membership form altogether. However, we encourage
-                            you to fill out the form and be a part of the
-                            Saarthi-AICL network.
-                        </Paragraph>
-                        <Paragraph>
-                            If you have any questions or concerns about the
-                            Saarthi-AICL membership or the data collection
-                            process, please do not hesitate to contact us @
-                            8700190013.
-                        </Paragraph>
-                        <Paragraph>
                             <strong>Definition</strong>
                         </Paragraph>
                         <Paragraph>
-                            The term Care Leavers/care experienced youth is
-                            being used for those people who have lived at least
-                            three years (or less depending on their personal
-                            circumstances) in any Child Care Institution. Care
-                            Leavers' Network is a formal or informal group of
-                            care leavers at National/State/District level
-                            irrespective of their religion/class/gender/sexual
-                            orientation/physical ability/type of their
-                            institution. The Saarthi-AICL is a nationwide
-                            federation of state networks of care leavers in
-                            India. Its aim is to create a common platform for
-                            care leavers to connect, utilize opportunities of
-                            growth, gain referrals for various platforms of
-                            support, and bring forth your issues at pan India
-                            level. This network has been formed under a project
-                            being implemented in partnership of Aide et Action
-                            and UNICEF.
+                            1. The term Care Leavers/care experienced youth is
+                            being used for those people who are have lived in
+                            any Child Care Institution.
                         </Paragraph>
                         <Paragraph>
-                            <strong>Disclaimer</strong>
+                            2.Care Leavers' Network/association is a formal or
+                            informal group of care leavers' at
+                            National/State/District level irrespective of their
+                            religion/class/gender/sexual orientation/physical
+                            ability/type of their institution.
+                        </Paragraph>
+                        <Paragraph>
+                            <strong>**Disclaimer**</strong>
                         </Paragraph>
                         <Paragraph>
                             Please note, the Saarthi-AICL is not a registered or
@@ -252,63 +230,33 @@ const MembershipForm = () => {
                             network's name.
                         </Paragraph>
                         <Paragraph>
-                            Our purpose is solely to provide a platform for
-                            strengthening and expanding the care leaver
-                            community through membership.
-                        </Paragraph>
-                        <Paragraph>
                             <strong>
                                 (The confidentiality of the information received
                                 will be maintained.)
                             </strong>
                         </Paragraph>
                         <Paragraph>
-                            सारथी-एआईसीएल (Saarthi -AICL) में शामिल होकर, आप
-                            भारत भर में देखभाल अनुभव वाले युवाओं के एक लगातार
-                            बढ़ते और फलते-फूलते समुदाय का हिस्सा बन जाएंगे। यह
-                            समुदाय देखभाल अनुभव वाले युवाओं/देखभाल छोड़ने वालों
-                            का है, उनके लिए और उनके द्वारा।
+                            <strong>Saarthi -AICL में आपका स्वागत है!</strong>
                         </Paragraph>
                         <Paragraph>
-                            कृपया इस ऑनलाइन फॉर्म को भरें और सदस्य के रूप में
-                            हमसे जुड़ें। यदि आप कोई जानकारी प्रकट नहीं करना
-                            चाहते हैं, तो आप प्रश्न को छोड़ सकते हैं या यहां तक
-                            कि सदस्यता फॉर्म को भी छोड़ सकते हैं। हालांकि, हम
-                            आपको फॉर्म भरने और सारथी-एआईसीएल नेटवर्क का हिस्सा
-                            बनने के लिए प्रोत्साहित करते हैं। यदि आपके पास
-                            सारथी-एआईसीएल (Saarthi - AICL) सदस्यता या डेटा
-                            संग्रह प्रक्रिया के बारे में कोई प्रश्न या चिंता है,
-                            तो कृपया हमसे 8700190013 पर संपर्क करने में संकोच न
-                            करें।
+                            Saarthi -AICL में शामिल होकर, आप इस लगातार बढ़ते और
+                            संपन्न समुदाय का हिस्सा बन जाएंगे। यह समुदाय केयर
+                            लीवर्स के लिए, केयर लीवर्स द्वारा एक पहल है।कृपया इस
+                            ऑनलाइन फॉर्म को भरें और सदस्य के रूप में हमसे
+                            जुड़ें।
                         </Paragraph>
                         <Paragraph>
                             <strong>परिभाषा :</strong>
                         </Paragraph>
                         <Paragraph>
-                            देखभाल छोड़ने वाले/देखभाल अनुभव वाले युवा उन लोगों
-                            के लिए उपयोग किया जा रहा है जिन्होंने किसी भी बाल
-                            देखभाल संस्थान में कम से कम तीन साल (या उनकी
-                            व्यक्तिगत परिस्थितियों के आधार पर कम) बिताए हैं।
+                            1. केयर लीवर्स शब्द का इस्तेमाल उन लोगों के लिए किया
+                            जा रहा है जो किसी भी बाल ग्रह में रह चुके हैं।
                         </Paragraph>
                         <Paragraph>
-                            देखभाल छोड़ने वालों का नेटवर्क राष्ट्रीय/राज्य/जिला
-                            स्तर पर देखभाल छोड़ने वालों का एक औपचारिक या
-                            अनौपचारिक समूह है, चाहे उनका धर्म/वर्ग/लिंग/यौन
-                            अभिविन्यास/शारीरिक क्षमता/संस्थान का प्रकार कुछ भी
-                            हो।
-                        </Paragraph>
-                        <Paragraph>
-                            सारथी-एआईसीएल (Saarthi -AICL) भारत में राज्य
-                            नेटवर्कों का एक राष्ट्रीय संघ है। इसका उद्देश्य
-                            देखभाल छोड़ने वालों को जोड़ने, विकास के अवसरों का
-                            उपयोग करने, विभिन्न समर्थन प्लेटफार्मों के लिए
-                            संदर्भ प्राप्त करने और आपके मुद्दों को पैन इंडिया
-                            स्तर पर लाने के लिए एक सामान्य मंच बनाना है।
-                        </Paragraph>
-                        <Paragraph>
-                            यह नेटवर्क एड एट एक्शन (Aide Et Action)और यूनिसेफ
-                            (UNICEF) की साझेदारी में लागू की जा रही एक परियोजना
-                            के तहत बनाया गया है।
+                            2.देखभाल छोड़ने वालों का नेटवर्क /संघ एक औपचारिक या
+                            अनौपचारिक राष्ट्रीय/राज्य/जिला स्तर पर समूह है, चाहे
+                            उनका धर्म/वर्ग/लिंग/शारीरिक क्षमता/संस्थान का प्रकार
+                            कुछ भी हो।
                         </Paragraph>
                         <Paragraph>
                             <strong>अस्वीकरण :</strong>
@@ -316,43 +264,19 @@ const MembershipForm = () => {
                         <Paragraph>कृपया ध्यान दें,</Paragraph>
                         <Paragraph>
                             Saarthi -AICL एक पंजीकृत या लाभकारी नेटवर्क नहीं है।
-                            एड एट एक्शन (Aide Et Action) या यूनिसेफ (UNICEF) पर
-                            कोई वित्तीय, कानूनी या वैधानिक दायित्व नहीं है और न
-                            ही इसके विपरीत। एड एट एक्शन (Aide Et Action) और
-                            यूनिसेफ (UNICEF) किसी भी वित्तीय, कानूनी या वैधानिक
-                            परिणामों के लिए जिम्मेदार नहीं होंगे जो सदस्यों
-                            द्वारा व्यक्तिगत या समूह स्तर पर नेटवर्क के नाम का
-                            उपयोग करके किए गए किसी भी गतिविधि या बयान से उत्पन्न
-                            होते हैं।
-                        </Paragraph>
-                        <Paragraph>
-                            हमारा उद्देश्य केवल सदस्यता के माध्यम से देखभाल
-                            छोड़ने वाले समुदाय को मजबूत और विस्तारित करने के लिए
-                            एक मंच प्रदान करना है
+                            एड ए एक्शन (Aide et Action) या यूनिसेफ (UNICEF) पर
+                            कोई वित्तीय, कानूनी या वैधानिक दायित्व नहीं है । आइड
+                            एंड एक्शन (Aide et Action) और यूनिसेफ (UNICEF)
+                            सदस्यों द्वारा नेटवर्क के नाम का उपयोग करके
+                            व्यक्तिगत या समूह स्तर पर की गई किसी भी गतिविधि या
+                            बयान से उत्पन्न होने वाले किसी भी वित्तीय, कानूनी या
+                            वैधानिक परिणामों के लिए जवाबदेह नहीं हैं और न ही
+                            होंगे।
                         </Paragraph>
                         <Paragraph>
                             <strong>
                                 (आपकी जानकारी की गोपनीयता बनाए रखी जाएगी)
                             </strong>
-                        </Paragraph>
-                        <Paragraph>
-                            <strong>
-                                Please follow NCLN on social medial platforms to
-                                stay updated.😍😍😍
-                            </strong>
-                        </Paragraph>
-                        <Paragraph>
-                            <strong>Instagram</strong> -
-                            https://www.instagram.com/ncln_india?igsh=dnJuOT
-                            JkN2s0NnRv
-                        </Paragraph>
-                        <Paragraph>
-                            <strong>Facebook</strong> -
-                            https://www.facebook.com/profile.php?id=61562857873961&mibextid=ZbWKwL
-                        </Paragraph>
-                        <Paragraph>
-                            <strong>Linkedin</strong> -
-                            https://www.linkedin.com/company/national-care-leavers-network/
                         </Paragraph>
                     </div>
                     <Form
@@ -363,8 +287,31 @@ const MembershipForm = () => {
                     >
                         <div className="form-group">
                             <label className="form-label">
+                                Email: <br /> (ईमेल पता)
+                            </label>
+                            <div className="form-input">
+                                <Form.Item
+                                    name="email_address"
+                                    rules={[
+                                        {
+                                            type: "email",
+                                            message:
+                                                "Please enter a valid email!",
+                                        },
+                                        {
+                                            required: true,
+                                            message: "Please input your email!",
+                                        },
+                                    ]}
+                                >
+                                    <Input placeholder="Enter Email Address" />
+                                </Form.Item>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">
                                 Name (Full name as per document): <br /> पूरा
-                                नाम (दावेज क े अनुसार)
+                                नाम (दस्तावेज के अनुसार)
                             </label>
                             <div className="form-input name-inputs">
                                 <Form.Item
@@ -384,7 +331,7 @@ const MembershipForm = () => {
 
                         <div className="form-group">
                             <label className="form-label">
-                                Age (as per document): <br /> आयु (दावेज क े
+                                Age (as per document): <br /> आयु (दस्तावेज के
                                 अनुसार)
                             </label>
                             <div className="form-input">
@@ -407,7 +354,7 @@ const MembershipForm = () => {
 
                         <div className="form-group">
                             <label className="form-label">
-                                Gender: <br /> (िलंग)
+                                Gender: <br /> (लिंग)
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -442,7 +389,7 @@ const MembershipForm = () => {
 
                         <div className="form-group">
                             <label className="form-label">
-                                Phone Number: <br /> (मोबाइल नंबर)
+                                Phone Number: <br /> (फ़ोन नंबर)
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -456,30 +403,6 @@ const MembershipForm = () => {
                                     ]}
                                 >
                                     <Input placeholder="Enter Contact Number" />
-                                </Form.Item>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">
-                                Email Address: <br /> (ईमेल पता)
-                            </label>
-                            <div className="form-input">
-                                <Form.Item
-                                    name="email_address"
-                                    rules={[
-                                        {
-                                            type: "email",
-                                            message:
-                                                "Please enter a valid email!",
-                                        },
-                                        {
-                                            required: true,
-                                            message: "Please input your email!",
-                                        },
-                                    ]}
-                                >
-                                    <Input placeholder="Enter Email Address" />
                                 </Form.Item>
                             </div>
                         </div>
@@ -505,8 +428,8 @@ const MembershipForm = () => {
 
                         <div className="form-group">
                             <label className="form-label">
-                                Name of the CCI (Children Home): <br /> (बाल गह)
-                                का नाम
+                                Name of the CCI (Children Home): <br /> (बाल
+                                गृह) का नाम
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -525,8 +448,8 @@ const MembershipForm = () => {
 
                         <div className="form-group">
                             <label className="form-label">
-                                Which year you left CCI? <br /> आपन बाल गह िकस
-                                वष छोड़ा?
+                                Which year you left CCI? <br /> आपने बाल गृह किस
+                                वर्ष छोड़ा?
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -558,8 +481,8 @@ const MembershipForm = () => {
                         <div className="form-group">
                             <label className="form-label">
                                 Are you a member of state care leavers network?{" "}
-                                <br /> क्या आप राज्य केयर लीवस नेटवर्क सदस्य
-                                हैं?
+                                <br /> क्या आप राज्य केयर लीवर्स नेटवर्क के
+                                सदस्य हैं?
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -594,7 +517,7 @@ const MembershipForm = () => {
                         <div className="form-group">
                             <label className="form-label">
                                 Education Status (Completed): <br /> शिक्षा
-                                स्थिति (पूरा)
+                                स्थिति (पूर्ण)
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -645,8 +568,8 @@ const MembershipForm = () => {
                         <div className="form-group">
                             <label className="form-label">
                                 Tell us about your three strengths (in three
-                                words only): <br /> अपनी तीन ताकतों के बारे में
-                                बताएं (केवल तीन शब्दों में)
+                                words only): <br /> अपने तीन गुण हमें बताएं
+                                (केवल तीन शब्दों में)
                             </label>
                             <div className="form-input">
                                 <Form.Item
@@ -666,32 +589,6 @@ const MembershipForm = () => {
 
                         <Divider />
 
-                        <div style={{ marginBottom: 24 }}>
-                            <Paragraph strong>
-                                Please follow NCG in our social media platforms
-                                to stay updated:
-                            </Paragraph>
-                            <Space direction="vertical">
-                                <Space>
-                                    <InstagramOutlined />
-                                    <Link
-                                        href="https://www.instagram.com/ncln_india"
-                                        target="_blank"
-                                    >
-                                        @ncln_india
-                                    </Link>
-                                </Space>
-                                <Space>
-                                    <FacebookOutlined />
-                                    <Link
-                                        href="https://www.facebook.com/nclnindia"
-                                        target="_blank"
-                                    >
-                                        /nclnindia
-                                    </Link>
-                                </Space>
-                            </Space>
-                        </div>
 
                         <div style={{ width: "fit-content", margin: "auto" }}>
                             <Form.Item>

@@ -33,6 +33,7 @@
     border-radius: 10px;
     border: none;
     padding: 0 1.5rem;
+	margin-top: 16px;
 }
 
 .member-card-content{
@@ -40,6 +41,9 @@
 	flex-direction: column;
 }
 
+.member-image{
+	width: 100%;
+}
 /* Mobile styles: <768px */
 @media (max-width: 767px) {
     .firstText {

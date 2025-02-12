@@ -23,7 +23,7 @@ const MemberCard = ({
                 <div className="member-info">
                     <h3 className="member-name">{full_name}</h3>
                     <p className="member-user_role">
-                        {user_role ? user_role : "no role"}
+                        {user_role ? user_role : ""}
                     </p>
                 </div>
                 <Button
