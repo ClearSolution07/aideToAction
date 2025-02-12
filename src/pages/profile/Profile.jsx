@@ -120,8 +120,20 @@ const Profile = () => {
         setLoading(true);
 
         try {
-            await handleUpdatePassword(payload);
-            message.success("Password updated successfully!");
+            const response = await handleUpdatePassword(payload);
+
+            if (response.statuscode === 200) {
+                message.success(
+                    "Password updated successfully!"
+                );
+
+                localStorage.removeItem("userId");
+                localStorage.removeItem("accessToken");
+
+                navigate("/");
+            } else {
+                message.error("Failed to update password. Please try again.");
+            }
         } catch (err) {
             message.error(`Failed to update password: ${err.message}`);
         } finally {
