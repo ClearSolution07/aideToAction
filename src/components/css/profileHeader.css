@@ -151,3 +151,9 @@
         max-width: 90rem;
     }
 }
+
+@media (max-width: 900px) {
+    .navigation-section {
+        overflow: auto;
+    }
+}

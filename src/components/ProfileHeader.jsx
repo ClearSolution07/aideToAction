@@ -102,22 +102,29 @@ const ProfileHeader = ({ onNavChange }) => {
     }, []);
 
     useEffect(() => {
-        if (navRefs.current[activeNav]) {
-            const initialNavItem = navRefs.current[activeNav];
-            sliderRef.current.style.width = `${initialNavItem.offsetWidth}px`;
-            sliderRef.current.style.left = `${initialNavItem.offsetLeft}px`;
-        }
+        const adjustSlider = () => {
+            if (navRefs.current[activeNav]) {
+                const navItem = navRefs.current[activeNav];
+                sliderRef.current.style.width = `${navItem.offsetWidth}px`;
+                sliderRef.current.style.left = `${navItem.offsetLeft}px`;
+            }
+        };
+
+        // Add delay using setTimeout to allow for DOM rendering to complete
+        setTimeout(adjustSlider, 100);
+
+        // Listen for window resize events and recalculate the position
+        window.addEventListener("resize", adjustSlider);
+
+        // Clean up the event listener on unmount
+        return () => {
+            window.removeEventListener("resize", adjustSlider);
+        };
     }, [activeNav]);
 
     const handleNavClick = (index) => {
         setActiveNav(index);
         onNavChange(navItems[index].content);
-
-        if (navRefs.current[index]) {
-            const navItem = navRefs.current[index];
-            sliderRef.current.style.width = `${navItem.offsetWidth}px`;
-            sliderRef.current.style.left = `${navItem.offsetLeft}px`;
-        }
     };
 
     return (
