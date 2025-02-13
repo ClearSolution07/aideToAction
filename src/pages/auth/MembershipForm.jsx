@@ -55,6 +55,7 @@ const MembershipForm = () => {
             email_address: values.email_address,
             state: values.state,
             cci_name: values.cci_name,
+            network_name: values.network_name,
             year_left_cci: values.year_left_cci,
             is_member_state_network:
                 values.is_member_state_network === "Yes (हाँ)"
@@ -516,6 +517,18 @@ const MembershipForm = () => {
 
                         <div className="form-group">
                             <label className="form-label">
+                                If yes, Name of the state care leavers network:{" "}
+                                <br /> राज्य केयर लीवर्स नेटवर्क का नाम
+                            </label>
+                            <div className="form-input">
+                                <Form.Item name="network_name">
+                                    <Input placeholder="Enter CCI Name" />
+                                </Form.Item>
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">
                                 Education Status (Completed): <br /> शिक्षा
                                 स्थिति (पूर्ण)
                             </label>
@@ -588,7 +601,6 @@ const MembershipForm = () => {
                         </div>
 
                         <Divider />
-
 
                         <div style={{ width: "fit-content", margin: "auto" }}>
                             <Form.Item>
