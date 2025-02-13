@@ -169,7 +169,7 @@
 }
 
 .right-side {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     justify-content: end;
     align-items: center;

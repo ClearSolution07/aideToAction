@@ -36,21 +36,6 @@ const HomeCarousel = ({ homeCarouselData }) => {
                                     alt={psychologist.name}
                                     className="carousel-image"
                                 />
-                                {/* <div className="carousel-dots-overlay">
-                                    {psychologists.map((_, dotIndex) => (
-                                        <button
-                                            key={dotIndex}
-                                            className={`carousel-dot ${
-                                                dotIndex === currentSlide
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            onClick={() =>
-                                                setCurrentSlide(dotIndex)
-                                            }
-                                        />
-                                    ))}
-                                </div> */}
                             </div>
                         </div>
                     </div>
