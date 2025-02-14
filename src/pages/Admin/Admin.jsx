@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Row, Col, Segmented, ConfigProvider } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Layout, Row, Col, Segmented, ConfigProvider, Button } from "antd";
 import {
     UserOutlined,
     UsergroupAddOutlined,
     NotificationOutlined,
     CloudUploadOutlined,
+    LeftOutlined,
 } from "@ant-design/icons";
 
 import AddPsychologist from "./AddPsychologist";
@@ -17,6 +19,8 @@ import "./admin.css";
 const { Content } = Layout;
 
 const Admin = () => {
+    const navigate = useNavigate();
+
     const [isMobileWidth, setIsMobileWidth] = useState(false);
     const [isTabletWidth, setIsTabletWidth] = useState(false);
     const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -153,6 +157,19 @@ const Admin = () => {
                                 )}
                             </Col>
                         </Row>
+                        <Button
+                            type="primary"
+                            onClick={() => navigate(-1)}
+                            style={{
+                                marginBottom: "16px",
+                                border: "none",
+                                fontWeight: "bold",
+                                width: "fit-content",
+                            }}
+                            icon={<LeftOutlined />}
+                        >
+                            Back
+                        </Button>
                     </Content>
                 </Layout>
             </ConfigProvider>

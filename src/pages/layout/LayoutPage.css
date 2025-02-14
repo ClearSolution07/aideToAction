@@ -11,3 +11,7 @@
     border: 1px solid #f7dad3;
     margin: 12rem auto;
 }
+
+.ant-layout-content {
+    background-color: white;
+}

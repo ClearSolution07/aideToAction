@@ -123,9 +123,7 @@ const Profile = () => {
             const response = await handleUpdatePassword(payload);
 
             if (response.statuscode === 200) {
-                message.success(
-                    "Password updated successfully!"
-                );
+                message.success("Password updated successfully!");
 
                 localStorage.removeItem("userId");
                 localStorage.removeItem("accessToken");
@@ -162,20 +160,6 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            <Button
-                type="default"
-                onClick={() => navigate("/dashboard")}
-                style={{
-                    marginBottom: "16px",
-                    background: "#f0f2f5",
-                    border: "none",
-                    fontWeight: "bold",
-                }}
-                icon={<LeftOutlined />}
-            >
-                Back
-            </Button>
-
             <div className="profile-edit-container">
                 <div className="section-container">
                     <div className="profile-edit-left">
@@ -277,6 +261,18 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            <Button
+                type="primary"
+                onClick={() => navigate(-1)}
+                style={{
+                    marginBottom: "16px",
+                    border: "none",
+                    fontWeight: "bold",
+                }}
+                icon={<LeftOutlined />}
+            >
+                Back
+            </Button>
         </div>
     );
 };

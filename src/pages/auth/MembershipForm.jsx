@@ -10,13 +10,11 @@ import {
     message,
     Modal,
 } from "antd";
-import { InstagramOutlined, FacebookOutlined } from "@ant-design/icons";
 import { logoImage } from "../../utils/imageUtils";
-import ReCAPTCHA from "react-google-recaptcha";
 import useAuth from "../../hooks/useAuth";
 import "./membershipform.css";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeftOutlined, CopyOutlined } from "@ant-design/icons";
+import { LeftOutlined, CopyOutlined } from "@ant-design/icons";
 import HeaderComponent from "../../components/HeaderComponent";
 import Footer from "../../components/FooterComponent";
 
@@ -27,15 +25,6 @@ const MembershipForm = () => {
     const navigate = useNavigate();
     const [form] = Form.useForm();
     const { handleSignUp, loading } = useAuth();
-
-    const buttonStyle = {
-        backgroundColor: "#ff5c5c",
-        borderColor: "#ff5c5c",
-        color: "white",
-        margin: "10px",
-        padding: "5px 15px",
-        borderRadius: "5px",
-    };
 
     const onFinish = async (values) => {
         const mappedValues = {
@@ -620,8 +609,16 @@ const MembershipForm = () => {
             </div>
             <Button
                 type="primary"
-                icon={<ArrowLeftOutlined />}
-                style={buttonStyle}
+                icon={<LeftOutlined />}
+                style={{
+                    border: "none",
+                    marging: "5px",
+                    fontWeight: "bold",
+                    margin: "28px",
+                    marginBottom: "16px",
+
+                    // padding: "5px 15px",
+                }}
                 onClick={() => navigate("/")}
             >
                 Home
