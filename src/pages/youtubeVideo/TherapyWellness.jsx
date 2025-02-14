@@ -139,7 +139,6 @@ const TherapyWellness = () => {
                                     />
                                 </div>
                             )}
-                            {/* Add separator except after the last category */}
                             {index <
                                 Object.entries(TherapyWellnessData).length -
                                     1 && <hr className="category-separator" />}
@@ -147,6 +146,12 @@ const TherapyWellness = () => {
                     );
                 }
             )}
+
+            <p className="disclaimer">
+                <strong>*Disclaimer*</strong> Saarthi is not promoting any
+                trainer,school or you tube channel, these are just examples of
+                Do it Yourself sessions
+            </p>
         </div>
     );
 };

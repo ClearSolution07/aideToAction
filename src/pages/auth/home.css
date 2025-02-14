@@ -11,6 +11,7 @@
     align-items: center;
     background-color: #ffffff;
     margin-top: 72px;
+	width: 100%;
 }
 
 .signin-container {
@@ -119,6 +120,7 @@
     justify-content: center;
     align-items: flex-start;
     padding-left: 240px;
+	width: 50%;
 }
 
 .logo-container {
@@ -173,6 +175,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
+	width: 50%;
 }
 
 .right-image {
@@ -520,6 +523,7 @@
     .left-side {
         padding-left: 0;
         margin: 16px;
+		width: 100%;
     }
 
     .heading {
