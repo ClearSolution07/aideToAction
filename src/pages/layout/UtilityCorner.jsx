@@ -1,62 +1,82 @@
-import { Collapse } from "antd";
+import { Collapse, Modal } from "antd";
+import { useState } from "react";
 import "./UtilityCorner.css";
-
-const aadhaarGuide = "/pdfs/aadhaar_guide.pdf";
-const panCardGuide = "/pdfs/pan_card_guide.pdf";
-const onlinePanApplicationBrief = "/pdfs/online_pan_application_brief.pdf";
-const passportGuide = "/pdfs/passport_guide.pdf";
-const voterRegistrationGuide = "/pdfs/voter_registration.pdf";
-const voterIdGuide = "/pdfs/voter_id_guide.pdf";
-const englishUidaiEnrolUpdateLg = "/pdfs/english_uidai_enrol_update_lg.pdf";
 
 const { Panel } = Collapse;
 
-const documentData = [
+const documentGroups = [
     {
-        title: "Aadhaar Card",
-        content:
+        category: "Aadhaar Card",
+        description:
             "Find detailed information on how to obtain, update, and manage your Aadhaar Card.",
-        pdf: aadhaarGuide,
+        documents: [
+            {
+                title: "Aadhaar Guide",
+                pdf: "/pdfs/aadhaar_guide.pdf",
+            },
+            {
+                title: "UIDAI Enrollment & Update",
+                pdf: "/pdfs/english_uidai_enrol_update_lg.pdf",
+            },
+        ],
     },
     {
-        title: "PAN Card",
-        content:
+        category: "PAN Card",
+        description:
             "Learn about the essential documents required for applying, updating, or correcting your PAN Card.",
-        pdf: panCardGuide,
+        documents: [
+            {
+                title: "Documents Required for PAN",
+                pdf: "/pdfs/pan_card_guide.pdf",
+            },
+            {
+                title: "Online PAN Application Procedure",
+                pdf: "/pdfs/online_pan_application_brief.pdf",
+            },
+        ],
     },
     {
-        title: "Online PAN Card Application Brief",
-        content:
-            "Get step-by-step guidance on applying for, updating, or linking your PAN Card.",
-        pdf: onlinePanApplicationBrief,
-    },
-    {
-        title: "Passport",
-        content:
+        category: "Passport",
+        description:
             "Learn how to apply for a new passport, renew an old one, or get emergency travel documents.",
-        pdf: passportGuide,
+        documents: [
+            {
+                title: "Passport Application Guide",
+                pdf: "/pdfs/passport_guide.pdf",
+            },
+        ],
     },
     {
-        title: "Voter Registration Guide",
-        content:
-            "Learn the step-by-step process to register as a voter and obtain your Voter ID.",
-        pdf: voterRegistrationGuide,
-    },
-    {
-        title: "Voter Guid",
-        content:
+        category: "Voter ID",
+        description:
             "Know the procedures to register for a Voter ID, update your information, or check your status.",
-        pdf: voterIdGuide,
-    },
-    {
-        title: "English Uidai Enrol Update LG",
-        content:
-            "Learn the process for Aadhaar enrollment and updating details with UIDAI guidelines.",
-        pdf: englishUidaiEnrolUpdateLg,
+        documents: [
+            {
+                title: "Voter Registration Guide",
+                pdf: "/pdfs/voter_registration.pdf",
+            },
+            {
+                title: "Voter ID Guide",
+                pdf: "/pdfs/voter_id_guide.pdf",
+            },
+        ],
     },
 ];
 
 const UtilityCorner = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedPdf, setSelectedPdf] = useState("");
+
+    const openPdfModal = (pdfUrl) => {
+        setSelectedPdf(pdfUrl);
+        setIsModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setIsModalVisible(false);
+        setSelectedPdf("");
+    };
+
     return (
         <div className="utility-corner-content">
             <h2 className="utility-title">
@@ -65,39 +85,61 @@ const UtilityCorner = () => {
             <p className="utility-subtitle">
                 Access step-by-step guides on obtaining government documents
                 like Aadhaar, PAN Card, Passport, and other important
-                certificates. Stay informed with Saarthi Newsletters, event
-                reports, and press releases—all in one place.
+                certificates.
             </p>
 
             <Collapse expandIconPosition="end" accordion>
-                {documentData.map((doc, index) => (
+                {documentGroups.map((group, index) => (
                     <Panel
-                        header={doc.title}
+                        header={group.category}
                         key={index}
                         className="custom-panel"
                     >
-                        <p className="panel-content">{doc.content}</p>
-                        {doc.pdf && (
-                            <div className="pdf-container">
-                                <iframe
-                                    src={doc.pdf}
-                                    title={doc.title}
-                                    className="pdf-viewer"
-                                />
-
-                                <br />
-                                <a
-                                    href={doc.pdf}
-                                    download
-                                    className="download-link"
-                                >
-                                    Download PDF
-                                </a>
-                            </div>
-                        )}
+                        <p className="panel-content">{group.description}</p>
+                        <div className="pdf-row">
+                            {group.documents.map((doc, docIndex) => (
+                                <div key={docIndex} className="pdf-container">
+                                    <p
+                                        className="pdf-title clickable"
+                                        onClick={() => openPdfModal(doc.pdf)}
+                                    >
+                                        {doc.title}
+                                    </p>
+                                    <a
+                                        href={doc.pdf}
+                                        download
+                                        className="download-link"
+                                    >
+                                        Download PDF
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
                     </Panel>
                 ))}
             </Collapse>
+            <Modal
+                title="Document Preview"
+                open={isModalVisible}
+                onCancel={closeModal}
+                footer={null}
+                width="fit-content"
+                style={{
+                    maxWidth: "90vw",
+                    display: "flex",
+                    justifyContent: "center",
+                }}
+            >
+                {selectedPdf && (
+                    <div className="pdf-viewer-container">
+                        <iframe
+                            src={selectedPdf}
+                            title="PDF Viewer"
+                            className="pdf-viewer"
+                        />
+                    </div>
+                )}
+            </Modal>
         </div>
     );
 };

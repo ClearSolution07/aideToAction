@@ -10,36 +10,36 @@ const TherapyWellness = () => {
         "Art Therapy": [
             {
                 id: "1",
-                title: "How to Draw Your Feelings",
+                title: "How to Draw Your Feelings + Painting Emotions / Easy Art Therapy Activity Demo for Beginners",
                 videoId: "v0dgjSG4CpA",
             },
             {
                 id: "2",
-                title: "ART THERAPY activity for anxiety",
+                title: "ART THERAPY activity for anxiety, grounding, & mindfulness: Therapeutic art projects at home",
                 videoId: "GMSC95hEj2w",
             },
             {
                 id: "3",
-                title: "Art Therapy Body Scan Meditation",
+                title: "Art Therapy Body Scan Meditation | Art for Mindfulness",
                 videoId: "cWpc4BfRy_U",
             },
         ],
         Meditation: [
             {
                 id: "4",
-                title: "Isha Kriya: A Guided Meditation",
+                title: "Isha Kriya: A Guided Meditation For Health And Wellbeing | 15-Minutes",
                 videoId: "EwQkfoKxRvo",
             },
             {
                 id: "5",
-                title: "Short Meditation For Beginners",
+                title: "Short Meditation For Beginners | 10 Minute Guided Meditation For Relaxation",
                 videoId: "DulNz2CkoHI",
             },
         ],
         Pranayama: [
             {
                 id: "6",
-                title: "10 Minute Pranayama to Increase Immunity",
+                title: "10 Minute Pranayama to Increase Immunity | इम्यूनिटी बढ़ाने के लिए प्राणायाम",
                 videoId: "cMfChJLqma4",
             },
             {
@@ -56,22 +56,26 @@ const TherapyWellness = () => {
         Healing: [
             {
                 id: "9",
-                title: "10 Minute Crystal Singing Bowl Meditation",
+                title: "10 Minute Crystal Singing Bowl Meditation | Sound Healing For Relaxation & Stress Relief",
                 videoId: "unCya_-8ECs",
             },
             {
                 id: "10",
-                title: "How to Forgive & Forget If Someone Betrays You?",
+                title: "How to Forgive & Forget If Someone Betrays You? | Sadhguru",
                 videoId: "9l9ASU8mTfE",
             },
         ],
         "Music Therapy": [
             {
                 id: "11",
-                title: "Relaxing Music for Stress Relief",
+                title: "Relaxing Music for Stress Relief. Calm Celtic Music for Meditation, Healing Therapy, Sleep, Yoga",
                 videoId: "6xDyPcJrl0c",
             },
-            { id: "12", title: "Morning Flute Music", videoId: "tF4z5kntXAA" },
+            {
+                id: "12",
+                title: "Morning Flute Music | Himalayan Flute Music | Mountain Flute(बाँसुरी) | Meditation Music",
+                videoId: "tF4z5kntXAA",
+            },
         ],
     };
 
@@ -85,6 +89,11 @@ const TherapyWellness = () => {
                 <h1 className="therapy-title">Therapy & Healing Corner</h1>
             </div>
 
+            <p className="disclaimer-wellbeing">
+                <strong>*Disclaimer*</strong> Saarthi is not promoting any
+                trainer,school or you tube channel, these are just examples of
+                Do it Yourself sessions
+            </p>
             {Object.entries(TherapyWellnessData).map(
                 ([category, videos], index) => {
                     const currentPageNum = currentPage[category] || 1;
@@ -146,12 +155,6 @@ const TherapyWellness = () => {
                     );
                 }
             )}
-
-            <p className="disclaimer">
-                <strong>*Disclaimer*</strong> Saarthi is not promoting any
-                trainer,school or you tube channel, these are just examples of
-                Do it Yourself sessions
-            </p>
         </div>
     );
 };

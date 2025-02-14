@@ -16,12 +16,83 @@
     color: #333;
 }
 
-.panel-content {
-	margin-bottom: 16px;
+.pdf-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
 }
-.pdf-viewer {
+.pdf-container {
+    flex: 1 1 calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 234px;
+    height: 300px;
+    text-align: center;
+    border: 1px solid #cfcfcf;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    background-color: white;
+}
+
+.pdf-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 800px;
+    height: 100%;
+    background-image: url("../../img/pdfLogo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    z-index: 0;
+    border-radius: 5px;
+}
+
+.pdf-container * {
+    position: relative;
+    z-index: 1;
+}
+
+.pdf-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.pdf-title:hover {
+    text-decoration: underline;
+}
+
+.download-link {
+    display: inline-block;
+    margin-top: 5px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
+.panel-content {
+    margin-bottom: 16px;
+}
+
+.pdf-viewer {
+    width: 1000px;
+    max-width: 1000px;
+    height: 75vh;
+    min-height: 400px;
+    border: none;
 }
 
 .utility-corner-content .utility-subtitle {
@@ -118,7 +189,7 @@
 
 @media (max-width: 1024px) {
     .pdf-viewer {
-        height: 600px;
+        width: 600px;
     }
 }
 
@@ -127,7 +198,7 @@
         width: 100%;
     }
     .pdf-viewer {
-        height: 400px;
+        width: 400px;
     }
     .utility-corner-content .ant-collapse-content {
         padding: 0;
@@ -136,7 +207,7 @@
 
 @media (max-width: 480px) {
     .pdf-viewer {
-        height: 300px;
+        width: 300px;
     }
 }
 
