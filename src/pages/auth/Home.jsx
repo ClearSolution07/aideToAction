@@ -159,8 +159,8 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="">
-                    <p className="disclaimer">
-                        <p>
+                    <p className="disclaimer-home">
+                        <p style={{ marginBottom: 16 }}>
                             <strong>*Disclaimer*</strong>{" "}
                         </p>
                         Please note, the Saarthi -AICL has no financial, legal
