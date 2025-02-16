@@ -89,22 +89,22 @@ const Admin = () => {
             value: "user3",
             component: AddAnnouncement,
         },
-        {
-            label: (
-                <div
-                    className={
-                        isMobileWidth
-                            ? "segment-item segment-item-mobile"
-                            : "segment-item"
-                    }
-                >
-                    <CloudUploadOutlined style={{ fontSize: "20px" }} />
-                    <span>Upload Resources</span>
-                </div>
-            ),
-            value: "user4",
-            component: UploadResources,
-        },
+        // {
+        //     label: (
+        //         <div
+        //             className={
+        //                 isMobileWidth
+        //                     ? "segment-item segment-item-mobile"
+        //                     : "segment-item"
+        //             }
+        //         >
+        //             <CloudUploadOutlined style={{ fontSize: "20px" }} />
+        //             <span>Upload Resources</span>
+        //         </div>
+        //     ),
+        //     value: "user4",
+        //     component: UploadResources,
+        // },
     ];
 
     return (

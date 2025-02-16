@@ -53,7 +53,7 @@ const LogIn = () => {
 
     return (
         <div className={"rightSectionContainer"}>
-            <div className="logoImage">
+            <div className="logoImage" >
                 <img src={logoImage} alt="logoSarthi"/>
             </div>
             <div className="formContainer">
