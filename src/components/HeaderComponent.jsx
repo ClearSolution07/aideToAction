@@ -90,6 +90,10 @@ const HeaderComponent = ({ headerText }) => {
                     alignItems: "center",
                     gap: "16px",
                     flex: 1,
+                    cursor: 'pointer',
+                }}
+                onClick={() => {
+                    navigate('/dashboard');
                 }}
             >
                 <img src={logo} style={{ height: "60px" }} />
