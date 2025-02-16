@@ -57,12 +57,10 @@ const Footer = ({ isAuthenticated }) => {
                                         className="footer-link"
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            scrollToSection(
-                                                "commitmentSection"
-                                            );
+                                            scrollToSection("newsSection");
                                         }}
                                     >
-                                        Commitments
+                                        Newsletter
                                     </a>
                                 </li>
                                 <li>
