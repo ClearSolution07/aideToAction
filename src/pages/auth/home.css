@@ -238,7 +238,7 @@
     border: 1px solid #e9eaf0;
     background-color: white;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     padding: 20px;
     opacity: 0;
     transform: translateX(100px); /* Start off-screen from the right */

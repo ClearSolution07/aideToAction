@@ -5,7 +5,7 @@
 
 .newsletter-list {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 2rem;
     margin: 0 auto;
 }
@@ -92,4 +92,22 @@
     width: 100%;
     height: 100%;
     border: none;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .newsletter-list {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1137px) {
+    .newsletter-list {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .newsletter-list {
+        flex-direction: column;
+    }
 }
