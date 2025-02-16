@@ -57,7 +57,7 @@ const MembershipForm = () => {
                     ? "Primary School"
                     : values.education_status ===
                       "Secondary School (माध्यमिक विद्यालय)"
-                    ? "Seconday School"
+                    ? "Secondary School"
                     : values.education_status === "High School (हाई स्कूल)"
                     ? "High School"
                     : values.education_status === "Undergraduate (अंडरग्रेजुएट)"

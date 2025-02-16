@@ -159,27 +159,26 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="">
-                    <h2 className="disclaimer-title">Disclaimer</h2>
-                    <p className="disclaimer-text">
-                        <div className="about-description-bottom">
-                            Please note, the Saarthi -AICL has no financial,
-                            legal or statutory obligation on either Aide et
-                            Action or UNICEF and vice versa. Aide et Action and
-                            UNICEF are and will not be accountable for any
-                            financial, legal, or statutory repercussions arising
-                            out of any activity or statement done or undertaken
-                            by members at their individual level.{" "}
-                        </div>
+                    <p className="disclaimer">
+                        <p>
+                            <strong>*Disclaimer*</strong>{" "}
+                        </p>
+                        Please note, the Saarthi -AICL has no financial, legal
+                        or statutory obligation on either Aide et Action or
+                        UNICEF and vice versa. Aide et Action and UNICEF are and
+                        will not be accountable for any financial, legal, or
+                        statutory repercussions arising out of any activity or
+                        statement done or undertaken by members at their
+                        individual level.{" "}
                     </p>
                 </div>
             </div>
 
-            <div
-                className="commitment-background-container"
-                id="newsSection"
-            >
+            <div className="commitment-background-container" id="newsSection">
                 <div className="commitment-container">
-                    <h1 className="commitment-heading">Our Weekly Newsletter</h1>
+                    <h1 className="commitment-heading">
+                        Our Monthly Newsletter
+                    </h1>
                     <div className="cards-container">
                         {/* <div className="left-cards">
                             {commitmentData
@@ -242,7 +241,7 @@ const Home = () => {
                                 ))}
                         
                         </div> */}
-                        <Newsletter/>
+                        <Newsletter />
                     </div>
                 </div>
             </div>
