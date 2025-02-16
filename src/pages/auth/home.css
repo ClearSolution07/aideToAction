@@ -226,7 +226,7 @@
 
 .commitment-background-container {
     display: flex;
-    height: 40vh;
+    height: auto;
     background-color: white;
     align-items: center;
     justify-content: center;
@@ -237,8 +237,8 @@
     text-align: center;
     border: 1px solid #e9eaf0;
     background-color: white;
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1400px;
     padding: 20px;
     opacity: 0;
     transform: translateX(100px); /* Start off-screen from the right */

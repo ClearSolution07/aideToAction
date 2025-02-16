@@ -11,6 +11,7 @@ import SupportersCarousel from "../../components/SupportersCarousel";
 import VisionMission from "../../components/VisionMission";
 import Footer from "../../components/FooterComponent";
 import HomeCarousel from "../../components/HomeCarousel";
+import Newsletter from "./Newsletter";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -175,12 +176,12 @@ const Home = () => {
 
             <div
                 className="commitment-background-container"
-                id="commitmentSection"
+                id="newsSection"
             >
                 <div className="commitment-container">
-                    <h1 className="commitment-heading">Our Commitments</h1>
+                    <h1 className="commitment-heading">Our Weekly Newsletter</h1>
                     <div className="cards-container">
-                        <div className="left-cards">
+                        {/* <div className="left-cards">
                             {commitmentData
                                 .slice(0, 2)
                                 .map((commitment, index) => (
@@ -209,8 +210,8 @@ const Home = () => {
                                         </div>
                                     </div>
                                 ))}
-                        </div>
-                        <div className="right-cards">
+                        </div> */}
+                        {/* <div className="right-cards">
                             {commitmentData
                                 .slice(2)
                                 .map((commitment, index) => (
@@ -239,7 +240,9 @@ const Home = () => {
                                         </div>
                                     </div>
                                 ))}
-                        </div>
+                        
+                        </div> */}
+                        <Newsletter/>
                     </div>
                 </div>
             </div>
