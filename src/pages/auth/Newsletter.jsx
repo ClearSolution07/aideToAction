@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { Modal } from "antd";
 import janImg from "../../img/pdfImg/Jan.png";
 import decImg from "../../img/pdfImg/Dec.png";
 import novImg from "../../img/pdfImg/Nov.png";
@@ -48,27 +48,19 @@ const Newsletter = () => {
                 ))}
             </div>
 
-            {selectedPdf && (
-                <div className="modal-overlay">
-                    <div className="modal-container">
-                        <div className="modal-header">
-                            <button
-                                onClick={() => setSelectedPdf(null)}
-                                className="close-button"
-                            >
-                                <X size={24} />
-                            </button>
-                        </div>
-                        <div className="modal-content">
-                            <iframe
-                                src={selectedPdf}
-                                title="PDF Preview"
-                                className="pdf-viewer"
-                            />
-                        </div>
-                    </div>
-                </div>
-            )}
+            <Modal
+                open={!!selectedPdf}
+                onCancel={() => setSelectedPdf(null)}
+                footer={null}
+                width="70vw"
+                style={{ top: 20 }}
+            >
+                <iframe
+                    src={selectedPdf}
+                    title="PDF Preview"
+                    className="newsletter-pdf-viewer"
+                />
+            </Modal>
         </div>
     );
 };

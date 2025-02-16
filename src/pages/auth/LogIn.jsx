@@ -38,7 +38,10 @@ const LogIn = () => {
             if (response.statuscode === 200) {
                 localStorage.setItem("authToken", response.data.access_token);
                 localStorage.setItem("userId", response.data.user_id);
-                navigate("/dashboard");
+				console.log("before timeout");
+                setTimeout(() => navigate("/dashboard"), 3000);
+				console.log("after timeout")
+                // navigate("/dashboard");
             } else {
                 console.error("Error:", response.message);
                 message.error(`Error : ${response.message}`);
