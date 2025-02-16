@@ -12,27 +12,25 @@ import Profile from "./pages/profile/Profile";
 import Layout from "./pages/layout/LayoutPage";
 import Admin from "./pages/Admin/Admin";
 
-// Function to check authentication status
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
+
 const isAuthenticated = () => {
     const token = localStorage.getItem("authToken");
     return !!token;
 };
 
-// Protected Route Component
-const ProtectedRoute = ({ element }) => {
-    return isAuthenticated() ? element : <Navigate to="/" />;
-};
-
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/register", element: <MembershipForm /> },
-
     {
         path: "/dashboard",
-        element: <ProtectedRoute element={<Layout />} />,
+        element: isAuthenticated() ? <Layout /> : <Navigate to="/" />,
         children: [
             { path: "profile", element: <Profile /> },
-            { path: "admin", element: <Admin /> },
+            {
+                path: "admin",
+                element: <AdminProtectedRoute element={<Admin />} />,
+            },
         ],
     },
     { path: "*", element: <Error /> },
