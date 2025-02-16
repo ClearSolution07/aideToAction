@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { loginImage1, logoImage } from "../../utils/imageUtils";
-import { message } from "antd";
+import {useEffect, useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import {loginImage1, logoImage} from "../../utils/imageUtils";
+import {message} from "antd";
 import "./login.css";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const LogIn = () => {
     const navigate = useNavigate();
-    const { loading, error, handleLogin } = useAuth();
+    const {loading, error, handleLogin} = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [isMobileWidth, setIsMobileWidth] = useState(false);
     const [password, setPassword] = useState("");
@@ -38,10 +38,9 @@ const LogIn = () => {
             if (response.statuscode === 200) {
                 localStorage.setItem("authToken", response.data.access_token);
                 localStorage.setItem("userId", response.data.user_id);
-				console.log("before timeout");
-                setTimeout(() => navigate("/dashboard"), 3000);
-				console.log("after timeout")
-                // navigate("/dashboard");
+                setTimeout(() => {
+                    navigate("/dashboard")
+                }, 400);
             } else {
                 console.error("Error:", response.message);
                 message.error(`Error : ${response.message}`);
@@ -55,7 +54,7 @@ const LogIn = () => {
     return (
         <div className={"rightSectionContainer"}>
             <div className="logoImage">
-                <img src={logoImage} alt="logoSarthi" />
+                <img src={logoImage} alt="logoSarthi"/>
             </div>
             <div className="formContainer">
                 <div className="titleSection">

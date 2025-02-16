@@ -16,6 +16,7 @@ import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 const isAuthenticated = () => {
     const token = localStorage.getItem("authToken");
+    console.log('==============token======', token)
     return !!token;
 };
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     { path: "/register", element: <MembershipForm /> },
     {
         path: "/dashboard",
-        element: isAuthenticated() ? <Layout /> : <Navigate to="/" />,
+        element: <Layout /> ,
         children: [
             { path: "profile", element: <Profile /> },
             {
