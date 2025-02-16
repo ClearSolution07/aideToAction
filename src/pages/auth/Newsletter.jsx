@@ -8,19 +8,19 @@ import "./Newsletter.css";
 const newsletters = [
     {
         id: 1,
-        title: "January 2024 Newsletter",
+        title: "January 2025",
         pdfUrl: "pdfs/january.pdf",
         img: janImg,
     },
     {
         id: 2,
-        title: "December 2024 Highlights",
+        title: "December 2024",
         pdfUrl: "/pdfs/december.pdf",
         img: decImg,
     },
     {
         id: 3,
-        title: "November 2024 Events",
+        title: "November 2024",
         pdfUrl: "/pdfs/november.pdf",
         img: novImg,
     },
