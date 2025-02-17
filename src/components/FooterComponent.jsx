@@ -6,6 +6,8 @@ import {
     LinkedinFilled,
     TwitterSquareFilled,
 } from "@ant-design/icons";
+import twitter from "../img/twitter.png";
+import ataLogo from "../img/ataLogo.png";
 import "./css/footer.css";
 
 const Footer = ({ isAuthenticated }) => {
@@ -31,7 +33,12 @@ const Footer = ({ isAuthenticated }) => {
                     >
                         <div className="brand-header">
                             <img src={logo} alt="Logo" className="brand-logo" />
-                            <h2 className="brand-name">Saarthi</h2>
+                            <img
+                                src={ataLogo}
+                                alt="Logo2"
+                                className="brand-logo2"
+                            />
+                            {/* <h2 className="brand-name">Saarthi</h2> */}
                         </div>
                     </div>
 
@@ -125,7 +132,10 @@ const Footer = ({ isAuthenticated }) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <TwitterSquareFilled />
+                                <img
+                                    src={twitter}
+                                    style={{ height: "30px", width: "30px" }}
+                                />
                             </a>
                         </div>
                     </div>

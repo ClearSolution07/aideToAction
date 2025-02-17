@@ -11,7 +11,7 @@
     align-items: center;
     background-color: #ffffff;
     margin-top: 72px;
-	width: 100%;
+    width: 100%;
 }
 
 .signin-container {
@@ -46,13 +46,12 @@
     background-color: #cc5230;
 }
 
-
 .disclaimer-container {
     background-color: white;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     margin-top: 100px;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     width: 100%;
     padding: 30px;
     position: relative;
@@ -74,7 +73,7 @@
 .disclaimer-icon-bottom {
     position: absolute;
     top: 96%;
-    right:90%;
+    right: 90%;
     width: 60px;
     height: 60px;
     background-color: #ff6636;
@@ -85,20 +84,19 @@
 }
 
 .disclaimer-icon::before {
-    content: '';
+    content: "";
     width: 40px;
     height: 40px;
     background-color: white;
     border-radius: 50%;
 }
 .disclaimer-icon-bottom::before {
-    content: '';
+    content: "";
     width: 40px;
     height: 40px;
     background-color: white;
     border-radius: 50%;
 }
-
 
 .disclaimer-title {
     font-size: 24px;
@@ -120,7 +118,7 @@
     justify-content: center;
     align-items: flex-start;
     padding-left: 240px;
-	width: 50%;
+    width: 50%;
 }
 
 .logo-container {
@@ -175,7 +173,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-	width: 50%;
+    width: 50%;
 }
 
 .right-image {
@@ -192,7 +190,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 24px;
+
     margin-left: 240px;
     margin-right: 240px;
     margin-bottom: 100px;
@@ -241,7 +239,7 @@
     max-width: 1800px;
     padding: 20px;
     opacity: 0;
-	border-radius: 16px;
+    border-radius: 16px;
     transform: translateX(100px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
@@ -524,7 +522,7 @@
     .left-side {
         padding-left: 0;
         margin: 16px;
-		width: 100%;
+        width: 100%;
     }
 
     .heading {
