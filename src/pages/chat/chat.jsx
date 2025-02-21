@@ -15,7 +15,7 @@ import PencilLine from "../../assets/PencilLine.png";
 import useUser from "../../hooks/useUser";
 import useChat from "../../hooks/useChat";
 
-const socket = io("https://unicefprojectbackend.onrender.com/", {
+const socket = io("http://localhost:4060/", {
     transports: ["websocket"],
 });
 
@@ -115,6 +115,28 @@ const ChatWindow = ({ member: memberProp }) => {
         };
 
         fetchUserDetails();
+    }, []);
+
+    useEffect(() => {
+        socket.on("active_users", (activeUsers) => {
+            setUserStatus((prevStatus) => {
+                const updatedStatus = { ...prevStatus };
+                activeUsers.forEach((userId) => {
+                    updatedStatus[userId] = "online";
+                });
+                Object.keys(updatedStatus).forEach((userId) => {
+                    if (!activeUsers.includes(userId)) {
+                        updatedStatus[userId] = "offline";
+                    }
+                });
+
+                return updatedStatus;
+            });
+        });
+
+        return () => {
+            socket.off("active_users");
+        };
     }, []);
 
     useEffect(() => {
