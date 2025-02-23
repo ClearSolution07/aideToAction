@@ -2,13 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "antd";
 import {
     ArrowRightOutlined,
-    HeartOutlined,
-    ToolOutlined,
-    BookOutlined,
-    NotificationOutlined,
 } from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
-import "./css/ProfileHeader.css";
+import "./css/profileHeader.css";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import announcementLogo from "../img/l2.png";

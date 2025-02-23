@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./home.css";
 import { Modal } from "antd";
 import logo from "../../assets/mainLogo.svg";
-import commitmentData from "../../components/jsons/commitmentData.json";
 import homeCarouselData from "../../components/jsons/homeCarouselData.json";
 import supporters from "../../components/jsons/supporters.json";
 import LogIn from "./LogIn";
@@ -11,7 +10,6 @@ import SupportersCarousel from "../../components/SupportersCarousel";
 import VisionMission from "../../components/VisionMission";
 import Footer from "../../components/FooterComponent";
 import HomeCarousel from "../../components/HomeCarousel";
-import Newsletter from "./Newsletter";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -140,7 +138,7 @@ const Home = () => {
                                 organisations across the country. The core group
                                 of association comprises of representatives from
                                 various state level networks which are a formal
-                                or informal group of care leavers' at
+                                or informal group of care leavers at
                                 State/District level irrespective of their
                                 religion/class/gender/sexual
                                 orientation/physical ability/type of their
@@ -171,78 +169,6 @@ const Home = () => {
                         statement done or undertaken by members at their
                         individual level.{" "}
                     </p>
-                </div>
-            </div>
-
-            <div className="commitment-background-container" id="newsSection">
-                <div className="commitment-container">
-                    <h1 className="commitment-heading">
-                        Our Monthly Newsletter
-                    </h1>
-                    <div className="cards-container">
-                        {/* <div className="left-cards">
-                            {commitmentData
-                                .slice(0, 2)
-                                .map((commitment, index) => (
-                                    <div
-                                        key={index}
-                                        className="commitment-card"
-                                    >
-                                        <img
-                                            src={
-                                                commitment.image ||
-                                                "/placeholder.svg"
-                                            }
-                                            alt={commitment.title}
-                                            className="card-image"
-                                        />
-                                        <div className="card-content">
-                                            <h3 className="card-title">
-                                                {commitment.title}
-                                            </h3>
-                                            <p className="card-description">
-                                                {commitment.description}
-                                            </p>
-                                            <button className="know-more">
-                                                Know More
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                        </div> */}
-                        {/* <div className="right-cards">
-                            {commitmentData
-                                .slice(2)
-                                .map((commitment, index) => (
-                                    <div
-                                        key={index}
-                                        className="commitment-card"
-                                    >
-                                        <img
-                                            src={
-                                                commitment.image ||
-                                                "/placeholder.svg"
-                                            }
-                                            alt={commitment.title}
-                                            className="card-image"
-                                        />
-                                        <div className="card-content">
-                                            <h3 className="card-title">
-                                                {commitment.title}
-                                            </h3>
-                                            <p className="card-description">
-                                                {commitment.description}
-                                            </p>
-                                            <button className="know-more">
-                                                Know More
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                        
-                        </div> */}
-                        <Newsletter />
-                    </div>
                 </div>
             </div>
 
