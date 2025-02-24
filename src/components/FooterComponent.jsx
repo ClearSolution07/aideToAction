@@ -1,10 +1,9 @@
 import React from "react";
-import logo from "../assets/mainLogo.svg";
+import logo from "../assets/Logo2.svg";
 import {
     FacebookFilled,
     InstagramFilled,
     LinkedinFilled,
-    TwitterSquareFilled,
 } from "@ant-design/icons";
 import twitter from "../img/twitter.png";
 import ataLogo from "../img/ataLogo.png";
@@ -23,14 +22,14 @@ const Footer = ({ isAuthenticated }) => {
     };
 
     return (
-        <footer className={`footer ${isAuthenticated ? "center-layout" : ""}`}>
+        <footer className="footer">
             <div className="container">
-                <div className="footer-grid">
-                    <div
-                        className={`brand-section ${
-                            isAuthenticated ? "center-content" : ""
-                        }`}
-                    >
+                <div
+                    className={`footer-grid ${
+                        isAuthenticated ? "center-layout" : ""
+                    }`}
+                >
+                    <div className="brand-section">
                         <div className="brand-header">
                             <img src={logo} alt="Logo" className="brand-logo" />
                             <img
@@ -38,7 +37,6 @@ const Footer = ({ isAuthenticated }) => {
                                 alt="Logo2"
                                 className="brand-logo2"
                             />
-                            {/* <h2 className="brand-name">Saarthi</h2> */}
                         </div>
                     </div>
 
@@ -55,19 +53,7 @@ const Footer = ({ isAuthenticated }) => {
                                             scrollToSection("aboutSection");
                                         }}
                                     >
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="footer-link"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            scrollToSection("newsSection");
-                                        }}
-                                    >
-                                        Newsletter
+                                        Know More About Us
                                     </a>
                                 </li>
                                 <li>
@@ -79,7 +65,7 @@ const Footer = ({ isAuthenticated }) => {
                                             scrollToSection("vissionSection");
                                         }}
                                     >
-                                        Vision and Mission
+                                        Discover Our Purpose
                                     </a>
                                 </li>
                                 <li>
@@ -93,12 +79,30 @@ const Footer = ({ isAuthenticated }) => {
                                             );
                                         }}
                                     >
-                                        Our Supporters
+                                        Meet Our Supporters
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     )}
+
+                    <div className="footer-section">
+                        <h3 className="footer-heading">CONTACT US</h3>
+
+                        <ul
+                            className="footer-links"
+                            style={{ marginBottom: "2rem" }}
+                        >
+                            <li>
+                                <p className="footer-link">
+                                    aiclsaarthi@gmail.com
+                                </p>
+                            </li>
+                            <li>
+                                <p className="footer-link">8700190013</p>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div>
                         <div className="social-icons">
@@ -135,6 +139,7 @@ const Footer = ({ isAuthenticated }) => {
                                 <img
                                     src={twitter}
                                     style={{ height: "30px", width: "30px" }}
+                                    alt="Twitter"
                                 />
                             </a>
                         </div>
@@ -142,16 +147,17 @@ const Footer = ({ isAuthenticated }) => {
                 </div>
 
                 <div className="footer-bottom">
-                    <p className="copyright">
-                        © 2025 - Saarthi. Designed by{" "}
+                    <p className="copyright">© 2025 - Saarthi</p>
+                    <p className="designer-text">
+                        Designed by{" "}
                         <strong>
                             <a
-                                href="https://clearsolutionss.com/"
+                                href="https://clearsolutionss.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="designer-link"
                             >
-                                Clear Solutions
+                                Clear Solutions Services
                             </a>
                         </strong>
                         . All rights reserved.
