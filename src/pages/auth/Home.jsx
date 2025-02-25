@@ -180,18 +180,23 @@ const Home = () => {
                     <HomeCarousel homeCarouselData={homeCarouselData} />
                 </div>
             </div>
-            <div className="">
-                <p className="disclaimer-home">
-                    <p style={{ marginBottom: 16 }}>
-                        <strong>*Disclaimer*</strong>{" "}
-                    </p>
-                    Please note, the Saarthi -AICL has no financial, legal or
-                    statutory obligation on either Aide et Action or UNICEF and
-                    vice versa. Aide et Action and UNICEF are and will not be
-                    accountable for any financial, legal, or statutory
-                    repercussions arising out of any activity or statement done
-                    or undertaken by members at their individual level.{" "}
-                </p>
+            <div className="disclaimer-main">
+                <div
+                    style={{
+                        marginBottom: 16,
+                        fontSize: "28px",
+                        fontWeight: "500",
+                    }}
+                >
+                    <strong>*Disclaimer*</strong>{" "}
+                </div>
+                <div className="disclaimer-description">
+                    Setting up an appointment with us is simple. You can call
+                    us, submit an online request, enter our online chat
+                    facility, or use our GoFantastic App, which lets you book
+                    your whole service in just 4 clicks. If you have an account
+                    with us, you can even text us to secure an appointment.
+                </div>
             </div>
 
             <div className="purpose-container" id="vissionSection">

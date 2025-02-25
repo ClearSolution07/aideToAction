@@ -1,108 +1,24 @@
 .vision-mission-container {
+    background-color: #0047ab; /* Deep blue background */
+    color: white;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    gap: 1rem;
+    padding: 25px;
+    border-radius: 5px;
+    max-width: 1400px;
+    margin-bottom: 400px;
+    margin-top: 200px;
+    line-height: 56px;
+    font-weight: 400;
 }
 
-.title {
-    font-size: 36px;
-    margin-bottom: 1rem;
-    opacity: 0;
-    transform: translateX(50%);
-    transition: transform 1s ease-out, opacity 1s ease-out;
+.vision-title {
+    font-size: 60px;
+    margin-bottom: 10px;
 }
 
-.title.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.description {
-    color: #666;
-    max-width: 1000px;
-    align-self: center;
-    margin: 0 auto 1.5rem;
-    opacity: 0;
-    transform: translateX(50%);
-    transition: transform 1s ease-out, opacity 1s ease-out;
-}
-
-.description.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.cardV {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    width: 400px;
-    height: 400px;
-    cursor: default;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-.cardV:hover {
-    transform: translateY(-5px);
-}
-
-.icon {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-}
-
-@media (max-width: 768px) {
-    .title {
-        font-size: 1.5rem;
-    }
-
-    .description {
-        font-size: 1rem;
-        padding: 0 15px;
-    }
-
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cardV {
-        width: fit-content;
-        margin: 0.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .vision-mission-container {
-        padding: 1rem;
-    }
-
-    .title {
-        font-size: 2rem;
-    }
-
-    .description {
-        font-size: 1rem;
-    }
-    .intro-description {
-        font-size: 0.9rem;
-    }
-
-    .cardV {
-        width: fit-content;
-    }
+.vision-description {
+    font-size: 35px;
+    line-height: 1.5;
+    max-width: 90%;
+    margin: 0 auto;
 }
