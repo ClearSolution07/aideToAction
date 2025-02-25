@@ -100,7 +100,7 @@
 .social-icon:hover {
     background-color: #fed72c;
     color: white;
-    transform: scale(1.6);
+    /* transform: scale(1.6); */
 }
 
 /* Footer sections */
