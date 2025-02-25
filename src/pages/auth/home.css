@@ -355,7 +355,6 @@
 }
 
 .psychologist-container {
-    width: 90%;
     text-align: center;
     margin-bottom: 120px;
     margin-top: 24px;
@@ -375,7 +374,7 @@
     text-align: center;
     margin-left: 8%;
     margin-right: 8%;
-    height: 240px;
+    height: 260px;
     margin-bottom: 48px;
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
@@ -386,7 +385,6 @@
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    margin: 1rem 8%;
     height: 240px;
     position: relative;
     overflow: hidden;
@@ -395,6 +393,11 @@
     transform: translateY(0);
     padding: 0;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 400px;
+    
 }
 
 .carousel-card::after {
@@ -429,6 +432,15 @@
 
 .carousel-wrapper {
     margin-top: 140px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 6rem; 
+    justify-content: center;
+    align-items: center;
+    
+}
+    
 }
 
 .psycho-card-image {
@@ -466,11 +478,12 @@
 }
 
 .psycho-card-image {
+   
+
     object-fit: contain;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin: auto;
     max-height: 200px;
-    transition: transform 0.3s ease-in-out; /* Smooth animation */
+    transition: transform 0.3s ease-in-out; 
 }
 
 /* Image Hover Effect */
