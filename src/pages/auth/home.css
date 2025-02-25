@@ -15,15 +15,82 @@
 }
 
 .signin-container {
+   
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: #ffeee1;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
-    z-index: 99;
+    z-index: 1;
+    height: 90px;
+     padding:0px 20px 0px 20px;
+      background: linear-gradient(to right, #ffe4c4, #fdbb74);
 }
+
+/* navbar buttons*/
+
+.new-buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.primary-button {
+    background-color: #89CFF0;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 200px;
+}
+
+.primary-button:hover {
+    background-color: #5aabd3;
+}
+
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dropdown-item {
+    background: #6ec1e4;
+    padding: 12px 15px;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background: #5aabd3;
+}
+
+.arrow {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+
+/** End */
+
 
 .buttons {
     background-color: #ff6636;
@@ -121,17 +188,9 @@
     width: 50%;
 }
 
-.logo-container {
-    width: 100%;
-    max-width: 700px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .logo {
-    width: 240px;
-    height: 240px;
+    width: 100px;
+    height: 100px;
 }
 
 .hidden {

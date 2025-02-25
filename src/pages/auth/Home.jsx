@@ -13,6 +13,7 @@ import HomeCarousel from "../../components/HomeCarousel";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,12 +75,44 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="signin-container">
-                <button onClick={redirectToregister} className="buttons">
-                    SignUp
-                </button>
-                <button className="buttons" onClick={showModal}>
-                    LogIn
-                </button>
+                <div className="logo-container">
+                    <img
+                        src={logo || "/placeholder.svg"}
+                        alt="Logo"
+                        className="logo"
+                    />
+                </div>
+                <div className="new-buttons">
+                    {/* First Button */}
+                    <button className="primary-button">Our Projects</button>
+
+                    {/* Dropdown Button */}
+                    <div className="dropdown-container">
+                        <button
+                            className="primary-button"
+                            onClick={() => setDropdownOpen(!isDropdownOpen)}
+                        >
+                            Join us <span className="arrow">▼</span>
+                        </button>
+
+                        {isDropdownOpen && (
+                            <div className="dropdown-menu">
+                                <button className="dropdown-item">
+                                    Voluntary
+                                </button>
+                                <button className="dropdown-item">
+                                    Collaborate
+                                </button>
+                                <button className="dropdown-item">
+                                    Donate
+                                </button>
+                                <button className="dropdown-item">
+                                    Careers
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
             <Modal
                 title=""
@@ -92,14 +125,13 @@ const Home = () => {
             </Modal>
 
             <div className="signUp-container">
+                <button onClick={redirectToregister} className="buttons">
+                    SignUp
+                </button>
+                <button className="buttons" onClick={showModal}>
+                    LogIn
+                </button>
                 <div className="left-side">
-                    <div className="logo-container">
-                        <img
-                            src={logo || "/placeholder.svg"}
-                            alt="Logo"
-                            className="logo"
-                        />
-                    </div>
                     <h1 className="heading">
                         Learn with expert anytime anywhere
                     </h1>
