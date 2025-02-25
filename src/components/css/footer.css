@@ -91,7 +91,7 @@
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     color: #cbd5e1;
     transition: all 0.3s ease;
     font-size: 30px;

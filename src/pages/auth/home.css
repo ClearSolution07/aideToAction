@@ -3,13 +3,14 @@
     justify-content: space-between;
     flex-direction: column;
     background-color: #f3eee8;
+    font-family: "Baskervville";
 }
 
 .signUp-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 72px;
+    margin-top: 110px;
    
 }
 
@@ -32,6 +33,8 @@
 .new-buttons {
     display: flex;
     gap: 2rem;
+   
+
 }
 
 .primary-button {
@@ -39,12 +42,16 @@
     color: black;
     border: none;
     padding: 10px 15px;
-    font-size: 16px;
+    
     cursor: pointer;
     transition: 0.3s;
     border-radius: 5px;
-    font-weight: bold;
-    width: 200px;
+    
+    width: 300px;
+     font-family: "Baskervville";
+     font-weight: 600;
+   font-size: 22px;
+   line-height: 26px;
 }
 
 .primary-button:hover {
@@ -64,6 +71,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    
 }
 
 .dropdown-item {
@@ -72,10 +80,13 @@
     border: none;
     text-align: left;
     cursor: pointer;
-    font-size: 14px;
+   font-weight: 600;
+   font-size: 22px;
+   line-height: 26px;
     transition: 0.2s;
     margin-top: 2px;
     text-align: center;
+     font-family: "Baskervville";
 }
 
 .dropdown-item:hover {
@@ -116,21 +127,21 @@
 
 .about-heading {
     font-size: 60px;
-    font-weight: bold;
+    font-weight: 500;
     color: #333;
     margin-bottom: 10px;
    
 }
 .about-text {
     color: #666;
-    line-height: 1.6;
+    line-height: 32px;
     margin-bottom: 20px;
     text-align: justify;
     display: flex;
     flex-direction: column;
     gap: 16px;
-     font-size: 20px;
-    font-weight: 500;
+     font-size: 28px;
+    font-weight: 400;
     color: #1d2026cc;
     white-space: normal;
 }
@@ -144,15 +155,15 @@
 .buttons {
     background-color: #89CFF0;
     border-radius: 4px;
-    font-size: 20px;
-    font-weight: 500;
+   line-height: 56px;
+    font-weight: 600;
     color: #1d2026cc;
     border: none;
     padding: 0 32px;
     height: 48px;
     width: 136px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 22px;
     transition: background-color 0.3s;
   
 }
@@ -192,7 +203,7 @@
 }
 
 .disclaimer-description {
-    margin: 0px 10%;
+    margin: 0px 15%;
 }
 
 
@@ -330,29 +341,9 @@
    
 }
 
-.card-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 80px;
-}
-
-.card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-left: 8%;
-    margin-right: 8%;
-    height: 260px;
-    margin-bottom: 48px;
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden;
-    padding: 10px;
-}
 
 .carousel-card {
-    background: #ffffff;
+ 
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     height: 240px;
