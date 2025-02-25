@@ -138,7 +138,7 @@ const Footer = ({ isAuthenticated }) => {
                             >
                                 <img
                                     src={twitter}
-                                    style={{ height: "30px", width: "30px" }}
+                                    style={{ height: "25px", width: "25px" }}
                                     alt="Twitter"
                                 />
                             </a>
