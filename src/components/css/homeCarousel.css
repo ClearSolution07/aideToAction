@@ -4,26 +4,27 @@
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    /* padding: 20px 0; */
+     border-radius: 16px;
+     margin-right: 20px;
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    /* width: 100%; */
+   
 }
 
 .carousel-slide {
     min-width: 100%;
-    /* padding: 0 20px; */
+    
+   
 }
 
 .carousel-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* max-width: 1000px; */
-    /* margin: 0 auto; */
+   
 }
 
 .carousel-image-container {
@@ -32,16 +33,13 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* max-width: 700px; */
 }
 
 .carousel-image {
     width: 100%;
-    /* max-width: 1000px; */
-    height: 500px;
+    height: 480px;
     aspect-ratio: 16/9;
     object-fit: cover;
-    /* border-radius: 12px; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }

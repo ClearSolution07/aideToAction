@@ -11,7 +11,7 @@
     align-items: center;
     background-color: #ffffff;
     margin-top: 72px;
-    width: 100%;
+   
 }
 
 .signin-container {
@@ -68,7 +68,7 @@
 }
 
 .dropdown-item {
-    background: #6ec1e4;
+    background: #89CFF0;
     padding: 12px 15px;
     border: none;
     text-align: left;
@@ -91,78 +91,82 @@
 
 /** End */
 
+.left-side {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px 40px 0px 40px;
+    width: 50%;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white; 
+    border-radius: 16px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 5%;
+     padding: 30px;
+
+}
+
+.about-heading {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+   
+}
+.about-text {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+     font-size: 20px;
+    font-weight: 500;
+    color: #1d2026cc;
+    white-space: normal;
+}
+
+.about-button{
+    display: flex;
+    gap: 4rem;
+
+}
 
 .buttons {
-    background-color: #ff6636;
+    background-color: #89CFF0;
     border-radius: 4px;
-    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1d2026cc;
     border: none;
     padding: 0 32px;
     height: 48px;
     width: 136px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    margin: 16px;
+  
 }
 
 .buttons:hover {
-    background-color: #cc5230;
+    background-color: #5aabd3;
 }
 
 .disclaimer-container {
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
-    margin-bottom: 5%;
     width: 100%;
-    padding: 30px;
+   
     position: relative;
     animation: slideUp 0.4sease;
-}
-
-.disclaimer-icon {
-    position: absolute;
-    top: -30px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #ff6636;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.disclaimer-icon-bottom {
-    position: absolute;
-    top: 96%;
-    right: 90%;
-    width: 60px;
-    height: 60px;
-    background-color: #ff6636;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.disclaimer-icon::before {
-    content: "";
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 50%;
-}
-.disclaimer-icon-bottom::before {
-    content: "";
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 50%;
 }
 
 .disclaimer-title {
@@ -172,21 +176,9 @@
     font-weight: bold;
 }
 
-.disclaimer-text {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
 
-.left-side {
-    /* flex: 1; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 240px;
-    width: 50%;
-}
+
+
 
 .logo {
     width: 100px;
@@ -205,10 +197,6 @@
     margin-top: 80px;
 }
 
-.show {
-    opacity: 1;
-    transform: translateX(0);
-}
 
 .description {
     font-weight: 400;
@@ -240,82 +228,6 @@
     height: auto;
 }
 
-.about-container {
-    opacity: 0;
-    transform: translateX(-100px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    margin-left: 240px;
-    margin-right: 240px;
-    margin-bottom: 100px;
-}
-
-.about-container.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.about-heading {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 0px;
-    margin-top: 60px;
-}
-
-.about-description {
-    font-size: 20px;
-    font-weight: 500;
-    color: #1d2026cc;
-    margin-bottom: 16px;
-}
-.about-description-bottom {
-    font-size: 20px;
-    font-weight: 500;
-    color: #1d2026cc;
-    margin-bottom: 120px;
-}
-
-.commitment-background-container {
-    display: flex;
-    height: auto;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 0;
-}
-
-.commitment-container {
-    text-align: center;
-    border: 1px solid #e9eaf0;
-    background-color: white;
-    width: 100%;
-    max-width: 1800px;
-    padding: 20px;
-    opacity: 0;
-    border-radius: 16px;
-    transform: translateX(100px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.commitment-container.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.commitment-heading {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 40px;
-    margin-top: 40px;
-}
-
 .cards-container {
     display: flex;
     justify-content: center;
@@ -332,33 +244,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.commitment-card {
-    display: flex;
-    align-items: center;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-}
-
-/* Hover Effect on Card */
-.commitment-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Image inside Commitment Card */
-.commitment-card img {
-    transition: transform 0.3s ease;
-}
-
-/* Image Hover Effect */
-.commitment-card:hover img {
-    transform: scale(1.1); /* Slight zoom effect */
 }
 
 .card-image {
@@ -625,10 +510,7 @@
         flex-direction: column;
         align-items: center;
     }
-    .commitment-card {
-        flex-direction: column;
-        width: 90%;
-    }
+   
     .card-image {
         width: 100%;
         max-width: 200px;
@@ -675,11 +557,7 @@
     .intro-description {
         font-size: 20px;
     }
-    .about-container {
-        margin-left: 40px;
-        margin-right: 40px;
-        margin-bottom: 20%;
-    }
+   
     .purpose-container {
         margin-top: 30%;
     }
@@ -689,9 +567,7 @@
     .purpose-container {
         margin-top: 30%;
     }
-    .about-container {
-        margin-bottom: 20%;
-    }
+   
 }
 
 @media (max-width: 768px) {
