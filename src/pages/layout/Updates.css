@@ -1,5 +1,5 @@
 /* Container Styling */
-.utility-corner-content {
+.updates-corner-content {
     padding: 2rem;
     margin: 0 auto;
     background: #ffffff;
@@ -8,7 +8,7 @@
 }
 
 /* Title and Subtitle */
-.utility-corner-content .utility-title {
+.updates-corner-content .updates-title {
     font-size: 2rem;
     font-weight: 600;
     text-align: center;
@@ -95,7 +95,7 @@
     border: none;
 }
 
-.utility-corner-content .utility-subtitle {
+.updates-corner-content .updates-subtitle {
     text-align: center;
     color: #777;
     font-size: 1rem;
@@ -123,13 +123,13 @@
     right: 12px;
 }
 /* Ant Design Collapse Styling */
-.utility-corner-content .ant-collapse {
+.updates-corner-content .ant-collapse {
     background: white;
     border: none;
     text-align: start;
 }
 
-.utility-corner-content .ant-collapse-item {
+.updates-corner-content .ant-collapse-item {
     border: 1px solid #ddd;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -141,12 +141,12 @@
     border-radius: 8px;
 }
 
-.utility-corner-content .ant-collapse-item:hover {
+.updates-corner-content .ant-collapse-item:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #ffefe7;
 }
 
-.utility-corner-content .ant-collapse-header {
+.updates-corner-content .ant-collapse-header {
     font-size: 1.2rem;
     font-weight: 500;
     padding: 1rem;
@@ -154,15 +154,15 @@
     color: #333;
 }
 
-.utility-corner-content .ant-collapse-header:hover {
+.updates-corner-content .ant-collapse-header:hover {
     background-color: #fdf2e9;
 }
 
-.utility-corner-content .ant-collapse-header .ant-collapse-arrow {
+.updates-corner-content .ant-collapse-header .ant-collapse-arrow {
     right: 16px !important;
 }
 
-.utility-corner-content .ant-collapse-content {
+.updates-corner-content .ant-collapse-content {
     padding: 1rem 1.5rem;
     border-top: 1px solid #ddd;
     padding-bottom: 0;
@@ -170,20 +170,20 @@
     border-bottom-left-radius: 8px;
 }
 
-.utility-corner-content .ant-collapse-content ul {
+.updates-corner-content .ant-collapse-content ul {
     padding-left: 1.2rem;
     list-style: disc;
 }
 
-.utility-corner-content .ant-collapse-content li {
+.updates-corner-content .ant-collapse-content li {
     color: #555;
 }
 
-.utility-corner-content :where(.ant-collapse) .ant-collapse-item:first-child {
+.updates-corner-content :where(.ant-collapse) .ant-collapse-item:first-child {
     border-bottom: 1px solid #ddd !important;
     border-radius: 8px !important;
 }
-.utility-corner-content :where(.ant-collapse) .ant-collapse-item:last-child {
+.updates-corner-content :where(.ant-collapse) .ant-collapse-item:last-child {
     border-bottom: 1px solid #ddd !important;
     border-radius: 8px !important;
 }
@@ -195,13 +195,13 @@
 }
 
 @media (max-width: 768px) {
-    .utility-corner-content {
+    .updates-corner-content {
         width: 100%;
     }
     .pdf-viewer {
         width: 400px;
     }
-    .utility-corner-content .ant-collapse-content {
+    .updates-corner-content .ant-collapse-content {
         padding: 0;
     }
 }
@@ -214,11 +214,11 @@
 
 /* Responsive improvements */
 @media (max-width: 600px) {
-    .utility-corner-content .utility-title {
+    .updates-corner-content .updates-title {
         font-size: 1.6rem;
     }
 
-    .utility-corner-content .ant-select-selector {
+    .updates-corner-content .ant-select-selector {
         padding: 0.3rem 0.8rem !important;
     }
 }

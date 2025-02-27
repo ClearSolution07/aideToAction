@@ -7,7 +7,7 @@ import ProfileHeader from "../../components/ProfileHeader";
 import "./LayoutPage.css";
 import Connect from "./Connect";
 import WellBeing from "./WellBeing";
-import UtilityCorner from "./UtilityCorner";
+import UtilityMain from "./UtilityMain";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
 import Announce from "./Announce";
 
@@ -21,7 +21,7 @@ const DashboardContent = ({ content, setContent }) => {
             case "1":
                 return <WellBeing />;
             case "2":
-                return <UtilityCorner />;
+                return <UtilityMain />;
             case "3":
                 return <StudyLearnAndEarn />;
             case "4":

@@ -47,6 +47,16 @@ const documentGroups = [
         ],
     },
     {
+        category: "Ration Card",
+        description: "Know the procedures to apply for a ration card.",
+        documents: [
+            {
+                title: "Ration Card Guide",
+                pdf: "/pdfs/ration_card.pdf",
+            },
+        ],
+    },
+    {
         category: "Voter ID",
         description:
             "Know the procedures to register for a Voter ID, update your information, or check your status.",
@@ -59,6 +69,42 @@ const documentGroups = [
                 title: "Voter ID Guide",
                 pdf: "/pdfs/voter_id_guide.pdf",
             },
+        ],
+    },
+
+    {
+        category: "Caste Certificate",
+        description:
+            "Know the procedures to register for a a caste certificate online through your state's official website.",
+        documents: [
+            {
+                title: "Caste Certificate Registration Guide",
+                pdf: "/pdfs/caste_certificate.pdf",
+            },
+        ],
+    },
+    {
+        category: "Driving License",
+        description:
+            "You can download a driving license application form in your particular State from the state Transport website.",
+        documents: [
+            {
+                title: "Driving License Registration Guide",
+                pdf: "/pdfs/driving_license.pdf",
+            },
+           
+        ],
+    },
+    {
+        category: "Ayushman Card",
+        description:
+            "Know the procedures to register for a Ayushman Card, update your information, or check your status.",
+        documents: [
+            {
+                title: "Ayushman Card Registration Guide",
+                pdf: "/pdfs/ayushman_guide.pdf",
+            },
+          
         ],
     },
 ];
