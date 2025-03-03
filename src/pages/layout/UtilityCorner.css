@@ -15,7 +15,10 @@
     margin-bottom: 1rem;
     color: #333;
 }
-
+.ant-table-cell {
+    max-width: 380px !important;
+    padding: 8px 8px !important;
+}
 .pdf-row {
     display: flex;
     flex-wrap: wrap;
@@ -139,7 +142,9 @@
     border-radius: 8px;
     margin-bottom: 1rem;
     width: 100%;
-    transition: box-shadow 0.3s, background-color 0.3s;
+    transition:
+        box-shadow 0.3s,
+        background-color 0.3s;
 }
 
 .ant-collapse-item {
