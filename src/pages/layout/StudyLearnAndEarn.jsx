@@ -157,7 +157,7 @@ const StudyLearnAndEarn = () => {
 
     return (
         <div className="utility-corner-content">
-            <h2 className="utility-title">State-wise Resources</h2>
+            <h1 className="utility-title">State-wise Resources</h1>
             <p className="utility-subtitle">
                 Names of organizations, institutes, and agencies providing
                 support in education, skill development, housing, and job

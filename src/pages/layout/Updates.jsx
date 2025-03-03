@@ -1,8 +1,8 @@
-import { Collapse, Modal } from "antd";
 import { useState } from "react";
 import "./Updates.css";
+import Newsletter from "./Newsletter";
+import DocsViewer from "./DocsViewer";
 
-const { Panel } = Collapse;
 
 const documentGroups = [
     {
@@ -55,67 +55,21 @@ const Updates = () => {
 
     return (
         <div className="updates-corner-content">
-            <h2 className="updates-title">
+            <h1 className="updates-title">
                 Stay informed with the latest updates
-            </h2>
+            </h1>
             <p className="updates-subtitle">
                 Explore Saarthi newsletters, event reports, and press
                 releases—all in one place. Stay updated on important
                 initiatives, community events, and key announcements.
             </p>
+            {/* Monthly Newsletters Section */}
+            <h1 className="updates-title">Monthly Newsletters</h1>
+            <Newsletter />
 
-            <Collapse expandIconPosition="end" accordion>
-                {documentGroups.map((group, index) => (
-                    <Panel
-                        header={group.category}
-                        key={index}
-                        className="custom-panel"
-                    >
-                        <p className="panel-content">{group.description}</p>
-                        <div className="pdf-row">
-                            {group.documents.map((doc, docIndex) => (
-                                <div key={docIndex} className="pdf-container">
-                                    <p
-                                        className="pdf-title clickable"
-                                        onClick={() => openPdfModal(doc.pdf)}
-                                    >
-                                        {doc.title}
-                                    </p>
-                                    <a
-                                        href={doc.pdf}
-                                        download
-                                        className="download-link"
-                                    >
-                                        Download PDF
-                                    </a>
-                                </div>
-                            ))}
-                        </div>
-                    </Panel>
-                ))}
-            </Collapse>
-            <Modal
-                title="Document Preview"
-                open={isModalVisible}
-                onCancel={closeModal}
-                footer={null}
-                width="fit-content"
-                style={{
-                    maxWidth: "90vw",
-                    display: "flex",
-                    justifyContent: "center",
-                }}
-            >
-                {selectedPdf && (
-                    <div className="pdf-viewer-container">
-                        <iframe
-                            src={selectedPdf}
-                            title="PDF Viewer"
-                            className="pdf-viewer"
-                        />
-                    </div>
-                )}
-            </Modal>
+            {/* Workshop Reports Section */}
+            <h1 className="updates-title">Workshop Reports</h1>
+            <DocsViewer />
         </div>
     );
 };

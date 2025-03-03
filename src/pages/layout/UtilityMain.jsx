@@ -39,21 +39,22 @@ const UtilityMain = () => {
         <div className="utility-section">
             {!activeComponent ? (
                 <>
-                    <h1>Access psycho-social support</h1>
+                    <h1 className="utility-title">
+                        Your Resource Hub for Daily Needs & Updates
+                    </h1>
                     <p className="utility-subheading">
-                        Through experts and mentors, gain healing through art,
-                        Pranayam, breathwork, and other healing tools
+                        Explore essential resources to navigate your daily
+                        life—whether it's applying for government documents or
+                        staying updated <br></br> with Saarthi's latest news,
+                        reports, and announcements — all in one place.
                     </p>
+
                     <div className="utility-card-container">
                         <div
                             className="utility-card"
                             onClick={() => handleCardClick("document")}
                         >
-                            <img
-                                src={utility1Img}
-                                alt="document"
-                               
-                            />
+                            <img src={utility1Img} alt="document" />
                             <p>Government Document Assistance</p>
                         </div>
                         <div

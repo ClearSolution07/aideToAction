@@ -5,7 +5,6 @@
 
 .utility-title {
     font-size: 2rem;
-    color: #333;
 }
 
 .utility-subheading {
@@ -48,7 +47,7 @@
     margin-bottom: 1rem;
 }
 
-.utility-card p {
+.utility-card  {
     color: #333;
     font-weight: 500;
     line-height: 1.4;

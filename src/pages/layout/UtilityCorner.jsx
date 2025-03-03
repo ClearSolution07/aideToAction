@@ -125,9 +125,9 @@ const UtilityCorner = () => {
 
     return (
         <div className="utility-corner-content">
-            <h2 className="utility-title">
+            <h1 className="utility-title">
                 Your one-stop repository for all essential information!
-            </h2>
+            </h1>
             <p className="utility-subtitle">
                 Access step-by-step guides on obtaining government documents
                 like Aadhaar, PAN Card, Passport, and other important
