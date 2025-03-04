@@ -34,12 +34,13 @@ const MembershipForm = () => {
                 values.gender === "Male (पुरुष)"
                     ? "Male"
                     : values.gender === "Female (महिला)"
-                    ? "Female"
-                    : values.gender === "Others (अन्य)"
-                    ? "Others"
-                    : values.gender === "Prefer not to say (कहना नहीं चाहेंगे)"
-                    ? "Prefer not to say"
-                    : values.gender,
+                      ? "Female"
+                      : values.gender === "Others (अन्य)"
+                        ? "Others"
+                        : values.gender ===
+                            "Prefer not to say (कहना नहीं चाहेंगे)"
+                          ? "Prefer not to say"
+                          : values.gender,
             phone_number: values.phone_number,
             email_address: values.email_address,
             state: values.state,
@@ -50,33 +51,36 @@ const MembershipForm = () => {
                 values.is_member_state_network === "Yes (हाँ)"
                     ? true
                     : values.is_member_state_network === "No (नहीं)"
-                    ? false
-                    : values.is_member_state_network,
+                      ? false
+                      : values.is_member_state_network,
             education_status:
                 values.education_status === "Primary School (प्राथमिक स्कूल)"
                     ? "Primary School"
                     : values.education_status ===
-                      "Secondary School (माध्यमिक विद्यालय)"
-                    ? "Secondary School"
-                    : values.education_status === "High School (हाई स्कूल)"
-                    ? "High School"
-                    : values.education_status === "Undergraduate (अंडरग्रेजुएट)"
-                    ? "Undergraduate"
-                    : values.education_status === "Graduate (ग्रेजुएट)"
-                    ? "Graduate"
-                    : values.education_status === "Postgraduate (स्नातकोत्तर)"
-                    ? "Postgraduate"
-                    : "Others",
+                        "Secondary School (माध्यमिक विद्यालय)"
+                      ? "Secondary School"
+                      : values.education_status === "High School (हाई स्कूल)"
+                        ? "High School"
+                        : values.education_status ===
+                            "Undergraduate (अंडरग्रेजुएट)"
+                          ? "Undergraduate"
+                          : values.education_status === "Graduate (ग्रेजुएट)"
+                            ? "Graduate"
+                            : values.education_status ===
+                                "Postgraduate (स्नातकोत्तर)"
+                              ? "Postgraduate"
+                              : "Others",
             employment_status:
                 values.employment_status === "Employed (कार्यरत)"
                     ? "Employed"
                     : values.employment_status === "Unemployed (बेरोज़गार)"
-                    ? "Unemployed"
-                    : values.employment_status === "Self Employed (स्वनियोजित)"
-                    ? "Self Employed"
-                    : values.employment_status === "Student (छात्र)"
-                    ? "Self Employed"
-                    : "Student",
+                      ? "Unemployed"
+                      : values.employment_status ===
+                          "Self Employed (स्वनियोजित)"
+                        ? "Self Employed"
+                        : values.employment_status === "Student (छात्र)"
+                          ? "Self Employed"
+                          : "Student",
             strengths: values.strengths,
         };
 
@@ -111,6 +115,17 @@ const MembershipForm = () => {
                             </p>
                             <p>
                                 <strong>Email:</strong> {email}
+                            </p>
+                            <p
+                                style={{
+                                    marginTop: "20px",
+                                    fontWeight: "bold",
+                                    color: "black",
+                                }}
+                            >
+                                Please wait 24 to 48 hours for verification. If
+                                you need any assistance, contact our support
+                                team.
                             </p>
                         </div>
                     ),

@@ -1,15 +1,15 @@
-import {useEffect, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
-import {loginImage1, logoImage} from "../../utils/imageUtils";
-import {message} from "antd";
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { logoImage } from "../../utils/imageUtils";
+import { message } from "antd";
 import "./login.css";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const LogIn = () => {
     const navigate = useNavigate();
-    const {loading, error, handleLogin} = useAuth();
+    const { loading, error, handleLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [isMobileWidth, setIsMobileWidth] = useState(false);
     const [password, setPassword] = useState("");
@@ -39,7 +39,7 @@ const LogIn = () => {
                 localStorage.setItem("authToken", response.data.access_token);
                 localStorage.setItem("userId", response.data.user_id);
                 setTimeout(() => {
-                    navigate("/dashboard")
+                    navigate("/dashboard");
                 }, 400);
             } else {
                 console.error("Error:", response.message);
@@ -47,14 +47,16 @@ const LogIn = () => {
             }
         } catch (err) {
             console.error("Login failed:", err.message);
-            message.error(`Login Failed : ${response.message}`);
+            message.error(
+                `Login Failed: ${err.response?.message || err.message}`
+            );
         }
     };
 
     return (
         <div className={"rightSectionContainer"}>
-            <div className="logoImage" >
-                <img src={logoImage} alt="logoSarthi"/>
+            <div className="logoImage">
+                <img src={logoImage} alt="logoSarthi" />
             </div>
             <div className="formContainer">
                 <div className="titleSection">
