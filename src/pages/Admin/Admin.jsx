@@ -67,7 +67,7 @@ const Admin = () => {
                     }
                 >
                     <UsergroupAddOutlined style={{ fontSize: "20px" }} />
-                    <span>Add Member</span>
+                    <span>Add Mentor</span>
                 </div>
             ),
             value: "user2",

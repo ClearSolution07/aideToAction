@@ -169,9 +169,7 @@ const UtilityCorner = () => {
                 open={isModalVisible}
                 onCancel={closeModal}
                 footer={null}
-                width="fit-content"
                 style={{
-                    maxWidth: "90vw",
                     display: "flex",
                     justifyContent: "center",
                 }}

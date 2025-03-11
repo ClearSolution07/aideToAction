@@ -15,12 +15,14 @@ const Profile = () => {
         fullName: "",
         phoneNumber: "",
         description: "",
+        specialization: "",
     });
     const [passwords, setPasswords] = useState({
         newPassword: "",
         confirmPassword: "",
     });
     const [loading, setLoading] = useState(false);
+    const [passloading, setPassLoading] = useState(false);
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -30,6 +32,7 @@ const Profile = () => {
                     fullName: response.data[0].full_name || "",
                     phoneNumber: response.data[0].phone_number || "",
                     description: response.data[0].description || "",
+                    specialization: response.data[0].specialization || "",
                 });
                 setFileList([
                     {
@@ -83,14 +86,21 @@ const Profile = () => {
                 phone_number: profileData.phoneNumber,
                 user_picture: userPictureBase64,
                 description: profileData.description,
+                specialization: profileData.specialization,
             };
 
             const data = await handleUserDataSubmit(payload);
-            message.success("Profile updated successfully!");
+            console.log("data", data);
+			if (data.statuscode===200){
+                message.success("Profile updated successfully!");
+			}else{
+				message.error(data.message);
+			}
             setProfileData({
                 fullName: data.full_name,
                 phoneNumber: data.phone_number,
                 description: data.description,
+                specialization: data.specialization,
             });
         } catch (err) {
             message.error(`Error updating profile: ${err.message}`);
@@ -117,7 +127,7 @@ const Profile = () => {
             password: passwords.newPassword,
         };
 
-        setLoading(true);
+        setPassLoading(true);
 
         try {
             const response = await handleUpdatePassword(payload);
@@ -135,7 +145,7 @@ const Profile = () => {
         } catch (err) {
             message.error(`Failed to update password: ${err.message}`);
         } finally {
-            setLoading(false);
+            setPassLoading(false);
         }
     };
 
@@ -166,7 +176,16 @@ const Profile = () => {
                         <Form layout="vertical" className="left-container">
                             <div className="image-data-container">
                                 <div className="user-data-container">
-                                    <Form.Item label="Full Name">
+                                    <Form.Item
+                                        label="Full Name"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    "Full Name is required",
+                                            },
+                                        ]}
+                                    >
                                         <Input
                                             value={profileData.fullName}
                                             onChange={handleProfileChange(
@@ -175,7 +194,16 @@ const Profile = () => {
                                             placeholder="Enter your full name"
                                         />
                                     </Form.Item>
-                                    <Form.Item label="Phone Number">
+                                    <Form.Item
+                                        label="Phone Number"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    "Phone Number is required",
+                                            },
+                                        ]}
+                                    >
                                         <Input
                                             value={profileData.phoneNumber}
                                             onChange={handleProfileChange(
@@ -184,7 +212,25 @@ const Profile = () => {
                                             placeholder="Enter your phone number"
                                         />
                                     </Form.Item>
-                                    <Form.Item label="Profile Description">
+                                    <Form.Item label="Specialization">
+                                        <Input
+                                            value={profileData.specialization}
+                                            onChange={handleProfileChange(
+                                                "specialization"
+                                            )}
+                                            placeholder="Enter Your Specialization"
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Profile Description"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    "Description is required",
+                                            },
+                                        ]}
+                                    >
                                         <Input.TextArea
                                             value={profileData.description}
                                             onChange={handleProfileChange(
@@ -253,7 +299,7 @@ const Profile = () => {
                                 type="text"
                                 className="button"
                                 onClick={handlePasswordUpdate}
-                                loading={loading}
+                                loading={passloading}
                             >
                                 Update Password
                             </Button>

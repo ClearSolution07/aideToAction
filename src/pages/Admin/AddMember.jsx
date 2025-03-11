@@ -62,7 +62,7 @@ function AddMember() {
                 width: "100%",
             }}
         >
-            <h2 style={{ marginBottom: "24px" }}>Add New Member</h2>
+            <h2 style={{ marginBottom: "24px" }}>Add New Mentor</h2>
 
             <Form
                 form={form}

@@ -42,10 +42,9 @@ const Members = () => {
     const handleChatNavigation = (member) => {
         setSelectedMember(member);
     };
-
+    console.log("membersData", membersData);
     return selectedMember ? (
         <div className="chat-view">
-            {/* Logs the prop */}
             <ChatWindow member={selectedMember} />
             <button
                 onClick={() => setSelectedMember(null)}
@@ -91,7 +90,8 @@ const Members = () => {
                                 xs={24}
                                 sm={12}
                                 md={8}
-                                lg={6}
+                                lg={8}
+                                xl={8}
                             >
                                 <MemberCard
                                     {...member}

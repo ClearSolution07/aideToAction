@@ -42,6 +42,7 @@ const Psychologists = () => {
     const handleChatNavigation = (psychologist) => {
         setSelectedPsychologist(psychologist);
     };
+    console.log("psychologistsData", psychologistsData);
 
     return selectedPsychologist ? (
         <div className="chat-view">
@@ -90,8 +91,9 @@ const Psychologists = () => {
                                     key={psychologist.user_id}
                                     xs={24}
                                     sm={12}
-                                    md={8}
-                                    lg={6}
+                                    md={24}
+                                    lg={12}
+                                    xl={12}
                                 >
                                     <MemberCard
                                         {...psychologist}
@@ -100,6 +102,7 @@ const Psychologists = () => {
                                 </Col>
                             ))}
                         </Row>
+
                         <div className="pagination-container">
                             <Pagination
                                 current={currentPage}

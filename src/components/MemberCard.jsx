@@ -6,8 +6,9 @@ import "./css/memberCard.css";
 const MemberCard = ({
     user_id,
     full_name,
-    user_role,
-
+    description,
+    user_picture,
+    specialization,
     navigateToChat,
 }) => {
     return (
@@ -15,25 +16,26 @@ const MemberCard = ({
             <div className="member-card-content">
                 <div className="member-image-container">
                     <img
-                        src={memberProfile}
+                        src={user_picture || memberProfile}
                         alt={full_name}
                         className="member-image"
                     />
                 </div>
+
                 <div className="member-info">
                     <h3 className="member-name">{full_name}</h3>
-                    <p className="member-user_role">
-                        {user_role ? user_role : ""}
-                    </p>
+                    <p className="member-specialization">{specialization}</p>
+                    <p className="member-description">{description}</p>
+
+                    <Button
+                        type="text"
+                        icon={<SendOutlined />}
+                        className="send-message-button"
+                        onClick={() => navigateToChat({ user_id, full_name })}
+                    >
+                        Send Message
+                    </Button>
                 </div>
-                <Button
-                    type="text"
-                    icon={<SendOutlined />}
-                    className="send-message-button"
-                    onClick={() => navigateToChat({ user_id, full_name })}
-                >
-                    Send Message
-                </Button>
             </div>
         </div>
     );
