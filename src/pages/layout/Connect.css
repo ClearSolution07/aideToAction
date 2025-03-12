@@ -9,7 +9,7 @@ h1 {
 }
 
 .subheading {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: #666;
   margin: 1rem 0 2rem 0;
 }
@@ -105,7 +105,7 @@ h1 {
     border: 1px solid #ffa940;
     border-radius: 8px;
     color: #ad4e00;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.5;
 }
 

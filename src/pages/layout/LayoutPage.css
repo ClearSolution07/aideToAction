@@ -1,3 +1,29 @@
+/* Layout container to ensure proper positioning */
+.layout-container {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Background Image Styling */
+.background-image {
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    width: 100%;
+    height: 80%;
+    z-index: 0; 
+    opacity: 0.3;
+    pointer-events: none; 
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Ensure content stays on top of background */
 .dynamic-content-card {
     background-color: white;
     border-radius: 0.75rem;
@@ -9,9 +35,14 @@
     max-width: 90rem;
     width: 100%;
     border: 1px solid #f7dad3;
-    margin: 12rem auto;
+    margin: 12.5rem auto;
+    position: relative; 
+    z-index: 1;
 }
 
+/* Make sure main content is also above background */
 .ant-layout-content {
-    background-color: white;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
 }

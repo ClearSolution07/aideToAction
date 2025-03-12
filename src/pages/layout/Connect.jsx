@@ -24,7 +24,7 @@ const Connect = () => {
                     </h1>
                     <p className="subheading">
                         Engage in meaningful conversations, exchange ideas, and
-                        explore diverse cultures. This is your community—a place
+                        explore diverse cultures. This is your community a place
                         to find support, build friendships, and uplift each
                         other.
                     </p>

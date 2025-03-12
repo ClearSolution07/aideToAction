@@ -10,6 +10,7 @@ import WellBeing from "./WellBeing";
 import UtilityMain from "./UtilityMain";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
 import Announce from "./Announce";
+import bgImg from "../../img/bgImg.jpeg";
 
 const { Content } = Layout;
 
@@ -54,13 +55,12 @@ const LayoutPage = () => {
     const isDashboardPage = location.pathname === "/dashboard";
 
     return (
-        <Layout
-            style={{
-                marginLeft: 0,
-                transition: "margin-left 0.3s ease",
-                minHeight: "100vh",
-            }}
-        >
+        <Layout className="layout-container">
+            {/* Background Image */}
+            <div className="background-image">
+                <img src={bgImg} alt="background-img" />
+            </div>
+
             <HeaderComponent
                 onMenuClick={() => {}}
                 isMobileWidth={true}

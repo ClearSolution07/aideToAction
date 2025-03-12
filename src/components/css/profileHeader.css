@@ -4,6 +4,7 @@
     padding-top: 4rem;
     padding-bottom: 6rem;
     position: relative;
+    z-index: 10;
 }
 
 .profile-header-content {
@@ -98,7 +99,7 @@
     border-bottom-right-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 16px;
+    padding: 20px;
     border: 1px solid #f7dad3;
     display: flex;
     gap: 2rem;

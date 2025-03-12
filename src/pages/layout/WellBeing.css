@@ -9,7 +9,7 @@
 }
 
 .wellbeing-subheading {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #666;
     margin: 1rem 0 2rem 0;
 }
@@ -26,9 +26,9 @@
     border: 1px solid #f0e6e6;
     border-radius: 1rem;
     padding: 1.5rem;
-    width: 15rem;
+    width: 18rem;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.3rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
@@ -38,7 +38,7 @@
 }
 
 .wellbeing-img {
-    height: 160px;
+    height: 200px;
     width: 260px;
 }
 

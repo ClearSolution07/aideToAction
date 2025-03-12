@@ -45,7 +45,7 @@ const UtilityMain = () => {
                     <p className="utility-subheading">
                         Explore essential resources to navigate your daily
                         life—whether it's applying for government documents or
-                        staying updated <br></br> with Saarthi's latest news,
+                        staying updated  with Saarthi's latest news,
                         reports, and announcements — all in one place.
                     </p>
 

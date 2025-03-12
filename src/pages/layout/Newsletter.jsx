@@ -8,9 +8,9 @@ import "./Newsletter.css";
 const newsletters = [
     {
         id: 1,
-        title: "January 2025",
-        pdfUrl: "pdfs/january.pdf",
-        img: janImg,
+        title: "November 2024",
+        pdfUrl: "/pdfs/november.pdf",
+        img: novImg,
     },
     {
         id: 2,
@@ -20,9 +20,9 @@ const newsletters = [
     },
     {
         id: 3,
-        title: "November 2024",
-        pdfUrl: "/pdfs/november.pdf",
-        img: novImg,
+        title: "January 2025",
+        pdfUrl: "pdfs/january.pdf",
+        img: janImg,
     },
 ];
 

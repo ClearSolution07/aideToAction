@@ -184,7 +184,7 @@ const Home = () => {
                 <div
                     style={{
                         marginBottom: 16,
-                        fontSize: "28px",
+                        fontSize: "40px",
                         fontWeight: "500",
                     }}
                 >

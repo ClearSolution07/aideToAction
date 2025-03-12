@@ -32,7 +32,7 @@ const ProfileHeader = ({ onNavChange }) => {
             icon: (
                 <img
                     src={connectLogo}
-                    style={{ height: "30px", borderRadius: "50%" }}
+                    style={{ height: "50px", borderRadius: "50%" }}
                 />
             ),
             label: "Let's Connect!",
@@ -42,7 +42,7 @@ const ProfileHeader = ({ onNavChange }) => {
             icon: (
                 <img
                     src={wellBeingLogo}
-                    style={{ height: "30px", borderRadius: "50%" }}
+                    style={{ height: "50px", borderRadius: "50%" }}
                 />
             ),
             label: "Wellbeing Matters!",
@@ -52,7 +52,7 @@ const ProfileHeader = ({ onNavChange }) => {
             icon: (
                 <img
                     src={utilityLogo}
-                    style={{ height: "30px", borderRadius: "50%" }}
+                    style={{ height: "50px", borderRadius: "50%" }}
                 />
             ),
             label: "Utility Corner",
@@ -62,7 +62,7 @@ const ProfileHeader = ({ onNavChange }) => {
             icon: (
                 <img
                     src={learnLogo}
-                    style={{ height: "30px", borderRadius: "50%" }}
+                    style={{ height: "50px", borderRadius: "50%" }}
                 />
             ),
             label: "Study, Learn and Earn!",
@@ -72,7 +72,7 @@ const ProfileHeader = ({ onNavChange }) => {
             icon: (
                 <img
                     src={announcementLogo}
-                    style={{ height: "30px", borderRadius: "50%" }}
+                    style={{ height: "50px", borderRadius: "50%" }}
                 />
             ),
             label: "Announcements!",
