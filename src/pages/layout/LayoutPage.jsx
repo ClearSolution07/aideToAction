@@ -56,21 +56,25 @@ const LayoutPage = () => {
 
     return (
         <Layout className="layout-container">
-            {/* Background Image */}
-            <div className="background-image">
-                <img src={bgImg} alt="background-img" />
-            </div>
+            <div className="background">
+                {/* <div className="background-image">
+                    <img src={bgImg} alt="background-img" />
+                </div> */}
 
-            <HeaderComponent
-                onMenuClick={() => {}}
-                isMobileWidth={true}
-                headerText={"Saarthi"}
-            />
-            {isDashboardPage ? (
-                <DashboardContent content={content} setContent={setContent} />
-            ) : (
-                <ProfileContent />
-            )}
+                <HeaderComponent
+                    onMenuClick={() => {}}
+                    isMobileWidth={true}
+                    headerText={"Saarthi"}
+                />
+                {isDashboardPage ? (
+                    <DashboardContent
+                        content={content}
+                        setContent={setContent}
+                    />
+                ) : (
+                    <ProfileContent />
+                )}
+            </div>
             <Footer isAuthenticated={true} />
         </Layout>
     );

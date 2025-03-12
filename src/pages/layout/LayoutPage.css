@@ -6,21 +6,28 @@
 }
 
 /* Background Image Styling */
+.background {
+    background:
+        linear-gradient(rgb(255 255 255 / 48%), rgb(255 255 255 / 51%)),
+        url(/src/img/bgImg.jpeg) no-repeat center center;
+    background-size: cover;
+}
+
 .background-image {
     position: absolute;
-    top: 60px; 
+    top: 60px;
     left: 0;
     width: 100%;
     height: 80%;
-    z-index: 0; 
+    z-index: 0;
     opacity: 0.3;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .background-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 /* Ensure content stays on top of background */
@@ -36,7 +43,7 @@
     width: 100%;
     border: 1px solid #f7dad3;
     margin: 12.5rem auto;
-    position: relative; 
+    position: relative;
     z-index: 1;
 }
 
