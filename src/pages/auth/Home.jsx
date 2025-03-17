@@ -13,7 +13,7 @@ import HomeCarousel from "../../components/HomeCarousel";
 
 const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -40,7 +40,6 @@ const Home = () => {
 
     useEffect(() => {
         const aboutSection = document.querySelector(".about-container");
-      
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -180,6 +179,11 @@ const Home = () => {
                     <HomeCarousel homeCarouselData={homeCarouselData} />
                 </div>
             </div>
+
+            <div className="purpose-container" id="vissionSection">
+                <VisionMission />
+            </div>
+
             <div className="disclaimer-main">
                 <div
                     style={{
@@ -188,7 +192,7 @@ const Home = () => {
                         fontWeight: "500",
                     }}
                 >
-                    <strong>*Disclaimer*</strong>{" "}
+                    <h2 className="vision-title">*Disclaimer*</h2>
                 </div>
                 <div className="disclaimer-description">
                     Setting up an appointment with us is simple. You can call
@@ -197,10 +201,6 @@ const Home = () => {
                     your whole service in just 4 clicks. If you have an account
                     with us, you can even text us to secure an appointment.
                 </div>
-            </div>
-
-            <div className="purpose-container" id="vissionSection">
-                <VisionMission />
             </div>
             <div id="supportersSection">
                 <SupportersCarousel supporters={supporters} />

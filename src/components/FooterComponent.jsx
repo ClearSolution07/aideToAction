@@ -32,11 +32,6 @@ const Footer = ({ isAuthenticated }) => {
                     <div className="brand-section">
                         <div className="brand-header">
                             <img src={logo} alt="Logo" className="brand-logo" />
-                            <img
-                                src={ataLogo}
-                                alt="Logo2"
-                                className="brand-logo2"
-                            />
                         </div>
                     </div>
 
