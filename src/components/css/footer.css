@@ -17,7 +17,7 @@
 
 /* Footer styles */
 .footer {
-    background-color: #004aad;
+    background-color: #111111;
     color: #cbd5e1;
     padding: 4rem 0;
 }
@@ -54,7 +54,6 @@
 }
 
 .brand-logo {
-    width: 9rem;
     height: 12rem;
     border-radius: 50%;
     padding: 2px;
@@ -126,9 +125,9 @@
 .footer-heading::after {
     content: "";
     position: absolute;
-    left: 35%;
+    left: 30%;
     bottom: -0.5rem;
-    width: 31%;
+    width: 40%;
     height: 2px;
     background-color: #fed72c;
 }
