@@ -1,69 +1,76 @@
 .therapy-content {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 .therapy-header {
-  text-align: start;
-  margin-bottom: 2rem;
+    text-align: start;
+    margin-bottom: 2rem;
 }
 
 .therapy-title {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
 }
 
-.disclaimer-wellbeing{
-  font-size: 1.1rem;
+.disclaimer-wellbeing {
+    font-size: 1.1rem;
 }
 
 .therapy-category {
-  margin-bottom: 3rem;
+    margin-bottom: 3rem;
 }
 
 .category-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: #444;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #444;
 }
 
 .video-card {
-  background: #fefefe;
-  border: 1px solid #ddd;
-  border-radius: 1rem;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-  padding: 1rem;
+    background: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 1rem;
 }
 
 .video-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .video-thumbnail {
-  width: 100%;
-  max-width: 300px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem;
 }
 
 .video-title {
-  margin-top: 0.5rem;
-  font-weight: 500;
-  color: #333;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    color: #333;
 }
 
 .pagination-container {
-  margin-top: 1rem;
-  text-align: center;
+    margin-top: 1rem;
+    text-align: center;
 }
 
 /* Separator between categories */
 .category-separator {
-  margin: 2rem 0;
-  border: none;
-  height: 1px;
-  background: #ddd;
+    margin: 2rem 0;
+    border: none;
+    height: 1px;
+    background: #ddd;
+}
+
+@media (max-width: 768px) {
+    .therapy-content {
+        padding: 0;
+		padding-top: 1rem;
+    }
 }

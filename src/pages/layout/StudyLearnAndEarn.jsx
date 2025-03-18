@@ -76,9 +76,9 @@ const StudyLearnAndEarn = () => {
 
         if (columns.length > 0) {
             columns = [...columns];
-            columns[0] = { ...columns[0], fixed: "left" };
+            columns[0] = { ...columns[0]};
             if (columns.length > 1) {
-                columns[1] = { ...columns[1], fixed: "left" };
+                columns[1] = { ...columns[1]};
             }
         }
 

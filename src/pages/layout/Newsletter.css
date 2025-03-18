@@ -17,11 +17,13 @@
     background: white;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
     overflow: hidden;
     cursor: pointer;
     padding: 1rem;
-    width: 350px; 
+    width: 350px;
     text-align: center;
 }
 
@@ -114,6 +116,10 @@
 
     .newsletter-card {
         width: 90%;
+    }
+    .newsletter-section {
+        padding: 0;
+		padding-top: 1rem;
     }
 }
 

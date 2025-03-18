@@ -99,6 +99,8 @@
 @media (max-width: 768px) {
     .updates-corner-content {
         width: 100%;
+		padding: 0;
+		padding-top: 1rem;
     }
     .pdf-viewer {
         width: 400px;

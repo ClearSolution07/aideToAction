@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, Typography, DatePicker, Collapse } from "antd";
 import useDesktop from "../hooks/useDesktop";
 import moment from "moment";
+import "../../src/pages/layout/Announce.css";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
@@ -73,15 +74,9 @@ const AnnouncementCard = ({ visible }) => {
                     padding: "16px",
                 }}
             >
-                <Title
-                    level={3}
-                    style={{
-                        margin: 0,
-                        fontSize: "clamp(18px, 4vw, 24px)",
-                    }}
-                >
+                <div className="announcement-text">
                     Announcement
-                </Title>
+                </div>
                 <DatePicker
                     value={selectedDate}
                     onChange={handleDateChange}
