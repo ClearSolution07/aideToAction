@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { MenuOutlined, CloseOutlined, DownOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import {
+    MenuOutlined,
+    CloseOutlined,
+    DownOutlined,
+    BellOutlined,
+} from "@ant-design/icons";
 import "./home.css";
 import homeCarouselData from "../../components/jsons/homeCarouselData.json";
 import supporters from "../../components/jsons/supporters.json";
@@ -11,6 +17,7 @@ import HomeCarousel from "../../components/HomeCarousel";
 const Home = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const aboutSection = document.querySelector(".about-container");
@@ -34,36 +41,46 @@ const Home = () => {
         };
     }, []);
 
-    const toggleMenu = () => {
-        setMenuOpen(!isMenuOpen);
-    };
-
-    const closeMenu = () => {
-        setMenuOpen(false);
-    };
-
-    const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen);
-    };
+    const toggleMenu = () => setMenuOpen(!isMenuOpen);
+    const closeMenu = () => setMenuOpen(false);
+    const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
     return (
         <div className="home-container">
-            {/* Overlay to detect outside clicks */}
             {isMenuOpen && (
                 <div className="sidebar-overlay show" onClick={closeMenu}></div>
             )}
 
-            {/* Hamburger Menu Button */}
             <button className="hamburger-btn" onClick={toggleMenu}>
                 {isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
             </button>
 
-            {/* Sidebar Menu */}
             <div className={`sidebar-home ${isMenuOpen ? "open" : ""}`}>
-                <div style={{ marginTop: "60px", fontSize: "20px" }}>
+                <div
+                    style={{
+                        marginTop: "60px",
+                        fontSize: "20px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "20px",
+                    }}
+                >
                     <button className="dropdown-header">Our Initiatives</button>
-
-                    {/* Join Us Section */}
+                    <button
+                        className="dropdown-header"
+                        onClick={() => navigate("/resource")}
+                    >
+                        Resource Library
+                    </button>
+                    <div className="custom-dropdown">
+                        <button
+                            className="dropdown-header"
+                            onClick={() => navigate("/announcement")}
+                        >
+                            <span>Announcements</span>
+                            <BellOutlined />
+                        </button>
+                    </div>
                     <div className="custom-dropdown">
                         <button
                             className="dropdown-header"
@@ -76,7 +93,6 @@ const Home = () => {
                                 }`}
                             />
                         </button>
-
                         <div
                             className={`dropdown-content ${
                                 isDropdownOpen ? "show" : ""
@@ -93,7 +109,6 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Main Content */}
             <div>
                 <HomeCarousel homeCarouselData={homeCarouselData} />
             </div>
@@ -203,12 +218,7 @@ const Home = () => {
                 </div>
                 <div className="disclaimer-description">
                     Please note, the Saarthi -AICL has no financial, legal or
-                    statutory obligation on either Aide et Action or UNICEF and
-                    vice versa. Aide et Action and UNICEF are and will not be
-                    accountable for any financial, legal, or statutory
-                    repercussions arising out of any activity or statement done
-                    or undertaken by members at their individual level or
-                    with/to those met here.
+                    statutory obligation.
                 </div>
             </div>
 

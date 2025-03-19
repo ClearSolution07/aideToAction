@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Table, Input, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import useDesktop from "../../hooks/useDesktop";
-import "./UtilityCorner.css";
+import "./StudyLearnAndEarn.css";
 
 const isLink = (str) => {
     if (typeof str !== "string") return false;

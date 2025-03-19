@@ -108,7 +108,7 @@
     border: 1px solid #f7dad3;
     display: flex;
     gap: 2rem;
-    justify-content: center;
+    justify-content:space-evenly;
     width: 100%;
     position: relative;
 }

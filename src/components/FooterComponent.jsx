@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 import {
     FacebookFilled,
     InstagramFilled,
     LinkedinFilled,
 } from "@ant-design/icons";
 import twitter from "/img/twitter.png";
-import ataLogo from "/img/ataLogo.png";
 import "./css/footer.css";
 
 const Footer = ({ isAuthenticated }) => {

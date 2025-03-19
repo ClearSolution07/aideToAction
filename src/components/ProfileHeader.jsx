@@ -46,16 +46,7 @@ const ProfileHeader = ({ onNavChange }) => {
             label: "Wellbeing Matters!",
             content: "1",
         },
-        {
-            icon: (
-                <img
-                    src={utilityLogo}
-                    style={{ height: "50px", borderRadius: "50%" }}
-                />
-            ),
-            label: "Utility Corner",
-            content: "2",
-        },
+
         {
             icon: (
                 <img
@@ -64,17 +55,7 @@ const ProfileHeader = ({ onNavChange }) => {
                 />
             ),
             label: "Study, Learn and Earn!",
-            content: "3",
-        },
-        {
-            icon: (
-                <img
-                    src={announcementLogo}
-                    style={{ height: "50px", borderRadius: "50%" }}
-                />
-            ),
-            label: "Announcements!",
-            content: "4",
+            content: "2",
         },
     ];
 

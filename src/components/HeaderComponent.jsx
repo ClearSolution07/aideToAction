@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Layout, Typography, Avatar, Dropdown, message } from "antd";
+import { Layout, Avatar, Dropdown, message } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
 import logo from "../assets/logoSarthi.svg";
 import useUser from "../hooks/useUser";
 import "./css/profileHeader.css";
 
-const { Title } = Typography;
 const { Header } = Layout;
 
 const HeaderComponent = ({ headerText }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const { getUserDetail } = useUser();
+    const accessToken = localStorage.getItem("authToken");
 
     const [profileData, setProfileData] = useState({
         fullName: null,
@@ -22,7 +22,7 @@ const HeaderComponent = ({ headerText }) => {
     });
 
     useEffect(() => {
-        if (location.pathname !== "/register") {
+        if (accessToken) {
             const fetchProfile = async () => {
                 try {
                     const response = await getUserDetail();
@@ -67,7 +67,18 @@ const HeaderComponent = ({ headerText }) => {
         },
     ];
 
-    const hideProfileIcon = location.pathname === "/register";
+    const hideProfileIcon =
+        location.pathname === "/register" ||
+        location.pathname === "/resource" ||
+        location.pathname === "/announcement";
+
+    const handleLogoClick = () => {
+        if (accessToken) {
+            navigate("/dashboard");
+        } else {
+            navigate("/");
+        }
+    };
 
     return (
         <Header
@@ -93,14 +104,10 @@ const HeaderComponent = ({ headerText }) => {
                     flex: 1,
                     cursor: "pointer",
                 }}
-                onClick={() => {
-                    navigate("/dashboard");
-                }}
+                onClick={handleLogoClick}
             >
-                <img src={logo} style={{ height: "60px" }} />
-                <div
-                    className="dashboard-title"
-                >
+                <img src={logo} style={{ height: "60px" }} alt="Logo" />
+                <div className="dashboard-title">
                     {headerText || "Dashboard"}
                 </div>
             </div>

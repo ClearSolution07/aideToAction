@@ -1,14 +1,13 @@
 import { useState } from "react";
 import "./Updates.css";
-import Newsletter from "./Newsletter";
-import DocsViewer from "./DocsViewer";
-
+import Newsletter from "../layout/Newsletter";
+import DocsViewer from "../layout/DocsViewer";
 
 const documentGroups = [
     {
         category: "January 2025",
         description:
-        "Karnataka Care Leavers: Uniting Voices, Empowering Futures.",
+            "Karnataka Care Leavers: Uniting Voices, Empowering Futures.",
         documents: [
             {
                 title: "Monthly Newsletter",

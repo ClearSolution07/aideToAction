@@ -13,19 +13,23 @@ import Layout from "./pages/layout/LayoutPage";
 import Admin from "./pages/Admin/Admin";
 
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import UtilityMain from "./pages/auth/UtilityMain";
+import Announce from "./pages/auth/Announce";
 
 const isAuthenticated = () => {
     const token = localStorage.getItem("authToken");
-    console.log('==============token======', token)
+    console.log("==============token======", token);
     return !!token;
 };
 
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
+    { path: "/announcement", element: <Announce /> },
+    { path: "/resource", element: <UtilityMain /> },
     { path: "/register", element: <MembershipForm /> },
     {
         path: "/dashboard",
-        element: <Layout /> ,
+        element: <Layout />,
         children: [
             { path: "profile", element: <Profile /> },
             {
