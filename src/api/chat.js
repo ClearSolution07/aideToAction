@@ -28,3 +28,14 @@ export const getChat = async (data) => {
         );
     }
 };
+
+export const requestAppoinment = async (data) => {
+    try {
+        const response = await apiClient.post("/chat/request_appoinment", data);
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};

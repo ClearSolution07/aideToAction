@@ -7,7 +7,7 @@ export {
     updateUserData,
     updatePassword,
 } from "./user";
-export { saveChat, getChat } from "./chat";
+export { saveChat, getChat, requestAppoinment } from "./chat";
 export {
     getNumberOfUser,
     getStateWiseResource,
