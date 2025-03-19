@@ -10,7 +10,6 @@ import HeaderComponent from "../../components/HeaderComponent";
 import Footer from "../../components/FooterComponent";
 import { useNavigate } from "react-router-dom";
 
-
 const CounselingComponent = ({ onBack }) => (
     <div className="utility-content">
         <button className="utility-back-button" onClick={onBack}>
@@ -31,7 +30,7 @@ const MentorComponent = ({ onBack }) => (
 
 const UtilityMain = () => {
     const [activeComponent, setActiveComponent] = useState(null);
-     const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleCardClick = (component) => {
         setActiveComponent(component);
@@ -57,7 +56,10 @@ const UtilityMain = () => {
                             reports, and announcements — all in one place.
                         </p>
 
-                        <div className="utility-card-container">
+                        <div
+                            className="utility-card-container"
+                            style={{ marginTop: "7%", marginBottom: "7%" }}
+                        >
                             <div
                                 className="utility-card"
                                 onClick={() => handleCardClick("document")}

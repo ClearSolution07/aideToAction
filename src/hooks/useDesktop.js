@@ -33,8 +33,8 @@ const useDesktop = () => {
         setLoading(true);
         setError(null);
         try {
-            const token = await AsyncStorage.getItem("authToken");
-            if (!token) throw new Error("No auth token found");
+            // const token = await AsyncStorage.getItem("authToken");
+            // if (!token) throw new Error("No auth token found");
 
             const data = await getDashboardContent();
             setDashboardContent(data);

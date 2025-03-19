@@ -55,7 +55,7 @@ const AnnouncementCard = ({ visible }) => {
             style={{
                 width: "100%",
                 height: `calc(90vh - 200px)`,
-                border: "none",
+                border: "1px solid #ddd",
             }}
             styles={{
                 body: {
@@ -74,9 +74,7 @@ const AnnouncementCard = ({ visible }) => {
                     padding: "16px",
                 }}
             >
-                <div className="announcement-text">
-                    Announcement
-                </div>
+                <div className="announcement-text">Announcement</div>
                 <DatePicker
                     value={selectedDate}
                     onChange={handleDateChange}
@@ -131,7 +129,7 @@ const AnnouncementCard = ({ visible }) => {
                                             <Text
                                                 type="secondary"
                                                 style={{
-                                                    fontSize: "12px",
+                                                    fontSize: "14px",
                                                     color: "#FF5C5C",
                                                 }}
                                             >
@@ -140,11 +138,17 @@ const AnnouncementCard = ({ visible }) => {
                                                 )}
                                             </Text>
                                         </div>
-                                        <Text strong>{item.header}</Text>
+                                        <Text
+                                            strong
+                                            style={{
+                                                fontSize: "18px",
+                                            }}
+                                        >
+                                            {item.header}
+                                        </Text>
                                         <Text
                                             style={{
-                                                fontSize:
-                                                    "clamp(10px, 2vw, 12px)",
+                                                fontSize: "14px",
                                                 marginTop: "4px",
                                             }}
                                         >
