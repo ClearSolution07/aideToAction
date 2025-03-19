@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import { memberProfile } from "../utils/imageUtils";
+import UserFormModal from "../pages/chat/UserFormModal.jsx";
 import "./css/memberCard.css";
 
 const MemberCard = ({
@@ -11,6 +13,7 @@ const MemberCard = ({
     specialization,
     navigateToChat,
 }) => {
+    const [modalOpen, setModalOpen] = useState(false);
     return (
         <div className="member-card">
             <div className="member-card-content">
@@ -35,6 +38,20 @@ const MemberCard = ({
                     >
                         Send Message
                     </Button>
+                    <Button
+                        type="text"
+                        icon={<SendOutlined />}
+                        className="send-message-button"
+                        onClick={() => setModalOpen(true)}
+                    >
+                        Request an Appointemt
+                    </Button>
+
+                    <UserFormModal
+                        user_id={user_id}
+                        isOpen={modalOpen}
+                        onClose={() => setModalOpen(false)}
+                    />
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { saveChat, getChat } from "../api";
+import { saveChat, getChat, requestAppoinment } from "../api";
 import { useDispatch } from "react-redux";
 
 const useChat = () => {
@@ -38,12 +38,26 @@ const useChat = () => {
         }
     };
 
+    const sendRequestAppoinment = async (message) => {
+        dispatch({
+            type: "ADD_MESSAGE",
+            payload: message,
+        });
+        setError(null);
+        try {
+            await requestAppoinment(message);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
     return {
         loading,
         error,
         messages,
         fetchChatHistory,
         sendMessage,
+        sendRequestAppoinment,
     };
 };
 
