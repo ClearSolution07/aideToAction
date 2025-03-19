@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "antd";
-import {
-    ArrowRightOutlined,
-} from "@ant-design/icons";
+import { ArrowRightOutlined } from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
 import "./css/profileHeader.css";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
-import announcementLogo from "../img/l2.png";
-import connectLogo from "../img/l3.jpeg";
-import learnLogo from "../img/l5.png";
-import utilityLogo from "../img/l8.png";
-import wellBeingLogo from "../img/l9.png";
+import announcementLogo from "/img/l2.png";
+import connectLogo from "/img/l3.jpeg";
+import learnLogo from "/img/l5.png";
+import utilityLogo from "/img/l8.png";
+import wellBeingLogo from "/img/l9.png";
 
 const ProfileHeader = ({ onNavChange }) => {
     const navigate = useNavigate();

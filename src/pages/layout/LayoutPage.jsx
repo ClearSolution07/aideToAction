@@ -10,7 +10,7 @@ import WellBeing from "./WellBeing";
 import UtilityMain from "./UtilityMain";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
 import Announce from "./Announce";
-import bgImg from "../../img/bgImg.jpeg";
+import bgImg from "/img/bgImg.jpeg";
 
 const { Content } = Layout;
 

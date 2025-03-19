@@ -169,7 +169,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background-color: #15191b;
+    background-color: #f3eee8;
     font-family: "Baskervville";
 }
 
@@ -351,9 +351,9 @@
     font-weight: 400;
     margin-top: 2rem;
     padding: 12px;
-    border-top: 1px dotted #bfbfbf;
-    border-bottom: 1px dotted #bfbfbf;
-    color: #bfbfbf;
+    border-top: 1px dotted #07387B;
+    border-bottom: 1px dotted #07387B;
+    color: #07387B;
     line-height: 1.5;
     text-align: center;
     font-weight: 400;
@@ -486,7 +486,7 @@
 .support-heading {
     font-size: 36px;
     font-weight: 700;
-    color: #e69137;
+    color: #333;
     margin-bottom: 100px;
     line-height: 84px;
 }
@@ -507,11 +507,7 @@
 }
 
 .carousel-card:hover::after {
-    background: linear-gradient(
-        to bottom,
-        rgb(17, 17, 17),
-        rgba(161, 161, 161, 0.2)
-    );
+     background: linear-gradient(to bottom, rgb(255, 228, 196,1), rgb(253, 187, 116,0.2));
 }
 
 .carousel-card:hover .psycho-card-image {
@@ -537,18 +533,18 @@
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* border: 1px solid rgba(0, 0, 0, 0.05); */
     transform: translateY(0);
     width: 380px;
 }
 
 .carousel-card:nth-child(3n + 1),
 .carousel-card:nth-child(3n + 2) {
-    border-right: 2px dotted #bfbfbf;
+    border-right: 3px dotted #bfbfbf;
 }
 
 .carousel-card:nth-child(-n + 3) {
-    border-bottom: 2px dotted #bfbfbf;
+    border-bottom: 3px dotted #bfbfbf;
 }
 
 .psycho-card-image {

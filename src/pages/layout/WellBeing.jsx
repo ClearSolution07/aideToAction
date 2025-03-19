@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { LeftOutlined } from "@ant-design/icons";
 import "./WellBeing.css";
-import counsellingImg from "../../img/counselling.svg";
-import mentorImg from "../../img/mentoring.svg";
-import healingImg from "../../img/healing.svg";
+import counsellingImg from "/img/counselling.svg";
+import mentorImg from "/img/mentoring.svg";
+import healingImg from "/img/healing.svg";
 import Psychologists from "../psychologists/Psychologists";
 import Mentors from "../members/Members";
 import TherapyWellness from "../youtubeVideo/TherapyWellness";

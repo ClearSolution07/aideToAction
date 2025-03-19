@@ -1,12 +1,12 @@
 import React from "react";
-import logo from "../assets/Logo2.svg";
+import logo from "../assets/Logo.svg";
 import {
     FacebookFilled,
     InstagramFilled,
     LinkedinFilled,
 } from "@ant-design/icons";
-import twitter from "../img/twitter.png";
-import ataLogo from "../img/ataLogo.png";
+import twitter from "/img/twitter.png";
+import ataLogo from "/img/ataLogo.png";
 import "./css/footer.css";
 
 const Footer = ({ isAuthenticated }) => {
@@ -94,7 +94,7 @@ const Footer = ({ isAuthenticated }) => {
                                 </p>
                             </li>
                             <li>
-                                <p className="footer-link">8700190013</p>
+                                <p className="footer-link">+91-8700190013</p>
                             </li>
                         </ul>
                     </div>

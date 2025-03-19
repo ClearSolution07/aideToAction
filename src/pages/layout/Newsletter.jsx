@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import janImg from "../../img/pdfImg/Jan.png";
-import decImg from "../../img/pdfImg/Dec.png";
-import novImg from "../../img/pdfImg/Nov.png";
+import janImg from "/img/pdfImg/Jan.png";
+import decImg from "/img/pdfImg/Dec.png";
+import novImg from "/img/pdfImg/Nov.png";
 import "./Newsletter.css";
 
 const newsletters = [

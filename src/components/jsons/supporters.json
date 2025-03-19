@@ -1,27 +1,27 @@
 [
     {
         "id": 1,
-        "image": "../../src/img/carousel/brand/b4.svg"
+        "image": "/img/carousel/brand/b4.svg"
     },
     {
         "id": 2,
-        "image": "../../src/img/carousel/brand/b6.svg"
+        "image": "/img/carousel/brand/b6.svg"
     },
     {
         "id": 3,
-        "image": "../../src/img/carousel/brand/b3.svg"
+        "image": "/img/carousel/brand/b3.svg"
     },
     {
         "id": 4,
-        "image": "../../src/img/carousel/brand/b1.svg"
+        "image": "/img/carousel/brand/b1.svg"
     },
     {
         "id": 5,
-        "image": "../../src/img/carousel/brand/b2.svg"
+        "image": "/img/carousel/brand/b2.svg"
     },
 
     {
         "id": 6,
-        "image": "../../src/img/carousel/brand/b5.svg"
+        "image": "/img/carousel/brand/b5.svg"
     }
 ]

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { LeftOutlined } from "@ant-design/icons";
 import "./UtilityMain.css";
-import utility1Img from "../../img/utility1.svg";
-import utility2Img from "../../img/utility2.svg";
+import utility1Img from "/img/utility1.svg";
+import utility2Img from "/img/utility2.svg";
 import UtilityCorner from "./UtilityCorner";
 import Updates from "./Updates";
 
@@ -45,8 +45,8 @@ const UtilityMain = () => {
                     <p className="utility-subheading">
                         Explore essential resources to navigate your daily
                         life—whether it's applying for government documents or
-                        staying updated  with Saarthi's latest news,
-                        reports, and announcements — all in one place.
+                        staying updated with Saarthi's latest news, reports, and
+                        announcements — all in one place.
                     </p>
 
                     <div className="utility-card-container">

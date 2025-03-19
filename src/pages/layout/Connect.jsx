@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../img/l3.jpeg";
+import logo from "/img/l3.jpeg";
 import "./Connect.css";
 import {
     MessageOutlined,
