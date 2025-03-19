@@ -36,7 +36,6 @@ const Home = () => {
 
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
-          document.body.classList.toggle("menu-open", !isMenuOpen);
     };
 
     const closeMenu = () => {

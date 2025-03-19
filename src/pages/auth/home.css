@@ -141,9 +141,6 @@
     position: relative;
 }
 
-body.menu-open .home-container {
-    margin-left: 300px;
-}
 
 /* Overlay for dimming effect */
 .sidebar-overlay {
