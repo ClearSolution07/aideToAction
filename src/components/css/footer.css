@@ -55,7 +55,6 @@
 
 .brand-logo {
     height: 12rem;
-    border-radius: 50%;
     padding: 2px;
     transition: transform 0.3s ease-in-out;
 }

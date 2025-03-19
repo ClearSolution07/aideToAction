@@ -9,7 +9,7 @@ import signupImage from "../assets/signup.svg";
 import googleIcon from "../assets/icons8-google.svg";
 import rightImage from "../assets/rightYellow.png";
 import leftImage from "../assets/leftYellow.png";
-import mainLogo from "../assets/mainLogo.svg";
+import mainLogo from "../assets/logoSarthi.svg";
 import profilePhoto from "../assets/profile.jpg";
 import memberProfile from "../assets/memberProfile.svg"
 

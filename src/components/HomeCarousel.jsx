@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/homeCarousel.css";
-import logo from "../assets/Logo2.svg";
+import logo from "../assets/mainLogo.svg";
+
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import LogIn from "../pages/auth/LogIn";
@@ -42,13 +43,12 @@ const HomeCarousel = ({ homeCarouselData }) => {
             {/* Fixed overlay content */}
             <div className="carousel-overlay">
                 <img src={logo} alt="Logo" className="carousel-logo" />
-                <h1 className="carousel-heading">
-                    Empowering Care Leavers<br></br> for a Brighter Future
-                </h1>
+                <h1 className="carousel-heading">Association of Careleavers</h1>
                 <p className="carousel-description">
-                    The vision of Saarthi is to advocate for and empower care
-                    leaving youth transitioning out of child care institutions
-                    (CCI) and other forms of alternative care.
+                    The vision of Saarthi which is an association of Indian
+                    Careleavers is to advocate for and to empower care leaving
+                    youth transitioning out of child care institutions (CCI) and
+                    other forms of alternative care.
                 </p>
                 <div className="btns-carousel">
                     <button className="btn-signin" onClick={showModal}>

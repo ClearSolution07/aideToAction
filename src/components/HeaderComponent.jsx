@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Layout, Typography, Avatar, Dropdown, message } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
-import logo from "../assets/mainLogo.svg";
+import logo from "../assets/logoSarthi.svg";
 import useUser from "../hooks/useUser";
 import "./css/profileHeader.css";
 
