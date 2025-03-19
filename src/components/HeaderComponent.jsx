@@ -5,6 +5,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { profilePhoto } from "../utils/imageUtils";
 import logo from "../assets/mainLogo.svg";
 import useUser from "../hooks/useUser";
+import "./css/profileHeader.css";
 
 const { Title } = Typography;
 const { Header } = Layout;
@@ -90,22 +91,18 @@ const HeaderComponent = ({ headerText }) => {
                     alignItems: "center",
                     gap: "16px",
                     flex: 1,
-                    cursor: 'pointer',
+                    cursor: "pointer",
                 }}
                 onClick={() => {
-                    navigate('/dashboard');
+                    navigate("/dashboard");
                 }}
             >
                 <img src={logo} style={{ height: "60px" }} />
-                <Title
-                    level={2}
-                    style={{
-                        paddingLeft: 16,
-                        margin: 0,
-                    }}
+                <div
+                    className="dashboard-title"
                 >
                     {headerText || "Dashboard"}
-                </Title>
+                </div>
             </div>
 
             {!hideProfileIcon && (

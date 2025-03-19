@@ -1,23 +1,18 @@
-
-
 .members-content {
     max-width: 80rem;
     margin: 1rem auto auto auto;
     padding: 2rem 1rem;
-    
 }
 
 .members-header {
     margin-bottom: 2rem;
     text-align: start;
-   
 }
 
 .members-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-
 }
 .search-input {
     display: inline-flex !important;
@@ -68,7 +63,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .members-content {
-        padding: 1rem;
+        padding: 0;
     }
 
     .members-title {
@@ -77,6 +72,16 @@
 
     .search-input {
         max-width: 100%;
+    }
+    .member-card {
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        min-width: 0px;
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        margin-bottom: 16px;
     }
 }
 

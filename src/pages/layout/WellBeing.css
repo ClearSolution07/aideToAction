@@ -83,3 +83,9 @@
 /* .wellbeing-content {
     text-align: center;
 } */
+
+@media (max-width: 767px) {
+    .wellbeing-section {
+        padding: 0rem;
+    }
+}

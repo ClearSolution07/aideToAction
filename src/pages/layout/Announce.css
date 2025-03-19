@@ -5,6 +5,9 @@
     padding: 2rem;
     background: #ffffff;
 }
+.announcement-text {
+    font-size: 24px;
+}
 
 .announces-title {
     font-size: 2rem;
@@ -23,13 +26,27 @@
 
 /* Down Arrow Styling */
 .down-arrow {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-  cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    cursor: pointer;
 }
 
 .down-arrow:hover svg {
-  transform: translateY(4px);
-  transition: transform 0.3s;
+    transform: translateY(4px);
+    transition: transform 0.3s;
+}
+
+@media (max-width: 767px) {
+    .announces-container {
+        padding: 0rem;
+    }
+    .announcement-text {
+        font-size: 16px;
+        margin-right: 40px;
+    }
+
+    .announces-subtitle {
+        max-width: 100%;
+    }
 }
