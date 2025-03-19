@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, Typography, DatePicker, Collapse } from "antd";
 import useDesktop from "../hooks/useDesktop";
 import moment from "moment";
-import "../../src/pages/layout/Announce.css";
+import "../../src/pages/auth/Announce.css";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;

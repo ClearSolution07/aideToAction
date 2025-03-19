@@ -7,10 +7,7 @@ import ProfileHeader from "../../components/ProfileHeader";
 import "./LayoutPage.css";
 import Connect from "./Connect";
 import WellBeing from "./WellBeing";
-import UtilityMain from "./UtilityMain";
 import StudyLearnAndEarn from "./StudyLearnAndEarn";
-import Announce from "./Announce";
-import bgImg from "/img/bgImg.jpeg";
 
 const { Content } = Layout;
 
@@ -22,11 +19,7 @@ const DashboardContent = ({ content, setContent }) => {
             case "1":
                 return <WellBeing />;
             case "2":
-                return <UtilityMain />;
-            case "3":
                 return <StudyLearnAndEarn />;
-            case "4":
-                return <Announce />;
             default:
                 return <p>Invalid content selected.</p>;
         }
