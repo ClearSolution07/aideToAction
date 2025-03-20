@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Updates.css";
 import Newsletter from "../layout/Newsletter";
 import DocsViewer from "../layout/DocsViewer";
+import StarsViewer from "../layout/StarsViewer";
 
 const documentGroups = [
     {
@@ -62,12 +63,17 @@ const Updates = () => {
                 releases—all in one place. Stay updated on important
                 initiatives, community events, and key announcements.
             </p>
+            {/* STARS Stories Section */}
+            <div style={{ marginBottom: "2rem" }}>
+                <StarsViewer />
+            </div>
+            
             {/* Monthly Newsletters Section */}
             <h1 className="updates-title">Monthly Newsletters</h1>
             <Newsletter />
 
             {/* Workshop Reports Section */}
-            <h1 className="updates-title">Workshop Reports</h1>
+            <h1 className="updates-title" style={{ marginTop: "3rem" }}>Workshop Reports</h1>
             <DocsViewer />
         </div>
     );

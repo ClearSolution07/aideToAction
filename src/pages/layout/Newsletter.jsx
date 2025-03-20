@@ -7,10 +7,10 @@ import "./Newsletter.css";
 
 const newsletters = [
     {
-        id: 1,
-        title: "November 2024",
-        pdfUrl: "/pdfs/november.pdf",
-        img: novImg,
+        id: 3,
+        title: "January 2025",
+        pdfUrl: "pdfs/january.pdf",
+        img: janImg,
     },
     {
         id: 2,
@@ -19,10 +19,10 @@ const newsletters = [
         img: decImg,
     },
     {
-        id: 3,
-        title: "January 2025",
-        pdfUrl: "pdfs/january.pdf",
-        img: janImg,
+        id: 1,
+        title: "November 2024",
+        pdfUrl: "/pdfs/november.pdf",
+        img: novImg,
     },
 ];
 

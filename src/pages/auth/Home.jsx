@@ -217,8 +217,11 @@ const Home = () => {
                     <h2 className="vision-title">*Disclaimer*</h2>
                 </div>
                 <div className="disclaimer-description">
-                    Please note, the Saarthi -AICL has no financial, legal or
-                    statutory obligation.
+                Please note, the  Saarthi -AICL   has no financial, legal or statutory 
+obligation on either Aide et Action or UNICEF and vice versa. Aide et Action and UNICEF 
+are and will not be accountable for any financial, legal, or statutory repercussions arising 
+out of any activity or statement done or undertaken by members at their individual level 
+or with/to those met here.
                 </div>
             </div>
 

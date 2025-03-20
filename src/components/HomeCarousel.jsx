@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/homeCarousel.css";
-import logo from "../assets/mainLogo.svg";
+import logo from "../assets/mainLogo3.png";
 
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
