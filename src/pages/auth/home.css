@@ -99,7 +99,9 @@
 .dropdown-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition:
+        max-height 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
     opacity: 0;
     display: flex;
     flex-direction: column;
@@ -126,7 +128,9 @@
     cursor: pointer;
     text-align: left;
     font-size: 18px;
-    transition: background 0.3s, transform 0.2s;
+    transition:
+        background 0.3s,
+        transform 0.2s;
 }
 
 .panel-button:hover {
@@ -171,9 +175,9 @@
 .signUp-container {
     display: flex;
     justify-content: space-between;
-    align-items: stretch; /* Ensures both sides have the same height */
+    display: flex;
+    align-items: stretch;
     margin-top: 110px;
-    margin: 40px;
 }
 
 .signUp-container-saarthi {
@@ -265,17 +269,12 @@
 }
 
 /** End */
-
 .left-side,
 .right-side {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 0px 40px 0px 40px;
-    width: 50%;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100%;
 }
 
 .right-side-saarthi {
@@ -302,8 +301,6 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 5%;
     height: 100%;
     padding: 30px;
 }
@@ -316,7 +313,6 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-top: 100px;
-    margin-bottom: 5%;
     height: 100%;
     padding: 30px;
 }
@@ -410,7 +406,9 @@
 .hidden {
     opacity: 0;
     transform: translateX(-50px); /* Start position */
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    transition:
+        opacity 0.3s ease-out,
+        transform 0.3s ease-out;
     font-weight: 600;
     font-size: 36px;
     line-height: 32px;
@@ -744,11 +742,11 @@
     }
 
     .signUp-container-saarthi {
-       display: flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 110px;
-        margin: 40px; 
+        margin: 40px;
     }
     .left-side,
     .right-side {
@@ -759,7 +757,6 @@
         padding: 0px;
     }
 
-    
     .right-side-saarthi {
         display: flex;
         flex-direction: column;
@@ -768,11 +765,10 @@
         padding: 0px;
     }
 
-
     .about-container {
         margin: 0;
     }
-     .about-container-saarthi {
+    .about-container-saarthi {
         margin: 0;
     }
     .about-description {

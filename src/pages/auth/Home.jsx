@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    MenuOutlined,
-    CloseOutlined,
-    DownOutlined,
-    BellOutlined,
-} from "@ant-design/icons";
-
+import { DownOutlined, BellOutlined } from "@ant-design/icons";	
 import { Modal } from "antd";
 import "./home.css";
 import LogIn from "./LogIn";
@@ -209,9 +203,11 @@ const Home = () => {
             </div>
 
             <div className="signUp-container-saarthi">
-                
                 <div className="right-side-saarthi">
-                    <div className="about-container-saarthi" id="aboutSection-saarthi" >
+                    <div
+                        className="about-container-saarthi"
+                        id="aboutSection-saarthi"
+                    >
                         <h1 className="about-heading">About Saarthi</h1>
                         <p className="about-text">
                             <div className="about-description">

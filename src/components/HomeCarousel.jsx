@@ -27,17 +27,11 @@ const HomeCarousel = ({ homeCarouselData }) => {
             >
                 {psychologists.map((psychologist, index) => (
                     <div key={psychologist.id} className="carousel-slide">
-                        <div className="carousel-content">
-                            <div className="carousel-image-container">
-                                <img
-                                    src={
-                                        psychologist.image || "/placeholder.jpg"
-                                    }
-                                    alt={psychologist.name}
-                                    className="carousel-image"
-                                />
-                            </div>
-                        </div>
+                        <img
+                            src={psychologist.image || "/placeholder.jpg"}
+                            alt={psychologist.name}
+                            className="carousel-image"
+                        />
                     </div>
                 ))}
             </div>
