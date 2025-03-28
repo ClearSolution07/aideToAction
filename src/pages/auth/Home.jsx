@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DownOutlined, BellOutlined } from "@ant-design/icons";	
+import { DownOutlined, BellOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import "./home.css";
 import LogIn from "./LogIn";
@@ -124,81 +124,169 @@ const Home = () => {
             >
                 <LogIn />
             </Modal>
+            <div className=" signup-container-small">
+                <div className="signUp-container ">
+                    <div className="right-side">
+                        <HomeCarousel homeCarouselData={homeCarouselData} />
+                    </div>
+                    <div className="left-side">
+                        {/* About Us Section with Animation */}
+                        <div className="about-container" id="aboutSection">
+                            <div className="disclaimer-container">
+                                <h1 className="about-heading">Care Leavers</h1>
+                                <p className="about-text">
+                                    <div className="about-description">
+                                        The transition from institutional care
+                                        to independent living can be a
+                                        challenging journey for care-experienced
+                                        young adults or careleavers. Aftercare
+                                        services play a crucial role in
+                                        supporting these individuals as they
+                                        navigate adulthood, offering essential
+                                        resources such as housing, education,
+                                        vocational training, mental health
+                                        support, and financial assistance. The
+                                        goal is to ensure that care leavers can
+                                        build stable, self-sufficient lives and
+                                        contribute positively to society.
+                                    </div>
 
-            <div className="signUp-container">
-                <div className="left-side">
-                    {/* About Us Section with Animation */}
-                    <div className="about-container" id="aboutSection">
-                        <div className="disclaimer-container">
-                            <h1 className="about-heading">Care Leavers</h1>
-                            <p className="about-text">
-                                <div className="about-description">
-                                    The transition from institutional care to
-                                    independent living can be a challenging
-                                    journey for care-experienced young adults or
-                                    careleavers. Aftercare services play a
-                                    crucial role in supporting these individuals
-                                    as they navigate adulthood, offering
-                                    essential resources such as housing,
-                                    education, vocational training, mental
-                                    health support, and financial assistance.
-                                    The goal is to ensure that care leavers can
-                                    build stable, self-sufficient lives and
-                                    contribute positively to society.
-                                </div>
+                                    <div className="about-description">
+                                        The Vatsalaya Scheme, introduced by the
+                                        Government of India, is a comprehensive
+                                        initiative designed to provide holistic
+                                        support to children in need of care and
+                                        protection, including care leavers. This
+                                        scheme offers financial assistance,
+                                        skill development programs, counselling
+                                        services, and mentorship opportunities.
+                                        By addressing the unique challenges
+                                        faced by care leavers, the Vatsalaya
+                                        Scheme empowers them to overcome
+                                        barriers and achieve their dreams.
+                                    </div>
 
-                                <div className="about-description">
-                                    The Vatsalaya Scheme, introduced by the
-                                    Government of India, is a comprehensive
-                                    initiative designed to provide holistic
-                                    support to children in need of care and
-                                    protection, including care leavers. This
-                                    scheme offers financial assistance, skill
-                                    development programs, counselling services,
-                                    and mentorship opportunities. By addressing
-                                    the unique challenges faced by care leavers,
-                                    the Vatsalaya Scheme empowers them to
-                                    overcome barriers and achieve their dreams.
-                                </div>
+                                    <div className="about-description-bottom">
+                                        Care leavers often face isolation and a
+                                        lack of social support once they exit
+                                        the care system. Establishing networks
+                                        and associations like the Association of
+                                        Indian Careleavers is vital for
+                                        fostering a sense of belonging and
+                                        mutual support. These networks, formal
+                                        or informal, district or state or
+                                        national level, provide a platform for
+                                        sharing experiences, accessing
+                                        resources, and advocating for policy
+                                        changes. By strengthening these
+                                        connections, care leavers can gain the
+                                        confidence and support needed to thrive
+                                        in their personal and professional
+                                        lives.These networks also act as a pool
+                                        of youth that are available to avail
+                                        various govt schemes as well as services
+                                        provided by many CSOs for vulnerable
+                                        youths.
+                                    </div>
+                                </p>
+                            </div>
 
-                                <div className="about-description-bottom">
-                                    Care leavers often face isolation and a lack
-                                    of social support once they exit the care
-                                    system. Establishing networks and
-                                    associations like the Association of Indian
-                                    Careleavers is vital for fostering a sense
-                                    of belonging and mutual support. These
-                                    networks, formal or informal, district or
-                                    state or national level, provide a platform
-                                    for sharing experiences, accessing
-                                    resources, and advocating for policy
-                                    changes. By strengthening these connections,
-                                    care leavers can gain the confidence and
-                                    support needed to thrive in their personal
-                                    and professional lives.These networks also
-                                    act as a pool of youth that are available to
-                                    avail various govt schemes as well as
-                                    services provided by many CSOs for
-                                    vulnerable youths.
-                                </div>
-                            </p>
-                        </div>
-
-                        <div className="about-button">
-                            <button
-                                onClick={redirectToregister}
-                                className="buttons"
-                            >
-                                SignUp
-                            </button>
-                            <button className="buttons" onClick={showModal}>
-                                LogIn
-                            </button>
+                            <div className="about-button">
+                                <button
+                                    onClick={redirectToregister}
+                                    className="buttons"
+                                >
+                                    SignUp
+                                </button>
+                                <button className="buttons" onClick={showModal}>
+                                    LogIn
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="right-side">
-                    <HomeCarousel homeCarouselData={homeCarouselData} />
+            </div>
+
+            <div className=" signup-container-large">
+                <div className="signUp-container">
+                    <div className="left-side">
+                        {/* About Us Section with Animation */}
+                        <div className="about-container" id="aboutSection">
+                            <div className="disclaimer-container">
+                                <h1 className="about-heading">Care Leavers</h1>
+                                <p className="about-text">
+                                    <div className="about-description">
+                                        The transition from institutional care
+                                        to independent living can be a
+                                        challenging journey for care-experienced
+                                        young adults or careleavers. Aftercare
+                                        services play a crucial role in
+                                        supporting these individuals as they
+                                        navigate adulthood, offering essential
+                                        resources such as housing, education,
+                                        vocational training, mental health
+                                        support, and financial assistance. The
+                                        goal is to ensure that care leavers can
+                                        build stable, self-sufficient lives and
+                                        contribute positively to society.
+                                    </div>
+
+                                    <div className="about-description">
+                                        The Vatsalaya Scheme, introduced by the
+                                        Government of India, is a comprehensive
+                                        initiative designed to provide holistic
+                                        support to children in need of care and
+                                        protection, including care leavers. This
+                                        scheme offers financial assistance,
+                                        skill development programs, counselling
+                                        services, and mentorship opportunities.
+                                        By addressing the unique challenges
+                                        faced by care leavers, the Vatsalaya
+                                        Scheme empowers them to overcome
+                                        barriers and achieve their dreams.
+                                    </div>
+
+                                    <div className="about-description-bottom">
+                                        Care leavers often face isolation and a
+                                        lack of social support once they exit
+                                        the care system. Establishing networks
+                                        and associations like the Association of
+                                        Indian Careleavers is vital for
+                                        fostering a sense of belonging and
+                                        mutual support. These networks, formal
+                                        or informal, district or state or
+                                        national level, provide a platform for
+                                        sharing experiences, accessing
+                                        resources, and advocating for policy
+                                        changes. By strengthening these
+                                        connections, care leavers can gain the
+                                        confidence and support needed to thrive
+                                        in their personal and professional
+                                        lives.These networks also act as a pool
+                                        of youth that are available to avail
+                                        various govt schemes as well as services
+                                        provided by many CSOs for vulnerable
+                                        youths.
+                                    </div>
+                                </p>
+                            </div>
+
+                            <div className="about-button">
+                                <button
+                                    onClick={redirectToregister}
+                                    className="buttons"
+                                >
+                                    SignUp
+                                </button>
+                                <button className="buttons" onClick={showModal}>
+                                    LogIn
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="right-side">
+                        <HomeCarousel homeCarouselData={homeCarouselData} />
+                    </div>
                 </div>
             </div>
 
