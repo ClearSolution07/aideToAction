@@ -9,10 +9,10 @@ import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 const Announce = () => {
-     const navigate = useNavigate();
+    const navigate = useNavigate();
     return (
         <div>
-            <HeaderComponent headerText={"Resource Library"} />
+            <HeaderComponent headerText={"Announcement"} />
             <div className="announces-container">
                 <h1 className="announces-title">
                     Stay informed about the latest events

@@ -10,7 +10,6 @@ const { Panel } = Collapse;
 const AnnouncementCard = ({ visible }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [announcementData, setAnnouncementData] = useState([]);
-
     const { getContent } = useDesktop();
 
     const handleDateChange = (date, dateString) => {
@@ -32,23 +31,40 @@ const AnnouncementCard = ({ visible }) => {
         const fetchAnnouncements = async () => {
             try {
                 const response = await getContent();
-                setAnnouncementData(response.data || []);
+                console.log("API Response:", response);
+
+                if (response.statuscode === 500 || !response.data) {
+                    console.error("Server error:", response.message);
+                    setAnnouncementData([]);
+                    return;
+                }
+
+                if (Array.isArray(response.data)) {
+                    setAnnouncementData(response.data);
+                } else {
+                    console.warn("Unexpected response format:", response);
+                    setAnnouncementData([]);
+                }
             } catch (err) {
                 console.error("Error fetching announcements:", err.message);
+                setAnnouncementData([]);
             }
         };
 
         fetchAnnouncements();
     }, []);
 
-    const filteredAnnouncements = announcementData
-        .filter((item) => filterByDate(item.date))
-        .sort(
-            (a, b) =>
-                moment(b.date, "DD-MM-YYYY") - moment(a.date, "DD-MM-YYYY")
-        );
+    const filteredAnnouncements = Array.isArray(announcementData)
+        ? announcementData
+              .filter((item) => filterByDate(item.date))
+              .sort(
+                  (a, b) =>
+                      moment(b.date, "DD-MM-YYYY") -
+                      moment(a.date, "DD-MM-YYYY")
+              )
+        : [];
 
-    const isPDF = (url) => url.endsWith(".pdf");
+    const isPDF = (url) => url?.endsWith(".pdf");
 
     return (
         <Card
@@ -57,13 +73,11 @@ const AnnouncementCard = ({ visible }) => {
                 height: `calc(90vh - 200px)`,
                 border: "1px solid #ddd",
             }}
-            styles={{
-                body: {
-                    padding: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                },
+            bodyStyle={{
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
             }}
         >
             <div
@@ -80,9 +94,7 @@ const AnnouncementCard = ({ visible }) => {
                     onChange={handleDateChange}
                     format="ddd, DD MMM YYYY"
                     placeholder="Select date"
-                    style={{
-                        width: visible ? "40%" : "auto",
-                    }}
+                    style={{ width: visible ? "40%" : "auto" }}
                 />
             </div>
             <div
@@ -140,9 +152,7 @@ const AnnouncementCard = ({ visible }) => {
                                         </div>
                                         <Text
                                             strong
-                                            style={{
-                                                fontSize: "18px",
-                                            }}
+                                            style={{ fontSize: "18px" }}
                                         >
                                             {item.header}
                                         </Text>
@@ -163,18 +173,16 @@ const AnnouncementCard = ({ visible }) => {
                                 }}
                             >
                                 {item.file && isPDF(item.file) ? (
-                                    <div style={{ marginTop: "8px" }}>
-                                        <iframe
-                                            src={item.file}
-                                            width="100%"
-                                            height="500px"
-                                            title="PDF Viewer"
-                                            style={{
-                                                border: "none",
-                                                marginTop: "8px",
-                                            }}
-                                        ></iframe>
-                                    </div>
+                                    <iframe
+                                        src={item.file}
+                                        width="100%"
+                                        height="500px"
+                                        title="PDF Viewer"
+                                        style={{
+                                            border: "none",
+                                            marginTop: "8px",
+                                        }}
+                                    ></iframe>
                                 ) : (
                                     <img
                                         src={item.file || "/placeholder.svg"}

@@ -99,9 +99,7 @@
 .dropdown-content {
     max-height: 0;
     overflow: hidden;
-    transition:
-        max-height 0.3s ease-in-out,
-        opacity 0.3s ease-in-out;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
     opacity: 0;
     display: flex;
     flex-direction: column;
@@ -128,9 +126,7 @@
     cursor: pointer;
     text-align: left;
     font-size: 18px;
-    transition:
-        background 0.3s,
-        transform 0.2s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .panel-button:hover {
@@ -173,6 +169,14 @@
 }
 
 .signUp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Ensures both sides have the same height */
+    margin-top: 110px;
+    margin: 40px;
+}
+
+.signUp-container-saarthi {
     display: flex;
     justify-content: space-between;
     align-items: stretch; /* Ensures both sides have the same height */
@@ -264,12 +268,30 @@
 
 .left-side,
 .right-side {
-    flex: 1; /* Ensures equal width */
+    flex: 1;
     display: flex;
     flex-direction: column;
     padding: 0px 40px 0px 40px;
-    width: 60%;
-	min-height: 100%;
+    width: 50%;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100%;
+}
+
+.right-side-saarthi {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px 0px 40px;
+    width: 50%;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100%;
+}
+
+.right-image {
+    max-width: 80%;
+    height: auto;
 }
 
 .about-container {
@@ -282,7 +304,20 @@
     text-align: center;
     margin-top: 100px;
     margin-bottom: 5%;
-	height: 100%;
+    height: 100%;
+    padding: 30px;
+}
+.about-container-saarthi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 5%;
+    height: 100%;
     padding: 30px;
 }
 
@@ -350,9 +385,9 @@
     font-weight: 400;
     margin-top: 2rem;
     padding: 12px;
-    border-top: 1px dotted #07387B;
-    border-bottom: 1px dotted #07387B;
-    color: #07387B;
+    border-top: 1px dotted #07387b;
+    border-bottom: 1px dotted #07387b;
+    color: #07387b;
     line-height: 1.5;
     text-align: center;
     font-weight: 400;
@@ -368,16 +403,14 @@
 }
 
 .logo {
-    width: 100px;
+    width: 80px;
     height: 100px;
 }
 
 .hidden {
     opacity: 0;
     transform: translateX(-50px); /* Start position */
-    transition:
-        opacity 0.3s ease-out,
-        transform 0.3s ease-out;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     font-weight: 600;
     font-size: 36px;
     line-height: 32px;
@@ -401,11 +434,6 @@
     color: #4e5566;
     margin-bottom: 20px;
     max-width: 700px;
-}
-
-.right-image {
-    max-width: 80%;
-    height: auto;
 }
 
 .cards-container {
@@ -714,6 +742,14 @@
         margin-top: 110px;
         margin: 40px;
     }
+
+    .signUp-container-saarthi {
+       display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 110px;
+        margin: 40px; 
+    }
     .left-side,
     .right-side {
         display: flex;
@@ -723,7 +759,20 @@
         padding: 0px;
     }
 
+    
+    .right-side-saarthi {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0px;
+    }
+
+
     .about-container {
+        margin: 0;
+    }
+     .about-container-saarthi {
         margin: 0;
     }
     .about-description {

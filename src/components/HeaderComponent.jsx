@@ -22,7 +22,12 @@ const HeaderComponent = ({ headerText }) => {
     });
 
     useEffect(() => {
-        if (accessToken) {
+        if (
+            accessToken &&
+            (location.pathname != "/resource" ||
+                location.pathname != "/announcement" ||
+                location.pathname != "/register")
+        ) {
             const fetchProfile = async () => {
                 try {
                     const response = await getUserDetail();
