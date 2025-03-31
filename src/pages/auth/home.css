@@ -607,8 +607,9 @@
         height: 50px;
     }
     .primary-button {
-        width: 140px;
+        width: 130px;
         font-size: 14px;
+        min-width: fit-content;
     }
     .dropdown-item {
         font-size: 12px;
@@ -777,6 +778,9 @@
         flex-direction: column;
         margin-top: 50px;
         align-items: center;
+    }
+    .ann-bell {
+        display: none;
     }
 }
 

@@ -101,6 +101,7 @@ const Home = () => {
                                     <span>Announcements</span>
                                     <BellOutlined
                                         style={{ marginLeft: "20px" }}
+                                        className="ann-bell"
                                     />
                                 </button>
                                 <button
