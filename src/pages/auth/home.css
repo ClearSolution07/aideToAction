@@ -131,7 +131,7 @@
     justify-content: space-between;
     align-items: stretch; /* Ensures both sides have the same height */
     margin-top: 110px;
-    margin: 40px;
+    /* margin: 40px; */
 }
 
 .signin-container {
@@ -555,6 +555,12 @@
     .card {
         margin: 0 5px;
     }
+    .about-heading {
+        font-size: 40px;
+        font-weight: 300;
+        color: #333;
+        margin-bottom: 10px;
+    }
     .carousel-card:nth-child(-n + 3) {
         border: none;
     }
@@ -601,7 +607,7 @@
         height: 50px;
     }
     .primary-button {
-        width: 150px;
+        width: 140px;
         font-size: 14px;
     }
     .dropdown-item {
@@ -707,7 +713,7 @@
     }
     .signUp-container-saarthi {
         align-items: center;
-        margin-top: 110px;
+        margin-top: 80px;
     }
     .left-side,
     .right-side {
