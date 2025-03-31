@@ -672,14 +672,7 @@
     .left-side {
         padding-left: 0;
         margin: 16px;
-        width: 100%;
     }
-    .right-side {
-        padding-left: 0;
-        margin: 16px;
-        width: 100%;
-    }
-
     .heading {
         text-align: center;
         font-size: 32px;
