@@ -87,6 +87,47 @@
     border-radius: 8px !important;
 }
 
+.pdf-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.pdf-card {
+    width: 180px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #eee;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.2s;
+    background: #fff;
+}
+
+.pdf-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+}
+
+.pdf-title {
+    font-weight: 600;
+    margin: 0.5rem 0;
+    color: #000;
+}
+
+.download-link {
+    color: #d92626;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
 @media (max-width: 1024px) {
     .pdf-viewer {
         width: 600px;

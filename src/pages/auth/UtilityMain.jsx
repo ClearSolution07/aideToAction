@@ -3,6 +3,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import "./UtilityMain.css";
 import utility1Img from "/img/utility1.svg";
 import utility2Img from "/img/utility2.svg";
+import utility3Img from "/img/utility3.svg";
 import UtilityCorner from "./UtilityCorner";
 import Updates from "./Updates";
 import { Button, Layout } from "antd";
@@ -77,6 +78,18 @@ const UtilityMain = () => {
                                     className="utility-img"
                                 />
                                 <p>Saarthi Updates & Reports</p>
+                            </div>
+
+                            <div
+                                className="utility-card"
+                                // onClick={() => handleCardClick("resource")}
+                            >
+                                <img
+                                    src={utility3Img}
+                                    alt="resource"
+                                    className="utility-img3"
+                                />
+                                <p>Resource Library</p>
                             </div>
                         </div>
                     </>

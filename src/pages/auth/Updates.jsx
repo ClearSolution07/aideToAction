@@ -1,10 +1,15 @@
 import { useState } from "react";
-import "./Updates.css";
-import Newsletter from "../layout/Newsletter";
-import DocsViewer from "../layout/DocsViewer";
+import { Collapse, Modal } from "antd";
 import StarsViewer from "../layout/StarsViewer";
+import starsImg from "/img/pdfImg/Dec.png";
+import janImg from "/img/pdfImg/Jan.png";
+import decImg from "/img/pdfImg/Dec.png";
+import novImg from "/img/pdfImg/Nov.png";
+import "./Updates.css";
 
-const documentGroups = [
+const { Panel } = Collapse;
+
+const newsletterDocuments = [
     {
         category: "January 2025",
         description:
@@ -13,6 +18,7 @@ const documentGroups = [
             {
                 title: "Monthly Newsletter",
                 pdf: "/pdfs/january.pdf",
+                img: janImg,
             },
         ],
     },
@@ -24,6 +30,7 @@ const documentGroups = [
             {
                 title: "Monthly Newsletter",
                 pdf: "/pdfs/december.pdf",
+                img: decImg,
             },
         ],
     },
@@ -34,8 +41,18 @@ const documentGroups = [
             {
                 title: "Monthly Newsletter",
                 pdf: "/pdfs/november.pdf",
+                img: novImg,
             },
         ],
+    },
+];
+
+const reportDocuments = [
+    {
+        id: 1,
+        title: "STARS Stories of Careleavers",
+        pdfUrl: "/pdfs/STARS Stories of Careleavers.pdf",
+        img: starsImg,
     },
 ];
 
@@ -63,18 +80,99 @@ const Updates = () => {
                 releases—all in one place. Stay updated on important
                 initiatives, community events, and key announcements.
             </p>
-            {/* STARS Stories Section */}
-            <div style={{ marginBottom: "2rem" }}>
-                <StarsViewer />
-            </div>
-            
-            {/* Monthly Newsletters Section */}
-            <h1 className="updates-title">Monthly Newsletters</h1>
-            <Newsletter />
 
-            {/* Workshop Reports Section */}
-            <h1 className="updates-title" style={{ marginTop: "3rem" }}>Workshop Reports</h1>
-            <DocsViewer />
+            {/* Newsletter Section */}
+            <Collapse accordion>
+                {/* Report Section */}
+                <Panel header="Workshop & Event Reports" key="reports">
+                    <div className="pdf-grid">
+                        {reportDocuments.map((doc, i) => (
+                            <div key={i} className="pdf-card">
+                                <img
+                                    src={doc.img}
+                                    alt="PDF Icon"
+                                    className="pdf-image"
+                                    onClick={() => openPdfModal(doc.pdfUrl)}
+                                />
+                                <p
+                                    className="pdf-title"
+                                    onClick={() => openPdfModal(doc.pdfUrl)}
+                                >
+                                    {doc.title}
+                                </p>
+                                <a
+                                    href={doc.pdf}
+                                    download
+                                    className="download-link"
+                                >
+                                    Download PDF
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </Panel>
+                <Panel
+                    header="Newsletters (Nov 2024 - Jan 2025)"
+                    key="newsletters"
+                >
+                    {newsletterDocuments.map((group, index) => (
+                        <div key={index} className="newsletter-section">
+                            <p className="newsletter-desc">
+                                {group.description}
+                            </p>
+                            <div className="pdf-grid">
+                                {group.documents.map((doc, docIndex) => (
+                                    <div key={docIndex} className="pdf-card">
+                                        <img
+                                            src={doc.img}
+                                            alt="PDF Icon"
+                                            className="pdf-image"
+                                            onClick={() =>
+                                                openPdfModal(doc.pdf)
+                                            }
+                                        />
+                                        <p
+                                            className="pdf-title"
+                                            onClick={() =>
+                                                openPdfModal(doc.pdf)
+                                            }
+                                        >
+                                            {doc.title}
+                                        </p>
+                                        <a
+                                            href={doc.pdf}
+                                            download
+                                            className="download-link"
+                                        >
+                                            Download PDF
+                                        </a>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </Panel>
+            </Collapse>
+
+            {/* PDF Modal */}
+            <Modal
+                title="Document Preview"
+                open={isModalVisible}
+                onCancel={closeModal}
+                footer={null}
+                width={800}
+                centered
+            >
+                {selectedPdf && (
+                    <iframe
+                        src={selectedPdf}
+                        title="PDF Viewer"
+                        className="pdf-viewer"
+                        frameBorder="0"
+                        style={{ width: "100%", height: "80vh" }}
+                    />
+                )}
+            </Modal>
         </div>
     );
 };

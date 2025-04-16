@@ -45,6 +45,10 @@
     margin-bottom: 1rem;
 }
 
+.utility-img3 {
+padding: 20px;
+}
+
 .utility-card {
     color: #333;
     font-weight: 500;
@@ -57,6 +61,9 @@
 
 .utility-card:nth-child(2) {
     background-color: #b8f595;
+}
+.utility-card:nth-child(3) {
+    background-color: #f9aeb8;
 }
 
 .utility-back-button {
