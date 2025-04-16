@@ -66,53 +66,103 @@ const Home = () => {
                         className="logo"
                     />
                 </div>
-                <div className="new-buttons">
-                    {/* First Button */}
-                    <button className="primary-button">Our Initiatives</button>
-
-                    {/* Dropdown Button */}
-
-                    <div className="dropdown-container">
+                <div className="btn-header-heading">
+                    <div className="header-heading-container">
+                        <div className="header-heading">Association Of Indian Care Leavers</div>
+                        <div className="header-detail">
+                            The vision of Saarthi is to advocate for and to
+                            empower care leaving youth transitioning out of <br></br>
+                            child care institutions (CCI) and other forms of
+                            alternative care.
+                        </div>
+                    </div>
+                    <div className="new-buttons">
+                        {/* 1st Button */}
                         <button
                             className="primary-button"
-                            onClick={() => setDropdownOpen(!isDropdownOpen)}
+                            onClick={() => navigate("/resource")}
                         >
-                            Join us
-                            <DownOutlined
-                                className={`dropdown-arrow ${
-                                    isDropdownOpen ? "open" : ""
-                                }`}
-                                style={{ marginLeft: "20px" }}
-                            />
+                            Resource Library
                         </button>
 
-                        {isDropdownOpen && (
-                            <div className="dropdown-menu">
-                                <button className="dropdown-item">
-                                    Donate
-                                </button>
-                                <button className="dropdown-item">
-                                    Careers
-                                </button>
-                                <button
-                                    className="dropdown-item"
-                                    onClick={() => navigate("/announcement")}
-                                >
-                                    <span>Announcements</span>
-                                    <BellOutlined
-                                        style={{ marginLeft: "20px" }}
-                                        className="ann-bell"
-                                    />
-                                </button>
-                                <button
-                                    className="dropdown-item"
-                                    onClick={() => navigate("/resource")}
-                                >
-                                    Resource Library
-                                </button>
-                            </div>
-                        )}
+                        {/* 2nd Button */}
+                        <button
+                            className="primary-button"
+                            onClick={() => navigate("/announcement")}
+                        >
+                            <span>Announcements</span>
+                        </button>
+
+                        {/* 3rd Button */}
+                        <button className="primary-button">
+                            Our Initiatives
+                        </button>
+
+                        {/* Dropdown Button */}
+
+                        <div className="dropdown-container">
+                            <button
+                                className="primary-button"
+                                onClick={() => setDropdownOpen(!isDropdownOpen)}
+                            >
+                                Join us
+                                <DownOutlined
+                                    className={`dropdown-arrow ${
+                                        isDropdownOpen ? "open" : ""
+                                    }`}
+                                    style={{ marginLeft: "20px" }}
+                                />
+                            </button>
+
+                            {isDropdownOpen && (
+                                <div className="dropdown-menu">
+                                    <button className="dropdown-item">
+                                        Volunteer
+                                    </button>
+                                    <button className="dropdown-item">
+                                        Collaborate
+                                    </button>
+                                    <button className="dropdown-item">
+                                        Donate
+                                    </button>
+                                    <button className="dropdown-item">
+                                        Work With Us
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <div className="empower">
+                <div className="empower-heading">
+                    Empowering Youth Beyond Care Systems
+                </div>
+                <div className="empower-detail">
+                    Transitioning from institutional care to independent living
+                    can be challenging for care leavers. Aftercare services are
+                    essential in supporting them with housing, education,
+                    vocational training, mental health support, and financial
+                    aid. These services help care leavers build stable,
+                    self-sufficient lives and become active members of society.
+                    The Vatsalya Scheme, launched by the Government of India,
+                    provides comprehensive support to children in need of care
+                    and protection, including care leavers. It offers financial
+                    assistance, skill development, counseling, and mentorship,
+                    helping young people overcome obstacles and pursue their
+                    goals. Many care leavers face isolation and limited support
+                    once they exit the care system. Networks like{" "}
+                    <span style={{ display: "inline", color: "#0f5894" }}>
+                        SAARTHI: Association of Indian Careleavers
+                    </span>{" "}
+                    play a key role in creating a sense of community and
+                    connection. These networks—local, regional, or
+                    national—offer platforms to share experiences, access
+                    resources, and advocate for change. They also help link care
+                    leavers to government schemes and services from civil
+                    society organizations, ensuring continued support on their
+                    journey to independence.
                 </div>
             </div>
 
@@ -134,60 +184,49 @@ const Home = () => {
                         {/* About Us Section with Animation */}
                         <div className="about-container" id="aboutSection">
                             <div className="disclaimer-container">
-                                <h1 className="about-heading">Care Leavers</h1>
+                                {/* <h1 className="about-heading">Care Leavers</h1> */}
                                 <p className="about-text">
                                     <div className="about-description">
-                                        The transition from institutional care
-                                        to independent living can be a
-                                        challenging journey for care-experienced
-                                        young adults or careleavers. Aftercare
-                                        services play a crucial role in
-                                        supporting these individuals as they
-                                        navigate adulthood, offering essential
-                                        resources such as housing, education,
-                                        vocational training, mental health
-                                        support, and financial assistance. The
-                                        goal is to ensure that care leavers can
-                                        build stable, self-sufficient lives and
-                                        contribute positively to society.
+                                        <span
+                                            style={{
+                                                fontSize: "28px",
+                                                fontWeight: "400",
+                                                color: "#0f5894",
+                                                display: "inline",
+                                            }}
+                                        >
+                                            SAARTHI
+                                        </span>{" "}
+                                        unites young adults who have lived and
+                                        grown up in Child Care Institutions.
+                                        With an outreach to more than 4,000 care
+                                        leavers across India, Saarthi is for
+                                        care leavers and is being led by care
+                                        leavers.
                                     </div>
 
                                     <div className="about-description">
-                                        The Vatsalaya Scheme, introduced by the
-                                        Government of India, is a comprehensive
-                                        initiative designed to provide holistic
-                                        support to children in need of care and
-                                        protection, including care leavers. This
-                                        scheme offers financial assistance,
-                                        skill development programs, counselling
-                                        services, and mentorship opportunities.
-                                        By addressing the unique challenges
-                                        faced by care leavers, the Vatsalaya
-                                        Scheme empowers them to overcome
-                                        barriers and achieve their dreams.
+                                        In its initial phase, Saarthi was hosted
+                                        by Aide et Action in partnership with
+                                        UNICEF and supported by numerous civil
+                                        society organizations across the
+                                        country. The core group of the
+                                        association comprise representatives of
+                                        various state or district level
+                                        careleavers' groups or networks,
+                                        irrespective of religion, class, gender,
+                                        sexual orientation, physical ability, or
+                                        the type of institution they lived in.
                                     </div>
 
                                     <div className="about-description-bottom">
-                                        Care leavers often face isolation and a
-                                        lack of social support once they exit
-                                        the care system. Establishing networks
-                                        and associations like the Association of
-                                        Indian Careleavers is vital for
-                                        fostering a sense of belonging and
-                                        mutual support. These networks, formal
-                                        or informal, district or state or
-                                        national level, provide a platform for
-                                        sharing experiences, accessing
-                                        resources, and advocating for policy
-                                        changes. By strengthening these
-                                        connections, care leavers can gain the
-                                        confidence and support needed to thrive
-                                        in their personal and professional
-                                        lives.These networks also act as a pool
-                                        of youth that are available to avail
-                                        various govt schemes as well as services
-                                        provided by many CSOs for vulnerable
-                                        youths.
+                                        Saathi welcomes you with open arms and
+                                        hearts to join us and become part of
+                                        this wonderful family. You do not need
+                                        to be a member of any state or district
+                                        network to join Saarthi or sign up here,
+                                        but you must be a care leaver. To become
+                                        a member or:
                                     </div>
                                 </p>
                             </div>
@@ -214,60 +253,49 @@ const Home = () => {
                         {/* About Us Section with Animation */}
                         <div className="about-container" id="aboutSection">
                             <div className="disclaimer-container">
-                                <h1 className="about-heading">Care Leavers</h1>
+                                {/* <h1 className="about-heading">Care Leavers</h1> */}
                                 <p className="about-text">
                                     <div className="about-description">
-                                        The transition from institutional care
-                                        to independent living can be a
-                                        challenging journey for care-experienced
-                                        young adults or careleavers. Aftercare
-                                        services play a crucial role in
-                                        supporting these individuals as they
-                                        navigate adulthood, offering essential
-                                        resources such as housing, education,
-                                        vocational training, mental health
-                                        support, and financial assistance. The
-                                        goal is to ensure that care leavers can
-                                        build stable, self-sufficient lives and
-                                        contribute positively to society.
+                                        <p
+                                            style={{
+                                                fontSize: "28px",
+                                                fontWeight: "400",
+                                                color: "#0f5894",
+                                                display: "inline",
+                                            }}
+                                        >
+                                            SAARTHI
+                                        </p>{" "}
+                                        unites young adults who have lived and
+                                        grown up in Child Care Institutions.
+                                        With an outreach to more than 4,000 care
+                                        leavers across India, Saarthi is for
+                                        care leavers and is being led by care
+                                        leavers.
                                     </div>
 
                                     <div className="about-description">
-                                        The Vatsalaya Scheme, introduced by the
-                                        Government of India, is a comprehensive
-                                        initiative designed to provide holistic
-                                        support to children in need of care and
-                                        protection, including care leavers. This
-                                        scheme offers financial assistance,
-                                        skill development programs, counselling
-                                        services, and mentorship opportunities.
-                                        By addressing the unique challenges
-                                        faced by care leavers, the Vatsalaya
-                                        Scheme empowers them to overcome
-                                        barriers and achieve their dreams.
+                                        In its initial phase, Saarthi was hosted
+                                        by Aide et Action in partnership with
+                                        UNICEF and supported by numerous civil
+                                        society organizations across the
+                                        country. The core group of the
+                                        association comprise representatives of
+                                        various state or district level
+                                        careleavers' groups or networks,
+                                        irrespective of religion, class, gender,
+                                        sexual orientation, physical ability, or
+                                        the type of institution they lived in.
                                     </div>
 
                                     <div className="about-description-bottom">
-                                        Care leavers often face isolation and a
-                                        lack of social support once they exit
-                                        the care system. Establishing networks
-                                        and associations like the Association of
-                                        Indian Careleavers is vital for
-                                        fostering a sense of belonging and
-                                        mutual support. These networks, formal
-                                        or informal, district or state or
-                                        national level, provide a platform for
-                                        sharing experiences, accessing
-                                        resources, and advocating for policy
-                                        changes. By strengthening these
-                                        connections, care leavers can gain the
-                                        confidence and support needed to thrive
-                                        in their personal and professional
-                                        lives.These networks also act as a pool
-                                        of youth that are available to avail
-                                        various govt schemes as well as services
-                                        provided by many CSOs for vulnerable
-                                        youths.
+                                        Saathi welcomes you with open arms and
+                                        hearts to join us and become part of
+                                        this wonderful family. You do not need
+                                        to be a member of any state or district
+                                        network to join Saarthi or sign up here,
+                                        but you must be a care leaver. To become
+                                        a member or:
                                     </div>
                                 </p>
                             </div>
@@ -291,7 +319,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="signUp-container-saarthi">
+            {/* <div className="signUp-container-saarthi">
                 <div className="right-side-saarthi">
                     <div
                         className="about-container-saarthi"
@@ -334,11 +362,11 @@ const Home = () => {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-            <div className="purpose-container" id="vissionSection">
+            {/* <div className="purpose-container" id="vissionSection">
                 <VisionMission />
-            </div>
+            </div> */}
 
             <div className="disclaimer-main">
                 <div className="disclaimer-title">
@@ -355,9 +383,9 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id="supportersSection">
+            {/* <div id="supportersSection">
                 <SupportersCarousel supporters={supporters} />
-            </div>
+            </div> */}
 
             <Footer />
         </div>

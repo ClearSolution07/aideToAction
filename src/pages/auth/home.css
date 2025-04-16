@@ -123,26 +123,23 @@
     justify-content: space-between;
     display: flex;
     align-items: stretch;
-    margin-top: 110px;
 }
 
 .signUp-container-saarthi {
     display: flex;
     justify-content: space-between;
     align-items: stretch; /* Ensures both sides have the same height */
-    margin-top: 110px;
+
     /* margin: 40px; */
 }
 
 .signin-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
     z-index: 1;
-    height: 90px;
     padding: 0px 20px 0px 20px;
     background: linear-gradient(to right, #ffe4c4, #fdbb74);
 }
@@ -151,7 +148,7 @@
 
 .new-buttons {
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
 }
 
 .primary-button {
@@ -315,7 +312,7 @@
 
 .disclaimer-title {
     font-size: 24px;
-    color: #333;
+    color: #07387b;
     margin-bottom: 20px;
     font-weight: bold;
 }
@@ -327,8 +324,7 @@
     font-weight: 400;
     margin-top: 2rem;
     padding: 12px;
-    border-top: 1px dotted #07387b;
-    border-bottom: 1px dotted #07387b;
+    border: 1px solid #07387b;
     color: #07387b;
     line-height: 1.5;
     text-align: center;
@@ -337,6 +333,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 40px;
 }
 
 .disclaimer-description {
@@ -345,8 +342,8 @@
 }
 
 .logo {
-    width: 80px;
-    height: 100px;
+    width: 313px;
+    height: 310px;
 }
 
 .hidden {
@@ -539,6 +536,65 @@
     transform: translateY(-5px);
 }
 
+.empower {
+    border-radius: 5px;
+    margin-bottom: 40px;
+
+    font-weight: 400;
+    margin-top: 22rem;
+    padding: 12px;
+    /* border: 1px solid #07387b; */
+    /* color: #07387b; */
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.empower-heading {
+    font-size: 55px;
+    line-height: 47.17px;
+    font-weight: 400;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.empower-detail {
+    font-size: 28px;
+    line-height: 35px;
+    font-weight: 400;
+    text-align: justify;
+    padding: 0 40px 0 40px;
+    margin-top: 2rem;
+}
+
+.logo-container {
+    width: 20%;
+}
+
+.btn-header-heading {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 40px;
+    gap: 4rem;
+}
+
+.header-heading-container {
+    text-align: center;
+    font-weight: 400;
+    color: #01193e;
+}
+.header-heading {
+    font-size: 85px;
+    line-height: 100%;
+}
+.header-detail {
+    font-size: 28px;
+    line-height: 45px;
+}
+
 @media (max-width: 1024px) {
     .card {
         margin: 0 5px;
@@ -598,13 +654,9 @@
         border-bottom: none;
     }
 
-    .signin-container {
-        height: 60px;
-    }
-
     .logo {
-        width: 60px;
-        height: 50px;
+        width: 313px;
+        height: 310px;
     }
     .primary-button {
         width: 130px;
@@ -614,10 +666,7 @@
     .dropdown-item {
         font-size: 12px;
     }
-    .new-buttons {
-        /* z-index: 99; */
-        gap: 1rem;
-    }
+
     .dropdown-item,
     .dropdown-container svg {
         margin-left: 0px !important;
