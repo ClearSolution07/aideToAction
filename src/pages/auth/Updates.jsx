@@ -5,11 +5,35 @@ import starsImg from "/img/pdfImg/Dec.png";
 import janImg from "/img/pdfImg/Jan.png";
 import decImg from "/img/pdfImg/Dec.png";
 import novImg from "/img/pdfImg/Nov.png";
+import febImg from "/img/pdfImg/Feb.png";
+import marImg from "/img/pdfImg/Mar.png";
 import "./Updates.css";
 
 const { Panel } = Collapse;
 
 const newsletterDocuments = [
+    {
+        category: "March 2025",
+        description: "Empowering Care Leavers: Building Stronger Communities Together.",
+        documents: [
+            {
+                title: "Monthly Newsletter",
+                pdf: "/pdfs/marchnews.pdf",
+                img: marImg,
+            },
+        ],
+    },
+    {
+        category: "February 2025",
+        description: "Creating Opportunities, Building Futures: Care Leavers' Journey to Success.",
+        documents: [
+            {
+                title: "Monthly Newsletter",
+                pdf: "/pdfs/febnews.pdf",
+                img: febImg,
+            },
+        ],
+    },
     {
         category: "January 2025",
         description:
@@ -112,7 +136,7 @@ const Updates = () => {
                     </div>
                 </Panel>
                 <Panel
-                    header="Newsletters (Nov 2024 - Jan 2025)"
+                    header="Newsletters (Nov 2024 - Mar 2025)"
                     key="newsletters"
                 >
                     {newsletterDocuments.map((group, index) => (

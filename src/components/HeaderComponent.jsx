@@ -94,9 +94,6 @@ const HeaderComponent = ({ headerText }) => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 height: "64px",
-                position: "sticky",
-                top: 0,
-                zIndex: 10,
                 width: "100%",
                 boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
             }}

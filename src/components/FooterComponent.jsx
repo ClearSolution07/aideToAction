@@ -1,13 +1,14 @@
 import React from "react";
 import logo from "../assets/logo2.svg";
 import whatsapp from "../assets/whatsapp.svg";
+import facebook from "/img/facebook.svg";
+import instagram from "/img/instagram.svg";
+import linkedin from "/img/linkedin.svg";
 
 import {
-    FacebookFilled,
     InstagramFilled,
     LinkedinFilled,
 } from "@ant-design/icons";
-import twitter from "/img/twitter.png";
 import "./css/footer.css";
 import supporters from "./jsons/supporters.json";
 
@@ -67,39 +68,27 @@ const Footer = ({ isAuthenticated }) => {
                     <div className="social-icons">
                         <a
                             href="https://www.facebook.com/profile.php?id=61562857873961"
-                            className="social-icon"
+                            className="social-icon facebook-icon"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <FacebookFilled />
+                            <img src={facebook} alt="Facebook" style={{ width: "60px", height: "60px" }} />
                         </a>
                         <a
                             href="https://www.instagram.com/saarthi_aicl"
-                            className="social-icon"
+                            className="social-icon instagram-icon"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <InstagramFilled />
+                            <img src={instagram} alt="Instagram" style={{ width: "60px", height: "60px" }} />
                         </a>
                         <a
                             href="https://www.linkedin.com/company/saarthi-aicl"
-                            className="social-icon"
+                            className="social-icon linkedin-icon"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <LinkedinFilled />
-                        </a>
-                        <a
-                            href="https://x.com/CareleaversIND"
-                            className="social-icon"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={twitter}
-                                style={{ height: "25px", width: "25px" }}
-                                alt="Twitter"
-                            />
+                            <img src={linkedin} alt="LinkedIn" style={{ width: "60px", height: "60px" }} />
                         </a>
                     </div>
                 </div>
