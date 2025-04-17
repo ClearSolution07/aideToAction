@@ -121,8 +121,12 @@
 .signUp-container {
     display: flex;
     justify-content: space-between;
-    display: flex;
     align-items: stretch;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1400px;
+    width: 100%;
 }
 
 .signUp-container-saarthi {
@@ -138,9 +142,7 @@
     align-items: center;
     width: 100%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    z-index: 1;
-    padding: 0px 20px 0px 20px;
+    padding: 10px 20px;
     background: linear-gradient(to right, #ffe4c4, #fdbb74);
 }
 
@@ -149,23 +151,32 @@
 .new-buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    width: 100%;
 }
 
 .primary-button {
     background-color: #89cff0;
     color: black;
     border: none;
-    padding: 10px 15px;
-
+    padding: 12px 20px;
     cursor: pointer;
     transition: 0.3s;
     border-radius: 5px;
-
-    width: 300px;
+    width: 100%;
+    min-width: 180px;
+    max-width: 250px;
+    flex: 1;
     font-family: "Baskervville";
     font-weight: 600;
-    font-size: 22px;
-    line-height: 26px;
+    font-size: clamp(14px, 1.5vw, 22px);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 
 .primary-button:hover {
@@ -174,17 +185,23 @@
 
 .dropdown-container {
     position: relative;
+    width: 100%;
+    min-width: 180px;
+    max-width: 250px;
+    flex: 1;
 }
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
+    right: 0;
     border-radius: 5px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     width: 100%;
+    z-index: 1000;
 }
 
 .dropdown-item {
@@ -194,12 +211,15 @@
     text-align: left;
     cursor: pointer;
     font-weight: 600;
-    font-size: 22px;
-    line-height: 26px;
+    font-size: clamp(14px, 1.5vw, 22px);
+    line-height: 1.2;
     transition: 0.2s;
     margin-top: 2px;
     text-align: center;
     font-family: "Baskervville";
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dropdown-item:hover {
@@ -208,7 +228,7 @@
 
 .arrow {
     margin-left: 5px;
-    font-size: 14px;
+    font-size: clamp(12px, 1vw, 14px);
 }
 
 /** End */
@@ -217,7 +237,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0px 40px 0px 40px;
+    gap: 2rem;
+    width: 100%;
 }
 
 .right-side-saarthi {
@@ -313,17 +334,14 @@
 .disclaimer-title {
     font-size: 24px;
     color: #07387b;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
     font-weight: bold;
 }
 
 .disclaimer-main {
     border-radius: 5px;
-    margin-bottom: 40px;
-    line-height: 56px;
-    font-weight: 400;
-    margin-top: 2rem;
-    padding: 12px;
+    margin: 2rem auto;
+    padding: 1.5rem;
     border: 1px solid #07387b;
     color: #07387b;
     line-height: 1.5;
@@ -333,17 +351,25 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 40px;
+    max-width: 1200px;
+    width: 90%;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .disclaimer-description {
-    margin: 0px 15%;
-    font-size: 24px;
+    margin: 0 auto;
+    font-size: 20px;
+    max-width: 900px;
+    line-height: 1.6;
 }
 
 .logo {
-    width: 313px;
-    height: 310px;
+    width: 100%;
+    height: auto;
+    max-width: 313px;
+    max-height: 310px;
+    object-fit: contain;
 }
 
 .hidden {
@@ -539,12 +565,9 @@
 .empower {
     border-radius: 5px;
     margin-bottom: 40px;
-
     font-weight: 400;
-    margin-top: 22rem;
+    margin-top: 4rem;
     padding: 12px;
-    /* border: 1px solid #07387b; */
-    /* color: #07387b; */
     line-height: 1.5;
     text-align: center;
     font-weight: 400;
@@ -553,32 +576,36 @@
     flex-direction: column;
     justify-content: center;
 }
+
 .empower-heading {
-    font-size: 55px;
-    line-height: 47.17px;
-    font-weight: 400;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 2px 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #01193e;
 }
 
 .empower-detail {
-    font-size: 28px;
-    line-height: 35px;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    line-height: 1.6;
     font-weight: 400;
     text-align: justify;
-    padding: 0 40px 0 40px;
-    margin-top: 2rem;
+    padding: 0 20px;
+    margin-top: 1rem;
 }
 
 .logo-container {
     width: 20%;
+    min-width: 150px;
+    max-width: 313px;
 }
 
 .btn-header-heading {
     width: 80%;
     display: flex;
     flex-direction: column;
-    padding-right: 40px;
-    gap: 4rem;
+    padding-right: 20px;
+    gap: 2rem;
 }
 
 .header-heading-container {
@@ -586,13 +613,15 @@
     font-weight: 400;
     color: #01193e;
 }
+
 .header-heading {
-    font-size: 85px;
-    line-height: 100%;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.2;
 }
+
 .header-detail {
-    font-size: 28px;
-    line-height: 45px;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.4;
 }
 
 @media (max-width: 1024px) {
@@ -605,6 +634,44 @@
             1fr
         ); /* Two columns on medium screens */
         gap: 20px;
+    }
+
+    .signin-container {
+        padding: 10px;
+    }
+
+    .btn-header-heading {
+        padding-right: 10px;
+        gap: 1rem;
+    }
+
+    .new-buttons {
+        gap: 10px;
+    }
+
+    .primary-button {
+        min-width: 150px;
+        max-width: 200px;
+        padding: 10px 15px;
+    }
+
+    .dropdown-container {
+        min-width: 150px;
+        max-width: 200px;
+    }
+
+    .carousel-root {
+        min-height: 350px;
+    }
+
+    .signUp-container {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .left-side,
+    .right-side {
+        gap: 1.5rem;
     }
 }
 @media (max-width: 768px) {
@@ -642,8 +709,8 @@
         width: 100%; /* Make cards full width */
     }
     .primary-button {
-        width: 100%;
-        text-align: center;
+        min-width: 140px;
+        max-width: 180px;
     }
     .carousel-card:nth-child(3n + 1),
     .carousel-card:nth-child(3n + 2) {
@@ -654,14 +721,42 @@
         border-bottom: none;
     }
 
-    .logo {
-        width: 313px;
-        height: 310px;
+    .logo-container {
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 10px;
     }
     .primary-button {
-        width: 130px;
-        font-size: 14px;
-        min-width: fit-content;
+        min-width: 140px;
+        max-width: 180px;
+    }
+    .dropdown-container {
+        min-width: 140px;
+        max-width: 180px;
+    }
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+    }
+    .btn-header-heading {
+        width: 100%;
+        padding-right: 0;
+        text-align: center;
+    }
+    .header-heading {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    .header-detail {
+        font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+    }
+    .new-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .primary-button {
+        min-width: 140px;
+        max-width: 180px;
     }
     .dropdown-item {
         font-size: 12px;
@@ -670,6 +765,93 @@
     .dropdown-item,
     .dropdown-container svg {
         margin-left: 0px !important;
+    }
+
+    .empower {
+        margin-top: 3rem;
+        padding: 10px;
+    }
+    
+    .empower-detail {
+        padding: 0 10px;
+    }
+
+    .carousel-root {
+        min-height: 300px;
+    }
+
+    .signUp-container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+        padding: 0;
+    }
+
+    .carousel-dots-overlay {
+        bottom: 10px;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        max-width: 150px;
+    }
+
+    .header-heading {
+        font-size: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .header-detail {
+        font-size: clamp(0.75rem, 1.25vw, 1rem);
+    }
+
+    .new-buttons {
+        gap: 8px;
+    }
+
+    .primary-button {
+        min-width: 120px;
+        max-width: 160px;
+        padding: 8px 12px;
+        font-size: clamp(12px, 1.2vw, 16px);
+    }
+
+    .dropdown-container {
+        min-width: 120px;
+        max-width: 160px;
+    }
+
+    .empower {
+        margin-top: 2rem;
+    }
+
+    .carousel-root {
+        min-height: 250px;
+    }
+
+    .signUp-container {
+        padding: 0.5rem;
+        margin: 1rem auto;
+    }
+
+    .carousel-dots-overlay {
+        bottom: 5px;
+        gap: 6px;
+    }
+
+    .carousel-dot {
+        width: 6px;
+        height: 6px;
     }
 }
 
@@ -859,5 +1041,202 @@
 @media (min-width: 769px) {
     .signup-container-small {
         display: none;
+    }
+}
+
+.carousel-root {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+    position: relative;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.carousel-dots-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-dot.active {
+    background-color: #ff6636;
+    transform: scale(1.2);
+}
+
+@media (max-width: 1200px) {
+    .carousel-root {
+        min-height: 380px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .carousel-root {
+        min-height: 350px;
+    }
+
+    .signUp-container {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .left-side,
+    .right-side {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-root {
+        min-height: 300px;
+    }
+
+    .signUp-container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+        padding: 0;
+    }
+
+    .carousel-dots-overlay {
+        bottom: 15px;
+        gap: 6px;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-root {
+        min-height: 250px;
+    }
+
+    .signUp-container {
+        padding: 0.5rem;
+        margin: 1rem auto;
+    }
+
+    .carousel-dots-overlay {
+        bottom: 10px;
+        gap: 4px;
+    }
+
+    .carousel-dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .disclaimer-main {
+        width: 95%;
+        padding: 1.25rem;
+    }
+
+    .disclaimer-description {
+        font-size: 18px;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .disclaimer-main {
+        width: 90%;
+        padding: 1rem;
+        margin: 1.5rem auto;
+    }
+
+    .disclaimer-title {
+        font-size: 20px;
+        margin-bottom: 1rem;
+    }
+
+    .disclaimer-description {
+        font-size: 16px;
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .disclaimer-main {
+        width: 95%;
+        padding: 0.75rem;
+        margin: 1rem auto;
+        border-width: 1px;
+    }
+
+    .disclaimer-title {
+        font-size: 18px;
+        margin-bottom: 0.75rem;
+    }
+
+    .disclaimer-description {
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 0 0.25rem;
     }
 }
