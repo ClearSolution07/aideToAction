@@ -95,7 +95,8 @@
 }
 
 .pdf-card {
-    width: 180px;
+    flex: 1 1 200px;
+    max-width: 220px;
     text-align: center;
     cursor: pointer;
     border: 1px solid #eee;
@@ -103,7 +104,17 @@
     border-radius: 8px;
     transition: box-shadow 0.2s;
     background: #fff;
+    box-sizing: border-box;
 }
+.newsletter-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    height: 3em;
+    overflow: hidden;
+}
+
+
 
 .pdf-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

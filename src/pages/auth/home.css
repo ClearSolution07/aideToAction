@@ -164,12 +164,12 @@
     padding: 12px 20px;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 5px;
+
     width: 100%;
     min-width: 180px;
     max-width: 250px;
     flex: 1;
-    font-family: "Baskervville";
+    font-family: "Inter";
     font-weight: 600;
     font-size: clamp(14px, 1.5vw, 22px);
     line-height: 1.2;
@@ -308,7 +308,7 @@
 
 .buttons {
     background-color: #89cff0;
-    border-radius: 4px;
+
     font-weight: 600;
     color: #1d2026cc;
     border: none;
@@ -316,7 +316,7 @@
     cursor: pointer;
     font-size: 22px;
     transition: background-color 0.3s;
-    font-family: "Baskervville";
+    font-family: "Inter";
     padding: 20px;
 }
 
@@ -771,7 +771,7 @@
         margin-top: 3rem;
         padding: 10px;
     }
-    
+
     .empower-detail {
         padding: 0 10px;
     }

@@ -15,6 +15,7 @@ import Admin from "./pages/Admin/Admin";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import UtilityMain from "./pages/auth/UtilityMain";
 import Announce from "./pages/auth/Announce";
+import ResourceLibrary from "./pages/auth/ResourceLibrary";
 
 const isAuthenticated = () => {
     const token = localStorage.getItem("authToken");
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/announcement", element: <Announce /> },
     { path: "/resource", element: <UtilityMain /> },
+    { path: "/resource_library", element: <ResourceLibrary /> },
     { path: "/register", element: <MembershipForm /> },
     {
         path: "/dashboard",

@@ -7,6 +7,10 @@ import decImg from "/img/pdfImg/Dec.png";
 import novImg from "/img/pdfImg/Nov.png";
 import febImg from "/img/pdfImg/Feb.png";
 import marImg from "/img/pdfImg/Mar.png";
+import envImg from "/img/pdfImg/env.png";
+import racImg from "/img/pdfImg/rac.png";
+import pdfImg from "/img/pdfLogo.png";
+
 import "./Updates.css";
 
 const { Panel } = Collapse;
@@ -14,10 +18,11 @@ const { Panel } = Collapse;
 const newsletterDocuments = [
     {
         category: "March 2025",
-        description: "Empowering Care Leavers: Building Stronger Communities Together.",
+        description:
+            "Empowering Care Leavers: Building Stronger Communities Together.",
         documents: [
             {
-                title: "Monthly Newsletter",
+                title: "March 2025",
                 pdf: "/pdfs/marchnews.pdf",
                 img: marImg,
             },
@@ -25,10 +30,11 @@ const newsletterDocuments = [
     },
     {
         category: "February 2025",
-        description: "Creating Opportunities, Building Futures: Care Leavers' Journey to Success.",
+        description:
+            "Creating Opportunities, Building Futures: Care Leavers' Journey to Success.",
         documents: [
             {
-                title: "Monthly Newsletter",
+                title: "February 2025",
                 pdf: "/pdfs/febnews.pdf",
                 img: febImg,
             },
@@ -40,7 +46,7 @@ const newsletterDocuments = [
             "Karnataka Care Leavers: Uniting Voices, Empowering Futures.",
         documents: [
             {
-                title: "Monthly Newsletter",
+                title: "January 2025",
                 pdf: "/pdfs/january.pdf",
                 img: janImg,
             },
@@ -52,7 +58,7 @@ const newsletterDocuments = [
             "Empowering care leavers with skills, collaboration, and a sense of community is the first step toward building a future where they thrive, lead, and contribute to society.",
         documents: [
             {
-                title: "Monthly Newsletter",
+                title: "December 2024",
                 pdf: "/pdfs/december.pdf",
                 img: decImg,
             },
@@ -63,7 +69,7 @@ const newsletterDocuments = [
         description: "Your Window into the World of CareLeavers.",
         documents: [
             {
-                title: "Monthly Newsletter",
+                title: "November 2024",
                 pdf: "/pdfs/november.pdf",
                 img: novImg,
             },
@@ -75,8 +81,38 @@ const reportDocuments = [
     {
         id: 1,
         title: "STARS Stories of Careleavers",
-        pdfUrl: "/pdfs/STARS Stories of Careleavers.pdf",
+        pdfUrl: "/reports/STARS Stories of Careleavers.pdf",
         img: starsImg,
+    },
+    {
+        id: 2,
+        title: "Policy Envirnoment Around Rehavilitation Of Care Leavers",
+        pdfUrl: "/reports/environment.pdf",
+        img: envImg,
+    },
+    {
+        id: 3,
+        title: "Rapid Assessment of careleavers’ perception around Networks and Networking",
+        pdfUrl: "/reports/ras.pdf",
+        img: racImg,
+    },
+    {
+        id: 4,
+        title: "Capacity Building for National Care Leaver Network",
+        pdfUrl: "/reports/firstMeeting.pdf",
+        img: pdfImg,
+    },
+    {
+        id: 5,
+        title: "NCLN -July meet",
+        pdfUrl: "/reports/ncln.pdf",
+        img: pdfImg,
+    },
+    {
+        id: 6,
+        title: "Minutes of Formative Meeting for Working Committee NCLN",
+        pdfUrl: "/reports/formative.pdf",
+        img: pdfImg,
     },
 ];
 
@@ -108,7 +144,7 @@ const Updates = () => {
             {/* Newsletter Section */}
             <Collapse accordion>
                 {/* Report Section */}
-                <Panel header="Workshop & Event Reports" key="reports">
+                <Panel header="Reports" key="reports">
                     <div className="pdf-grid">
                         {reportDocuments.map((doc, i) => (
                             <div key={i} className="pdf-card">
@@ -125,7 +161,7 @@ const Updates = () => {
                                     {doc.title}
                                 </p>
                                 <a
-                                    href={doc.pdf}
+                                    href={doc.pdfUrl}
                                     download
                                     className="download-link"
                                 >
@@ -139,42 +175,39 @@ const Updates = () => {
                     header="Newsletters (Nov 2024 - Mar 2025)"
                     key="newsletters"
                 >
-                    {newsletterDocuments.map((group, index) => (
-                        <div key={index} className="newsletter-section">
-                            <p className="newsletter-desc">
-                                {group.description}
-                            </p>
-                            <div className="pdf-grid">
-                                {group.documents.map((doc, docIndex) => (
-                                    <div key={docIndex} className="pdf-card">
-                                        <img
-                                            src={doc.img}
-                                            alt="PDF Icon"
-                                            className="pdf-image"
-                                            onClick={() =>
-                                                openPdfModal(doc.pdf)
-                                            }
-                                        />
-                                        <p
-                                            className="pdf-title"
-                                            onClick={() =>
-                                                openPdfModal(doc.pdf)
-                                            }
-                                        >
-                                            {doc.title}
-                                        </p>
-                                        <a
-                                            href={doc.pdf}
-                                            download
-                                            className="download-link"
-                                        >
-                                            Download PDF
-                                        </a>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                    <div className="pdf-grid">
+                        {newsletterDocuments.map((group, index) =>
+                            group.documents.map((doc, docIndex) => (
+                                <div
+                                    key={`${index}-${docIndex}`}
+                                    className="pdf-card"
+                                >
+                                    <p className="newsletter-desc">
+                                        {group.description}
+                                    </p>
+                                    <img
+                                        src={doc.img}
+                                        alt="PDF Icon"
+                                        className="pdf-image"
+                                        onClick={() => openPdfModal(doc.pdf)}
+                                    />
+                                    <p
+                                        className="pdf-title"
+                                        onClick={() => openPdfModal(doc.pdf)}
+                                    >
+                                        {doc.title}
+                                    </p>
+                                    <a
+                                        href={doc.pdf}
+                                        download
+                                        className="download-link"
+                                    >
+                                        Download PDF
+                                    </a>
+                                </div>
+                            ))
+                        )}
+                    </div>
                 </Panel>
             </Collapse>
 

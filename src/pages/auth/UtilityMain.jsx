@@ -6,6 +6,7 @@ import utility2Img from "/img/utility2.svg";
 import utility3Img from "/img/utility3.svg";
 import UtilityCorner from "./UtilityCorner";
 import Updates from "./Updates";
+import ResourceLibrary from "./ResourceLibrary";
 import { Button, Layout } from "antd";
 import HeaderComponent from "../../components/HeaderComponent";
 import Footer from "../../components/FooterComponent";
@@ -26,6 +27,15 @@ const MentorComponent = ({ onBack }) => (
             <LeftOutlined /> Back
         </button>
         <Updates />
+    </div>
+);
+
+const ResourceLibraryComponent = ({ onBack }) => (
+    <div className="utiliyt-content">
+        <button className="utility-back-button" onClick={onBack}>
+            <LeftOutlined /> Back
+        </button>
+        <ResourceLibrary />
     </div>
 );
 
@@ -82,7 +92,9 @@ const UtilityMain = () => {
 
                             <div
                                 className="utility-card"
-                                // onClick={() => handleCardClick("resource")}
+                                onClick={() =>
+                                    handleCardClick("resource_library")
+                                }
                             >
                                 <img
                                     src={utility3Img}
@@ -95,8 +107,10 @@ const UtilityMain = () => {
                     </>
                 ) : activeComponent === "document" ? (
                     <CounselingComponent onBack={handleBackClick} />
-                ) : (
+                ) : activeComponent === "updates" ? (
                     <MentorComponent onBack={handleBackClick} />
+                ) : (
+                    <ResourceLibraryComponent onBack={handleBackClick} />
                 )}
             </div>
             <Button
