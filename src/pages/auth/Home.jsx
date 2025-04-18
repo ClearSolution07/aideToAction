@@ -70,9 +70,8 @@ const Home = () => {
                     <div className="header-heading-container">
                         <div className="header-heading">Association Of Indian Care Leavers</div>
                         <div className="header-detail">
-                            The vision of Saarthi is to advocate for and to
-                            empower care leaving youth transitioning out of <br></br>
-                            child care institutions (CCI) and other forms of
+                            The vision of Saarthi is to advocate for and to empower care leaving youth 
+                            transitioning out of child care institutions (CCI) and other forms of
                             alternative care.
                         </div>
                     </div>
