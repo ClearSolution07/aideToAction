@@ -326,7 +326,6 @@
 
 .disclaimer-container {
     width: 100%;
-
     position: relative;
     animation: slideUp 0.4sease;
 }
@@ -511,8 +510,10 @@
 .carousel-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    width: 100%;
     max-width: 1200px;
     margin: auto;
+    gap: 20px;
 }
 
 .carousel-card {
@@ -525,18 +526,8 @@
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    /* border: 1px solid rgba(0, 0, 0, 0.05); */
     transform: translateY(0);
-    width: 380px;
-}
-
-.carousel-card:nth-child(3n + 1),
-.carousel-card:nth-child(3n + 2) {
-    border-right: 3px dotted #bfbfbf;
-}
-
-.carousel-card:nth-child(-n + 3) {
-    border-bottom: 3px dotted #bfbfbf;
+    width: 100%;
 }
 
 .psycho-card-image {
@@ -612,16 +603,33 @@
     text-align: center;
     font-weight: 400;
     color: #01193e;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .header-heading {
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.2;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .header-detail {
     font-size: clamp(1rem, 2vw, 1.5rem);
     line-height: 1.4;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 @media (max-width: 1024px) {
@@ -745,6 +753,7 @@
     }
     .header-heading {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 700;
     }
     .header-detail {
         font-size: clamp(0.875rem, 1.5vw, 1.25rem);
@@ -800,6 +809,91 @@
         width: 8px;
         height: 8px;
     }
+
+    .signin-container {
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .logo-container {
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+
+    .btn-header-heading {
+        width: 100%;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .new-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .primary-button {
+        min-width: 140px;
+        max-width: 180px;
+        padding: 10px 15px;
+        font-size: clamp(12px, 1.2vw, 16px);
+    }
+
+    .dropdown-container {
+        min-width: 140px;
+        max-width: 180px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
+
+    .dropdown-item,
+    .dropdown-container svg {
+        margin-left: 0px !important;
+    }
+
+    .about-container {
+        margin: 0;
+        width: 100%;
+        padding: 25px 35px;
+        position: relative;
+        left: -15px;
+        box-sizing: border-box;
+    }
+
+    .about-container-saarthi {
+        margin: 0;
+        width: 100%;
+        padding: 25px 35px;
+        position: relative;
+        left: -15px;
+        box-sizing: border-box;
+    }
+
+    .about-description {
+        text-align: justify;
+        font-size: 18px;
+        padding-right: 15px;
+    }
+
+    .about-description-bottom {
+        text-align: justify;
+        font-size: 18px;
+        padding-right: 15px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -809,6 +903,7 @@
 
     .header-heading {
         font-size: clamp(1.25rem, 3vw, 2rem);
+        font-weight: 700;
     }
 
     .header-detail {
@@ -852,6 +947,55 @@
     .carousel-dot {
         width: 6px;
         height: 6px;
+    }
+
+    .signin-container {
+        padding: 8px;
+    }
+
+    .logo-container {
+        max-width: 150px;
+    }
+
+    .new-buttons {
+        gap: 8px;
+    }
+
+    .primary-button {
+        min-width: 120px;
+        max-width: 160px;
+        padding: 8px 12px;
+        font-size: clamp(12px, 1.2vw, 16px);
+    }
+
+    .dropdown-container {
+        min-width: 120px;
+        max-width: 160px;
+    }
+
+    .dropdown-item {
+        padding: 8px 12px;
+    }
+
+    .about-container {
+        width: 100%;
+        padding: 20px 30px;
+        position: relative;
+        left: -15px;
+        box-sizing: border-box;
+    }
+
+    .about-container-saarthi {
+        width: 100%;
+        padding: 20px 30px;
+        position: relative;
+        left: -15px;
+        box-sizing: border-box;
+    }
+
+    .about-description, 
+    .about-description-bottom {
+        padding-right: 20px;
     }
 }
 
@@ -1238,5 +1382,332 @@
         font-size: 14px;
         line-height: 1.5;
         padding: 0 0.25rem;
+    }
+}
+
+/* Large Desktop Screens (1440px and above) */
+@media (min-width: 1440px) {
+    .home-container {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+
+    .signUp-container {
+        max-width: 1800px;
+        padding: 3rem;
+        gap: 3rem;
+    }
+
+    .signin-container {
+        padding: 15px 30px;
+        max-width: 1800px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        width: 20%;
+        min-width: 200px;
+        max-width: 313px;
+    }
+
+    .btn-header-heading {
+        width: 80%;
+        padding-right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .header-heading-container {
+        text-align: center;
+        font-weight: 400;
+        color: #01193e;
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .header-heading {
+        font-size: clamp(3rem, 4vw, 4rem);
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        white-space: nowrap;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-detail {
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        line-height: 1.5;
+        max-width: 1000px;
+        margin: 0 auto;
+        white-space: normal;
+        width: 100%;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .new-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .primary-button {
+        min-width: 200px;
+        max-width: 300px;
+        padding: 14px 22px;
+        flex: 1;
+        font-size: clamp(16px, 1.8vw, 24px);
+        white-space: nowrap;
+    }
+
+    .dropdown-container {
+        position: relative;
+        width: 100%;
+        min-width: 200px;
+        max-width: 300px;
+        flex: 1;
+    }
+
+    .dropdown-item {
+        font-size: clamp(16px, 1.8vw, 24px);
+        white-space: nowrap;
+        padding: 14px 22px;
+    }
+
+    .carousel-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 1400px;
+        gap: 30px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
+
+    .carousel-card {
+        flex: 0 0 calc(33.333% - 20px);
+        height: 320px;
+        padding: 50px;
+        width: calc(33.333% - 20px);
+    }
+
+    .psycho-card-image {
+        height: 220px;
+        width: 90%;
+    }
+
+    .card-name {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    .card-occupation {
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    .psychologist-background-container {
+        margin-top: 450px;
+        height: 550px;
+    }
+
+    .support-heading {
+        font-size: 42px;
+        margin-bottom: 120px;
+    }
+
+    .disclaimer-main {
+        max-width: 1400px;
+        width: 95%;
+        padding: 2rem;
+        margin: 3rem auto;
+    }
+
+    .disclaimer-title {
+        font-size: 28px;
+        margin-bottom: 2rem;
+    }
+
+    .disclaimer-description {
+        font-size: 22px;
+        max-width: 1100px;
+        line-height: 1.7;
+    }
+
+    .ending-text {
+        font-size: 16px;
+        line-height: 24px;
+        margin-top: 60px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px;
+    }
+}
+
+/* Extra Large Desktop Screens (1920px and above) */
+@media (min-width: 1920px) {
+    .home-container {
+        max-width: 2400px;
+    }
+
+    .signUp-container {
+        max-width: 2200px;
+        padding: 4rem;
+        gap: 4rem;
+    }
+
+    .signin-container {
+        padding: 20px 40px;
+        max-width: 2000px;
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        min-width: 250px;
+    }
+
+    .btn-header-heading {
+        padding-right: 40px;
+        gap: 2rem;
+    }
+
+    .header-heading-container {
+        max-width: 1000px;
+        width: 100%;
+    }
+
+    .header-heading {
+        font-size: clamp(3.5rem, 4.5vw, 4.5rem);
+        line-height: 1.3;
+        margin-bottom: 1.2rem;
+        white-space: nowrap;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-detail {
+        font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+        line-height: 1.5;
+        max-width: 1000px;
+        white-space: normal;
+        width: 100%;
+        margin: 0 auto;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .new-buttons {
+        gap: 25px;
+        max-width: 1400px;
+    }
+
+    .primary-button {
+        min-width: 220px;
+        max-width: 350px;
+        padding: 16px 24px;
+        font-size: clamp(18px, 2vw, 26px);
+        white-space: nowrap;
+    }
+
+    .dropdown-container {
+        min-width: 220px;
+        max-width: 350px;
+    }
+
+    .dropdown-item {
+        font-size: clamp(18px, 2vw, 26px);
+        white-space: nowrap;
+        padding: 16px 24px;
+    }
+
+    .carousel-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 95%;
+        max-width: 1800px;
+        gap: 40px;
+        padding: 0 30px;
+        margin: 0 auto;
+    }
+
+    .carousel-card {
+        flex: 0 0 calc(33.333% - 27px);
+        height: 380px;
+        padding: 60px;
+        width: calc(33.333% - 27px);
+    }
+
+    .psycho-card-image {
+        height: 260px;
+        width: 90%;
+    }
+
+    .card-name {
+        font-size: 22px;
+        margin-top: 18px;
+    }
+
+    .card-occupation {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .psychologist-background-container {
+        margin-top: 500px;
+        height: 600px;
+    }
+
+    .support-heading {
+        font-size: 48px;
+        margin-bottom: 140px;
+    }
+
+    .disclaimer-main {
+        max-width: 1800px;
+        width: 98%;
+        padding: 2.5rem;
+        margin: 4rem auto;
+    }
+
+    .disclaimer-title {
+        font-size: 32px;
+        margin-bottom: 2.5rem;
+    }
+
+    .disclaimer-description {
+        font-size: 24px;
+        max-width: 1400px;
+        line-height: 1.8;
+    }
+
+    .ending-text {
+        font-size: 18px;
+        line-height: 26px;
+        margin-top: 80px;
+        max-width: 1800px;
+        padding: 0 30px;
     }
 }
