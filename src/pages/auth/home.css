@@ -144,6 +144,7 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
     background: linear-gradient(to right, #ffe4c4, #fdbb74);
+    min-width: 1200px;
 }
 
 /* navbar buttons*/
@@ -566,6 +567,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
 }
 
 .empower-heading {
@@ -574,6 +579,7 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: #01193e;
+    text-align: center;
 }
 
 .empower-detail {
@@ -581,8 +587,11 @@
     line-height: 1.6;
     font-weight: 400;
     text-align: justify;
-    padding: 0 20px;
+    padding: 0 30px;
     margin-top: 1rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .logo-container {
@@ -597,6 +606,8 @@
     flex-direction: column;
     padding-right: 20px;
     gap: 2rem;
+    flex: 1;
+    min-width: 0;
 }
 
 .header-heading-container {
@@ -604,19 +615,27 @@
     font-weight: 400;
     color: #01193e;
     width: 100%;
-    max-width: 1000px;
     margin: 0 auto;
+    white-space: nowrap;
+    overflow: visible;
+    flex: 1;
+    min-width: 0;
 }
 
 .header-heading {
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.2;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 10px;
 }
 
 .header-detail {
@@ -630,6 +649,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    padding: 0 10px;
 }
 
 @media (max-width: 1024px) {
@@ -754,9 +774,14 @@
     .header-heading {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
+        line-height: 1.3;
+        padding: 0 15px;
+        -webkit-line-clamp: 3;
     }
     .header-detail {
         font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+        line-height: 1.4;
+        padding: 0 15px;
     }
     .new-buttons {
         flex-wrap: wrap;
@@ -777,12 +802,22 @@
     }
 
     .empower {
+        width: 98%;
+        padding: 1rem;
         margin-top: 3rem;
-        padding: 10px;
+        margin-bottom: 2rem;
     }
     
+    .empower-heading {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 1rem;
+    }
+
     .empower-detail {
-        padding: 0 10px;
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+        line-height: 1.5;
+        padding: 0 25px;
+        max-width: 95%;
     }
 
     .carousel-root {
@@ -811,43 +846,30 @@
     }
 
     .signin-container {
-        padding: 10px;
+        padding: 8px 12px;
+        min-width: 100%;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    .logo-container {
-        width: 100%;
-        max-width: 200px;
-        margin-bottom: 10px;
-    }
-
-    .btn-header-heading {
-        width: 100%;
-        padding-right: 0;
-        text-align: center;
+        gap: 10px;
     }
 
     .new-buttons {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
         width: 100%;
-        overflow-x: hidden;
     }
 
     .primary-button {
-        min-width: 140px;
-        max-width: 180px;
-        padding: 10px 15px;
+        min-width: 120px;
+        max-width: 160px;
+        padding: 8px 12px;
         font-size: clamp(12px, 1.2vw, 16px);
     }
 
     .dropdown-container {
-        min-width: 140px;
-        max-width: 180px;
+        min-width: 120px;
+        max-width: 160px;
     }
 
     .dropdown-menu {
@@ -857,12 +879,24 @@
 
     .dropdown-item {
         font-size: 12px;
-        padding: 10px 15px;
+        padding: 8px 12px;
     }
 
     .dropdown-item,
     .dropdown-container svg {
         margin-left: 0px !important;
+    }
+
+    .logo-container {
+        width: 100%;
+        max-width: 150px;
+        margin-bottom: 8px;
+    }
+
+    .btn-header-heading {
+        width: 100%;
+        padding-right: 0;
+        text-align: center;
     }
 
     .about-container {
@@ -902,12 +936,16 @@
     }
 
     .header-heading {
-        font-size: clamp(1.25rem, 3vw, 2rem);
-        font-weight: 700;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        line-height: 1.2;
+        padding: 0 10px;
+        -webkit-line-clamp: 4;
     }
 
     .header-detail {
         font-size: clamp(0.75rem, 1.25vw, 1rem);
+        line-height: 1.3;
+        padding: 0 10px;
     }
 
     .new-buttons {
@@ -927,7 +965,22 @@
     }
 
     .empower {
+        width: 100%;
+        padding: 0.8rem;
         margin-top: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .empower-heading {
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .empower-detail {
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+        line-height: 1.4;
+        padding: 0 20px;
+        max-width: 98%;
     }
 
     .carousel-root {
@@ -950,31 +1003,34 @@
     }
 
     .signin-container {
-        padding: 8px;
-    }
-
-    .logo-container {
-        max-width: 150px;
-    }
-
-    .new-buttons {
+        padding: 6px 10px;
         gap: 8px;
     }
 
+    .logo-container {
+        max-width: 120px;
+        margin-bottom: 6px;
+    }
+
+    .new-buttons {
+        gap: 6px;
+    }
+
     .primary-button {
-        min-width: 120px;
-        max-width: 160px;
-        padding: 8px 12px;
-        font-size: clamp(12px, 1.2vw, 16px);
+        min-width: 100px;
+        max-width: 140px;
+        padding: 6px 10px;
+        font-size: clamp(11px, 1.1vw, 14px);
     }
 
     .dropdown-container {
-        min-width: 120px;
-        max-width: 160px;
+        min-width: 100px;
+        max-width: 140px;
     }
 
     .dropdown-item {
-        padding: 8px 12px;
+        padding: 6px 10px;
+        font-size: 11px;
     }
 
     .about-container {
@@ -1434,12 +1490,12 @@
         font-size: clamp(3rem, 4vw, 4rem);
         line-height: 1.3;
         margin-bottom: 1rem;
-        white-space: nowrap;
+        white-space: normal;
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        overflow: visible;
+        text-overflow: clip;
     }
 
     .header-detail {
@@ -1563,8 +1619,77 @@
 
 /* Extra Large Desktop Screens (1920px and above) */
 @media (min-width: 1920px) {
+    .signUp-container {
+        max-width: 2400px;
+        padding: 4rem;
+        gap: 4rem;
+        margin: 0 auto;
+    }
+
+    .right-side {
+        flex: 1;
+        min-width: 0;
+        width: 50%;
+    }
+
+    .left-side {
+        flex: 1;
+        min-width: 0;
+        width: 50%;
+    }
+
+    .carousel-root {
+        min-height: 800px;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .carousel-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-slide {
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel-dots-overlay {
+        bottom: 30px;
+        gap: 12px;
+    }
+
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .carousel-root {
+        min-height: 1000px;
+    }
+}
+
+@media (min-width: 3840px) {
+    .carousel-root {
+        min-height: 1200px;
+    }
+}
+
+/* Media query for 2K screens (2560px) */
+@media (min-width: 2560px) {
     .home-container {
         max-width: 2400px;
+        margin: 0 auto;
     }
 
     .signUp-container {
@@ -1575,139 +1700,210 @@
 
     .signin-container {
         padding: 20px 40px;
-        max-width: 2000px;
-        justify-content: space-between;
+        max-width: 2400px;
     }
 
     .logo-container {
+        width: 15%;
         min-width: 250px;
+        max-width: 400px;
     }
 
     .btn-header-heading {
+        width: 85%;
         padding-right: 40px;
         gap: 2rem;
+        min-width: 1200px;
     }
 
     .header-heading-container {
-        max-width: 1000px;
-        width: 100%;
+        max-width: 2000px;
     }
-
+    
     .header-heading {
-        font-size: clamp(3.5rem, 4.5vw, 4.5rem);
-        line-height: 1.3;
-        margin-bottom: 1.2rem;
-        white-space: nowrap;
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: clamp(3.5rem, 4.5vw, 5rem);
+        min-width: 1200px;
+    }
+}
+
+/* Media query for 4K screens (3840px) */
+@media (min-width: 3840px) {
+    .home-container {
+        max-width: 3600px;
     }
 
-    .header-detail {
-        font-size: clamp(1.8rem, 2.2vw, 2.2rem);
-        line-height: 1.5;
-        max-width: 1000px;
-        white-space: normal;
-        width: 100%;
-        margin: 0 auto;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    .signUp-container {
+        max-width: 3400px;
+        padding: 5rem;
+        gap: 5rem;
     }
 
-    .new-buttons {
-        gap: 25px;
-        max-width: 1400px;
+    .signin-container {
+        padding: 25px 50px;
+        max-width: 3600px;
     }
 
-    .primary-button {
-        min-width: 220px;
-        max-width: 350px;
-        padding: 16px 24px;
-        font-size: clamp(18px, 2vw, 26px);
-        white-space: nowrap;
+    .logo-container {
+        width: 12%;
+        min-width: 300px;
+        max-width: 500px;
     }
 
-    .dropdown-container {
-        min-width: 220px;
-        max-width: 350px;
+    .btn-header-heading {
+        width: 88%;
+        padding-right: 50px;
+        gap: 2.5rem;
+        min-width: 1800px;
     }
 
-    .dropdown-item {
-        font-size: clamp(18px, 2vw, 26px);
-        white-space: nowrap;
-        padding: 16px 24px;
+    .header-heading-container {
+        max-width: 3000px;
+    }
+    
+    .header-heading {
+        font-size: clamp(4rem, 5vw, 6rem);
+        min-width: 1600px;
+    }
+}
+
+/* Media query for ultra-wide screens (5120px) */
+@media (min-width: 5120px) {
+    .home-container {
+        max-width: 4800px;
     }
 
-    .carousel-wrapper {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        width: 95%;
-        max-width: 1800px;
-        gap: 40px;
-        padding: 0 30px;
-        margin: 0 auto;
+    .signUp-container {
+        max-width: 4600px;
+        padding: 6rem;
+        gap: 6rem;
     }
 
-    .carousel-card {
-        flex: 0 0 calc(33.333% - 27px);
-        height: 380px;
-        padding: 60px;
-        width: calc(33.333% - 27px);
+    .signin-container {
+        padding: 30px 60px;
+        max-width: 4800px;
     }
 
-    .psycho-card-image {
-        height: 260px;
+    .logo-container {
+        width: 10%;
+        min-width: 350px;
+        max-width: 600px;
+    }
+
+    .btn-header-heading {
         width: 90%;
+        padding-right: 60px;
+        gap: 3rem;
+        min-width: 2400px;
     }
 
-    .card-name {
-        font-size: 22px;
-        margin-top: 18px;
+    .header-heading-container {
+        max-width: 4000px;
+    }
+    
+    .header-heading {
+        font-size: clamp(4.5rem, 6vw, 7rem);
+        min-width: 2000px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .header-heading {
+        min-width: 1200px;
+    }
+}
+
+@media (min-width: 3840px) {
+    .header-heading {
+        min-width: 1600px;
+    }
+}
+
+@media (min-width: 5120px) {
+    .header-heading {
+        min-width: 2000px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .empower {
+        max-width: 2000px;
+        padding: 2rem;
+        margin-top: 6rem;
+        margin-bottom: 6rem;
     }
 
-    .card-occupation {
-        font-size: 18px;
-        margin-top: 10px;
+    .empower-heading {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 2rem;
     }
 
-    .psychologist-background-container {
-        margin-top: 500px;
-        height: 600px;
-    }
-
-    .support-heading {
-        font-size: 48px;
-        margin-bottom: 140px;
-    }
-
-    .disclaimer-main {
+    .empower-detail {
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        line-height: 1.8;
+        padding: 0 60px;
         max-width: 1800px;
-        width: 98%;
-        padding: 2.5rem;
-        margin: 4rem auto;
+    }
+}
+
+@media (min-width: 2560px) {
+    .empower {
+        max-width: 2400px;
+        padding: 3rem;
+        margin-top: 8rem;
+        margin-bottom: 8rem;
     }
 
-    .disclaimer-title {
-        font-size: 32px;
+    .empower-heading {
+        font-size: clamp(3rem, 6vw, 5rem);
         margin-bottom: 2.5rem;
     }
 
-    .disclaimer-description {
-        font-size: 24px;
-        max-width: 1400px;
-        line-height: 1.8;
+    .empower-detail {
+        font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+        line-height: 2;
+        padding: 0 80px;
+        max-width: 2200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .empower {
+        width: 98%;
+        padding: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
     }
 
-    .ending-text {
-        font-size: 18px;
-        line-height: 26px;
-        margin-top: 80px;
-        max-width: 1800px;
-        padding: 0 30px;
+    .empower-heading {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 1rem;
+    }
+
+    .empower-detail {
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+        line-height: 1.5;
+        padding: 0 25px;
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .empower {
+        width: 100%;
+        padding: 0.8rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .empower-heading {
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .empower-detail {
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+        line-height: 1.4;
+        padding: 0 20px;
+        max-width: 98%;
     }
 }
