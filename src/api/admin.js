@@ -50,3 +50,40 @@ export const saveAnnouncement = async (data) => {
         );
     }
 };
+
+export const getUnverifiedUsers = async () => {
+    try {
+        const response = await apiClient.post("/admin/get_unverified_users");
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
+
+export const verifyUser = async (userId) => {
+    try {
+        const response = await apiClient.post("/admin/verify_user", {
+            user_id: userId
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
+
+export const deleteUser = async (userId) => {
+    try {
+        const response = await apiClient.post("/admin/delete_user", {
+            user_id: userId
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(
+            error.response ? error.response.data.message : error.message
+        );
+    }
+};
