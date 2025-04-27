@@ -15,7 +15,7 @@ import PencilLine from "../../assets/PencilLine.png";
 import useUser from "../../hooks/useUser";
 import useChat from "../../hooks/useChat";
 
-const socket = io("https://unicefprojectbackend.onrender.com/", {
+const socket = io("https://unicefprojectbackend-dj63.onrender.com/", {
     transports: ["websocket"],
 });
 

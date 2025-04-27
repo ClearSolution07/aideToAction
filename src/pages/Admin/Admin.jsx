@@ -7,12 +7,14 @@ import {
     NotificationOutlined,
     CloudUploadOutlined,
     LeftOutlined,
+    CheckCircleOutlined,
 } from "@ant-design/icons";
 
 import AddPsychologist from "./AddPsychologist";
 import AddMember from "./AddMember";
 import AddAnnouncement from "./AddAnnouncement";
 import UploadResources from "./UploadResources";
+import UserApproval from "./UserApproval";
 
 import "./admin.css";
 
@@ -41,6 +43,22 @@ const Admin = () => {
     }, []);
 
     const segmentOptions = [
+        {
+            label: (
+                <div
+                    className={
+                        isMobileWidth
+                            ? "segment-item segment-item-mobile"
+                            : "segment-item"
+                    }
+                >
+                    <CheckCircleOutlined style={{ fontSize: "20px" }} />
+                    <span>User Approval</span>
+                </div>
+            ),
+            value: "user4",
+            component: UserApproval,
+        },
         {
             label: (
                 <div
@@ -89,22 +107,6 @@ const Admin = () => {
             value: "user3",
             component: AddAnnouncement,
         },
-        // {
-        //     label: (
-        //         <div
-        //             className={
-        //                 isMobileWidth
-        //                     ? "segment-item segment-item-mobile"
-        //                     : "segment-item"
-        //             }
-        //         >
-        //             <CloudUploadOutlined style={{ fontSize: "20px" }} />
-        //             <span>Upload Resources</span>
-        //         </div>
-        //     ),
-        //     value: "user4",
-        //     component: UploadResources,
-        // },
     ];
 
     return (
