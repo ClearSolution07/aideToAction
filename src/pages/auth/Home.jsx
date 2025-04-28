@@ -68,10 +68,13 @@ const Home = () => {
                 </div>
                 <div className="btn-header-heading">
                     <div className="header-heading-container">
-                        <div className="header-heading">Association Of Indian Care Leavers</div>
+                        <div className="header-heading">
+                            Association of Indian Care leavers
+                        </div>
                         <div className="header-detail">
-                            The vision of Saarthi is to advocate for and to empower care leaving youth 
-                            transitioning out of child care institutions (CCI) and other forms of
+                            The vision of Saarthi is to advocate for and to
+                            empower care leaving youth transitioning out of
+                            Child Care Institutions (CCI) and other forms of
                             alternative care.
                         </div>
                     </div>
@@ -219,13 +222,13 @@ const Home = () => {
                                     </div>
 
                                     <div className="about-description-bottom">
-                                        Saathi welcomes you with open arms and
+                                        Saarthi welcomes you with open arms and
                                         hearts to join us and become part of
                                         this wonderful family. You do not need
                                         to be a member of any state or district
                                         network to join Saarthi or sign up here,
-                                        but you must be a care leaver. To become
-                                        a member or:
+                                        but you must be a care leaver. <br></br>
+                                        To become a member or:
                                     </div>
                                 </p>
                             </div>
@@ -288,13 +291,13 @@ const Home = () => {
                                     </div>
 
                                     <div className="about-description-bottom">
-                                        Saathi welcomes you with open arms and
+                                        Saarthi welcomes you with open arms and
                                         hearts to join us and become part of
                                         this wonderful family. You do not need
                                         to be a member of any state or district
                                         network to join Saarthi or sign up here,
-                                        but you must be a care leaver. To become
-                                        a member or:
+                                        but you must be a care leaver. <br></br>
+                                        To become a member or:
                                     </div>
                                 </p>
                             </div>

@@ -13,4 +13,11 @@ export {
     getStateWiseResource,
     getDashboardContent,
 } from "./desktop";
-export { saveMember, savePsychologist, saveAnnouncement } from "./admin";
+export { 
+    saveMember, 
+    savePsychologist, 
+    saveAnnouncement,
+    getUnverifiedUsers,
+    verifyUser,
+    deleteUser
+} from "./admin";
