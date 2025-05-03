@@ -18,8 +18,9 @@ const Announce = () => {
                     Stay informed about the latest events
                 </h1>
                 <p className="announces-subtitle">
-                    Programs, trainings, jobs, and meet-ups! Can be weddings and
-                    baby showers too!! Don't miss out!
+                    This section brings you notifications about upcoming
+                    programs, training opportunities, resource additions, and
+                    community initiatives.
                 </p>
                 <AnnouncementCard />
 

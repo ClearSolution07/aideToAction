@@ -141,7 +141,7 @@ function AddAnnouncement() {
                     <TextArea rows={4} />
                 </Form.Item>
 
-                <Form.Item name="file" label="Upload PDF/Image">
+                {/* <Form.Item name="file" label="Upload PDF/Image">
                     <Upload
                         name="file"
                         beforeUpload={(file) =>
@@ -175,6 +175,76 @@ function AddAnnouncement() {
                                 : ""}
                         </Button>
                     </Upload>
+                </Form.Item> */}
+
+                <Form.Item name="file" label="Upload PDF/Image">
+                    <Upload
+                        name="file"
+                        beforeUpload={(file) =>
+                            beforeUpload(
+                                file,
+                                file.type.startsWith("image/") ? "image" : "pdf"
+                            )
+                        }
+                        showUploadList={false}
+                        onChange={(info) => {
+                            if (info.file && info.file.originFileObj) {
+                                handleFileChange(info.file.originFileObj);
+                            }
+                        }}
+                        accept=".pdf, image/*"
+                    >
+                        <Button
+                            icon={
+                                fileBase64?.startsWith("data:image/") ? (
+                                    <PictureOutlined />
+                                ) : (
+                                    <FilePdfOutlined />
+                                )
+                            }
+                        >
+                            {fileBase64 ? "Replace File" : "Upload PDF/Image"}
+                        </Button>
+                    </Upload>
+
+                    {/* Preview and Remove */}
+                    {fileBase64 && (
+                        <div style={{ marginTop: 16 }}>
+                            {fileBase64.startsWith("data:image/") ? (
+                                <img
+                                    src={fileBase64}
+                                    alt="Preview"
+                                    style={{
+                                        width: "80px",
+                                        height: "auto",
+                                        marginBottom: 8,
+                                        borderRadius: 4,
+                                        boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
+                                    }}
+                                />
+                            ) : (
+                                <div
+                                    style={{
+                                        marginBottom: 8,
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <FilePdfOutlined
+                                        style={{ marginRight: 8 }}
+                                    />
+                                    <span>PDF file uploaded</span>
+                                </div>
+                            )}
+                            <Button
+                                danger
+                                size="small"
+                                onClick={() => setFileBase64(null)}
+                            >
+                                Remove File
+                            </Button>
+                        </div>
+                    )}
                 </Form.Item>
 
                 {/* Submit Button */}

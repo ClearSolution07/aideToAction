@@ -24,8 +24,8 @@ const HeaderComponent = ({ headerText }) => {
     useEffect(() => {
         if (
             accessToken &&
-            (location.pathname != "/resource" ||
-                location.pathname != "/announcement" ||
+            (location.pathname != "/resource" &&
+                location.pathname != "/announcement" &&
                 location.pathname != "/register")
         ) {
             const fetchProfile = async () => {
@@ -39,6 +39,7 @@ const HeaderComponent = ({ headerText }) => {
                         });
                     }
                 } catch (err) {
+                    console.log("hhhhhhhhhhhhhh");
                     message.error("Failed to fetch profile data.", err);
                 }
             };

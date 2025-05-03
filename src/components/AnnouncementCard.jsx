@@ -172,7 +172,7 @@ const AnnouncementCard = ({ visible }) => {
                                     borderRadius: "8px",
                                 }}
                             >
-                                {item.file && isPDF(item.file) ? (
+                                {item?.file && isPDF(item.file) ? (
                                     <iframe
                                         src={item.file}
                                         width="100%"
@@ -183,16 +183,16 @@ const AnnouncementCard = ({ visible }) => {
                                             marginTop: "8px",
                                         }}
                                     ></iframe>
-                                ) : (
+                                ) : item?.file ? (
                                     <img
-                                        src={item.file || "/placeholder.svg"}
+                                        src={item.file}
                                         alt="Announcement"
                                         style={{
                                             maxWidth: "100%",
                                             marginTop: "8px",
                                         }}
                                     />
-                                )}
+                                ) : null}
                             </Panel>
                         ))}
                     </Collapse>
